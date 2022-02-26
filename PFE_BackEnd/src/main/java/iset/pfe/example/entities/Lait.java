@@ -21,7 +21,7 @@ public class Lait implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idLait;
-	private int Poid;
+	private double Poid;
 	private Date Date_Extraction;
 	
 	@ManyToOne
@@ -33,7 +33,7 @@ public class Lait implements Serializable{
     private Set<Tank> tanks= new HashSet<>();
 	
 	//constructors
-	public Lait(Integer idLait, int poid, Date date_Extraction) {
+	public Lait(Integer idLait, double poid, Date date_Extraction) {
 		super();
 		this.idLait = idLait;
 		Poid = poid;
@@ -71,10 +71,10 @@ public class Lait implements Serializable{
 		this.idLait = idLait;
 	}
 	//poid
-	public int getPoid() {
+	public double getPoid() {
 		return Poid;
 	}
-	public void setPoid(int poid) {
+	public void setPoid(double poid) {
 		Poid = poid;
 	}
 	//Date_Extraction

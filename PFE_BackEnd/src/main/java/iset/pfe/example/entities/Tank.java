@@ -22,11 +22,11 @@ public class Tank implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idTank;
-	private int Poid;
-	private int Volume;
+	private double Poid;
+	private double Volume;
 	private Date Date_Remplissage;
 	private Date Date_Sortie;
-	private Boolean Etat;
+	private int Etat;
 	
 	@ManyToOne
 	@JoinColumn(name="idAgriculteur")
@@ -45,7 +45,7 @@ public class Tank implements Serializable{
 
 	//getters and setters 
 	
-	public Tank(int poid, int volume, Date date_Remplissage, Date date_Sortie, Boolean etat, Agriculteur agriculteur) {
+	public Tank(double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat, Agriculteur agriculteur) {
 		super();
 		Poid = poid;
 		Volume = volume;
@@ -56,7 +56,7 @@ public class Tank implements Serializable{
 	}
 
 
-	public Tank(int poid, int volume, Date date_Remplissage, Date date_Sortie, Boolean etat, Agriculteur agriculteur,
+	public Tank(double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat, Agriculteur agriculteur,
 			Set<Lait> laits) {
 		super();
 		Poid = poid;
@@ -77,17 +77,17 @@ public class Tank implements Serializable{
 		this.idTank = idTank;
 	}
 	//Poid
-	public int getPoid() {
+	public double getPoid() {
 		return Poid;
 	}
-	public void setPoid(int poid) {
+	public void setPoid(double poid) {
 		Poid = poid;
 	}
 	//Volume
-	public int getVolume() {
+	public double getVolume() {
 		return Volume;
 	}
-	public void setVolume(int volume) {
+	public void setVolume(double volume) {
 		Volume = volume;
 	}	
 	//Date_Remplissage	
@@ -105,10 +105,10 @@ public class Tank implements Serializable{
 		Date_Sortie = date_Sortie;
 	}
 	//Etat
-	public Boolean getEtat() {
+	public int getEtat() {
 		return Etat;
 	}
-	public void setEtat(Boolean etat) {
+	public void setEtat(int etat) {
 		Etat = etat;
 	}
 
