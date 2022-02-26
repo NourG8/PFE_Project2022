@@ -111,7 +111,7 @@ public class Tank implements Serializable{
 	public void setEtat(int etat) {
 		Etat = etat;
 	}
-
+	//Agriculteur
 	public Agriculteur getAgriculteur() {
 		return agriculteur;
 	}
