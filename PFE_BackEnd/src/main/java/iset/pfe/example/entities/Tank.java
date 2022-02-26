@@ -2,10 +2,19 @@ package iset.pfe.example.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Tank implements Serializable{
@@ -18,22 +27,48 @@ public class Tank implements Serializable{
 	private Date Date_Remplissage;
 	private Date Date_Sortie;
 	private Boolean Etat;
+	
+	@ManyToOne
+	@JoinColumn(name="idAgriculteur")
+	private Agriculteur agriculteur ;
+	
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name="tanks_laits" , joinColumns = @JoinColumn(name="idTank") , inverseJoinColumns=@JoinColumn(name="idLait"))
+	@JsonIgnore
+	private Set<Lait> laits= new HashSet<>();
+	
 	//constructors
 	public Tank() {
 		super();
 	}
 	
-	public Tank(Integer idTank, int poid, int volume, Date date_Remplissage, Date date_Sortie, Boolean etat) {
+
+	//getters and setters 
+	
+	public Tank(int poid, int volume, Date date_Remplissage, Date date_Sortie, Boolean etat, Agriculteur agriculteur) {
 		super();
-		this.idTank = idTank;
 		Poid = poid;
 		Volume = volume;
 		Date_Remplissage = date_Remplissage;
 		Date_Sortie = date_Sortie;
 		Etat = etat;
+		this.agriculteur = agriculteur;
 	}
-	//getters and setters 
-	
+
+
+	public Tank(int poid, int volume, Date date_Remplissage, Date date_Sortie, Boolean etat, Agriculteur agriculteur,
+			Set<Lait> laits) {
+		super();
+		Poid = poid;
+		Volume = volume;
+		Date_Remplissage = date_Remplissage;
+		Date_Sortie = date_Sortie;
+		Etat = etat;
+		this.agriculteur = agriculteur;
+		this.laits = laits;
+	}
+
+
 	//idTank
 	public Integer getIdTank() {
 		return idTank;
@@ -76,4 +111,23 @@ public class Tank implements Serializable{
 	public void setEtat(Boolean etat) {
 		Etat = etat;
 	}
+
+	public Agriculteur getAgriculteur() {
+		return agriculteur;
+	}
+
+	public void setAgriculteur(Agriculteur agriculteur) {
+		this.agriculteur = agriculteur;
+	}
+
+
+	public Set<Lait> getLaits() {
+		return laits;
+	}
+
+
+	public void setLaits(Set<Lait> laits) {
+		this.laits = laits;
+	}
+	
 }

@@ -1,10 +1,15 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Agriculteur implements Serializable{
@@ -21,6 +26,17 @@ public class Agriculteur implements Serializable{
 	private String username;
 	private String password;
 
+	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Tank> tanks;
+	
+	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Vache> vaches;
+	
+	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Nourriture> nourritures;
 
 	public Agriculteur() {
 		super();
@@ -36,6 +52,38 @@ public class Agriculteur implements Serializable{
 		this.tel = tel;
 		this.username = username;
 		this.password = password;
+	}
+	
+	
+	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
+			String password, Set<Tank> tanks, Set<Vache> vaches, Set<Nourriture> nourritures) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		Email = email;
+		Adress = adress;
+		Cin = cin;
+		this.tel = tel;
+		this.username = username;
+		this.password = password;
+		this.tanks = tanks;
+		this.vaches = vaches;
+		this.nourritures = nourritures;
+	}
+
+	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
+			String password, Set<Tank> tanks, Set<Vache> vaches) {
+		super();
+		Nom = nom;
+		Prenom = prenom;
+		Email = email;
+		Adress = adress;
+		Cin = cin;
+		this.tel = tel;
+		this.username = username;
+		this.password = password;
+		this.tanks = tanks;
+		this.vaches = vaches;
 	}
 
 	public Integer getIdAgriculteur() {
@@ -108,6 +156,22 @@ public class Agriculteur implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Set<Tank> getTanks() {
+		return tanks;
+	}
+
+	public void setTanks(Set<Tank> tanks) {
+		this.tanks = tanks;
+	}
+
+	public Set<Vache> getVaches() {
+		return vaches;
+	}
+
+	public void setVaches(Set<Vache> vaches) {
+		this.vaches = vaches;
 	}
 	
 
