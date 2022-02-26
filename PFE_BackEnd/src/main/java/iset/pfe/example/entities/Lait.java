@@ -84,7 +84,7 @@ public class Lait implements Serializable{
 	public void setDate_Extraction(Date date_Extraction) {
 		Date_Extraction = date_Extraction;
 	}
-
+	//Vache
 
 	public Vache getVache() {
 		return vache;
