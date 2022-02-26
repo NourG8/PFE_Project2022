@@ -21,9 +21,8 @@ public class Vache implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Vache(Integer idVache, double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
+	public Vache( double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
 		super();
-		this.idVache = idVache;
 		this.poids = poids;
 		Race = race;
 		this.dateNaissance = dateNaissance;
