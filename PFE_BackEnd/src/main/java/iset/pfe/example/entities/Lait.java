@@ -2,10 +2,18 @@ package iset.pfe.example.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Lait implements Serializable{
@@ -16,6 +24,14 @@ public class Lait implements Serializable{
 	private int Poid;
 	private Date Date_Extraction;
 	
+	@ManyToOne
+	@JoinColumn(name="idVache")
+	private Vache vache;
+	
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "laits")
+	@JsonIgnore
+    private Set<Tank> tanks= new HashSet<>();
+	
 	//constructors
 	public Lait(Integer idLait, int poid, Date date_Extraction) {
 		super();
@@ -23,6 +39,24 @@ public class Lait implements Serializable{
 		Poid = poid;
 		Date_Extraction = date_Extraction;
 	}	
+	
+	
+	public Lait(int poid, Date date_Extraction, Vache vache) {
+		super();
+		Poid = poid;
+		Date_Extraction = date_Extraction;
+		this.vache = vache;
+	}
+
+	public Lait(int poid, Date date_Extraction, Vache vache, Set<Tank> tanks) {
+		super();
+		Poid = poid;
+		Date_Extraction = date_Extraction;
+		this.vache = vache;
+		this.tanks = tanks;
+	}
+
+
 	public Lait() {
 		super();
 	}
@@ -51,5 +85,24 @@ public class Lait implements Serializable{
 		Date_Extraction = date_Extraction;
 	}
 
+
+	public Vache getVache() {
+		return vache;
+	}
+
+
+	public void setVache(Vache vache) {
+		this.vache = vache;
+	}
+
+
+	public Set<Tank> getTanks() {
+		return tanks;
+	}
+
+
+	public void setTanks(Set<Tank> tanks) {
+		this.tanks = tanks;
+	}
 	
 }

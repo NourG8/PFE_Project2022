@@ -5,6 +5,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Nourriture  implements Serializable{
@@ -15,6 +17,10 @@ public class Nourriture  implements Serializable{
 	private String Intitule;
 	private int Quantite ;
 	private String Qualite;
+	
+	@ManyToOne
+	@JoinColumn(name="idAgriculteur")
+	private Agriculteur agriculteur ;
 	
 	//constructors
 	
@@ -29,6 +35,15 @@ public class Nourriture  implements Serializable{
 		Qualite = qualite;
 	}
 	
+	
+	
+	public Nourriture(String intitule, int quantite, String qualite, Agriculteur agriculteur) {
+		super();
+		Intitule = intitule;
+		Quantite = quantite;
+		Qualite = qualite;
+		this.agriculteur = agriculteur;
+	}
 	//getters and setters 
 	//id
 	public Integer getIdNourriture() {
@@ -57,6 +72,12 @@ public class Nourriture  implements Serializable{
 	}
 	public void setQualite(String qualite) {
 		Qualite = qualite;
+	}
+	public Agriculteur getAgriculteur() {
+		return agriculteur;
+	}
+	public void setAgriculteur(Agriculteur agriculteur) {
+		this.agriculteur = agriculteur;
 	}
 	
 
