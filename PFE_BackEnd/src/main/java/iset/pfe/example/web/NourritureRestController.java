@@ -57,7 +57,8 @@ public class NourritureRestController {
 		Nourriture nourriture = nourritureRepository.findById(idNourriture).orElseThrow(()->new ResourceNotFoundException("Cet Nourriture n'existe pas"));
 		nourriture.setIntitule(nourritures.getIntitule());
 		nourriture.setQuantite(nourritures.getQuantite());
-		nourriture.setQualite(nourritures.getQualite());		
+		nourriture.setQualite(nourritures.getQualite());	
+		nourritureRepository.save(nourriture);
 		return nourriture;
 	    }
 		

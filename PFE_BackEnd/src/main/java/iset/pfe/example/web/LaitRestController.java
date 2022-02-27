@@ -60,6 +60,7 @@ public class LaitRestController {
 		Lait lait = laitRepository.findById(idLait).orElseThrow(()->new ResourceNotFoundException("Cet Lait n'existe pas"));
 		lait.setPoid(laits.getPoid());
 		lait.setDate_Extraction(laits.getDate_Extraction());	
+		laitRepository.save(lait);
 		return lait;
 	    }
 }
