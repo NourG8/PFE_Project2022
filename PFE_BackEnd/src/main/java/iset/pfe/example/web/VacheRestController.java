@@ -19,7 +19,7 @@ import iset.pfe.example.repositories.VacheRepository;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
-public class VacheController {
+public class VacheRestController {
 
 	@Autowired
 	private VacheRepository vacheRepository;
