@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Produit  implements Serializable{
+public class Produit implements Serializable{
 	
 	@Id
 	@GeneratedValue
