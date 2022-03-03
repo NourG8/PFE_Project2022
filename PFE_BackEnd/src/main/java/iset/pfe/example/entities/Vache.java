@@ -26,9 +26,10 @@ public class Vache implements Serializable{
 	private String etat;
 	private double qte_prodLait;
 	
-	@ManyToOne
-	@JoinColumn(name="idOperation")
-	private Operation operation ;
+	@OneToMany(mappedBy="vache",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Operation> operations;
+	
 	
 	public Vache() {
 		super();
@@ -44,14 +45,15 @@ public class Vache implements Serializable{
 		this.qte_prodLait = qte_prodLait;
 	}
 
-	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait, Operation operation) {
+	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
+			Set<Operation> operations) {
 		super();
 		this.poids = poids;
 		this.race = race;
 		this.dateNaissance = dateNaissance;
 		this.etat = etat;
 		this.qte_prodLait = qte_prodLait;
-		this.operation = operation;
+		this.operations = operations;
 	}
 
 	public Integer getIdVache() {
@@ -102,12 +104,12 @@ public class Vache implements Serializable{
 		this.qte_prodLait = qte_prodLait;
 	}
 
-	public Operation getOperation() {
-		return operation;
+	public Set<Operation> getOperations() {
+		return operations;
 	}
 
-	public void setOperation(Operation operation) {
-		this.operation = operation;
+	public void setOperations(Set<Operation> operations) {
+		this.operations = operations;
 	}
 	
 }
