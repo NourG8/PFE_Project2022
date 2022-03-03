@@ -14,7 +14,7 @@ import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Vache;
 import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.LaitRepository;
-import iset.pfe.example.repositories.NourritureRepository;
+import iset.pfe.example.repositories.ProduitRepository;
 import iset.pfe.example.repositories.TankRepository;
 import iset.pfe.example.repositories.VacheRepository;
 
@@ -28,7 +28,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	@Autowired
 	private TankRepository tankRepository;
 	@Autowired
-	private NourritureRepository nourritureRepository;
+	private ProduitRepository produitRepository;
 	@Autowired
 	private LaitRepository laitRepository;
 	
@@ -49,11 +49,11 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		vacheRepository.save(v1);
 		Lait l1=new Lait(25, date1, v1);
 		laitRepository.save(l1);
-		Tank t1=new Tank(125, 125, dateE, dateS, true,a1);
+		Tank t1=new Tank(125, 125, dateE, dateS,1,a1);
 		t1.getLaits().add(l1);
 		tankRepository.save(t1);
 		Produit n1=new Produit("nourriture 1 ..", 100, "bonne", a1);
-		nourritureRepository.save(n1);
+		produitRepository.save(n1);
 		l1.getTanks().add(t1);
 		laitRepository.save(l1);
 	}
