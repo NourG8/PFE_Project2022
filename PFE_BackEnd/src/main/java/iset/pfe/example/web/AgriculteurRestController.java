@@ -62,7 +62,6 @@ public class AgriculteurRestController {
     	ag.setNom(ag.getNom());
     	ag.setPrenom(agriculteur.getPrenom());
     	ag.setUsername(agriculteur.getUsername());
-    	ag.setTel(agriculteur.getTel());
     	ag.setPassword(agriculteur.getPassword());
 		agriculteurRepository.save(ag);
 			

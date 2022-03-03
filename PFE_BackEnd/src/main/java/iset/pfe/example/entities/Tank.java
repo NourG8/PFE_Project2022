@@ -22,11 +22,9 @@ public class Tank implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idTank;
-	private double Poid;
-	private double Volume;
-	private Date Date_Remplissage;
-	private Date Date_Sortie;
-	private int Etat;
+	private double poidVide;
+	private double poidActuel;
+	private String etat;
 	
 	@ManyToOne
 	@JoinColumn(name="idAgriculteur")
@@ -40,64 +38,55 @@ public class Tank implements Serializable{
 	public Tank() {
 		super();
 	}
-	
 
-	//getters and setters 
-	
-	public Tank(double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat, Agriculteur agriculteur) {
+	public Tank(double poidVide, double poidActuel, String etat) {
 		super();
-		Poid = poid;
-		Volume = volume;
-		Date_Remplissage = date_Remplissage;
-		Date_Sortie = date_Sortie;
-		Etat = etat;
-		this.agriculteur = agriculteur;
+		this.poidVide = poidVide;
+		this.poidActuel = poidActuel;
+		this.etat = etat;
 	}
 
+	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur, Operation operation) {
+		super();
+		this.poidVide = poidVide;
+		this.poidActuel = poidActuel;
+		this.etat = etat;
+		this.agriculteur = agriculteur;
+		this.operation = operation;
+	}
 
-	//idTank
 	public Integer getIdTank() {
 		return idTank;
 	}
+
 	public void setIdTank(Integer idTank) {
 		this.idTank = idTank;
 	}
-	//Poid
-	public double getPoid() {
-		return Poid;
+
+	public double getPoidVide() {
+		return poidVide;
 	}
-	public void setPoid(double poid) {
-		Poid = poid;
+
+	public void setPoidVide(double poidVide) {
+		this.poidVide = poidVide;
 	}
-	//Volume
-	public double getVolume() {
-		return Volume;
+
+	public double getPoidActuel() {
+		return poidActuel;
 	}
-	public void setVolume(double volume) {
-		Volume = volume;
-	}	
-	//Date_Remplissage	
-	public Date getDate_Remplissage() {
-		return Date_Remplissage;
+
+	public void setPoidActuel(double poidActuel) {
+		this.poidActuel = poidActuel;
 	}
-	public void setDate_Remplissage(Date date_Remplissage) {
-		Date_Remplissage = date_Remplissage;
+
+	public String getEtat() {
+		return etat;
 	}
-	//Date_Sortie
-	public Date getDate_Sortie() {
-		return Date_Sortie;
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
-	public void setDate_Sortie(Date date_Sortie) {
-		Date_Sortie = date_Sortie;
-	}
-	//Etat
-	public int getEtat() {
-		return Etat;
-	}
-	public void setEtat(int etat) {
-		Etat = etat;
-	}
-	//Agriculteur
+
 	public Agriculteur getAgriculteur() {
 		return agriculteur;
 	}
@@ -105,5 +94,14 @@ public class Tank implements Serializable{
 	public void setAgriculteur(Agriculteur agriculteur) {
 		this.agriculteur = agriculteur;
 	}
+
+	public Operation getOperation() {
+		return operation;
+	}
+
+	public void setOperation(Operation operation) {
+		this.operation = operation;
+	}	
+	
 	
 }

@@ -58,10 +58,8 @@ public class TankRestController {
 	@RequestMapping(value="/tanks/{idTank}",method = RequestMethod.PUT)
 	public Tank EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
 		Tank tank = tankRepository.findById(idTank).orElseThrow(()->new ResourceNotFoundException("Cet tank n'existe pas"));
-		tank.setPoid(tanks.getPoid());
-		tank.setVolume(tanks.getVolume());
-		tank.setDate_Remplissage(tank.getDate_Remplissage());
-		tank.setDate_Sortie(tank.getDate_Sortie());
+		tank.setPoidActuel(tanks.getPoidActuel());
+		tank.setPoidVide(tanks.getPoidVide());
 		tank.setEtat(tanks.getEtat()); 	
 		tankRepository.save(tank);		
 	  	return tank;

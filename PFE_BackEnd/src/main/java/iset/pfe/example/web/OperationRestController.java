@@ -54,9 +54,9 @@ public class OperationRestController {
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.PUT)
 	public Operation EditOperation(@PathVariable Integer idOperation, @RequestBody Operation operation){
 		Operation op = operationRepository.findById(idOperation).orElseThrow(()->new ResourceNotFoundException("Cette operation n'existe pas"));
-		op.setDateRemplissage(operation.getDateRemplissage());
-		op.setPoids(operation.getPoids());
-		op.setVolume(operation.getVolume());
+		op.setDateOperation(operation.getDateOperation());
+		op.setPoidsLait(operation.getPoidsLait());
+		op.setTypeOp(operation.getTypeOp());
 
 		return op;
 	    }
