@@ -1,10 +1,16 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Fournisseur implements Serializable{
@@ -13,6 +19,10 @@ public class Fournisseur implements Serializable{
 	private Integer idFournisseur;
 	private String nom;
 	private String matricule;
+	
+	@OneToMany(mappedBy="fournisseur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Bon> bons;
 	
 	public Fournisseur() {
 		super();
@@ -23,6 +33,14 @@ public class Fournisseur implements Serializable{
 		super();
 		this.nom = nom;
 		this.matricule = matricule;
+	}
+	
+
+	public Fournisseur(String nom, String matricule, Set<Bon> bons) {
+		super();
+		this.nom = nom;
+		this.matricule = matricule;
+		this.bons = bons;
 	}
 
 	public Integer getIdFournisseur() {
@@ -48,5 +66,15 @@ public class Fournisseur implements Serializable{
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
+
+	public Set<Bon> getBons() {
+		return bons;
+	}
+
+	public void setBons(Set<Bon> bons) {
+		this.bons = bons;
+	}
+	
+	
 	
 }

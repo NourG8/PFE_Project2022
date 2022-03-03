@@ -17,12 +17,11 @@ public class Agriculteur implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idAgriculteur;
-	private String Nom;
-	private String Prenom;
-	private String Email;
-	private String Adress;
-	private int Cin;
-	private int tel;
+	private String nom;
+	private String prenom;
+	private String email;
+	private String adress;
+	private int cin;
 	private String username;
 	private String password;
 
@@ -38,114 +37,134 @@ public class Agriculteur implements Serializable{
 	public Agriculteur() {
 		super();
 	}
-	
-	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel,String username, String password) {
+
+
+	public Agriculteur(String nom, String prenom, String email, String adress, int cin, String username,
+			String password) {
 		super();
-		Nom = nom;
-		Prenom = prenom;
-		Email = email;
-		Adress = adress;
-		Cin = cin;
-		this.tel = tel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adress = adress;
+		this.cin = cin;
 		this.username = username;
 		this.password = password;
 	}
-	
 
 
-	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
-			String password, Set<Tank> tanks, Set<Vache> vaches) {
+	public Agriculteur(String nom, String prenom, String email, String adress, int cin, String username,
+			String password, Set<Tank> tanks, Set<Bon> bons) {
 		super();
-		Nom = nom;
-		Prenom = prenom;
-		Email = email;
-		Adress = adress;
-		Cin = cin;
-		this.tel = tel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adress = adress;
+		this.cin = cin;
 		this.username = username;
 		this.password = password;
 		this.tanks = tanks;
+		this.bons = bons;
 	}
+
 
 	public Integer getIdAgriculteur() {
 		return idAgriculteur;
 	}
 
+
 	public void setIdAgriculteur(Integer idAgriculteur) {
 		this.idAgriculteur = idAgriculteur;
 	}
 
+
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
+
 
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
+
 
 	public String getPrenom() {
-		return Prenom;
+		return prenom;
 	}
+
 
 	public void setPrenom(String prenom) {
-		Prenom = prenom;
+		this.prenom = prenom;
 	}
+
 
 	public String getEmail() {
-		return Email;
+		return email;
 	}
+
 
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
+
 
 	public String getAdress() {
-		return Adress;
+		return adress;
 	}
+
 
 	public void setAdress(String adress) {
-		Adress = adress;
+		this.adress = adress;
 	}
+
 
 	public int getCin() {
-		return Cin;
+		return cin;
 	}
+
 
 	public void setCin(int cin) {
-		Cin = cin;
+		this.cin = cin;
 	}
 
-	public int getTel() {
-		return tel;
-	}
-
-	public void setTel(int tel) {
-		this.tel = tel;
-	}
 
 	public String getUsername() {
 		return username;
 	}
 
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 
 	public String getPassword() {
 		return password;
 	}
 
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 
 	public Set<Tank> getTanks() {
 		return tanks;
 	}
 
+
 	public void setTanks(Set<Tank> tanks) {
 		this.tanks = tanks;
 	}
 
+
+	public Set<Bon> getBons() {
+		return bons;
+	}
+
+
+	public void setBons(Set<Bon> bons) {
+		this.bons = bons;
+	}
+	
 
 }

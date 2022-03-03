@@ -16,6 +16,8 @@ public class Bon implements Serializable{
 	@GeneratedValue
 	private Integer idBon;
 	private double quantite;
+	private double prix;
+	private String type;
 	private Date date;
 	
 	@ManyToOne
@@ -26,15 +28,52 @@ public class Bon implements Serializable{
 	@JoinColumn(name="idProduit")
 	private Produit produit ;
 	
+	@ManyToOne
+	@JoinColumn(name="idFournisseur")
+	private Fournisseur fournisseur;
+	
 	public Bon() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bon(double quantite, Date date) {
+	public Bon(double quantite, double prix, String type, Date date) {
 		super();
 		this.quantite = quantite;
+		this.prix = prix;
+		this.type = type;
 		this.date = date;
+	}
+
+	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur) {
+		super();
+		this.quantite = quantite;
+		this.prix = prix;
+		this.type = type;
+		this.date = date;
+		this.agriculteur = agriculteur;
+	}
+
+	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit) {
+		super();
+		this.quantite = quantite;
+		this.prix = prix;
+		this.type = type;
+		this.date = date;
+		this.agriculteur = agriculteur;
+		this.produit = produit;
+	}
+
+	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit,
+			Fournisseur fournisseur) {
+		super();
+		this.quantite = quantite;
+		this.prix = prix;
+		this.type = type;
+		this.date = date;
+		this.agriculteur = agriculteur;
+		this.produit = produit;
+		this.fournisseur = fournisseur;
 	}
 
 	public Integer getIdBon() {
@@ -53,6 +92,22 @@ public class Bon implements Serializable{
 		this.quantite = quantite;
 	}
 
+	public double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(double prix) {
+		this.prix = prix;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -60,5 +115,30 @@ public class Bon implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public Agriculteur getAgriculteur() {
+		return agriculteur;
+	}
+
+	public void setAgriculteur(Agriculteur agriculteur) {
+		this.agriculteur = agriculteur;
+	}
+
+	public Produit getProduit() {
+		return produit;
+	}
+
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
 
 }

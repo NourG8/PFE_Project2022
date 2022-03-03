@@ -21,7 +21,7 @@ public class Vache implements Serializable{
 	@GeneratedValue
 	private Integer idVache;
 	private double poids;
-	private String Race;
+	private String race;
 	private Date dateNaissance;
 	private String etat;
 	private double qte_prodLait;
@@ -34,52 +34,80 @@ public class Vache implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Vache( double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
+
+	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
 		super();
 		this.poids = poids;
-		Race = race;
+		this.race = race;
 		this.dateNaissance = dateNaissance;
 		this.etat = etat;
 		this.qte_prodLait = qte_prodLait;
 	}
-	
+
+	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait, Operation operation) {
+		super();
+		this.poids = poids;
+		this.race = race;
+		this.dateNaissance = dateNaissance;
+		this.etat = etat;
+		this.qte_prodLait = qte_prodLait;
+		this.operation = operation;
+	}
 
 	public Integer getIdVache() {
 		return idVache;
 	}
+
 	public void setIdVache(Integer idVache) {
 		this.idVache = idVache;
 	}
+
 	public double getPoids() {
 		return poids;
 	}
+
 	public void setPoids(double poids) {
 		this.poids = poids;
 	}
+
 	public String getRace() {
-		return Race;
+		return race;
 	}
+
 	public void setRace(String race) {
-		Race = race;
+		this.race = race;
 	}
+
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
+
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
+
 	public String getEtat() {
 		return etat;
 	}
+
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
+
 	public double getQte_prodLait() {
 		return qte_prodLait;
 	}
+
 	public void setQte_prodLait(double qte_prodLait) {
 		this.qte_prodLait = qte_prodLait;
 	}
-	
 
+	public Operation getOperation() {
+		return operation;
+	}
+
+	public void setOperation(Operation operation) {
+		this.operation = operation;
+	}
+	
 }

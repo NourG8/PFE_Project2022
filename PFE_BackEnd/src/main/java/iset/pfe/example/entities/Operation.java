@@ -19,9 +19,9 @@ public class Operation implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idOperation;
-	private double poids;
-	private double volume;
-	private Date dateRemplissage;
+	private double poidsLait;
+	private Date dateOperation;
+	private String typeOp;
 	
 	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
@@ -36,52 +36,76 @@ public class Operation implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Operation(double poids, double volume, Date dateRemplissage) {
+	public Operation(double poidsLait, Date dateOperation, String typeOp) {
 		super();
-		this.poids = poids;
-		this.volume = volume;
-		this.dateRemplissage = dateRemplissage;
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
 	}
 
-	public double getPoids() {
-		return poids;
+	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<Tank> tanks) {
+		super();
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.tanks = tanks;
 	}
 
-
-	public void setPoids(double poids) {
-		this.poids = poids;
+	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<Tank> tanks, Set<Vache> vaches) {
+		super();
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.tanks = tanks;
+		this.vaches = vaches;
 	}
-
-
-	public double getVolume() {
-		return volume;
-	}
-
-
-	public void setVolume(double volume) {
-		this.volume = volume;
-	}
-
-
-	public Date getDateRemplissage() {
-		return dateRemplissage;
-	}
-
-
-	public void setDateRemplissage(Date dateRemplissage) {
-		this.dateRemplissage = dateRemplissage;
-	}
-
 
 	public Integer getIdOperation() {
 		return idOperation;
 	}
 
-
 	public void setIdOperation(Integer idOperation) {
 		this.idOperation = idOperation;
 	}
-	
+
+	public double getPoidsLait() {
+		return poidsLait;
+	}
+
+	public void setPoidsLait(double poidsLait) {
+		this.poidsLait = poidsLait;
+	}
+
+	public Date getDateOperation() {
+		return dateOperation;
+	}
+
+	public void setDateOperation(Date dateOperation) {
+		this.dateOperation = dateOperation;
+	}
+
+	public String getTypeOp() {
+		return typeOp;
+	}
+
+	public void setTypeOp(String typeOp) {
+		this.typeOp = typeOp;
+	}
+
+	public Set<Tank> getTanks() {
+		return tanks;
+	}
+
+	public void setTanks(Set<Tank> tanks) {
+		this.tanks = tanks;
+	}
+
+	public Set<Vache> getVaches() {
+		return vaches;
+	}
+
+	public void setVaches(Set<Vache> vaches) {
+		this.vaches = vaches;
+	}
 
 }

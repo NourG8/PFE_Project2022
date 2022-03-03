@@ -27,9 +27,6 @@ public class Produit implements Serializable{
 	@JsonIgnore
 	private Set<Bon> bons;
 	
-	//constructors
-	
-	
 	public Produit() {
 		super();
 	}
@@ -39,8 +36,8 @@ public class Produit implements Serializable{
 		this.intitule = intitule;
 		this.libelle = libelle;
 	}
-
-
+	
+	
 	public Produit(String intitule, String libelle, Set<Bon> bons) {
 		super();
 		this.intitule = intitule;
