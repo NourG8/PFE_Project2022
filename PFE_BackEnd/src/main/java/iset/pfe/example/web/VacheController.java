@@ -62,7 +62,7 @@ public class VacheController {
     	v.setPoids(vache.getPoids());
     	v.setQte_prodLait(vache.getQte_prodLait());
     	v.setRace(vache.getRace());
-			
+    	vacheRepository.save(v);
 	  	return v;
     }
 	

@@ -59,6 +59,7 @@ public class NourritureRestController {
 		produit.setQuantite(produits.getQuantite());
 		produit.setQualite(produits.getQualite());		
 		return produit;
+
 	    }
 		
 }
