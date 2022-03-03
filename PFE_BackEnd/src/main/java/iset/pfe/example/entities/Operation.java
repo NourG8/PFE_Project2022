@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,14 +24,14 @@ public class Operation implements Serializable{
 	private double poidsLait;
 	private Date dateOperation;
 	private String typeOp;
+
+	@ManyToOne
+	@JoinColumn(name="idTank")
+	private Tank tank;
 	
-	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Tank> tanks;
-	
-	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Vache> vaches ;
+	@ManyToOne
+	@JoinColumn(name="idVache")
+	private Vache vache;
 	
 	public Operation() {
 		super();
@@ -43,21 +45,13 @@ public class Operation implements Serializable{
 		this.typeOp = typeOp;
 	}
 
-	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<Tank> tanks) {
+	public Operation(double poidsLait, Date dateOperation, String typeOp, Tank tank, Vache vache) {
 		super();
 		this.poidsLait = poidsLait;
 		this.dateOperation = dateOperation;
 		this.typeOp = typeOp;
-		this.tanks = tanks;
-	}
-
-	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<Tank> tanks, Set<Vache> vaches) {
-		super();
-		this.poidsLait = poidsLait;
-		this.dateOperation = dateOperation;
-		this.typeOp = typeOp;
-		this.tanks = tanks;
-		this.vaches = vaches;
+		this.tank = tank;
+		this.vache = vache;
 	}
 
 	public Integer getIdOperation() {
@@ -92,20 +86,21 @@ public class Operation implements Serializable{
 		this.typeOp = typeOp;
 	}
 
-	public Set<Tank> getTanks() {
-		return tanks;
+	public Tank getTank() {
+		return tank;
 	}
 
-	public void setTanks(Set<Tank> tanks) {
-		this.tanks = tanks;
+	public void setTank(Tank tank) {
+		this.tank = tank;
 	}
 
-	public Set<Vache> getVaches() {
-		return vaches;
+	public Vache getVache() {
+		return vache;
 	}
 
-	public void setVaches(Set<Vache> vaches) {
-		this.vaches = vaches;
+	public void setVache(Vache vache) {
+		this.vache = vache;
 	}
+
 
 }

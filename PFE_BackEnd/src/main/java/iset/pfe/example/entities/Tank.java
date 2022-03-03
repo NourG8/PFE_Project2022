@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -28,11 +30,11 @@ public class Tank implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="idAgriculteur")
-	private Agriculteur agriculteur ;
+	private Agriculteur agriculteur;
 	
-	@ManyToOne
-	@JoinColumn(name="idOperation")
-	private Operation operation ;
+	@OneToMany(mappedBy="tank",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Operation> operations;
 	
 	//constructors
 	public Tank() {
@@ -46,13 +48,21 @@ public class Tank implements Serializable{
 		this.etat = etat;
 	}
 
-	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur, Operation operation) {
+	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur, Set<Operation> operations) {
 		super();
 		this.poidVide = poidVide;
 		this.poidActuel = poidActuel;
 		this.etat = etat;
 		this.agriculteur = agriculteur;
-		this.operation = operation;
+		this.operations = operations;
+	}
+
+	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur) {
+		super();
+		this.poidVide = poidVide;
+		this.poidActuel = poidActuel;
+		this.etat = etat;
+		this.agriculteur = agriculteur;
 	}
 
 	public Integer getIdTank() {
@@ -95,13 +105,12 @@ public class Tank implements Serializable{
 		this.agriculteur = agriculteur;
 	}
 
-	public Operation getOperation() {
-		return operation;
+	public Set<Operation> getOperations() {
+		return operations;
 	}
 
-	public void setOperation(Operation operation) {
-		this.operation = operation;
-	}	
-	
+	public void setOperations(Set<Operation> operations) {
+		this.operations = operations;
+	}
 	
 }
