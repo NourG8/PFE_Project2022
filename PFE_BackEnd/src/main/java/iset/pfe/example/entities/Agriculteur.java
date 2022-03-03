@@ -36,7 +36,7 @@ public class Agriculteur implements Serializable{
 	
 	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<Nourriture> nourritures;
+	private Set<Produit> produits;
 
 	public Agriculteur() {
 		super();
@@ -56,7 +56,7 @@ public class Agriculteur implements Serializable{
 	
 	
 	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
-			String password, Set<Tank> tanks, Set<Vache> vaches, Set<Nourriture> nourritures) {
+			String password, Set<Tank> tanks, Set<Vache> vaches, Set<Produit> produits) {
 		super();
 		Nom = nom;
 		Prenom = prenom;
@@ -68,7 +68,7 @@ public class Agriculteur implements Serializable{
 		this.password = password;
 		this.tanks = tanks;
 		this.vaches = vaches;
-		this.nourritures = nourritures;
+		this.produits = produits;
 	}
 
 	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,

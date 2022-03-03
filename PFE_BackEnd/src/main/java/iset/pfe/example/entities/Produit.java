@@ -9,11 +9,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Nourriture  implements Serializable{
+public class Produit  implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private Integer idNourriture;
+	private Integer idProduit;
 	private String Intitule;
 	private int Quantite ;
 	private String Qualite;
@@ -24,12 +24,12 @@ public class Nourriture  implements Serializable{
 	
 	//constructors
 	
-	public Nourriture() {
+	public Produit() {
 		super();
 	}
-	public Nourriture(Integer idNourriture, String intitule, int quantite, String qualite) {
+	public Produit(Integer idProduit, String intitule, int quantite, String qualite) {
 		super();
-		this.idNourriture = idNourriture;
+		this.idProduit = idProduit;
 		Intitule = intitule;
 		Quantite = quantite;
 		Qualite = qualite;
@@ -37,7 +37,7 @@ public class Nourriture  implements Serializable{
 	
 	
 	
-	public Nourriture(String intitule, int quantite, String qualite, Agriculteur agriculteur) {
+	public Produit(String intitule, int quantite, String qualite, Agriculteur agriculteur) {
 		super();
 		Intitule = intitule;
 		Quantite = quantite;
@@ -45,13 +45,7 @@ public class Nourriture  implements Serializable{
 		this.agriculteur = agriculteur;
 	}
 	//getters and setters 
-	//id
-	public Integer getIdNourriture() {
-		return idNourriture;
-	}
-	public void setIdNourriture(Integer idNourriture) {
-		this.idNourriture = idNourriture;
-	}
+	
 	//Intitule
 	public String getIntitule() {
 		return Intitule;
@@ -79,8 +73,12 @@ public class Nourriture  implements Serializable{
 	public void setAgriculteur(Agriculteur agriculteur) {
 		this.agriculteur = agriculteur;
 	}
-	
+	public Integer getIdProduit() {
+		return idProduit;
+	}
+	public void setIdProduit(Integer idProduit) {
+		this.idProduit = idProduit;
+	}
 
-	
 	
 }
