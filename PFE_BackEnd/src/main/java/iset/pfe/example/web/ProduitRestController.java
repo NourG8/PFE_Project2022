@@ -16,7 +16,7 @@ import iset.pfe.example.repositories.ProduitRepository;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
-public class NourritureRestController {
+public class ProduitRestController {
 	@Autowired
 	private ProduitRepository produitRepository;
 	
