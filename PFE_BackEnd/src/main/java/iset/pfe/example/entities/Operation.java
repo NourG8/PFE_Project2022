@@ -2,10 +2,16 @@ package iset.pfe.example.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Operation implements Serializable{
@@ -17,6 +23,13 @@ public class Operation implements Serializable{
 	private double volume;
 	private Date dateRemplissage;
 	
+	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Tank> tanks;
+	
+	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Vache> vaches ;
 	
 	public Operation() {
 		super();
