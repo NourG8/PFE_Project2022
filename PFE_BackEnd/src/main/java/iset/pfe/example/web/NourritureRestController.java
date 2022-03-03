@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import iset.pfe.example.entities.Nourriture;
+import iset.pfe.example.entities.Produit;
 import iset.pfe.example.repositories.NourritureRepository;
 
 @RestController
@@ -22,16 +22,16 @@ public class NourritureRestController {
 	
 	//getALL Nourritures method
 	@RequestMapping(value="/nourritures",method = RequestMethod.GET)
-	public List<Nourriture> getNourritures(){
+	public List<Produit> getNourritures(){
 		return nourritureRepository.findAll();
 	}
 		
 	//get Nourriture ById method
 	@RequestMapping(value="/nourritures/{idNourriture}",method = RequestMethod.GET)
-	public Nourriture getNourriture(@PathVariable Integer idNourriture) {
-	Optional<Nourriture> nourriture = nourritureRepository.findById(idNourriture);
-		if (nourriture.isPresent()) { 
-			return nourriture.get();
+	public Produit getNourriture(@PathVariable Integer idNourriture) {
+	Optional<Produit> produit = nourritureRepository.findById(idNourriture);
+		if (produit.isPresent()) { 
+			return produit.get();
 		}else throw new RuntimeException("Nourriture introuvable !!");
 	}
 		
@@ -39,27 +39,27 @@ public class NourritureRestController {
 	@RequestMapping(value="/nourritures/{idNourriture}",method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteNourriture(@PathVariable Integer idNourriture) {
-		Optional<Nourriture> nourriture = nourritureRepository.findById(idNourriture);
-			if (nourriture.isPresent()) { 
+		Optional<Produit> produit = nourritureRepository.findById(idNourriture);
+			if (produit.isPresent()) { 
 				nourritureRepository.deleteById(idNourriture);
 			}else throw new RuntimeException("Nourriture introuvable ! vous ne pouvez pas le supprimer !!");
 		}
 		
 	//create new Nourriture method 
 	@RequestMapping(value="/nourritures",method = RequestMethod.POST)
-		public Nourriture AddNourriture(@RequestBody Nourriture nourriture ){
-			return nourritureRepository.save(nourriture);
+		public Produit AddNourriture(@RequestBody Produit produit ){
+			return nourritureRepository.save(produit);
 		}
 		
 	//update a Nourriture method
 	@RequestMapping(value="/nourritures/{idNourriture}",method = RequestMethod.PUT)
-	public Nourriture EditNourriture(@PathVariable Integer idNourriture, @RequestBody Nourriture nourritures){
-		Nourriture nourriture = nourritureRepository.findById(idNourriture).orElseThrow(()->new ResourceNotFoundException("Cet Nourriture n'existe pas"));
-		nourriture.setIntitule(nourritures.getIntitule());
-		nourriture.setQuantite(nourritures.getQuantite());
-		nourriture.setQualite(nourritures.getQualite());	
-		nourritureRepository.save(nourriture);
-		return nourriture;
+	public Produit EditNourriture(@PathVariable Integer idNourriture, @RequestBody Produit produits){
+		Produit produit = nourritureRepository.findById(idNourriture).orElseThrow(()->new ResourceNotFoundException("Cet Nourriture n'existe pas"));
+		produit.setIntitule(produits.getIntitule());
+		produit.setQuantite(produits.getQuantite());
+		produit.setQualite(produits.getQualite());		
+		return produit;
+
 	    }
 		
 }
