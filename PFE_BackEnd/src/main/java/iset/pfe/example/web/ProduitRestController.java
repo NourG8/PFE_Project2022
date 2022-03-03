@@ -56,8 +56,8 @@ public class ProduitRestController {
 	public Produit EditNourriture(@PathVariable Integer idNourriture, @RequestBody Produit produits){
 		Produit produit = produitRepository.findById(idNourriture).orElseThrow(()->new ResourceNotFoundException("Cet Nourriture n'existe pas"));
 		produit.setIntitule(produits.getIntitule());
-		produit.setQuantite(produits.getQuantite());
-		produit.setQualite(produits.getQualite());		
+		produit.setLibelle(produits.getLibelle());
+			
 		return produit;
 
 	    }

@@ -32,10 +32,9 @@ public class Tank implements Serializable{
 	@JoinColumn(name="idAgriculteur")
 	private Agriculteur agriculteur ;
 	
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name="tanks_laits" , joinColumns = @JoinColumn(name="idTank") , inverseJoinColumns=@JoinColumn(name="idLait"))
-	@JsonIgnore
-	private Set<Lait> laits= new HashSet<>();
+	@ManyToOne
+	@JoinColumn(name="idOperation")
+	private Operation operation ;
 	
 	//constructors
 	public Tank() {
@@ -53,19 +52,6 @@ public class Tank implements Serializable{
 		Date_Sortie = date_Sortie;
 		Etat = etat;
 		this.agriculteur = agriculteur;
-	}
-
-
-	public Tank(double poid, double volume, Date date_Remplissage, Date date_Sortie, int etat, Agriculteur agriculteur,
-			Set<Lait> laits) {
-		super();
-		Poid = poid;
-		Volume = volume;
-		Date_Remplissage = date_Remplissage;
-		Date_Sortie = date_Sortie;
-		Etat = etat;
-		this.agriculteur = agriculteur;
-		this.laits = laits;
 	}
 
 
@@ -118,16 +104,6 @@ public class Tank implements Serializable{
 
 	public void setAgriculteur(Agriculteur agriculteur) {
 		this.agriculteur = agriculteur;
-	}
-
-
-	public Set<Lait> getLaits() {
-		return laits;
-	}
-
-
-	public void setLaits(Set<Lait> laits) {
-		this.laits = laits;
 	}
 	
 }

@@ -48,10 +48,6 @@ public class AgriculteurRestController {
 	
 	@RequestMapping(value="/agriculteurs",method = RequestMethod.POST)
 		public Agriculteur AddAgriculteur(@RequestBody Agriculteur agriculteur ){
-//		Optional<Agriculteur> ag =agriculteurRepository.findById(agriculteur.getIdAgriculteur());
-//		if (ag.isPresent() == false) { 
-//			return agriculteurRepository.save(agriculteur);
-//		}else throw new RuntimeException("Cet agriculteur déjà existe !!");
 		return agriculteurRepository.save(agriculteur);
 	}
 	

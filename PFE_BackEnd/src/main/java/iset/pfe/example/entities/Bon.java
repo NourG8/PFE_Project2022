@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Bon implements Serializable{
@@ -15,6 +17,14 @@ public class Bon implements Serializable{
 	private Integer idBon;
 	private double quantite;
 	private Date date;
+	
+	@ManyToOne
+	@JoinColumn(name="idAgriculteur")
+	private Agriculteur agriculteur ;
+	
+	@ManyToOne
+	@JoinColumn(name="idProduit")
+	private Produit produit ;
 	
 	public Bon() {
 		super();

@@ -1,12 +1,18 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produit  implements Serializable{
@@ -14,71 +20,65 @@ public class Produit  implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idProduit;
-	private String Intitule;
-	private int Quantite ;
-	private String Qualite;
+	private String intitule;
+	private String libelle;
 	
-	@ManyToOne
-	@JoinColumn(name="idAgriculteur")
-	private Agriculteur agriculteur ;
+	@OneToMany(mappedBy="produit",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Bon> bons;
 	
 	//constructors
+	
 	
 	public Produit() {
 		super();
 	}
-	public Produit(Integer idProduit, String intitule, int quantite, String qualite) {
+
+	public Produit(String intitule, String libelle) {
 		super();
-		this.idProduit = idProduit;
-		Intitule = intitule;
-		Quantite = quantite;
-		Qualite = qualite;
+		this.intitule = intitule;
+		this.libelle = libelle;
 	}
-	
-	
-	
-	public Produit(String intitule, int quantite, String qualite, Agriculteur agriculteur) {
+
+
+	public Produit(String intitule, String libelle, Set<Bon> bons) {
 		super();
-		Intitule = intitule;
-		Quantite = quantite;
-		Qualite = qualite;
-		this.agriculteur = agriculteur;
+		this.intitule = intitule;
+		this.libelle = libelle;
+		this.bons = bons;
 	}
-	//getters and setters 
-	
-	//Intitule
-	public String getIntitule() {
-		return Intitule;
-	}
-	public void setIntitule(String intitule) {
-		Intitule = intitule;
-	}
-	//Quantite
-	public int getQuantite() {
-		return Quantite;
-	}
-	public void setQuantite(int quantite) {
-		Quantite = quantite;
-	}
-	//Qualite
-	public String getQualite() {
-		return Qualite;
-	}
-	public void setQualite(String qualite) {
-		Qualite = qualite;
-	}
-	public Agriculteur getAgriculteur() {
-		return agriculteur;
-	}
-	public void setAgriculteur(Agriculteur agriculteur) {
-		this.agriculteur = agriculteur;
-	}
+
 	public Integer getIdProduit() {
 		return idProduit;
 	}
+
 	public void setIdProduit(Integer idProduit) {
 		this.idProduit = idProduit;
 	}
 
+	public String getIntitule() {
+		return intitule;
+	}
+
+	public void setIntitule(String intitule) {
+		this.intitule = intitule;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public Set<Bon> getBons() {
+		return bons;
+	}
+
+	public void setBons(Set<Bon> bons) {
+		this.bons = bons;
+	}
+	
 	
 }

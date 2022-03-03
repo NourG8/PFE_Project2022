@@ -32,11 +32,8 @@ public class Agriculteur implements Serializable{
 	
 	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<Vache> vaches;
+	private Set<Bon> bons;
 	
-	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Produit> produits;
 
 	public Agriculteur() {
 		super();
@@ -54,22 +51,7 @@ public class Agriculteur implements Serializable{
 		this.password = password;
 	}
 	
-	
-	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
-			String password, Set<Tank> tanks, Set<Vache> vaches, Set<Produit> produits) {
-		super();
-		Nom = nom;
-		Prenom = prenom;
-		Email = email;
-		Adress = adress;
-		Cin = cin;
-		this.tel = tel;
-		this.username = username;
-		this.password = password;
-		this.tanks = tanks;
-		this.vaches = vaches;
-		this.produits = produits;
-	}
+
 
 	public Agriculteur(String nom, String prenom, String email, String adress, int cin, int tel, String username,
 			String password, Set<Tank> tanks, Set<Vache> vaches) {
@@ -83,7 +65,6 @@ public class Agriculteur implements Serializable{
 		this.username = username;
 		this.password = password;
 		this.tanks = tanks;
-		this.vaches = vaches;
 	}
 
 	public Integer getIdAgriculteur() {
@@ -166,13 +147,5 @@ public class Agriculteur implements Serializable{
 		this.tanks = tanks;
 	}
 
-	public Set<Vache> getVaches() {
-		return vaches;
-	}
-
-	public void setVaches(Set<Vache> vaches) {
-		this.vaches = vaches;
-	}
-	
 
 }

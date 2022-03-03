@@ -1,19 +1,15 @@
 package iset.pfe.example;
 
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import iset.pfe.example.entities.Agriculteur;
-import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Vache;
 import iset.pfe.example.repositories.AgriculteurRepository;
-import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.ProduitRepository;
 import iset.pfe.example.repositories.TankRepository;
 import iset.pfe.example.repositories.VacheRepository;
@@ -29,8 +25,6 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	private TankRepository tankRepository;
 	@Autowired
 	private ProduitRepository produitRepository;
-	@Autowired
-	private LaitRepository laitRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PfeBackEndApplication.class, args);
@@ -45,17 +39,13 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Date dateS=new Date(18/02/2021);
 		
 		
-		Vache v1=new Vache(180.00, "race 1", date1, "malade", 23.5,a1);
+		Vache v1=new Vache(180.00, "race 1", date1, "malade", 23.5);
 		vacheRepository.save(v1);
-		Lait l1=new Lait(25, date1, v1);
-		laitRepository.save(l1);
 		Tank t1=new Tank(125, 125, dateE, dateS,1,a1);
-		t1.getLaits().add(l1);
 		tankRepository.save(t1);
-		Produit n1=new Produit("nourriture 1 ..", 100, "bonne", a1);
-		produitRepository.save(n1);
-		l1.getTanks().add(t1);
-		laitRepository.save(l1);
+		Produit p1=new Produit("Prod 1", "12se54z5");
+		produitRepository.save(p1);
+		
 	}
 
 }

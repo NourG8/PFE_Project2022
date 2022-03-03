@@ -27,12 +27,8 @@ public class Vache implements Serializable{
 	private double qte_prodLait;
 	
 	@ManyToOne
-	@JoinColumn(name="idAgriculteur")
-	private Agriculteur agriculteur ;
-	
-	@OneToMany(mappedBy="vache",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Lait> laits;
+	@JoinColumn(name="idOperation")
+	private Operation operation ;
 	
 	public Vache() {
 		super();
@@ -47,29 +43,7 @@ public class Vache implements Serializable{
 		this.qte_prodLait = qte_prodLait;
 	}
 	
-	
 
-	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
-			Agriculteur agriculteur) {
-		super();
-		this.poids = poids;
-		Race = race;
-		this.dateNaissance = dateNaissance;
-		this.etat = etat;
-		this.qte_prodLait = qte_prodLait;
-		this.agriculteur = agriculteur;
-	}
-	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
-			Agriculteur agriculteur, Set<Lait> laits) {
-		super();
-		this.poids = poids;
-		Race = race;
-		this.dateNaissance = dateNaissance;
-		this.etat = etat;
-		this.qte_prodLait = qte_prodLait;
-		this.agriculteur = agriculteur;
-		this.laits = laits;
-	}
 	public Integer getIdVache() {
 		return idVache;
 	}
@@ -106,19 +80,6 @@ public class Vache implements Serializable{
 	public void setQte_prodLait(double qte_prodLait) {
 		this.qte_prodLait = qte_prodLait;
 	}
-	public Agriculteur getAgriculteur() {
-		return agriculteur;
-	}
-	public void setAgriculteur(Agriculteur agriculteur) {
-		this.agriculteur = agriculteur;
-	}
-	public Set<Lait> getLaits() {
-		return laits;
-	}
-	public void setLaits(Set<Lait> laits) {
-		this.laits = laits;
-	}
-	
 	
 
 }
