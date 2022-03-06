@@ -8,6 +8,7 @@ import { UpdateFournisseurComponent } from './update-fournisseur/update-fourniss
 import { DetailsFournissseurComponent } from './details-fournissseur/details-fournissseur.component';
 
 
+
 const routes: Routes = [
   { path: '', component: FournisseurComponent },
   { path: 'listeFournisseur', component: ListeFournisseurComponent },

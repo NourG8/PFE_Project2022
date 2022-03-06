@@ -1,0 +1,110 @@
+
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Google Font: Source Sans Pro -->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+<div class="main-content">
+  <div id="btnAddSearch">
+      <div>
+        <div  class="search-container">
+          <mat-form-field id="formSearch" appearance="fill" aria-autocomplete="off" (keyup)="filterData($event)">
+          <div id="search">
+                <div><input id="inputSearch" matInput placeholder="Recherche ...."/></div>
+                <div><span class='material-icons'>Search</span></div>
+          </div>
+
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+
+
+
+        <!-- <Button id="btn"  class="btn  btn" style="margin-right:15px;">
+          <i class="fas fa-plus"></i> Ajouter un bon
+      </Button> -->
+
+        <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
+          <i class="fas fa-plus"></i>
+          Ajouter un element 
+        </button>
+      </div>
+
+  </div>
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12" id="card-Table">
+    <div class="card">
+      <!-- <div class="card-header card-header-danger" id="title-Table">
+        <h3 class="card-title" id="titre">Table Employees</h3><br>
+      </div> -->
+      <div class="card-body">
+        <div class="table-responsive">
+                <table mat-table matSort [dataSource]="dataSource!" class="table">
+                  <ng-container matColumnDef="idProduit">
+                    <th  mat-header-cell *matHeaderCellDef > #id  </th>
+                    <td mat-cell *matCellDef="let element" > {{element.idProduit}} </td>
+                  </ng-container>
+                  
+                  <ng-container matColumnDef="intitule">
+                    <th mat-sort-header mat-header-cell *matHeaderCellDef >intitulé  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.intitule}}</td>
+                  </ng-container>
+                  <ng-container matColumnDef="libelle">
+                    <th mat-sort-header mat-header-cell *matHeaderCellDef> Libellé  </th>
+                    <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+                  </ng-container>
+                  
+  
+                  <ng-container matColumnDef="action">
+                  <th mat-header-cell *matHeaderCellDef style="margin-left:-350px"> Action</th>
+                  <td mat-cell *matCellDef="let element">
+                    <a (click)="updateProduit(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
+                      <i class="fas fa-edit"></i>
+                  </a>
+  
+                  <a  (click)="detailsProduit(element)" class="btn  btn-info" style="margin-right:15px;margin-bottom:15px;">
+                    <i class="fas fa-info"></i>
+                  </a>
+  
+                  <a (click)="deleteProduit(element.idProduit)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
+                    <!-- (click)="deleteEmployee(element.idUser)" -->
+                  <i class="far fa-trash-alt"></i> 
+              </a>
+                  </td>
+                  </ng-container>
+  
+  
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+                 </table>
+                 <mat-paginator #paginator
+                                [pageSize]="3"
+                                [pageSizeOptions]="[2, 3, 5, 10, 25, 100]">
+                </mat-paginator>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<script>
+    $(function () {
+      $("#example1").DataTable();
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+      });
+    });
+  </script>
