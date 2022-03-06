@@ -1,0 +1,116 @@
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h1 id="modal-title"><b>Modifier la vache numero : {{vache.idVache}}</b></h1>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label>Poids :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="poids"
+               name="poids"
+               [(ngModel)]="vache.poids"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="poids?.invalid && poids?.touched"
+                class="text-danger">
+                Poids invalide !
+         </div>
+         <div
+              *ngIf="poids?.valid && poids?.touched"
+              class="text-success">
+              Poids valide !
+         </div>
+      </div>
+  
+      <div class="lg mb-3">
+        <label>Race :</label>
+        <input class="form-control"
+                  placeholder="Description Post here ...."
+                  name="race"
+                  formControlName="race"
+                  [(ngModel)]="vache.race"
+                  >
+            <div
+                  *ngIf="race?.invalid && race?.touched"
+                   class="text-danger">
+                   Race invalide !
+            </div>
+            <div
+                 *ngIf="race?.valid && race?.touched"
+                 class="text-success">
+                  Race valide !
+            </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="disabledTextInput">Date Naissance:</label>
+        <input type="text"
+               class="form-control"
+               name="dateNaissance"
+               formControlName="dateNaissance"
+               [(ngModel)]="vache.dateNaissance"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="dateNaissance?.invalid && dateNaissance?.touched"
+                class="text-danger">
+                 Date invalide !
+         </div>
+         <div
+              *ngIf="dateNaissance?.valid && dateNaissance?.touched"
+              class="text-success">
+                Date valide !
+         </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="disabledTextInput">Etat :</label>
+        <input type="text"
+               class="form-control"
+               name="etat"
+               formControlName="etat"
+               [(ngModel)]="vache.etat"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="etat?.invalid && etat?.touched"
+                class="text-danger">
+                 Etat invalide !
+         </div>
+         <div
+              *ngIf="etat?.valid && etat?.touched"
+              class="text-success">
+                Etat valide !
+         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="disabledTextInput">Quantité production laits :</label>
+        <input type="text"
+               class="form-control"
+               name="qte_prodLait"
+               formControlName="qte_prodLait"
+               [(ngModel)]="vache.qte_prodLait"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="qte_prodLait?.invalid && qte_prodLait?.touched"
+                class="text-danger">
+                Quantité invalide !
+         </div>
+         <div
+              *ngIf="qte_prodLait?.valid && qte_prodLait?.touched"
+              class="text-success">
+              Quantité valide !
+         </div>
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateVache()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+  
+  </div>
+  

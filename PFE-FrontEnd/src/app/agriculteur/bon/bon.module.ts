@@ -6,6 +6,7 @@ import { ListeBonComponent } from './liste-bon/liste-bon.component';
 import { CreateBonComponent } from './create-bon/create-bon.component';
 import { UpdateBonComponent } from './update-bon/update-bon.component';
 import { DatailsBonComponent } from './datails-bon/datails-bon.component';
+
 import { MatDialogModule} from "@angular/material/dialog";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';

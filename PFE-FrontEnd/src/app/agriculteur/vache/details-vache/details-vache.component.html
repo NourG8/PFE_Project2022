@@ -1,0 +1,40 @@
+<div class="ContenuCard"  >
+    <div class="modal-header">
+        <h1 id="modal-title"><b>Details pour la vache numero : {{idV}} </b></h1>
+  <div>
+    <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    
+  </div>
+  <br>
+  <div *ngIf="vache">
+  
+  <div class="form-group text-center">
+    <label>Poids :</label> 
+    <span id="interviewDate">  {{vache.poids}} </span>
+  </div>
+  
+  
+  <div class="form-group text-center">
+    <label>Race :</label> {{vache.race}}
+  </div>
+  <div class="form-group text-center">
+    <label>Date Naissance :</label> {{vache.dateNaissance}}
+  </div>
+  <div class="form-group text-center" >
+    <label>Etat : </label> {{vache.etat}}
+  </div>
+
+  <div class="form-group text-center" >
+    <label>Quantite production laits : </label> {{vache.qte_prodLait}}
+  </div>
+
+  </div>			
+  <div style="text-align: center;">
+    <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
+  </div>
+  </div>
+  
+  
