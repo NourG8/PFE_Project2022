@@ -1,0 +1,77 @@
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h1 id="modal-title"><b>Modifier le operation numero : {{operation.idOperation}}</b></h1>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label>Poids Lait :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="poidsLait"
+               name="poidsLait"
+               [(ngModel)]="operation.poidsLait"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="poidsLait?.invalid && poidsLait?.touched"
+                class="text-danger">
+                Poids invalide !
+         </div>
+         <div
+              *ngIf="poidsLait?.valid && poidsLait?.touched"
+              class="text-success">
+              Poids valide !
+         </div>
+      </div>
+  
+      <div class="lg mb-3">
+        <label>Date Operation :</label>
+        <input class="form-control"
+                  placeholder="Description Post here ...."
+                  name="dateOperation"
+                  formControlName="dateOperation"
+                  [(ngModel)]="operation.dateOperation"
+                  >
+            <div
+                  *ngIf="dateOperation?.invalid && dateOperation?.touched"
+                   class="text-danger">
+                   Date invalide !
+            </div>
+            <div
+                 *ngIf="dateOperation?.valid && dateOperation?.touched"
+                 class="text-success">
+                  Date valide !
+            </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="disabledTextInput">Type de l'operation :</label>
+        <input type="text"
+               class="form-control"
+               name="typeOp"
+               formControlName="typeOp"
+               [(ngModel)]="operation.typeOp"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="typeOp?.invalid && typeOp?.touched"
+                class="text-danger">
+                 Typeinvalide !
+         </div>
+         <div
+              *ngIf="typeOp?.valid && typeOp?.touched"
+              class="text-success">
+              Type valide !
+         </div>
+      </div>
+
+  
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateOperation()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+  
+  </div>
+  

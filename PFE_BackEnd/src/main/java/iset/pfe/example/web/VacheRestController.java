@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Agriculteur;
+import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Vache;
 import iset.pfe.example.repositories.VacheRepository;
 
@@ -55,15 +57,8 @@ public class VacheRestController {
 	
 	@RequestMapping(value="/vaches/{idVache}",method = RequestMethod.PUT)
 	
-	public Vache EditVache(@PathVariable Integer idVache, @RequestBody Vache vache){
-      Vache v = vacheRepository.findById(idVache).orElseThrow(()->new ResourceNotFoundException("Cet vache n'existe pas"));
-    	v.setDateNaissance(vache.getDateNaissance()); 
-    	v.setEtat(vache.getEtat());
-    	v.setPoids(vache.getPoids());
-    	v.setQte_prodLait(vache.getQte_prodLait());
-    	v.setRace(vache.getRace());
-    	vacheRepository.save(v);
-	  	return v;
-    }
+	public ResponseEntity<Vache> EditVache(@PathVariable Integer idVache, @RequestBody Vache vache){
+		return ResponseEntity.ok(vacheRepository.save(vache));    }
 	
+
 }

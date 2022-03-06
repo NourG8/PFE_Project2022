@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.repositories.TankRepository;
 
@@ -56,13 +58,8 @@ public class TankRestController {
 	
 	//update a tank method
 	@RequestMapping(value="/tanks/{idTank}",method = RequestMethod.PUT)
-	public Tank EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
-		Tank tank = tankRepository.findById(idTank).orElseThrow(()->new ResourceNotFoundException("Cet tank n'existe pas"));
-		tank.setPoidActuel(tanks.getPoidActuel());
-		tank.setPoidVide(tanks.getPoidVide());
-		tank.setEtat(tanks.getEtat()); 	
-		tankRepository.save(tank);		
-	  	return tank;
+	public ResponseEntity<Tank> EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
+		return ResponseEntity.ok(tankRepository.save(tanks));
     }
 	
 }
