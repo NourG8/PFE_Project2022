@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import iset.pfe.example.entities.Operation;
+import iset.pfe.example.entities.Produit;
 import iset.pfe.example.repositories.OperationRepository;
 
 @RestController
@@ -52,13 +54,10 @@ public class OperationRestController {
 		
 	
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.PUT)
-	public Operation EditOperation(@PathVariable Integer idOperation, @RequestBody Operation operation){
-		Operation op = operationRepository.findById(idOperation).orElseThrow(()->new ResourceNotFoundException("Cette operation n'existe pas"));
-		op.setDateOperation(operation.getDateOperation());
-		op.setPoidsLait(operation.getPoidsLait());
-		op.setTypeOp(operation.getTypeOp());
+	public ResponseEntity<Operation>  EditOperation(@PathVariable Integer idOperation, @RequestBody Operation operation){
+		 return ResponseEntity.ok(operationRepository.save(operation));
+	
 
-		return op;
 	    }
 }
 

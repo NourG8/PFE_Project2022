@@ -1,0 +1,32 @@
+<div class="ContenuCard"  >
+    <div class="modal-header">
+        <h1 id="modal-title"><b>Details pour l'operation numero :{{idO}} </b></h1>
+  <div>
+    <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    
+  </div>
+  <br>
+  <div *ngIf="operation">
+  
+  <div class="form-group text-center">
+    <label>Poids Lait :</label> 
+    <span id="interviewDate">  {{operation.poidsLait}} </span>
+  </div>
+  
+  
+  <div class="form-group text-center">
+    <label>Date de l'operation :</label> {{operation.dateOperation}}
+  </div>
+  <div class="form-group text-center">
+    <label>Type de l'operation :</label> {{operation.typeOp}}
+  </div>
+  </div>			
+  <div style="text-align: center;">
+    <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
+  </div>
+  </div>
+  
+  
