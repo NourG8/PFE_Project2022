@@ -6,6 +6,7 @@ import { ListeProduitComponent } from './liste-produit/liste-produit.component';
 import { CreateProduitComponent } from './create-produit/create-produit.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { DetailsProduitComponent } from './details-produit/details-produit.component';
+
 import { MatDialogModule} from "@angular/material/dialog";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';

@@ -1,0 +1,76 @@
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h1 id="modal-title"><b>Modifier le tank numero : {{tank.idTank}}</b></h1>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+      <div class="form-group">
+        <label>Poids Vide :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="poidVide"
+               name="poidVide"
+               [(ngModel)]="tank.poidVide"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="poidVide?.invalid && poidVide?.touched"
+                class="text-danger">
+                Poids Vide invalide !
+         </div>
+         <div
+              *ngIf="poidVide?.valid && poidVide?.touched"
+              class="text-success">
+              Poids Vide valide !
+         </div>
+      </div>
+  
+      <div class="lg mb-3">
+        <label>Poids Actuel :</label>
+        <input class="form-control"
+                  placeholder="Description Post here ...."
+                  name="poidActuel"
+                  formControlName="poidActuel"
+                  [(ngModel)]="tank.poidActuel"
+                  >
+            <div
+                  *ngIf="poidActuel?.invalid && poidActuel?.touched"
+                   class="text-danger">
+                   Poids Actuel invalide !
+            </div>
+            <div
+                 *ngIf="poidActuel?.valid && poidActuel?.touched"
+                 class="text-success">
+                 Poids Actuel  valide !
+            </div>
+      </div>
+
+      <div class="lg mb-3">
+        <label>Etat :</label>
+        <input class="form-control"
+                  placeholder="Description Post here ...."
+                  name="etat"
+                  formControlName="etat"
+                  [(ngModel)]="tank.etat"
+                  >
+            <div
+                  *ngIf="etat?.invalid && etat?.touched"
+                   class="text-danger">
+                   Etat invalide !
+            </div>
+            <div
+                 *ngIf="etat?.valid && etat?.touched"
+                 class="text-success">
+                 Etat  valide !
+            </div>
+      </div>
+  
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateTank()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+  
+  </div>
+  

@@ -1,0 +1,34 @@
+<div class="ContenuCard"  >
+    <div class="modal-header">
+        <h1 id="modal-title"><small>Details pour le tank numero:{{idT}} </small></h1>
+  <div>
+    <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    
+  </div>
+  <br>
+  <div *ngIf="tank">
+  
+  <div class="form-group text-center">
+    <label>Poids Vide :</label> 
+    <span id="interviewDate">  {{tank.poidVide}} </span>
+  </div>
+  
+  
+  <div class="form-group text-center">
+    <label>Poids Actuel :</label> {{tank.poidActuel}}
+  </div>
+
+  <div class="form-group text-center">
+    <label>Etat :</label> {{tank.etat}}
+  </div>
+
+  </div>			
+  <div style="text-align: center;">
+    <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
+  </div>
+  </div>
+  
+  
