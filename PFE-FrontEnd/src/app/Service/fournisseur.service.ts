@@ -12,34 +12,34 @@ export class FournisseurService {
   constructor(private http: HttpClient) { }
 
 
-  getbons(): Observable<any> {
+  getFournisseurs(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
 
-  getBon(id: number): Observable<any> {
+  getFournisseur(id: number): Observable<any> {
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url);
   }
 
-  createBon(f:Fournisseur):Observable<Fournisseur>{
+  createFournisseur(f:Fournisseur):Observable<Fournisseur>{
     return this.http.post<Fournisseur>(this.baseUrl,f);
   }
 
-  updateBon(id: number, value:Fournisseur): Observable<Object> {
+  updateFournisseur(id: number, value:Fournisseur): Observable<Object> {
     const url = `${this.baseUrl}/${id}`
     return this.http.put(url, value);
   }
 
   
 
-  deleteBon(id: number): Observable<any> {
+  deleteFournisseur(id: number): Observable<any> {
 
     const url = `${this.baseUrl}/${id}`
     return this.http.delete(url);
  
   }
 
-  getBonList(): Observable<Fournisseur[]> {
+  getFournisseurList(): Observable<Fournisseur[]> {
     return this.http.get<Fournisseur[]>(this.baseUrl);
    
   }
