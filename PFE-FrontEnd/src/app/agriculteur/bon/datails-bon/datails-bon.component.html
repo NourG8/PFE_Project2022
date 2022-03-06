@@ -1,0 +1,34 @@
+<div class="ContenuCard"  >
+  <div class="modal-header">
+      <h1 id="modal-title"><b>Details pour le bon numero : {{idB}} </b></h1>
+<div>
+  <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><br>
+  
+</div>
+<br>
+<div *ngIf="bon">
+
+<div class="form-group text-center">
+  <label>Quantite :</label> 
+  <span id="interviewDate">  {{bon.quantite}} </span>
+</div>
+
+
+<div class="form-group text-center">
+  <label>Type :</label> {{bon.type}}
+</div>
+<div class="form-group text-center">
+  <label>Date :</label> {{bon.date}}
+</div>
+<div class="form-group text-center" >
+  <label>Prix : </label> {{bon.prix}}
+</div>
+</div>			
+<div style="text-align: center;">
+  <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
+</div>
+</div>
+

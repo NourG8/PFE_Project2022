@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,14 +51,21 @@ public class BonRestController {
 		return bonRepository.save(bon);
 	}
 	
-	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
+//	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
+//	
+//	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
+//        Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
+//    	b.setDate(bon.getDate());
+//    	b.setPrix(bon.getPrix());
+//    	b.setType(bon.getType());
+//    	b.setQuantite(bon.getQuantite());
+//	  	return b;
+//    }
+//	
 	
-	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
-      Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
-    	b.setDate(bon.getDate());
-    	b.setQuantite(bon.getQuantite());
-			
-	  	return b;
+	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
+	public ResponseEntity<Bon> EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
+		 return ResponseEntity.ok(bonRepository.save(bon));
     }
 	
 

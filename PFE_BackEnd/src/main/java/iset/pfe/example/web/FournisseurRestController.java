@@ -27,7 +27,7 @@ public class FournisseurRestController {
 	}
 	
 		
-	@RequestMapping(value="/fournisseurs/{ididFournisseur}",method = RequestMethod.GET)
+	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.GET)
     public Fournisseur getFournisseur(@PathVariable Integer idFournisseur) {
 		Optional<Fournisseur> f= fournisseurRepository.findById(idFournisseur);
 		if (f.isPresent()) { 
@@ -36,7 +36,7 @@ public class FournisseurRestController {
 	}
 	
 	
-	@RequestMapping(value="/bons/{idFournisseur}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteFournisseur(@PathVariable Integer idFournisseur) {
 		Optional<Fournisseur> f = fournisseurRepository.findById(idFournisseur);

@@ -1,0 +1,95 @@
+<div class="ContenuCard" >
+  <div class="modal-header">
+    <h1 id="modal-title"><b>Modifier le bon numero : {{bon.idBon}}</b></h1>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>Quantite :</label>
+      <input type="text"
+             class="form-control"
+             formControlName="quantite"
+             name="quantite"
+             [(ngModel)]="bon.quantite"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="quantite?.invalid && quantite?.touched"
+              class="text-danger">
+              Quantite invalide !
+       </div>
+       <div
+            *ngIf="quantite?.valid && quantite?.touched"
+            class="text-success">
+             Quantite valide !
+       </div>
+    </div>
+
+    <div class="lg mb-3">
+      <label>Type :</label>
+      <input class="form-control"
+                placeholder="Description Post here ...."
+                name="type"
+                formControlName="type"
+                [(ngModel)]="bon.type"
+                >
+          <div
+                *ngIf="type?.invalid && type?.touched"
+                 class="text-danger">
+                 Type invalide !
+          </div>
+          <div
+               *ngIf="type?.valid && type?.touched"
+               class="text-success">
+                Type valide !
+          </div>
+    </div>
+
+    <div class="form-group">
+      <label for="disabledTextInput">Date :</label>
+      <input type="text"
+             class="form-control"
+             name="date"
+             formControlName="date"
+             [(ngModel)]="bon.date"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="date?.invalid && date?.touched"
+              class="text-danger">
+               Date invalide !
+       </div>
+       <div
+            *ngIf="date?.valid && date?.touched"
+            class="text-success">
+              Date valide !
+       </div>
+    </div>
+
+    <div class="form-group">
+      <label for="disabledTextInput">Prix :</label>
+      <input type="text"
+             class="form-control"
+             name="prix"
+             formControlName="prix"
+             [(ngModel)]="bon.prix"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="prix?.invalid && prix?.touched"
+              class="text-danger">
+               Prix invalide !
+       </div>
+       <div
+            *ngIf="prix?.valid && prix?.touched"
+            class="text-success">
+              Prix valide !
+       </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+    </div>
+  </form>
+
+</div>
