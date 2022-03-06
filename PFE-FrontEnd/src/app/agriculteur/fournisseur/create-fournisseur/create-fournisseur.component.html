@@ -1,0 +1,61 @@
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h1 id="modal-title"><b>Creer un nouveau fournisseur :</b></h1>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+          <form [formGroup]="myForm"  novalidate >
+            <div class="form-row">
+              <div class="form-group col-md-6 mb-3">
+                <label>Nom : </label>
+                <input type="text"
+                 formControlName="nom"
+                 class="form-control"
+                 id="nom"
+                 [(ngModel)]="fournisseur.nom"
+                 name="nom">
+    
+                <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
+                  Quantite invalide !
+                </div>
+                <div *ngIf="nom?.valid && nom?.touched" class="text-success">
+                  Quantite valide!
+                </div>
+    
+              </div>
+  
+              <div class="col-md-6 mb-3">
+                <label for="type">Matricule :</label>
+                <input type="text"
+                 class="form-control"
+                  id="matricule"
+                  formControlName="matricule"
+                  [(ngModel)]="fournisseur.matricule"
+                  name="matricule">
+    
+                  <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+                    invalide type!
+                  </div>
+                  <div *ngIf="matricule?.valid && matricule?.touched" class="text-success">
+                    Type valide!
+                  </div>
+    
+              </div>
+  
+            </div>
+  
+            <div class="form-group">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+                <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation</label>
+                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" style="margin:20px" (click)="save()"  type="submit">Envoyer</button>
+            <!-- close popup -->
+            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+          </form>
+        </div>
+    
+    

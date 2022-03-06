@@ -1,6 +1,6 @@
 export class Fournisseur{
 
-    idB!: number;
+    idFournisseur!: number;
     nom!: string;
     matricule!: string;
     // agriculteur!:any[];

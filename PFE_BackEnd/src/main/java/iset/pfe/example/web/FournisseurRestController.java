@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
 import iset.pfe.example.repositories.FournisseurRepository;
 
@@ -51,13 +54,9 @@ public class FournisseurRestController {
 	}
 	
 	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.PUT)
-	
-	public Fournisseur EditFournisseur(@PathVariable Integer idFournisseur, @RequestBody Fournisseur fournisseur){
-		Fournisseur f = fournisseurRepository.findById(idFournisseur).orElseThrow(()->new ResourceNotFoundException("Cet fournisseur n'existe pas"));
-    	f.setNom(fournisseur.getNom());
-    	f.setMatricule(fournisseur.getMatricule());
-
-	  	return f;
+	public ResponseEntity<Fournisseur> EditFournisseur(@PathVariable Integer idFournisseur, @RequestBody Fournisseur fournisseur){
+		 return ResponseEntity.ok(fournisseurRepository.save(fournisseur));
     }
+	
 	
 }
