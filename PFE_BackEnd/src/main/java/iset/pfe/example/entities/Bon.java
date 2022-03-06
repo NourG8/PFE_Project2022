@@ -45,24 +45,24 @@ public class Bon implements Serializable{
 		this.date = date;
 	}
 
-	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur) {
-		super();
-		this.quantite = quantite;
-		this.prix = prix;
-		this.type = type;
-		this.date = date;
-		this.agriculteur = agriculteur;
-	}
-
-	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit) {
-		super();
-		this.quantite = quantite;
-		this.prix = prix;
-		this.type = type;
-		this.date = date;
-		this.agriculteur = agriculteur;
-		this.produit = produit;
-	}
+//	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur) {
+//		super();
+//		this.quantite = quantite;
+//		this.prix = prix;
+//		this.type = type;
+//		this.date = date;
+//		this.agriculteur = agriculteur;
+//	}
+//
+//	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit) {
+//		super();
+//		this.quantite = quantite;
+//		this.prix = prix;
+//		this.type = type;
+//		this.date = date;
+//		this.agriculteur = agriculteur;
+//		this.produit = produit;
+//	}
 
 	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit,
 			Fournisseur fournisseur) {
