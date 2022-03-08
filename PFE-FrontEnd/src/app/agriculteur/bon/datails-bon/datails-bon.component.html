@@ -16,7 +16,6 @@
   <span id="interviewDate">  {{bon.quantite}} </span>
 </div>
 
-
 <div class="form-group text-center">
   <label>Type :</label> {{bon.type}}
 </div>
@@ -26,6 +25,18 @@
 <div class="form-group text-center" >
   <label>Prix : </label> {{bon.prix}}
 </div>
+<div class="form-group text-center" >
+  <label>Produit : </label> {{bon.produit.intitule}}
+</div>
+
+<div class="form-group text-center" >
+  <label>Nom de l'agriculteur : </label> {{bon.agriculteur.nom}}
+</div>
+
+<div class="form-group text-center" >
+  <label>Nom du fournisseur : </label> {{bon.fournisseur.nom}}
+</div>
+
 </div>			
 <div style="text-align: center;">
   <button (click)="closeDetails()" class="btn btn-success">Close Details</button>

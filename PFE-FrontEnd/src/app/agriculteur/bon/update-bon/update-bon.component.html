@@ -26,25 +26,53 @@
        </div>
     </div>
 
-    <div class="lg mb-3">
-      <label>Type :</label>
-      <input class="form-control"
-                placeholder="Description Post here ...."
-                name="type"
-                formControlName="type"
-                [(ngModel)]="bon.type"
-                >
-          <div
-                *ngIf="type?.invalid && type?.touched"
-                 class="text-danger">
-                 Type invalide !
-          </div>
-          <div
-               *ngIf="type?.valid && type?.touched"
-               class="text-success">
-                Type valide !
-          </div>
-    </div>
+    <div class="col-md-6 mb-3">
+      <label for="pseudo"> type</label>
+        <select type="text" class="form-select" id="type"   [(ngModel)]="bon.type"  name="type" formControlName="type" >
+        <option value="Entree">Entree</option>
+        <option value="Sortie">Sortie</option>
+        </select>
+      <div
+        *ngIf="type?.invalid && type?.touched"
+         class="text-danger">  
+            invalide type!
+     </div>
+       <div
+       *ngIf="type?.valid && type?.touched"
+       class="text-success">
+       Type valide!
+     </div>
+  </div>
+
+
+
+  <div class="col-md-12 mb-3">
+    <label class="mr-sm-5" for="inlineFormCustomSelect">Produit</label>
+    <select formControlName="produit" name="produit"   [(ngModel)]="bon.produit.idProduit" class="custom-select mr-sm-2" >
+      <!-- <option selected>Choisir un prouit...</option> -->
+      <option *ngFor="let produit of produits | async" [value]="produit.idProduit">{{produit.intitule}}</option>
+    </select>
+
+  </div>
+
+  <div class="col-md-12 mb-3">
+    <label class="mr-sm-5" for="inlineFormCustomSelect">Agriculteur</label>
+    <select formControlName="agriculteur" name="agriculteur"  [(ngModel)]="bon.agriculteur.idAgriculteur" class="custom-select mr-sm-2" id="agriculteur" >
+      <option selected>Choisir unagriculteur...</option>
+      <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.nom}}</option>
+    </select>
+
+  </div>
+
+  <div class="col-md-12 mb-3">
+    <label class="mr-sm-5" for="inlineFormCustomSelect">Fournisseur</label>
+    <select formControlName="fournisseur" name="fournisseur"  [(ngModel)]="bon.fournisseur.idFournisseur" class="custom-select mr-sm-2" id="fournisseur" >
+      <option selected>Choisir un fournisseur...</option>
+      <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}</option>
+    </select>
+
+  </div>
+
 
     <div class="form-group">
       <label for="disabledTextInput">Date :</label>

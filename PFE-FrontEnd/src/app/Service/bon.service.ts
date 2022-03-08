@@ -31,17 +31,11 @@ export class BonService {
   //   return this.http.post(this.baseUrl, bon);
   // }
 
-  createBon(bon:Bon):Observable<Bon>{
-    return this.http.post<Bon>(this.baseUrl,bon);
+  createBon(bon:any){
+    return this.http.post(this.baseUrl,bon);
   }
 
-  // updateBon(o :Bon):Observable<Bon>{
-  //   const url = `${this.baseUrl}/${o.idBon}`
-  //   return this.http.put<Bon>(url, o);
-    
-  // }
-
-  updateBon(id: number, value:Bon): Observable<Object> {
+  updateBon(id: number, value:any){
     const url = `${this.baseUrl}/${id}`
     return this.http.put(url, value);
   }
