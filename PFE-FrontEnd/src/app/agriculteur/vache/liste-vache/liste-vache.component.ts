@@ -24,7 +24,7 @@ export class ListeVacheComponent implements OnInit {
   ELEMENT_DATA?:Vache[];
   vache?:Vache;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idVache','poids', 'race', 'dateNaissance','etat','qte_prodLait','action'];
+  displayedColumns: string[] = ['idVache','matricule','poids', 'race', 'dateNaissance','etat','qte_prodLait','action'];
   constructor(private vacheService: VacheService,
     private router: Router, private dialog:MatDialog) { }
 

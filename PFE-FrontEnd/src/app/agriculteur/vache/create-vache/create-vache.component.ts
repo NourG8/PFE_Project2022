@@ -59,6 +59,7 @@ export class CreateVacheComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
+      'matricule' : new FormControl(null,[Validators.required,]),
       'poids' : new FormControl(null,[Validators.required,]),
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
@@ -85,6 +86,9 @@ get etat(){
 
 get qte_prodLait(){
   return this.myForm.get('qte_prodLait') ;
+}
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
 }
