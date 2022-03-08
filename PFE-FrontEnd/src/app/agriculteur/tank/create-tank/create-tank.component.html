@@ -7,6 +7,26 @@
   </div><br>
         <form [formGroup]="myForm"  novalidate >
           <div class="form-row">
+
+            <div class="form-group col-md-6 mb-3">
+              <label>Matricule tank: </label>
+              <input type="text"
+               formControlName="matricule"
+               class="form-control"
+               id="matricule"
+               [(ngModel)]="tank.matricule"
+               name="matricule">
+  
+              <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+                Matricule invalide !
+              </div>
+              <div *ngIf="matricule?.valid && matricule?.touched" class="text-success">
+                Matricule valide!
+              </div>
+  
+            </div>
+
+
             <div class="form-group col-md-6 mb-3">
               <label>Poid Vide: </label>
               <input type="text"
@@ -25,7 +45,7 @@
   
             </div>
 
-            <div class="form-group col-md-6 mb-3">
+            <!-- <div class="form-group col-md-12 mb-3">
               <label>Poid Actuel: </label>
               <input type="text"
                formControlName="poidActuel"
@@ -41,9 +61,9 @@
                Poid Actuel valide!
               </div>
   
-            </div>
+            </div> -->
 
-            <div class="form-group col-md-12 mb-3">
+            <!-- <div class="form-group col-md-12 mb-3">
               <label>Etat : </label>
               <input type="text"
                formControlName="poidActuel"
@@ -59,7 +79,27 @@
                Etat valide!
               </div>
   
-            </div>
+            </div> -->
+
+
+
+
+            <!-- <div class="col-md-12 mb-3">
+              <label for="pseudo"> Etat tank</label>
+                  <select type="text" class="form-select" id="etat" name="etat" formControlName="etat" >
+                  <option disabled selected value [ngValue]="null">Choisir l'etat...</option>
+                  <option value="Retrait">remplis totalement</option>
+                  <option value="Retrait">en cours</option>
+                  <option value="Remplissage">non remplis</option>
+                  </select>
+  
+                <div *ngIf="etat?.invalid && etat?.touched" class="text-danger">
+                 Etat invalide !</div>
+                <div *ngIf="etat?.valid && etat?.touched" class="text-success">
+                  Etat valide !
+                </div>
+  
+              </div> -->
 
           </div>
 

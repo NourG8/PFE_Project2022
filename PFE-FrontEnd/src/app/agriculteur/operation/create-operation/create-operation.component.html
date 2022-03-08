@@ -13,7 +13,6 @@
                  formControlName="poidsLait"
                  class="form-control"
                  id="poidsLait"
-                 [(ngModel)]="operation.poidsLait"
                  name="poidsLait">
     
                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
@@ -31,7 +30,6 @@
                  class="form-control"
                   id="dateOperation"
                   formControlName="dateOperation"
-                  [(ngModel)]="operation.dateOperation"
                   name="dateOperation">
     
                   <div *ngIf="dateOperation?.invalid && dateOperation?.touched" class="text-danger">
@@ -47,9 +45,10 @@
             <div class="form-row">
     
     
-              <div class="col-md-6 mb-3">
+              <div class="col-md-12 mb-3">
                 <label for="pseudo"> type</label>
-                    <select type="text" class="form-select" id="typeOp"  name="typeOp" formControlName="typeOp" >
+                    <select type="text" class="form-select" id="typeOp" name="typeOp" formControlName="typeOp" >
+                    <option disabled selected value [ngValue]="null">Choisir un type...</option>
                     <option value="Retrait">Retarit</option>
                     <option value="Remplissage">Remplissage</option>
                     </select>
@@ -61,9 +60,43 @@
                   </div>
     
                 </div>
-
-
     
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <label class="mr-sm-5" for="inlineFormCustomSelect">Vache : <span style="color:red;">*</span></label>
+              <select formControlName="vache" name="vache"  class="custom-select mr-sm-2" id="vache" >
+                <option disabled selected value [ngValue]="null">Choisir une vache ...</option>
+                <option *ngFor="let vache of vaches | async" [value]="vache.idVache">{{vache.idVache}}</option>
+              </select>
+              <div
+              *ngIf="vache?.invalid && vache?.touched"
+               class="text-danger">  
+                  invalide vache!
+           </div>
+             <div
+             *ngIf="vache?.valid && vache?.touched"
+             class="text-success">
+            Vache valide!
+           </div>
+            </div>
+
+            <div class="col-md-12 mb-3">
+              <label class="mr-sm-5" for="inlineFormCustomSelect">Tank : <span style="color:red;">*</span></label>
+              <select formControlName="tank" name="tank"  class="custom-select mr-sm-2" id="tank" >
+                <option disabled selected value [ngValue]="null">Choisir un tank ...</option>
+                <option *ngFor="let tank of tanks | async" [value]="tank.idTank">{{tank.idTank}}</option>
+              </select>
+              <div
+              *ngIf="tank?.invalid && tank?.touched"
+               class="text-danger">  
+                  invalide tank!
+           </div>
+             <div
+             *ngIf="tank?.valid && tank?.touched"
+             class="text-success">
+             Tank valide!
+           </div>
             </div>
   
   

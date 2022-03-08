@@ -22,11 +22,11 @@ export class OperationService {
     return this.http.get(url);
   }
 
-  createOperation(f:Operation):Observable<Operation>{
-    return this.http.post<Operation>(this.baseUrl,f);
+  createOperation(f:any){
+    return this.http.post(this.baseUrl,f);
   }
 
-  updateOperation(id: number, value:Operation): Observable<Object> {
+  updateOperation(id: number, value:any) {
     const url = `${this.baseUrl}/${id}`
     return this.http.put(url, value);
   }

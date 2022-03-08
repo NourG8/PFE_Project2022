@@ -20,6 +20,7 @@ public class Vache implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idVache;
+	private String matricule;
 	private double poids;
 	private String race;
 	private Date dateNaissance;
@@ -36,18 +37,11 @@ public class Vache implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
-		super();
-		this.poids = poids;
-		this.race = race;
-		this.dateNaissance = dateNaissance;
-		this.etat = etat;
-		this.qte_prodLait = qte_prodLait;
-	}
-
-	public Vache(double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
+	
+	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
 			Set<Operation> operations) {
 		super();
+		this.matricule = matricule;
 		this.poids = poids;
 		this.race = race;
 		this.dateNaissance = dateNaissance;
@@ -55,6 +49,18 @@ public class Vache implements Serializable{
 		this.qte_prodLait = qte_prodLait;
 		this.operations = operations;
 	}
+
+
+	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
+		super();
+		this.matricule = matricule;
+		this.poids = poids;
+		this.race = race;
+		this.dateNaissance = dateNaissance;
+		this.etat = etat;
+		this.qte_prodLait = qte_prodLait;
+	}
+
 
 	public Integer getIdVache() {
 		return idVache;
@@ -110,6 +116,16 @@ public class Vache implements Serializable{
 
 	public void setOperations(Set<Operation> operations) {
 		this.operations = operations;
+	}
+
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
 	}
 	
 }

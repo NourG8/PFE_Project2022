@@ -52,10 +52,10 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "1234");
 		agriculteurRepository.save(a1);
 		
-		Vache v1=new Vache(180.00, "race 1", date1, "malade", 23.5);
+		Vache v1=new Vache("vache numero 1",180.00, "race 1", date1, "malade", 23.5);
 		vacheRepository.save(v1);
 		
-		Tank t1=new Tank(100.0, 20.0, "remplis",a1);
+		Tank t1=new Tank("tank numero 1", 120.00, 20, "Remplis", a1);
 		tankRepository.save(t1);
 		
 		Operation op1=new Operation(10, date1, "Remplissage", t1, v1);

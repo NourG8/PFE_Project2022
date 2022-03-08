@@ -25,7 +25,7 @@ export class ListeTankComponent implements OnInit {
   ELEMENT_DATA?:Tank[];
   Tank?:Tank;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idTank','poidVide', 'poidActuel','etat','action'];
+  displayedColumns: string[] = ['idTank','matricule','poidVide', 'poidActuel','etat','action'];
   constructor(private tankService: TankService,
     private router: Router, private dialog:MatDialog) { }
 

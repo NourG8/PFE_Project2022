@@ -24,6 +24,7 @@ public class Tank implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idTank;
+	private String matricule;
 	private double poidVide;
 	private double poidActuel;
 	private String etat;
@@ -41,15 +42,10 @@ public class Tank implements Serializable{
 		super();
 	}
 
-	public Tank(double poidVide, double poidActuel, String etat) {
+	public Tank(String matricule, double poidVide, double poidActuel, String etat, Agriculteur agriculteur,
+			Set<Operation> operations) {
 		super();
-		this.poidVide = poidVide;
-		this.poidActuel = poidActuel;
-		this.etat = etat;
-	}
-
-	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur, Set<Operation> operations) {
-		super();
+		this.matricule = matricule;
 		this.poidVide = poidVide;
 		this.poidActuel = poidActuel;
 		this.etat = etat;
@@ -57,8 +53,20 @@ public class Tank implements Serializable{
 		this.operations = operations;
 	}
 
-	public Tank(double poidVide, double poidActuel, String etat, Agriculteur agriculteur) {
+
+	public Tank(String matricule, double poidVide, double poidActuel, String etat) {
 		super();
+		this.matricule = matricule;
+		this.poidVide = poidVide;
+		this.poidActuel = poidActuel;
+		this.etat = etat;
+	}
+
+
+
+	public Tank(String matricule, double poidVide, double poidActuel, String etat, Agriculteur agriculteur) {
+		super();
+		this.matricule = matricule;
 		this.poidVide = poidVide;
 		this.poidActuel = poidActuel;
 		this.etat = etat;
@@ -111,6 +119,14 @@ public class Tank implements Serializable{
 
 	public void setOperations(Set<Operation> operations) {
 		this.operations = operations;
+	}
+
+	public String getMatricule() {
+		return matricule;
+	}
+
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
 	}
 	
 }

@@ -60,6 +60,7 @@ export class CreateTankComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
+      'matricule' : new FormControl(null,[Validators.required,]),
       'poidVide' : new FormControl(null,[Validators.required,]),
       'poidActuel' : new FormControl(null,[Validators.required, ]),
       'etat' : new FormControl(null,[Validators.required, ]),
@@ -76,6 +77,10 @@ get poidActuel(){
 
 get etat(){
   return this.myForm.get('etat') ;
+}
+
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
 

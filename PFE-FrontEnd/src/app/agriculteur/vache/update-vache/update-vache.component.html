@@ -6,6 +6,28 @@
       </button>
     </div><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
+
+
+      <div class="form-group">
+        <label>Matricule :</label>
+        <input type="text"
+               class="form-control"
+               formControlName="matricule"
+               name="matricule"
+               [(ngModel)]="vache.matricule"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="matricule?.invalid && matricule?.touched"
+                class="text-danger">
+                Matricule invalide !
+         </div>
+         <div
+              *ngIf="matricule?.valid && matricule?.touched"
+              class="text-success">
+              Matricule valide !
+         </div>
+      </div>
+
       <div class="form-group">
         <label>Poids :</label>
         <input type="text"
