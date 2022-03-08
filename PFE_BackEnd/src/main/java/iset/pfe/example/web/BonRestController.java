@@ -41,8 +41,14 @@ public class BonRestController {
 	@ResponseBody
 	public void deleteBon(@PathVariable Integer idBon) {
 		Optional<Bon> b = bonRepository.findById(idBon);
+		b.get().setAgriculteur(null);
+		b.get().setProduit(null);
+		b.get().setFournisseur(null);
+		System.out.println(b.get().getIdBon());
 				if (b.isPresent()) { 
-					bonRepository.deleteById(idBon);
+//					bonRepository.save(b.get());
+//					bonRepository.deleteById(b.get().getIdBon());
+					bonRepository.deleteBon(idBon);
 		    }else throw new RuntimeException("Bon introuvable ! vous ne pouvez pas le supprimer !!");
 	}
 	
@@ -51,22 +57,28 @@ public class BonRestController {
 		return bonRepository.save(bon);
 	}
 	
-//	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
-//	
-//	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
-//        Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
-//    	b.setDate(bon.getDate());
-//    	b.setPrix(bon.getPrix());
-//    	b.setType(bon.getType());
-//    	b.setQuantite(bon.getQuantite());
-//	  	return b;
-//    }
-//	
-	
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
-	public ResponseEntity<Bon> EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
-		 return ResponseEntity.ok(bonRepository.save(bon));
+	
+	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
+        Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
+        b.setIdBon(idBon);
+    	b.setDate(bon.getDate());
+    	b.setPrix(bon.getPrix());
+    	b.setType(bon.getType());
+    	b.setAgriculteur(bon.getAgriculteur());
+    	b.setFournisseur(bon.getFournisseur());
+    	b.setProduit(bon.getProduit());
+    	b.setQuantite(bon.getQuantite());
+    	bonRepository.save(b);
+	  	return b;
     }
 	
+	
+//	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
+//	public void EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
+//		bonRepository.updateBon(bon.getIdBon(), bon.getQuantite(), bon.getPrix(), bon.getType(), bon.getDate(), bon.getAgriculteur());
+//    }
+//	
+
 
 }

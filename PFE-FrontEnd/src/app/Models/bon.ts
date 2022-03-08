@@ -1,3 +1,8 @@
+import { Observable } from "rxjs";
+import { Fournisseur } from "./fournisseur";
+import { Produit } from "./produit";
+import { Agriculteur } from "./agriculteur";
+
 export class Bon{
 
   idBon!: number;
@@ -5,7 +10,8 @@ export class Bon{
   prix!: number;
   type!: string;
   date!: Date;
-  agriculteur!:any[];
-  fournisseur!:any[];
-  
+  agriculteur!:Agriculteur;
+  fournisseur!:Fournisseur;
+  produit!:Produit;
+
 }

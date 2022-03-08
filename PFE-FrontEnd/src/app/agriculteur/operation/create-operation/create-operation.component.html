@@ -48,21 +48,21 @@
     
     
               <div class="col-md-6 mb-3">
-                <label for="date">Type de l'operation :</label>
-                <input type="text"
-                 required class="form-control ng-valid"
-                 id="typeOp"
-                 formControlName="typeOp"
-                  [(ngModel)]="operation.typeOp"
-                  name="typeOp">
+                <label for="pseudo"> type</label>
+                    <select type="text" class="form-select" id="typeOp"  name="typeOp" formControlName="typeOp" >
+                    <option value="Retrait">Retarit</option>
+                    <option value="Remplissage">Remplissage</option>
+                    </select>
     
                   <div *ngIf="typeOp?.invalid && typeOp?.touched" class="text-danger">
-                   Typeinvalide !</div>
+                   Type invalide !</div>
                   <div *ngIf="typeOp?.valid && typeOp?.touched" class="text-success">
                     Type valide !
                   </div>
     
                 </div>
+
+
     
             </div>
   
