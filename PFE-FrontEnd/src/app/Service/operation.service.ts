@@ -8,6 +8,8 @@ import { Operation } from '../Models/operation';
 })
 export class OperationService {
   baseUrl : string = 'http://localhost:3800/operations';
+  baseUrl1 : string = 'http://localhost:3800/retrait';
+  baseUrl2 : string = 'http://localhost:3800/remplissage';
 
   constructor(private http: HttpClient) { }
 
@@ -23,7 +25,11 @@ export class OperationService {
   }
 
   createOperation(f:any){
-    return this.http.post(this.baseUrl,f);
+    return this.http.post(this.baseUrl1,f);
+  }
+
+  createOperationRemplissage(f:any){
+    return this.http.post(this.baseUrl2,f);
   }
 
   updateOperation(id: number, value:any) {

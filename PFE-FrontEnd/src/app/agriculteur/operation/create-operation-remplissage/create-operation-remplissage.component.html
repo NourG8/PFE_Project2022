@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h1 id="modal-title"><b>Creer une operation de retrait :</b></h1>
+      <h1 id="modal-title"><b>Creer une operation de remplissage :</b></h1>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -18,12 +18,15 @@
                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
                   Poids invalide !
                 </div>
-                <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
+                <div *ngIf="poidsLait?.valid && poidsLait?.touched"  class="text-success">
                   Poids valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">
-                  La quantité actuelle dans le tank est: {{qteActLaitTank}}<br>
-                  Vous devez introduire une valeur moins ou egale a cette qauntité !
+                  vous devez introduire une quantite moins ou egale a {{qteRsetLait}} !!
+                </div>
+
+                <div *ngIf="msgErreur2==1" class="text-danger">
+                  la quantite restante pour l'insertion  dans le tank est :  {{qteRsetLaitTank}} !!
                 </div>
     
               </div>
@@ -51,11 +54,11 @@
     
             </div>
 
-            <!-- <div class="col-md-12 mb-3">
-              <label class="mr-sm-5" for="inlineFormCustomSelect">Lait : <span style="color:red;">*</span></label>
+            <div class="col-md-12 mb-3">
+              <label class="mr-sm-5" for="inlineFormCustomSelect">Lait de la vache : <span style="color:red;">*</span></label>
               <select formControlName="lait" name="lait"  class="custom-select mr-sm-2" id="lait" >
-                <option disabled selected value [ngValue]="null">Choisir une lait ...</option>
-                <option *ngFor="let lait of laits | async" [value]="lait.idLait">{{lait.idLait}}</option>
+                <option disabled selected value [ngValue]="null">Choisir lait ...</option>
+                <option *ngFor="let lait of laits | async" [value]="lait.idLait">{{lait.vache.matricule}}</option>
               </select>
               <div
               *ngIf="lait?.invalid && lait?.touched"
@@ -67,7 +70,7 @@
              class="text-success">
             lait valide!
            </div>
-            </div> -->
+            </div>
 
             <div class="col-md-12 mb-3">
               <label class="mr-sm-5" for="inlineFormCustomSelect">Tank : <span style="color:red;">*</span></label>

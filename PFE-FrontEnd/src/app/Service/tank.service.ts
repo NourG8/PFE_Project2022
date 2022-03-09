@@ -8,12 +8,18 @@ import { Tank } from '../Models/tank';
 })
 export class TankService {
   baseUrl : string = 'http://localhost:3800/tanks';
+  baseUrl2 : string = 'http://localhost:3800/tanksFilres';
+ 
 
   constructor(private http: HttpClient) { }
 
 
   getTanks(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  getTanksFiltres(): Observable<any> {
+    return this.http.get(`${this.baseUrl2}`);
   }
 
   getTank(id: number): Observable<any> {

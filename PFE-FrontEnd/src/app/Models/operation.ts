@@ -1,5 +1,5 @@
 import { Tank } from "./tank";
-import { Vache } from "./vache";
+import { Lait } from "./lait";
 
 export class Operation{
 
@@ -8,6 +8,6 @@ export class Operation{
     dateOperation!: string;
     typeOp!: string;
     tank!:Tank;
-    vache!:Vache;
+    lait!:Lait;
     
   }

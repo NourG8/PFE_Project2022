@@ -28,7 +28,11 @@
 
         <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
           <i class="fas fa-plus"></i>
-          Ajouter un element 
+          Ajouter une operation de retarit
+        </button>
+        <button class="btn btn" id="btn" (click)="onOpenDialogCreate2()">
+          <i class="fas fa-plus"></i>
+          Ajouter une operation de remplissage
         </button>
       </div>
 
@@ -61,6 +65,16 @@
                     <th mat-sort-header mat-header-cell *matHeaderCellDef> Type Operation </th>
                     <td id="alignement" mat-cell *matCellDef="let element" >{{element.typeOp}}</td>
                   </ng-container>
+
+                  <!-- <ng-container matColumnDef="idTank">
+                    <th mat-sort-header mat-header-cell *matHeaderCellDef> Tank </th>
+                    <td id="alignement" mat-cell *matCellDef="let element" >{{element.tank.matricule}}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="idLait">
+                    <th mat-sort-header mat-header-cell *matHeaderCellDef> Lait </th>
+                    <td id="alignement" mat-cell *matCellDef="let element" >{{element.lait.idLait}}</td>
+                  </ng-container> -->
 
   
                   <ng-container matColumnDef="action">

@@ -29,7 +29,7 @@ public class Vache implements Serializable{
 	
 	@OneToMany(mappedBy="vache",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<Operation> operations;
+	private Set<Lait> laits;
 	
 	
 	public Vache() {
@@ -38,19 +38,6 @@ public class Vache implements Serializable{
 	}
 
 	
-	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
-			Set<Operation> operations) {
-		super();
-		this.matricule = matricule;
-		this.poids = poids;
-		this.race = race;
-		this.dateNaissance = dateNaissance;
-		this.etat = etat;
-		this.qte_prodLait = qte_prodLait;
-		this.operations = operations;
-	}
-
-
 	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
 		super();
 		this.matricule = matricule;
@@ -59,6 +46,19 @@ public class Vache implements Serializable{
 		this.dateNaissance = dateNaissance;
 		this.etat = etat;
 		this.qte_prodLait = qte_prodLait;
+	}
+
+
+	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
+			Set<Lait> laits) {
+		super();
+		this.matricule = matricule;
+		this.poids = poids;
+		this.race = race;
+		this.dateNaissance = dateNaissance;
+		this.etat = etat;
+		this.qte_prodLait = qte_prodLait;
+		this.laits = laits;
 	}
 
 
@@ -110,14 +110,6 @@ public class Vache implements Serializable{
 		this.qte_prodLait = qte_prodLait;
 	}
 
-	public Set<Operation> getOperations() {
-		return operations;
-	}
-
-	public void setOperations(Set<Operation> operations) {
-		this.operations = operations;
-	}
-
 
 	public String getMatricule() {
 		return matricule;
@@ -126,6 +118,16 @@ public class Vache implements Serializable{
 
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
+	}
+
+
+	public Set<Lait> getLaits() {
+		return laits;
+	}
+
+
+	public void setLaits(Set<Lait> laits) {
+		this.laits = laits;
 	}
 	
 }

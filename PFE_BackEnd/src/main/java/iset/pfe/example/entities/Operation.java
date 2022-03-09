@@ -30,29 +30,45 @@ public class Operation implements Serializable{
 	private Tank tank;
 	
 	@ManyToOne
-	@JoinColumn(name="idVache")
-	private Vache vache;
+	@JoinColumn(name="idLait")
+	private Lait lait;
+	
+	
 	
 	public Operation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Operation(double poidsLait, Date dateOperation, String typeOp) {
+
+	public Operation(double poidsLait, Date dateOperation,  String typeOp, Tank tank) {
+		super();
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.tank = tank;
+		
+	}
+
+
+	public Operation(double poidsLait, Date dateOperation, String typeOp, Tank tank, Lait lait) {
+		super();
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.tank = tank;
+		this.lait = lait;
+	}
+
+
+	public Operation(double poidsLait, Date dateOperation,  String typeOp) {
 		super();
 		this.poidsLait = poidsLait;
 		this.dateOperation = dateOperation;
 		this.typeOp = typeOp;
 	}
 
-	public Operation(double poidsLait, Date dateOperation, String typeOp, Tank tank, Vache vache) {
-		super();
-		this.poidsLait = poidsLait;
-		this.dateOperation = dateOperation;
-		this.typeOp = typeOp;
-		this.tank = tank;
-		this.vache = vache;
-	}
+
 
 	public Integer getIdOperation() {
 		return idOperation;
@@ -94,13 +110,14 @@ public class Operation implements Serializable{
 		this.tank = tank;
 	}
 
-	public Vache getVache() {
-		return vache;
+
+	public Lait getLait() {
+		return lait;
 	}
 
-	public void setVache(Vache vache) {
-		this.vache = vache;
-	}
 
+	public void setLait(Lait lait) {
+		this.lait = lait;
+	}
 
 }
