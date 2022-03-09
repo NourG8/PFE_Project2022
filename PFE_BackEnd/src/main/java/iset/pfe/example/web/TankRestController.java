@@ -30,6 +30,11 @@ public class TankRestController {
 		return tankRepository.findAll();
 	}
 	
+	@RequestMapping(value="/tanksFilres",method = RequestMethod.GET)
+	public List<Tank> getAllTanks(){
+		return tankRepository.findAllTanks();
+	}
+	
 	//get tank ById method
 	@RequestMapping(value="/tanks/{idTank}",method = RequestMethod.GET)
     public Tank getTank(@PathVariable Integer idTank) {

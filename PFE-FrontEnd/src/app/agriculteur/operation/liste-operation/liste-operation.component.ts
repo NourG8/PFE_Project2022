@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
+import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
@@ -84,6 +85,12 @@ export class ListeOperationComponent implements OnInit {
       this.dialog.open(CreateOperationComponent, dialogConfig);
     }
   
+    onOpenDialogCreate2():void{
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      this.dialog.open(CreateOperationRemplissageComponent, dialogConfig);
+    }
   
   
     filterData($event:any){

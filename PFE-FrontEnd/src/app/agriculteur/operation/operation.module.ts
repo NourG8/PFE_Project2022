@@ -24,13 +24,17 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 //add Snackbar
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CreateOperationRemplissageComponent } from './create-operation-remplissage/create-operation-remplissage.component';
+import { PageOperationsComponent } from './page-operations/page-operations.component';
 
 @NgModule({
   declarations: [
     ListeOperationComponent,
     CreateOperationComponent,
     UpdateOperationComponent,
-    DetailsOperationComponent
+    DetailsOperationComponent,
+    CreateOperationRemplissageComponent,
+    PageOperationsComponent
   ],
   imports: [
     CommonModule,

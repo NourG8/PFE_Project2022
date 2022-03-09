@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
+import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Tank;
@@ -15,6 +16,7 @@ import iset.pfe.example.entities.Vache;
 import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.BonRepository;
 import iset.pfe.example.repositories.FournisseurRepository;
+import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.ProduitRepository;
 import iset.pfe.example.repositories.TankRepository;
@@ -37,6 +39,8 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	private BonRepository bonRepository;
 	@Autowired
 	private FournisseurRepository fournisseurRepository;
+	@Autowired
+	private LaitRepository laitRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PfeBackEndApplication.class, args);
@@ -58,8 +62,6 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Tank t1=new Tank("tank numero 1", 120.00, 20, "Remplis", a1);
 		tankRepository.save(t1);
 		
-		Operation op1=new Operation(10, date1, "Remplissage", t1, v1);
-		operationRepository.save(op1);
 		
 		Produit p1=new Produit("Prod 1", "12se54z5");
 		produitRepository.save(p1);
@@ -69,6 +71,12 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		
 		Bon b1=new Bon(150.0, 180.0, "Entree", date1,a1,p1,f1);
 		bonRepository.save(b1);
+		
+		Lait l1=new Lait(date1, 20, 0, 20, v1);
+		laitRepository.save(l1);
+		
+		Operation op1=new Operation(35, date1, "Remplissage", t1, l1);
+		operationRepository.save(op1);
 		
 		
 	}
