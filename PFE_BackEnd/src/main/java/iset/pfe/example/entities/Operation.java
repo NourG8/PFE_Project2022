@@ -2,6 +2,7 @@ package iset.pfe.example.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,9 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -25,9 +27,23 @@ public class Operation implements Serializable{
 	private Date dateOperation;
 	private String typeOp;
 
-	@ManyToOne
-	@JoinColumn(name="idTank")
-	private Tank tank;
+//	@ManyToOne
+//	@JoinColumn(name="idTank")
+//	private Tank tank;
+//	
+//	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinTable(
+//	 name = "operationTank",
+//	 joinColumns = @JoinColumn(name = "idOperation"),
+//	 inverseJoinColumns = @JoinColumn(name = "idTank")
+//	 )
+//	private Set<Tank> tanks= new HashSet<>();
+	
+	
+	@OneToMany(mappedBy="operation",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<OperationTank> operationstank;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="idLait")
@@ -41,22 +57,13 @@ public class Operation implements Serializable{
 	}
 
 
-	public Operation(double poidsLait, Date dateOperation,  String typeOp, Tank tank) {
+	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<OperationTank> operationstank,
+			Lait lait) {
 		super();
 		this.poidsLait = poidsLait;
 		this.dateOperation = dateOperation;
 		this.typeOp = typeOp;
-		this.tank = tank;
-		
-	}
-
-
-	public Operation(double poidsLait, Date dateOperation, String typeOp, Tank tank, Lait lait) {
-		super();
-		this.poidsLait = poidsLait;
-		this.dateOperation = dateOperation;
-		this.typeOp = typeOp;
-		this.tank = tank;
+		this.operationstank = operationstank;
 		this.lait = lait;
 	}
 
@@ -102,14 +109,6 @@ public class Operation implements Serializable{
 		this.typeOp = typeOp;
 	}
 
-	public Tank getTank() {
-		return tank;
-	}
-
-	public void setTank(Tank tank) {
-		this.tank = tank;
-	}
-
 
 	public Lait getLait() {
 		return lait;
@@ -118,6 +117,16 @@ public class Operation implements Serializable{
 
 	public void setLait(Lait lait) {
 		this.lait = lait;
+	}
+
+
+	public Set<OperationTank> getOperationstank() {
+		return operationstank;
+	}
+
+
+	public void setOperationstank(Set<OperationTank> operationstank) {
+		this.operationstank = operationstank;
 	}
 
 }

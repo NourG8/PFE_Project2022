@@ -6,7 +6,9 @@
     </button>
   </div><br>
   <form [formGroup]="myForm" class="needs-validation" novalidate>
+
     <div class="form-group">
+      <div class="col-md-12 mb-3">
       <label>Quantite :</label>
       <input type="text"
              class="form-control"
@@ -24,9 +26,10 @@
             class="text-success">
              Quantite valide !
        </div>
-    </div>
+      </div>
+   
 
-    <div class="col-md-6 mb-3">
+    <div class="col-md-12 mb-3">
       <label for="pseudo"> type</label>
         <select type="text" class="form-select" id="type"   [(ngModel)]="bon.type"  name="type" formControlName="type" >
         <option value="Entree">Entree</option>
@@ -45,56 +48,17 @@
   </div>
 
 
-
-  <div class="col-md-12 mb-3">
-    <label class="mr-sm-5" for="inlineFormCustomSelect">Produit</label>
-    <select formControlName="produit" name="produit"   [(ngModel)]="bon.produit.idProduit" class="custom-select mr-sm-2" >
-      <!-- <option selected>Choisir un prouit...</option> -->
-      <option *ngFor="let produit of produits | async" [value]="produit.idProduit">{{produit.intitule}}</option>
-    </select>
-
-  </div>
-
-  <div class="col-md-12 mb-3">
-    <label class="mr-sm-5" for="inlineFormCustomSelect">Agriculteur</label>
-    <select formControlName="agriculteur" name="agriculteur"  [(ngModel)]="bon.agriculteur.idAgriculteur" class="custom-select mr-sm-2" id="agriculteur" >
-      <option selected>Choisir unagriculteur...</option>
-      <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.nom}}</option>
-    </select>
-
-  </div>
-
   <div class="col-md-12 mb-3">
     <label class="mr-sm-5" for="inlineFormCustomSelect">Fournisseur</label>
     <select formControlName="fournisseur" name="fournisseur"  [(ngModel)]="bon.fournisseur.idFournisseur" class="custom-select mr-sm-2" id="fournisseur" >
       <option selected>Choisir un fournisseur...</option>
       <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}</option>
     </select>
-
   </div>
-
-
-    <div class="form-group">
-      <label for="disabledTextInput">Date :</label>
-      <input type="text"
-             class="form-control"
-             name="date"
-             formControlName="date"
-             [(ngModel)]="bon.date"
-             placeholder="Post Name here ..">
-        <div
-             *ngIf="date?.invalid && date?.touched"
-              class="text-danger">
-               Date invalide !
-       </div>
-       <div
-            *ngIf="date?.valid && date?.touched"
-            class="text-success">
-              Date valide !
-       </div>
-    </div>
+</div>
 
     <div class="form-group">
+      <div class="col-md-12 mb-3">
       <label for="disabledTextInput">Prix :</label>
       <input type="text"
              class="form-control"
@@ -113,6 +77,7 @@
               Prix valide !
        </div>
     </div>
+  </div>
 
     <div class="modal-footer">
       <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

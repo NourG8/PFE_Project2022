@@ -51,6 +51,7 @@ public class ProduitRestController {
 	//create new Nourriture method 
 	@RequestMapping(value="/produits",method = RequestMethod.POST)
 		public Produit AddNourriture(@RequestBody Produit produit ){
+		produit.setQte(0);
 			return produitRepository.save(produit);
 		}
 		

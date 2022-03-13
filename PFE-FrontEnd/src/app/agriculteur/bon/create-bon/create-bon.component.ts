@@ -22,10 +22,12 @@ export class CreateBonComponent implements OnInit {
   bon:Bon = new Bon();
   submitted = false;
   msg="";
+  msgErreur=0;
+  qteAct=0;
+
   myForm=new  FormGroup({
       quantite : new FormControl(null,[Validators.required]),
       type : new FormControl(null,[Validators.required ]),
-      date : new FormControl(null,[Validators.required ]),
       prix : new FormControl(null,[Validators.required ]),
       agriculteur : new FormControl(null,[Validators.required ]),
       produit : new FormControl(null,[Validators.required ]),
@@ -52,8 +54,6 @@ export class CreateBonComponent implements OnInit {
     this.bon = new Bon();
   }
 
-
-
   save() {
 
    if(this.myForm.get('quantite')?.value==null){
@@ -77,21 +77,8 @@ export class CreateBonComponent implements OnInit {
     this.msg="";
    }
   
-  if(this.myForm.get('date')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
 
   if(this.myForm.get('produit')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
-   if(this.myForm.get('agriculteur')?.value==null){
     this.msg="vous devez remplir le formulaire !!";
   }
   else{
@@ -110,10 +97,6 @@ export class CreateBonComponent implements OnInit {
           "quantite":this.myForm.get('quantite')?.value,
           "prix":this.myForm.get('prix')?.value,
           "type":this.myForm.get('type')?.value,
-          "date":this.myForm.get('date')?.value,
-          "agriculteur":{
-            "idAgriculteur":this.myForm.get('agriculteur')?.value,
-         },
           "produit":{
              "idProduit":this.myForm.get('produit')?.value,
           },
@@ -130,8 +113,21 @@ export class CreateBonComponent implements OnInit {
 
 
   onSubmit() {
-    this.submitted = true;
-    this.save();
+
+    this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
+      o=>{
+      console.log(o.qte);
+      if(this.myForm.get('quantite')?.value<=o.qte && this.myForm.get('type')?.value=="Sortie" )
+       this.save();
+      else{
+      this.msgErreur=1;
+      this.qteAct=o.qte;
+      }
+      if(this.myForm.get('type')?.value=="Entree"){
+        this.save();
+        this.msgErreur=0;
+      }
+    });
 
   }
 
@@ -144,16 +140,6 @@ export class CreateBonComponent implements OnInit {
     this.dialogClose.closeAll();
     this.gotoList();
   }
-
-//   ValidatedForm(){
-//     this.myForm = new FormGroup({
-//       'quantite' : new FormControl(null,[Validators.required,]),
-//       'type' : new FormControl(null,[Validators.required, ]),
-//       'date' : new FormControl(null,[Validators.required, ]),
-//       'prix' : new FormControl(null,[Validators.required, ]),
-//       'produit' : new FormControl(null,[Validators.required, ]),
-//       });
-//  }
 
  get quantite(){
   return this.myForm.get('quantite') ;
@@ -173,10 +159,6 @@ get prix(){
 
 get produit(){
   return this.myForm.get('produit') ;
-}
-
-get agriculteur(){
-  return this.myForm.get('agriculteur') ;
 }
 
 get fournisseur(){

@@ -28,8 +28,6 @@ export class UpdateBonComponent implements OnInit {
     type : new FormControl(null,[Validators.required ]),
     date : new FormControl(null,[Validators.required ]),
     prix : new FormControl(null,[Validators.required ]),
-    agriculteur : new FormControl(null,[Validators.required ]),
-    produit : new FormControl(null,[Validators.required ]),
     fournisseur : new FormControl(null,[Validators.required ]),
   
 })
@@ -66,13 +64,6 @@ fournisseurs!:Observable<Fournisseur[]>;
           "quantite":this.myForm.get('quantite')?.value,
           "prix":this.myForm.get('prix')?.value,
           "type":this.myForm.get('type')?.value,
-          "date":this.myForm.get('date')?.value,
-          "agriculteur":{
-            "idAgriculteur":this.myForm.get('agriculteur')?.value,
-         },
-          "produit":{
-             "idProduit":this.myForm.get('produit')?.value,
-          },
           "fournisseur":{
             "idFournisseur":this.myForm.get('fournisseur')?.value,
          }
@@ -89,16 +80,6 @@ fournisseurs!:Observable<Fournisseur[]>;
       );
   }
 
-//   ValidatedForm(){
-//     this.myForm = new FormGroup({
-//       'quantite' : new FormControl(null,[Validators.required,]),
-//       'type' : new FormControl(null,[Validators.required, ]),
-//       'date' : new FormControl(null,[Validators.required, ]),
-//       'prix' : new FormControl(null,[Validators.required, ]),
-//       });
-//  }
-
-
  get quantite(){
   return this.myForm.get('quantite') ;
 }
@@ -107,9 +88,7 @@ get type(){
   return this.myForm.get('type') ;
 }
 
-get date(){
-  return this.myForm.get('date') ;
-}
+
 
 get prix(){
   return this.myForm.get('prix') ;

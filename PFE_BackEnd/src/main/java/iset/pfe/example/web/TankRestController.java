@@ -44,6 +44,34 @@ public class TankRestController {
 		}else throw new RuntimeException("Tank introuvable !!");
 	}
 	
+	@RequestMapping(value="/qteTanksGenerale",method = RequestMethod.GET)
+    public double getQteTankGenerale() {
+		double qteGeneraleLait=0;
+		for(int i=0;i<tankRepository.findAll().size();i++) 
+		{   Tank tank2=tankRepository.findAll().get(i);
+			qteGeneraleLait=qteGeneraleLait+tank2.getPoidActuel();
+		}   System.out.println("######"+qteGeneraleLait);
+		return qteGeneraleLait;
+	}
+	
+	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
+    public double getQteTankLibre() {
+		double qte=0;
+		double qteLibreLait=0;
+		double qteGeneraleLait=0;
+		for(int j=0;j<tankRepository.findAll().size();j++) 
+		{
+			Tank tank3=tankRepository.findAll().get(j);
+			qte=qte+tank3.getPoidVide();
+			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
+		}
+		qteLibreLait=qte-qteGeneraleLait;
+		System.out.println("######"+qteLibreLait);
+		return qteLibreLait;
+	}
+	
+	
+	
 	//delete tank method
 	@RequestMapping(value="/tanks/{idTank}",method = RequestMethod.DELETE)
 	@ResponseBody
@@ -60,6 +88,8 @@ public class TankRestController {
 		public Tank AddTank(@RequestBody Tank tank ){
 		tank.setEtat("non remplis");
 		tank.setPoidActuel(0);
+		
+			
 		return tankRepository.save(tank);
 	}
 	
@@ -68,5 +98,7 @@ public class TankRestController {
 	public ResponseEntity<Tank> EditTank(@PathVariable Integer idTank, @RequestBody Tank tanks){
 		return ResponseEntity.ok(tankRepository.save(tanks));
     }
+	
+	
 	
 }

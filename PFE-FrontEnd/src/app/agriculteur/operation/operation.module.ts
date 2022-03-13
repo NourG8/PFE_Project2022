@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CreateOperationRemplissageComponent } from './create-operation-remplissage/create-operation-remplissage.component';
 import { PageOperationsComponent } from './page-operations/page-operations.component';
+import { ListeOperationsRetraitComponent } from './liste-operations-retrait/liste-operations-retrait.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PageOperationsComponent } from './page-operations/page-operations.compo
     UpdateOperationComponent,
     DetailsOperationComponent,
     CreateOperationRemplissageComponent,
-    PageOperationsComponent
+    PageOperationsComponent,
+    ListeOperationsRetraitComponent
   ],
   imports: [
     CommonModule,

@@ -53,48 +53,50 @@ export class CreateOperationComponent implements OnInit {
 
   save() {
 
-    //  ****************   Tank    ******************
-    let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
-      this.t=o;
-      console.log(o);
-      console.log(this.t);
-      console.log(o.poidActuel);
-if(o.poidActuel<this.myForm.get('poidsLait')?.value){
-this.msgErreur=1;
-this.qteActLaitTank=o.poidActuel;
-    }
-else
-this.msgErreur=0;
-    });
-if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
-
     this.operationService
-        .createOperation(
-          {
-            "poidsLait":this.myForm.get('poidsLait')?.value,
-            // "dateOperation":this.myForm.get('dateOperation')?.value,
-            "typeOp":this.myForm.get('typeOp')?.value,
-            "tank":{
-              "idTank":this.myForm.get('tank')?.value,
-            },
-            // "lait":{
-            // "idLait":this.myForm.get('lait')?.value,
-            // }
-          }
-        )
-        .subscribe(o=>{
-          window.location.reload();
-          console.log(this.operation);
-        });
-    }
+    .createOperation(
+      {
+        "poidsLait":this.myForm.get('poidsLait')?.value
+        },
+      
+    )
+    .subscribe(o=>{
+      window.location.reload();
+      console.log(this.operation);
+    });
+
+    //  ****************   Tank    ******************
+//     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
+//       this.t=o;
+//       console.log(o);
+//       console.log(this.t);
+//       console.log(o.poidActuel);
+// if(o.poidActuel<this.myForm.get('poidsLait')?.value){
+// this.msgErreur=1;
+// this.qteActLaitTank=o.poidActuel;
+//     }
+// else
+// this.msgErreur=0;
+//     });
+// if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
+
+  
+    
   }
 
 
   onSubmit() {
-    this.submitted = true;
-    this.save();
-
-  }
+    this.tankService.getTanksQteGenerale().subscribe(
+      o=>{
+      console.log(o);
+      if(this.myForm.get('poidsLait')?.value<=o)
+      this.save();
+      else{
+      this.msgErreur=1;
+      this.qteActLaitTank=o;
+      }
+  });
+}
 
   gotoList() {
     this.router.navigate(['agriculteur/operation/listeOperation']);

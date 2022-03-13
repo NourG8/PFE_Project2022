@@ -13,11 +13,11 @@ import { DetailsOperationComponent } from '../details-operation/details-operatio
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 
 @Component({
-  selector: 'app-page-operations',
-  templateUrl: './page-operations.component.html',
-  styleUrls: ['./page-operations.component.css']
+  selector: 'app-liste-operations-retrait',
+  templateUrl: './liste-operations-retrait.component.html',
+  styleUrls: ['./liste-operations-retrait.component.css']
 })
-export class PageOperationsComponent implements OnInit {
+export class ListeOperationsRetraitComponent implements OnInit {
 
   @ViewChild('paginator') paginator!:MatPaginator;
   // AddForSotedData
@@ -27,7 +27,7 @@ export class PageOperationsComponent implements OnInit {
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
-  displayedColumns: string[] = ['idOpTank','operation','idTank','matricule','date', 'qteInsereTank','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
@@ -39,7 +39,7 @@ export class PageOperationsComponent implements OnInit {
     }
   
     reloadData() {
-        this.operationService.getOperationsTanks().subscribe(o =>{
+        this.operationService.getOperationsRetraits().subscribe(o =>{
         this.ELEMENT_DATA= o;
         this.dataSource = new MatTableDataSource(o);
         this.dataSource.paginator = this.paginator;

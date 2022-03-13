@@ -8,6 +8,7 @@ import { UpdateOperationComponent } from './update-operation/update-operation.co
 import { DetailsOperationComponent } from './details-operation/details-operation.component';
 import { CreateOperationRemplissageComponent } from './create-operation-remplissage/create-operation-remplissage.component';
 import { PageOperationsComponent } from './page-operations/page-operations.component';
+import { ListeOperationsRetraitComponent } from './liste-operations-retrait/liste-operations-retrait.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'detailsOperation/:id', component: DetailsOperationComponent   },
   { path: 'updateOperation/:id', component: UpdateOperationComponent  },
   { path: 'operationPage', component: PageOperationsComponent  },
+  { path: 'listeOperationRetrait', component: ListeOperationsRetraitComponent  },
   { path:'',redirectTo:'/operation',pathMatch:'full'},
 
 ];
