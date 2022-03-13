@@ -19,8 +19,12 @@
               <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
                 Quantite invalide !
               </div>
-              <div *ngIf="quantite?.valid && quantite?.touched" class="text-success">
+              <div *ngIf="quantite?.valid && quantite?.touched || msgErreur==0" class="text-success">
                 Quantite valide!
+              </div>
+              <div *ngIf="msgErreur==1" class="text-danger">
+                Vous ne pouvez pas prendre cette quantité !! car la quantité disponibledans le stock est: {{qteAct}} !
+                <br> Vous devez introduire une quantite moins ou egale a {{qteAct}} .
               </div>
 
             </div>
@@ -46,26 +50,7 @@
 
           <!-- <div class="form-row"> -->
 
-
-            <div class="col-md-6 mb-3">
-              <label for="date">Date : <span style="color:red;">*</span> </label>
-              <input type="date"
-               class="form-control ng-valid"
-               id="date"
-               formControlName="date"
-                name="date">
-               <!-- pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"  multiple -->
-              <!-- <div class="valid-feedback">Ok !</div>
-                <div class="invalid-feedback">vous devez introduire un email correct !</div> -->
-
-                <div *ngIf="date?.invalid && date?.touched" class="text-danger">
-                 Date invalide !</div>
-                <div *ngIf="date?.valid && date?.touched" class="text-success">
-                  Date valide !
-                </div>
-
-              </div>
-            <div class="col-md-6 mb-3">
+            <div class="col-md-12 mb-3">
               <label for="prix">Prix : <span style="color:red;">*</span></label>
               <input type="text"
                class="form-control"
@@ -103,24 +88,6 @@
             </div>
 
             <div class="col-md-12 mb-3">
-              <label class="mr-sm-5" for="inlineFormCustomSelect">Agriculteur : <span style="color:red;">*</span></label>
-              <select formControlName="agriculteur" name="agriculteur"  class="custom-select mr-sm-2" id="agriculteur" >
-                <option disabled selected value [ngValue]="null">Choisir unagriculteur...</option>
-                <option *ngFor="let agriculteur of agriculteurs | async" [value]="agriculteur.idAgriculteur">{{agriculteur.nom}}</option>
-              </select>
-              <div
-              *ngIf="agriculteur?.invalid && agriculteur?.touched"
-               class="text-danger">  
-                  invalide agriculteur!
-           </div>
-             <div
-             *ngIf="agriculteur?.valid && agriculteur?.touched"
-             class="text-success">
-             Agriculteur valide!
-           </div>
-            </div>
-
-            <div class="col-md-12 mb-3">
               <label class="mr-sm-5" for="inlineFormCustomSelect">Fournisseur : <span style="color:red;">*</span></label>
               <select formControlName="fournisseur" name="fournisseur"  class="custom-select mr-sm-2" id="fournisseur" >
                 <option disabled selected value [ngValue]="null">Choisir un fournisseur...</option>
@@ -151,7 +118,7 @@
               <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
             </div>
           </div>
-          <button class="btn btn-primary" style="margin:11px" (click)="save()"  type="submit">Envoyer</button>
+          <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
           <!-- close popup -->
           <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
          

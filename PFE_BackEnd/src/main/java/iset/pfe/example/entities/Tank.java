@@ -1,22 +1,20 @@
 package iset.pfe.example.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Tank implements Serializable{
@@ -33,25 +31,39 @@ public class Tank implements Serializable{
 	@JoinColumn(name="idAgriculteur")
 	private Agriculteur agriculteur;
 	
+//	@OneToMany(mappedBy="tank",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	private Set<Operation> operations;
+	
+//	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tanks")
+//	@JsonIgnore
+//    private Set<Operation> operations;
+
 	@OneToMany(mappedBy="tank",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<Operation> operations;
+	private Set<OperationTank> operationstank;
+	
 	
 	//constructors
 	public Tank() {
 		super();
 	}
 
+
+
+
 	public Tank(String matricule, double poidVide, double poidActuel, String etat, Agriculteur agriculteur,
-			Set<Operation> operations) {
+			Set<OperationTank> operationstank) {
 		super();
 		this.matricule = matricule;
 		this.poidVide = poidVide;
 		this.poidActuel = poidActuel;
 		this.etat = etat;
 		this.agriculteur = agriculteur;
-		this.operations = operations;
+		this.operationstank = operationstank;
 	}
+
+
 
 
 	public Tank(String matricule, double poidVide, double poidActuel, String etat) {
@@ -113,13 +125,6 @@ public class Tank implements Serializable{
 		this.agriculteur = agriculteur;
 	}
 
-	public Set<Operation> getOperations() {
-		return operations;
-	}
-
-	public void setOperations(Set<Operation> operations) {
-		this.operations = operations;
-	}
 
 	public String getMatricule() {
 		return matricule;
@@ -128,5 +133,21 @@ public class Tank implements Serializable{
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
+
+
+
+
+	public Set<OperationTank> getOperationstank() {
+		return operationstank;
+	}
+
+
+
+
+	public void setOperationstank(Set<OperationTank> operationstank) {
+		this.operationstank = operationstank;
+	}
+
+
 	
 }

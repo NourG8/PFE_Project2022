@@ -22,6 +22,7 @@ public class Produit implements Serializable{
 	private Integer idProduit;
 	private String intitule;
 	private String libelle;
+	private double qte;
 	
 	@OneToMany(mappedBy="produit",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
@@ -42,6 +43,16 @@ public class Produit implements Serializable{
 		super();
 		this.intitule = intitule;
 		this.libelle = libelle;
+		this.bons = bons;
+	}
+
+	
+	
+	public Produit(String intitule, String libelle, double qte, Set<Bon> bons) {
+		super();
+		this.intitule = intitule;
+		this.libelle = libelle;
+		this.qte = qte;
 		this.bons = bons;
 	}
 
@@ -75,6 +86,14 @@ public class Produit implements Serializable{
 
 	public void setBons(Set<Bon> bons) {
 		this.bons = bons;
+	}
+
+	public double getQte() {
+		return qte;
+	}
+
+	public void setQte(double qte) {
+		this.qte = qte;
 	}
 	
 	

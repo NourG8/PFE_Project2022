@@ -9,6 +9,8 @@ import { Tank } from '../Models/tank';
 export class TankService {
   baseUrl : string = 'http://localhost:3800/tanks';
   baseUrl2 : string = 'http://localhost:3800/tanksFilres';
+  baseUrl3 : string = 'http://localhost:3800/qteTanksLibre';
+  baseUrl4 : string = 'http://localhost:3800/qteTanksGenerale';
  
 
   constructor(private http: HttpClient) { }
@@ -16,6 +18,14 @@ export class TankService {
 
   getTanks(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
+  }
+
+  getTanksQteLibre(): Observable<any> {
+    return this.http.get(`${this.baseUrl3}`);
+  }
+
+  getTanksQteGenerale(): Observable<any> {
+    return this.http.get(`${this.baseUrl4}`);
   }
 
   getTanksFiltres(): Observable<any> {

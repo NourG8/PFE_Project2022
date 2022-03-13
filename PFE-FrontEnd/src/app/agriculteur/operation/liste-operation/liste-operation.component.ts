@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
+import { TankService } from 'src/app/Service/tank.service';
 import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
@@ -25,18 +26,28 @@ export class ListeOperationComponent implements OnInit {
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
+  v=0;
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation', 'typeOp','action'];
   constructor(private operationService: OperationService,
+    private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
       this.reloadData();
+      console.log(this.tankService.getTanksQteLibre());
+     
+
+
+      // this.tankService.getTanksQteGenerale().subscribe(
+      //   o=>{
+      //   console.log(o);
+      // });
      
     }
   
     reloadData() {
-        this.operationService.getOperations().subscribe(o =>{
+        this.operationService.getOperationsRemplissages().subscribe(o =>{
         this.ELEMENT_DATA= o;
         this.dataSource = new MatTableDataSource(o);
         this.dataSource.paginator = this.paginator;

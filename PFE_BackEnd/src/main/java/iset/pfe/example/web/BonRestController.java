@@ -1,5 +1,6 @@
 package iset.pfe.example.web;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Bon;
+import iset.pfe.example.entities.Produit;
+import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.BonRepository;
+import iset.pfe.example.repositories.ProduitRepository;
 
 @RestController
 @CrossOrigin(origins="http://localhost:4200")
@@ -22,6 +28,12 @@ public class BonRestController {
 	@Autowired
 	private BonRepository bonRepository;
 
+	@Autowired
+	private ProduitRepository produitRepository;
+	
+	@Autowired
+	private AgriculteurRepository agriculteurRepository;
+	
 	@RequestMapping(value="/bons",method = RequestMethod.GET)
 	public List<Bon> getBons(){
 		return bonRepository.findAll();
@@ -54,6 +66,32 @@ public class BonRestController {
 	
 	@RequestMapping(value="/bons",method = RequestMethod.POST)
 		public Bon AddBon(@RequestBody Bon bon){
+		String t1="Entree";
+		String t2="Sortie";
+		Produit p=produitRepository.findById(bon.getProduit().getIdProduit()).get();
+		Date date=new Date();
+		bon.setDate(date);
+		Agriculteur a=agriculteurRepository.findAll().get(0);
+		bon.setAgriculteur(a);
+		bonRepository.save(bon);
+		
+		if(bon.getType().equals(t1)) {
+			
+			p.setQte(p.getQte()+bon.getQuantite());
+			produitRepository.save(p);
+		}
+		else if(bon.getType().equals(t2) && bon.getQuantite()>p.getQte()) {
+			System.out.println("errreeeuuuur  !!!!!!");
+		}
+		else if(bon.getType().equals(t2) && bon.getQuantite()<=p.getQte()) {
+			
+			p.setQte(p.getQte()-bon.getQuantite());
+			produitRepository.save(p);
+		}
+		
+		
+		bon.setProduit(p);
+	
 		return bonRepository.save(bon);
 	}
 	
@@ -72,6 +110,15 @@ public class BonRestController {
     	bonRepository.save(b);
 	  	return b;
     }
+	
+	
+	@RequestMapping(value="/bonsEntree",method = RequestMethod.GET)
+	public String getListBons(){
+		double s=0;
+		for(int i=0;i<bonRepository.findAllBon("Entree").size();i++)
+		System.out.println("&&&&&&&& : "+bonRepository.findAllBon("Entree").get(i));
+		return bonRepository.findAllBon("Entree").get(0).split(",")[0];
+	}
 	
 	
 //	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)

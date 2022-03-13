@@ -24,7 +24,7 @@ export class ListeProduitComponent implements OnInit {
   ELEMENT_DATA?:Produit[];
   produit?:Produit;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idProduit','intitule', 'libelle','action'];
+  displayedColumns: string[] = ['idProduit','intitule', 'libelle','qte','action'];
   constructor(private produitService: ProduitService,
     private router: Router, private dialog:MatDialog) { }
 
