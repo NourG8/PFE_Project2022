@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
@@ -12,6 +13,7 @@ import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 import iset.pfe.example.entities.Produit;
+import iset.pfe.example.entities.Role;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Vache;
 import iset.pfe.example.repositories.AgriculteurRepository;
@@ -21,6 +23,7 @@ import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.OperationTankRepository;
 import iset.pfe.example.repositories.ProduitRepository;
+import iset.pfe.example.repositories.RoleRepository;
 import iset.pfe.example.repositories.TankRepository;
 import iset.pfe.example.repositories.VacheRepository;
 
@@ -45,6 +48,8 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	private LaitRepository laitRepository;
 	@Autowired
 	private OperationTankRepository operationTankRepository;
+	@Autowired
+	private RoleRepository roleRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PfeBackEndApplication.class, args);
@@ -56,6 +61,26 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Date date1=new Date(12/12/2016);
 		Date dateE=new Date(02/02/2021);
 		Date dateS=new Date(18/02/2021);
+		
+		Role role1=new Role("USER");
+		roleRepository.save(role1);
+		
+		
+		BCryptPasswordEncoder encoder; 
+		encoder = new BCryptPasswordEncoder();
+		
+				Agriculteur ag=new Agriculteur();
+				ag.setAdress("Bizerte");
+				ag.setCin(11224412);
+				ag.setEmail("ahmed.bensaber@gmail.com");
+				ag.setNom("Ben saber");
+				ag.setPrenom("Ahmed");
+				ag.setUsername("ahmed");
+				encoder = new BCryptPasswordEncoder();
+				ag.setPassword(encoder.encode("ahmed"));
+				ag.getRoles().add(role1);
+				agriculteurRepository.save(ag);
+				
 		
 		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "1234");
 		agriculteurRepository.save(a1);
@@ -118,67 +143,67 @@ public class PfeBackEndApplication implements CommandLineRunner{
 
 		
 			
-for(int i=0;i<tankRepository.findAll().size();i++) {
-			
-			Tank tank2=tankRepository.findAll().get(i);
-			
-			if(tank2.getPoidActuel()==tank2.getPoidVide()) {
-			tank2.setEtat("Totalement remplis");
-			tankRepository.save(tank2);
-			}
-			else if(tank2.getPoidActuel()==0) {
-				tank2.setEtat("Non remplis");
-				tankRepository.save(tank2);
-				}
-			else if(tank2.getPoidActuel()<tank2.getPoidVide()) {
-				tank2.setEtat("En cours");
-				tankRepository.save(tank2);
-				}
-			
-			
-		}
+//for(int i=0;i<tankRepository.findAll().size();i++) {
+//			
+//			Tank tank2=tankRepository.findAll().get(i);
+//			
+//			if(tank2.getPoidActuel()==tank2.getPoidVide()) {
+//			tank2.setEtat("Totalement remplis");
+//			tankRepository.save(tank2);
+//			}
+//			else if(tank2.getPoidActuel()==0) {
+//				tank2.setEtat("Non remplis");
+//				tankRepository.save(tank2);
+//				}
+//			else if(tank2.getPoidActuel()<tank2.getPoidVide()) {
+//				tank2.setEtat("En cours");
+//				tankRepository.save(tank2);
+//				}
+//			
+//			
+//		}
 //la quantite generale de lait inserée dans les tanks :
-double qteGeneraleLait=0;
-for(int i=0;i<tankRepository.findAll().size();i++) {
-	Tank tank2=tankRepository.findAll().get(i);
-	qteGeneraleLait=qteGeneraleLait+tank2.getPoidActuel();
-}
-System.out.println("######"+qteGeneraleLait);
-
-
-
-//la quantite libre de lait :
-double qte=0;
-double qteLibreLait=0;
-for(int j=0;j<tankRepository.findAll().size();j++) {
-	Tank tank3=tankRepository.findAll().get(j);
-	qte=qte+tank3.getPoidVide();
-}
-
-qteLibreLait=qte-qteGeneraleLait;
-System.out.println("######"+qteLibreLait);
-
-
-for(int i=0;i<bonRepository.findAllBon("Entree").size();i++) {
-	Integer id=new Integer( bonRepository.findAllBon("Entree").get(i).split(",")[1]);
-	Double Qte=new Double(bonRepository.findAllBon("Entree").get(i).split(",")[0]);
-
-	
-    Produit p=produitRepository.findById(id).get();
-    p.setQte(p.getQte()+Qte);
-    produitRepository.save(p);
-}
-
-for(int i=0;i<bonRepository.findAllBon("Sortie").size();i++) {
-	Integer id=new Integer( bonRepository.findAllBon("Sortie").get(i).split(",")[1]);
-	Double Qte=new Double(bonRepository.findAllBon("Sortie").get(i).split(",")[0]);
-
-	
-    Produit p=produitRepository.findById(id).get();
-    p.setQte(p.getQte()-Qte);
-    produitRepository.save(p);
-}
-		
+//double qteGeneraleLait=0;
+//for(int i=0;i<tankRepository.findAll().size();i++) {
+//	Tank tank2=tankRepository.findAll().get(i);
+//	qteGeneraleLait=qteGeneraleLait+tank2.getPoidActuel();
+//}
+//System.out.println("######"+qteGeneraleLait);
+//
+//
+//
+////la quantite libre de lait :
+//double qte=0;
+//double qteLibreLait=0;
+//for(int j=0;j<tankRepository.findAll().size();j++) {
+//	Tank tank3=tankRepository.findAll().get(j);
+//	qte=qte+tank3.getPoidVide();
+//}
+//
+//qteLibreLait=qte-qteGeneraleLait;
+//System.out.println("######"+qteLibreLait);
+//
+//
+//for(int i=0;i<bonRepository.findAllBon("Entree").size();i++) {
+//	Integer id=new Integer( bonRepository.findAllBon("Entree").get(i).split(",")[1]);
+//	Double Qte=new Double(bonRepository.findAllBon("Entree").get(i).split(",")[0]);
+//
+//	
+//    Produit p=produitRepository.findById(id).get();
+//    p.setQte(p.getQte()+Qte);
+//    produitRepository.save(p);
+//}
+//
+//for(int i=0;i<bonRepository.findAllBon("Sortie").size();i++) {
+//	Integer id=new Integer( bonRepository.findAllBon("Sortie").get(i).split(",")[1]);
+//	Double Qte=new Double(bonRepository.findAllBon("Sortie").get(i).split(",")[0]);
+//
+//	
+//    Produit p=produitRepository.findById(id).get();
+//    p.setQte(p.getQte()-Qte);
+//    produitRepository.save(p);
+//}
+//		
 
 
 	}

@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Fournisseur } from '../Models/fournisseur';
+import { AuthService } from './auth.service';
+
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +14,57 @@ import { Fournisseur } from '../Models/fournisseur';
 export class FournisseurService {
   baseUrl : string = 'http://localhost:3800/fournisseurs';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService :AuthService) { }
+
 
 
   getFournisseurs(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
 
   getFournisseur(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.get(url);
+    return this.http.get(url,{headers:httpHeaders});
   }
 
   createFournisseur(f:Fournisseur):Observable<Fournisseur>{
-    return this.http.post<Fournisseur>(this.baseUrl,f);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.post<Fournisseur>(this.baseUrl,f,{headers:httpHeaders});
   }
 
   updateFournisseur(id: number, value:Fournisseur): Observable<Object> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.put(url, value);
+    return this.http.put(url, value,{headers:httpHeaders});
   }
 
   
 
   deleteFournisseur(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
 
     const url = `${this.baseUrl}/${id}`
-    return this.http.delete(url);
+    return this.http.delete(url,{headers:httpHeaders});
  
   }
 
   getFournisseurList(): Observable<Fournisseur[]> {
-    return this.http.get<Fournisseur[]>(this.baseUrl);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get<Fournisseur[]>(this.baseUrl,{headers:httpHeaders});
    
   }
 }

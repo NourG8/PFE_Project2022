@@ -1,7 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Agriculteur } from '../Models/agriculteur';
+import { AuthService } from './auth.service';
+
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -11,40 +16,58 @@ export class AgriculteurService {
 
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService :AuthService) { }
 
 
   getagriculteurs(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
 
   getagriculteur(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.get(url);
+    return this.http.get(url,{headers:httpHeaders});
   }
 
 
   createagriculteur(agriculteur:any){
-    return this.http.post(this.baseUrl,agriculteur);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.post(this.baseUrl,agriculteur,{headers:httpHeaders});
   }
 
 
   updateagriculteur(id: number, value:Agriculteur): Observable<Object> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.put(url, value);
+    return this.http.put(url, value,{headers:httpHeaders});
   }
 
   
 
   deleteagriculteur(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
 
     const url = `${this.baseUrl}/${id}`
-    return this.http.delete(url);
+    return this.http.delete(url,{headers:httpHeaders});
  
   }
 
   getagriculteurList(): Observable<Agriculteur[]> {
-    return this.http.get<Agriculteur[]>(this.baseUrl);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get<Agriculteur[]>(this.baseUrl,{headers:httpHeaders});
    
   }
 }
