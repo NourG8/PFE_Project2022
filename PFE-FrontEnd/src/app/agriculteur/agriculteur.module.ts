@@ -10,6 +10,7 @@ import { ProduitComponent } from './produit/produit.component';
 import { FournisseurComponent } from './fournisseur/fournisseur.component';
 import { AgriculteurComponent } from './agriculteur.component';
 import { AgriculteurRoutingModule } from './agriculteur-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -23,7 +24,8 @@ import { AgriculteurRoutingModule } from './agriculteur-routing.module';
     VacheComponent,
     BonComponent,
     ProduitComponent,
-    FournisseurComponent
+    FournisseurComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Operation } from '../Models/operation';
+import { AuthService } from './auth.service';
+
+
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+  };
 
 @Injectable({
   providedIn: 'root'
@@ -15,55 +21,85 @@ export class OperationService {
   baseUrl5 : string = 'http://localhost:3800/operationsTank';
   
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private authService :AuthService) { }
 
 
 
   getOperations(): Observable<any> {
-    return this.http.get(`${this.baseUrl}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
 
   getOperationsRemplissages(): Observable<any> {
-    return this.http.get(`${this.baseUrl4}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl4}`,{headers:httpHeaders});
   }
 
   getOperationsRetraits(): Observable<any> {
-    return this.http.get(`${this.baseUrl3}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl3}`,{headers:httpHeaders});
   }
 
   getOperationsTanks(): Observable<any> {
-    return this.http.get(`${this.baseUrl5}`);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl5}`,{headers:httpHeaders});
   }
 
   getOperation(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.get(url);
+    return this.http.get(url,{headers:httpHeaders});
   }
 
   createOperation(f:any){
-    return this.http.post(this.baseUrl1,f);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.post(this.baseUrl1,f,{headers:httpHeaders});
   }
 
   createOperationRemplissage(f:any){
-    return this.http.post(this.baseUrl2,f);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.post(this.baseUrl2,f,{headers:httpHeaders});
   }
 
   updateOperation(id: number, value:any) {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
-    return this.http.put(url, value);
+    return this.http.put(url, value,{headers:httpHeaders});
   }
 
   
 
   deleteOperation(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
 
     const url = `${this.baseUrl}/${id}`
-    return this.http.delete(url);
+    return this.http.delete(url,{headers:httpHeaders});
  
   }
 
   getOperationList(): Observable<Operation[]> {
-    return this.http.get<Operation[]>(this.baseUrl);
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get<Operation[]>(this.baseUrl,{headers:httpHeaders});
    
   }
 }
