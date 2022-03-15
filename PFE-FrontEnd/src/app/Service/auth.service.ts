@@ -35,8 +35,7 @@ export class AuthService {
     
     decodeJWT()
     {   if (this.token == undefined){
-      this.router.navigate(['/']);
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
        
       const decodedToken = this.helper.decodeToken(this.token);

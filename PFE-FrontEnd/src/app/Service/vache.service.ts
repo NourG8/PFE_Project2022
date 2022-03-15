@@ -15,9 +15,16 @@ const httpOptions = {
 export class VacheService {
 
   baseUrl : string = 'http://localhost:3800/vaches';
+  baseUrl6 : string = 'http://localhost:3800/nbreV';
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
+  getNbVaches(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
 
   getVaches(): Observable<any> {
     let jwt = this.authService.getToken();

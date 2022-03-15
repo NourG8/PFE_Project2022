@@ -18,7 +18,7 @@ public class Bon implements Serializable{
 	private double quantite;
 	private double prix;
 	private String type;
-	private Date date;
+	private String date;
 	
 	@ManyToOne
 	@JoinColumn(name="idAgriculteur")
@@ -37,7 +37,7 @@ public class Bon implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Bon(double quantite, double prix, String type, Date date) {
+	public Bon(double quantite, double prix, String type,String date) {
 		super();
 		this.quantite = quantite;
 		this.prix = prix;
@@ -64,7 +64,7 @@ public class Bon implements Serializable{
 //		this.produit = produit;
 //	}
 
-	public Bon(double quantite, double prix, String type, Date date, Agriculteur agriculteur, Produit produit,
+	public Bon(double quantite, double prix, String type, String date, Agriculteur agriculteur, Produit produit,
 			Fournisseur fournisseur) {
 		super();
 		this.quantite = quantite;
@@ -108,13 +108,7 @@ public class Bon implements Serializable{
 		this.type = type;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 
 	public Agriculteur getAgriculteur() {
 		return agriculteur;
@@ -138,6 +132,14 @@ public class Bon implements Serializable{
 
 	public void setFournisseur(Fournisseur fournisseur) {
 		this.fournisseur = fournisseur;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 

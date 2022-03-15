@@ -10,33 +10,33 @@ import { AuthService } from '../Service/auth.service';
 export class LoginComponent implements OnInit {
   user =new Agriculteur();
   err:number=0;
-  
+
     constructor(private authService: AuthService, public router:Router ) { }
-  
- 
-  
+
+
+
     ngOnInit () {
-     
+
     }
-  
+
     onLoggedin()
     {
       this.authService.login(this.user).subscribe((data)=> {
         let jwToken : any   = data.headers.get('Authorization');
         this.authService.saveToken(jwToken);
-  
-          this.router.navigate(['/agriculteur/bon/listeBon']);   
-        
-        //this.router.navigate(['/']);     
-         //this.router.navigate(['/employees/admin/employeesList']);           
+
+          this.router.navigate(['/agriculteur/dashboard']);
+
+        //this.router.navigate(['/']);
+         //this.router.navigate(['/employees/admin/employeesList']);
       },(err)=>{   this.err = 1;
   });
-  
+
    }
-  
-  
-  
-  
+
+
+
+
     mdp = "password"
      myFunction() {
       if (this.mdp === "password") {
@@ -45,6 +45,5 @@ export class LoginComponent implements OnInit {
         this.mdp = "password";
       }
     }
-  
+
   }
-  

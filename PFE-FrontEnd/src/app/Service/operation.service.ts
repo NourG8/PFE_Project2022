@@ -19,11 +19,22 @@ export class OperationService {
   baseUrl3 : string = 'http://localhost:3800/operationsRetrait';
   baseUrl4 : string = 'http://localhost:3800/operationsRemplissages';
   baseUrl5 : string = 'http://localhost:3800/operationsTank';
+  baseUrl6 : string = 'http://localhost:3800/nbreOp';
+  
   
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
 
+
+  getNbOp(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
+
+  
 
   getOperations(): Observable<any> {
     let jwt = this.authService.getToken();

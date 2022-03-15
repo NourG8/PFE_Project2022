@@ -17,9 +17,17 @@ export class TankService {
   baseUrl2 : string = 'http://localhost:3800/tanksFilres';
   baseUrl3 : string = 'http://localhost:3800/qteTanksLibre';
   baseUrl4 : string = 'http://localhost:3800/qteTanksGenerale';
+  baseUrl6 : string = 'http://localhost:3800/nbreT';
  
 
   constructor(private http: HttpClient,private authService :AuthService) { }
+
+  getNbTanks(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
 
 
   getTanks(): Observable<any> {

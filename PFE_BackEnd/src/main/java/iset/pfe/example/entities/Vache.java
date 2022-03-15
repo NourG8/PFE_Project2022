@@ -23,7 +23,7 @@ public class Vache implements Serializable{
 	private String matricule;
 	private double poids;
 	private String race;
-	private Date dateNaissance;
+	private String dateNaissance;
 	private String etat;
 	private double qte_prodLait;
 	
@@ -38,7 +38,7 @@ public class Vache implements Serializable{
 	}
 
 	
-	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait) {
+	public Vache(String matricule, double poids, String race, String dateNaissance, String etat, double qte_prodLait) {
 		super();
 		this.matricule = matricule;
 		this.poids = poids;
@@ -49,7 +49,7 @@ public class Vache implements Serializable{
 	}
 
 
-	public Vache(String matricule, double poids, String race, Date dateNaissance, String etat, double qte_prodLait,
+	public Vache(String matricule, double poids, String race, String dateNaissance, String etat, double qte_prodLait,
 			Set<Lait> laits) {
 		super();
 		this.matricule = matricule;
@@ -86,11 +86,11 @@ public class Vache implements Serializable{
 		this.race = race;
 	}
 
-	public Date getDateNaissance() {
+	public String getDateNaissance() {
 		return dateNaissance;
 	}
 
-	public void setDateNaissance(Date dateNaissance) {
+	public void setDateNaissance(String dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
 

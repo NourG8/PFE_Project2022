@@ -24,7 +24,7 @@ public class Operation implements Serializable{
 	@GeneratedValue
 	private Integer idOperation;
 	private double poidsLait;
-	private Date dateOperation;
+	private String dateOperation;
 	private String typeOp;
 
 //	@ManyToOne
@@ -57,7 +57,7 @@ public class Operation implements Serializable{
 	}
 
 
-	public Operation(double poidsLait, Date dateOperation, String typeOp, Set<OperationTank> operationstank,
+	public Operation(double poidsLait, String dateOperation, String typeOp, Set<OperationTank> operationstank,
 			Lait lait) {
 		super();
 		this.poidsLait = poidsLait;
@@ -68,7 +68,7 @@ public class Operation implements Serializable{
 	}
 
 
-	public Operation(double poidsLait, Date dateOperation,  String typeOp) {
+	public Operation(double poidsLait, String dateOperation,  String typeOp) {
 		super();
 		this.poidsLait = poidsLait;
 		this.dateOperation = dateOperation;
@@ -93,11 +93,11 @@ public class Operation implements Serializable{
 		this.poidsLait = poidsLait;
 	}
 
-	public Date getDateOperation() {
+	public String getDateOperation() {
 		return dateOperation;
 	}
 
-	public void setDateOperation(Date dateOperation) {
+	public void setDateOperation(String dateOperation) {
 		this.dateOperation = dateOperation;
 	}
 

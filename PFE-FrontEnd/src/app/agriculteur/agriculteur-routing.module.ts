@@ -6,6 +6,7 @@ import { BonComponent } from './bon/bon.component';
 import { OperationComponent } from './operation/operation.component';
 import { ProduitComponent } from './produit/produit.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
        { path: 'fournisseur', loadChildren: () => import('./fournisseur/fournisseur.module').then(m => m.FournisseurModule) },
        { path: 'tank', loadChildren: () => import('./tank/tank.module').then(m => m.TankModule) },
        { path: 'vache', loadChildren: () => import('./vache/vache.module').then(m => m.VacheModule) },
+       { path: 'dashboard', component: DashboardComponent },
       { path: '**', component: NotFoundComponent},
     ]
   }
