@@ -1,5 +1,7 @@
 package iset.pfe.example;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -57,6 +59,11 @@ public class PfeBackEndApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     System.out.println(currentDateTime);
+	     
 		double a=470;
 		Date date1=new Date(12/12/2016);
 		Date dateE=new Date(02/02/2021);
@@ -85,7 +92,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "1234");
 		agriculteurRepository.save(a1);
 		
-		Vache v1=new Vache("vache numero 1",180.00, "race 1", date1, "malade", 23.5);
+		Vache v1=new Vache("vache numero 1",180.00, "race 1", currentDateTime, "malade", 23.5);
 		vacheRepository.save(v1);
 		
 		Tank t1=new Tank("tank numero 1", 100.00, 0, "Remplis", a1);
@@ -113,28 +120,35 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
 		fournisseurRepository.save(f1);
 		
-		Bon b1=new Bon(150.0, 180.0, "Entree", date1,a1,p1,f1);
+		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 		bonRepository.save(b1);
 		
-		Bon b2=new Bon(140.0, 180.0, "Entree", date1,a1,p1,f1);
+		Bon b2=new Bon(140.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 		bonRepository.save(b2);
 		
-		Bon b3=new Bon(120.0, 180.0, "Sortie", date1,a1,p1,f1);
+		Bon b3=new Bon(120.0, 180.0, "Sortie", currentDateTime,a1,p1,f1);
 		bonRepository.save(b3);
 		
-		Bon b4=new Bon(110.0, 180.0, "Entree", date1,a1,p2,f1);
+		Bon b4=new Bon(110.0, 180.0, "Entree", currentDateTime,a1,p2,f1);
 		bonRepository.save(b4);
 		
 		
 		
-		Lait l1=new Lait(date1, 20, 0, 20, v1);
+		Lait l1=new Lait(currentDateTime, 20, 0, 20, v1);
 		laitRepository.save(l1);
 		
 //		Operation op1=new Operation(35, date1, "Remplissage", l1);
 //		operationRepository.save(op1);
 		
-		Operation o1=new Operation( 200, date1, "Remplissage");
+		Operation o1=new Operation( 200, currentDateTime, "Remplissage");
 		operationRepository.save(o1);
+		
+		Operation o2=new Operation( 200, currentDateTime, "Retrait");
+		operationRepository.save(o2);
+		
+		
+		System.out.println(operationRepository.findAll().size());
+		
 		
 //		OperationTank opt1=new OperationTank(date1);
 //	    opt1.setOperation(o1);

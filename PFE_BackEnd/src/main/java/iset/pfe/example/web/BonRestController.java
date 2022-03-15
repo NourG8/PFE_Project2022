@@ -1,11 +1,14 @@
 package iset.pfe.example.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,12 +38,19 @@ public class BonRestController {
 	private AgriculteurRepository agriculteurRepository;
 	
 	@RequestMapping(value="/bons",method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
 	public List<Bon> getBons(){
 		return bonRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbreB",method = RequestMethod.GET)
+	public int getNbBons(){
+		return bonRepository.findAll().size();
+	}
+	
 		
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
     public Bon getBon(@PathVariable Integer idBon) {
 		Optional<Bon> b= bonRepository.findById(idBon);
 		if (b.isPresent()) { 
@@ -51,6 +61,7 @@ public class BonRestController {
 	
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.DELETE)
 	@ResponseBody
+	@PreAuthorize("hasAuthority('USER')")
 	public void deleteBon(@PathVariable Integer idBon) {
 		Optional<Bon> b = bonRepository.findById(idBon);
 		b.get().setAgriculteur(null);
@@ -65,12 +76,16 @@ public class BonRestController {
 	}
 	
 	@RequestMapping(value="/bons",method = RequestMethod.POST)
+
 		public Bon AddBon(@RequestBody Bon bon){
 		String t1="Entree";
 		String t2="Sortie";
 		Produit p=produitRepository.findById(bon.getProduit().getIdProduit()).get();
-		Date date=new Date();
-		bon.setDate(date);
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     System.out.println(currentDateTime);
+	     
+		bon.setDate(currentDateTime);
 		Agriculteur a=agriculteurRepository.findAll().get(0);
 		bon.setAgriculteur(a);
 		bonRepository.save(bon);
@@ -96,7 +111,7 @@ public class BonRestController {
 	}
 	
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
-	
+	@PreAuthorize("hasAuthority('USER')")
 	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
         Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
         b.setIdBon(idBon);
@@ -113,6 +128,7 @@ public class BonRestController {
 	
 	
 	@RequestMapping(value="/bonsEntree",method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
 	public String getListBons(){
 		double s=0;
 		for(int i=0;i<bonRepository.findAllBon("Entree").size();i++)

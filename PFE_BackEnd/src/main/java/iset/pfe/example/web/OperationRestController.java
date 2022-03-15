@@ -1,5 +1,7 @@
 package iset.pfe.example.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -43,6 +45,7 @@ public class OperationRestController {
 	public List<Operation> getOperations(){
 		return operationRepository.findAll();
 	}
+	
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.GET)
 	public Operation getOperation(@PathVariable Integer idOperation) {
@@ -98,6 +101,10 @@ public class OperationRestController {
 		
 		double s=0;
 		double a=operation.getPoidsLait();
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     System.out.println(currentDateTime);
+	     
 		
 		if(a>qteLibreLait) {
 		System.out.println("erreur! Vous ne pouvez pas inserer cette quantite dans les tanks ,car la quantite disponible que tu peut l'inserer est :"+qteLibreLait);
@@ -105,7 +112,7 @@ public class OperationRestController {
 		else {
 			
 			Date date1=new Date();
-			operation.setDateOperation(date1);
+			operation.setDateOperation(currentDateTime);
 			operation.setTypeOp("Remplissage");
 			operationRepository.save(operation);
 		
@@ -118,7 +125,7 @@ public class OperationRestController {
 			a=a-s;
 			//tank.getOperations().add(operation);
 			tankRepository.save(tank);
-			OperationTank opt=new OperationTank(date1);
+			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
 			opt.setQteInsereTank(diff);
@@ -133,7 +140,7 @@ public class OperationRestController {
 			
 			//tank.getOperations().add(operation);
 			tankRepository.save(tank);
-			OperationTank opt=new OperationTank(date1);
+			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
 			opt.setQteInsereTank(a);
@@ -154,7 +161,7 @@ public class OperationRestController {
 						tankRepository.save(tank1);
 						//operation.getTanks().add(tank1);
 						//operationRepository.save(operation);
-						OperationTank opt=new OperationTank(date1);
+						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
 						opt.setTank(tank1);
 						opt.setQteInsereTank(diff);
@@ -171,7 +178,7 @@ public class OperationRestController {
 						tankRepository.save(tank1);
 						//operation.getTanks().add(tank1);
 						
-						OperationTank opt=new OperationTank(date1);
+						OperationTank opt=new OperationTank(currentDateTime);
 						opt.setOperation(operation);
 						opt.setTank(tank1);
 						opt.setQteInsereTank(a);
@@ -221,8 +228,11 @@ public class OperationRestController {
 	    double s=0;
 		double a=operation.getPoidsLait();
 		double p=0;
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     System.out.println(currentDateTime);
 	Date date1=new Date();
-	operation.setDateOperation(date1);
+	operation.setDateOperation(currentDateTime);
 	operation.setTypeOp("Retrait");
 	operationRepository.save(operation);
 	
@@ -236,7 +246,7 @@ public class OperationRestController {
 			
 			tank.setPoidActuel(p);
 			tankRepository.save(tank);
-			OperationTank opt=new OperationTank(date1);
+			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
 			opt.setQteInsereTank(a*-1);
@@ -258,7 +268,7 @@ public class OperationRestController {
 			
 			tank.setPoidActuel(p);
 			tankRepository.save(tank);
-			OperationTank opt=new OperationTank(date1);
+			OperationTank opt=new OperationTank(currentDateTime);
 			opt.setOperation(operation);
 			opt.setTank(tank);
 			opt.setQteInsereTank(a*-1);
@@ -278,7 +288,7 @@ public class OperationRestController {
 		a=a-tank.getPoidActuel();
 		tank.setPoidActuel(0);
 		tankRepository.save(tank);
-		OperationTank opt=new OperationTank(date1);
+		OperationTank opt=new OperationTank(currentDateTime);
 		opt.setOperation(operation);
 		opt.setTank(tank);
 		opt.setQteInsereTank(p*-1);
@@ -299,7 +309,7 @@ public class OperationRestController {
 					tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
 					tankRepository.save(tank1);
 					//operation.getTanks().add(tank1);
-					OperationTank opt=new OperationTank(date1);
+					OperationTank opt=new OperationTank(currentDateTime);
 					opt.setOperation(operation);
 					opt.setTank(tank1);
 					opt.setQteInsereTank(p*-1);
@@ -315,7 +325,7 @@ public class OperationRestController {
 					tank1.setPoidActuel(tank1.getPoidActuel()-a);
 					tankRepository.save(tank1);
 					//operation.getTanks().add(tank1);
-					OperationTank opt=new OperationTank(date1);
+					OperationTank opt=new OperationTank(currentDateTime);
 					opt.setOperation(operation);
 					opt.setTank(tank1);
 					opt.setQteInsereTank(a*-1);
@@ -378,6 +388,12 @@ public class OperationRestController {
 	public List<Operation> getOperationsRetraits(){
 		return operationRepository.findAllOperationsRemplissages("Retrait");
 	}
+
+	@RequestMapping(value="/nbreOp",method = RequestMethod.GET)
+	public int getNbreOperations(){
+		return operationRepository.findAll().size();
+	}
+	
 	
 }
 

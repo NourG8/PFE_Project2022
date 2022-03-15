@@ -28,8 +28,14 @@
   
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-  
-         <!-- Partie Dashboard lel Admin -->
+
+          <li class="nav-item">
+            <a routerLink="dashboard" class="nav-link">
+              <i class="nav-icon fas fa-clipboard-list"></i>
+              <p>DashBoard</p>
+            </a>
+          </li>
+
           <li  class="nav-item">
             <a routerLink="bon/listeBon" routerLinkActive="active" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -92,23 +98,15 @@
               <p>Liste des operations de &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retrait</p>
             </a>
           </li>
-<!--          
-          <li class="nav-item">
-            <a routerLink="operation/addOperationR" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>Ajouter une operations de remplissage</p>
-            </a>
-          </li>
-
+         
+         
+<!-- 
           <li class="nav-item">
             <a routerLink="operation/operationPage" class="nav-link">
               <i class="nav-icon fas fa-clipboard-list"></i>
               <p>Page operations </p>
             </a>
           </li> -->
-  
-          <!-- Partie Forms lel Les employee lkol -->
-         
   
           <li class="nav-header">Schedule</li>
           <!-- Partie Calendar lel Les employee lkol -->
@@ -118,15 +116,6 @@
               <p>
                 Calendar
                 <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <!-- Partie Mailbox lel Les Admin khw -->
-          <li class="nav-item">
-            <a routerLink="admin/mailbox" class="nav-link">
-              <p>
-                <i class="nav-icon far fa-envelope"></i>
-                Mailbox
               </p>
             </a>
           </li>

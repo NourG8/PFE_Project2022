@@ -21,7 +21,7 @@ public class OperationTank implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idOpTank;
-	private Date date;
+	private String date;
 	private double qteInsereTank;
 	
 //	@OneToMany(mappedBy="operationTank",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
@@ -46,13 +46,13 @@ public class OperationTank implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public OperationTank(Date date) {
+	public OperationTank(String date) {
 		super();
 		this.date = date;
 	}
 
 
-	public OperationTank(Date date, Operation operation, Tank tank) {
+	public OperationTank(String date, Operation operation, Tank tank) {
 		super();
 		this.date = date;
 		this.operation = operation;
@@ -60,7 +60,7 @@ public class OperationTank implements Serializable{
 	}
 
 	
-	public OperationTank(Date date, double qteInsereTank, Operation operation, Tank tank) {
+	public OperationTank(String date, double qteInsereTank, Operation operation, Tank tank) {
 		super();
 		this.date = date;
 		this.qteInsereTank = qteInsereTank;
@@ -76,11 +76,11 @@ public class OperationTank implements Serializable{
 		this.idOpTank = idOpTank;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

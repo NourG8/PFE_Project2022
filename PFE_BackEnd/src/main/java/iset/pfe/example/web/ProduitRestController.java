@@ -28,6 +28,11 @@ public class ProduitRestController {
 	public List<Produit> getNourritures(){
 		return produitRepository.findAll();
 	}
+	
+	@RequestMapping(value="/nbreP",method = RequestMethod.GET)
+	public int getNbNourritures(){
+		return produitRepository.findAll().size();
+	}
 		
 	//get Nourriture ById method
 	@RequestMapping(value="/produits/{idProduit}",method = RequestMethod.GET)

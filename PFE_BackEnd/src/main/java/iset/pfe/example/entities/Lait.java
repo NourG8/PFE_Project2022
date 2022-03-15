@@ -20,7 +20,7 @@ public class Lait  implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer idLait;
-	private Date date;
+	private String date;
 	private double quantite;
 	private double quantitePrise;
 	private double quantiteRest;
@@ -33,14 +33,14 @@ public class Lait  implements Serializable{
 	@JsonIgnore
 	private Set<Operation> operations;
 	
-	public Lait( Date date, double quantite) {
+	public Lait( String date, double quantite) {
 		super();
 		this.date = date;
 		this.quantite = quantite;
 	}
 	
 	
-	public Lait(Date date, double quantite, Vache vache) {
+	public Lait(String date, double quantite, Vache vache) {
 		super();
 		this.date = date;
 		this.quantite = quantite;
@@ -48,7 +48,7 @@ public class Lait  implements Serializable{
 	}
 
 	
-	public Lait(Date date, double quantite, double quantitePrise, double quantiteRest, Vache vache) {
+	public Lait(String date, double quantite, double quantitePrise, double quantiteRest, Vache vache) {
 		super();
 		this.date = date;
 		this.quantite = quantite;
@@ -58,7 +58,7 @@ public class Lait  implements Serializable{
 	}
 
 
-	public Lait(Date date, double quantite, double quantitePrise, double quantiteRest, Vache vache,
+	public Lait(String date, double quantite, double quantitePrise, double quantiteRest, Vache vache,
 			Set<Operation> operations) {
 		super();
 		this.date = date;
@@ -80,12 +80,7 @@ public class Lait  implements Serializable{
 	public void setIdLait(Integer idLait) {
 		this.idLait = idLait;
 	}
-	public Date getDate() {
-		return date;
-	}
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	
 	public double getQuantite() {
 		return quantite;
 	}
@@ -99,7 +94,7 @@ public class Lait  implements Serializable{
 	}
 
 
-	public Lait(Date date, double quantite, Vache vache, Set<Operation> operations) {
+	public Lait(String date, double quantite, Vache vache, Set<Operation> operations) {
 		super();
 		this.date = date;
 		this.quantite = quantite;
@@ -140,6 +135,16 @@ public class Lait  implements Serializable{
 
 	public void setQuantiteRest(double quantiteRest) {
 		this.quantiteRest = quantiteRest;
+	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 	
 }

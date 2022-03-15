@@ -31,6 +31,11 @@ public class VacheRestController {
 		return vacheRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbreV",method = RequestMethod.GET)
+	public int getNbVaches(){
+		return vacheRepository.findAll().size();
+	}
+	
 		
 	@RequestMapping(value="/vaches/{idVache}",method = RequestMethod.GET)
     public Vache getVache(@PathVariable Integer idVache) {

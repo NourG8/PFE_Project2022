@@ -29,6 +29,10 @@ public class FournisseurRestController {
 		return fournisseurRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbreF",method = RequestMethod.GET)
+	public int getNbFournisseurs(){
+		return fournisseurRepository.findAll().size();
+	}
 		
 	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.GET)
     public Fournisseur getFournisseur(@PathVariable Integer idFournisseur) {

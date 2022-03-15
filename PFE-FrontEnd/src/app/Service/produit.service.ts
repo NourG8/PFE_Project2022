@@ -14,9 +14,16 @@ const httpOptions = {
 })
 export class ProduitService {
   baseUrl : string = 'http://localhost:3800/produits';
+  baseUrl6 : string = 'http://localhost:3800/nbreP';
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
+  getNbProduits(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
 
 
   getProduits(): Observable<any> {

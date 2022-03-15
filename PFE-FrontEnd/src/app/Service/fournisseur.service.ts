@@ -12,10 +12,18 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class FournisseurService {
+  baseUrl6 : string = 'http://localhost:3800/nbreF';
   baseUrl : string = 'http://localhost:3800/fournisseurs';
+  
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
+  getNbFournisseurs(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
 
 
   getFournisseurs(): Observable<any> {

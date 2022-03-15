@@ -13,15 +13,22 @@ const httpOptions = {
 export class BonService {
 
   baseUrl : string = 'http://localhost:3800/bons';
+  baseUrl6 : string = 'http://localhost:3800/nbreB';
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
+  getNbB(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
+  }
 
   getbons(): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
     // return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
     return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
@@ -29,7 +36,7 @@ export class BonService {
   getBon(id: number): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
@@ -39,40 +46,37 @@ export class BonService {
   // }
 
   createBon(bon:any){
-    let jwt = this.authService.getToken();
-    jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
 
-    return this.http.post(this.baseUrl,bon,{headers:httpHeaders});
+    return this.http.post(this.baseUrl,bon);
   }
 
   updateBon(id: number, value:any){
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
-   
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+
     const url = `${this.baseUrl}/${id}`
     return this.http.put(url, value,{headers:httpHeaders});
   }
 
-  
+
 
   deleteBon(id: number): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
-   
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+
     const url = `${this.baseUrl}/${id}`
     return this.http.delete(url,{headers:httpHeaders});
- 
+
   }
 
   getBonList(): Observable<Bon[]> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
-    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
-   
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+
     return this.http.get<Bon[]>(this.baseUrl,{headers:httpHeaders});
-   
+
   }
 }
