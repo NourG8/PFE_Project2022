@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h1 id="modal-title"><b>Modifier le tank numero : {{tank.idTank}}</b></h1>
+      <h2 id="modal-title"><b>Modifier le tank numero :{{tank.idTank}}</b></h2>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -27,44 +27,25 @@
       </div>
   
       <div class="lg mb-3">
-        <label>Poids Actuel :</label>
+        <label>Matricule :</label>
         <input class="form-control"
                   placeholder="Description Post here ...."
-                  name="poidActuel"
-                  formControlName="poidActuel"
-                  [(ngModel)]="tank.poidActuel"
+                  name="matricule"
+                  formControlName="matricule"
+                  [(ngModel)]="tank.matricule"
                   >
             <div
-                  *ngIf="poidActuel?.invalid && poidActuel?.touched"
+                  *ngIf="matricule?.invalid && matricule?.touched"
                    class="text-danger">
                    Poids Actuel invalide !
             </div>
             <div
-                 *ngIf="poidActuel?.valid && poidActuel?.touched"
+                 *ngIf="matricule?.valid && matricule?.touched"
                  class="text-success">
                  Poids Actuel  valide !
             </div>
       </div>
-
-      <div class="lg mb-3">
-        <label>Etat :</label>
-        <input class="form-control"
-                  placeholder="Description Post here ...."
-                  name="etat"
-                  formControlName="etat"
-                  [(ngModel)]="tank.etat"
-                  >
-            <div
-                  *ngIf="etat?.invalid && etat?.touched"
-                   class="text-danger">
-                   Etat invalide !
-            </div>
-            <div
-                 *ngIf="etat?.valid && etat?.touched"
-                 class="text-success">
-                 Etat  valide !
-            </div>
-      </div>
+  
   
       <div class="modal-footer">
         <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

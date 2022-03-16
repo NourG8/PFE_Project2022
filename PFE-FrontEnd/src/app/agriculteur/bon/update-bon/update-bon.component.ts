@@ -25,8 +25,6 @@ export class UpdateBonComponent implements OnInit {
 
   myForm=new  FormGroup({
     quantite : new FormControl(null,[Validators.required]),
-    type : new FormControl(null,[Validators.required ]),
-    date : new FormControl(null,[Validators.required ]),
     prix : new FormControl(null,[Validators.required ]),
     fournisseur : new FormControl(null,[Validators.required ]),
   
@@ -63,14 +61,13 @@ fournisseurs!:Observable<Fournisseur[]>;
         .updateBon(this.bon.idBon,{
           "quantite":this.myForm.get('quantite')?.value,
           "prix":this.myForm.get('prix')?.value,
-          "type":this.myForm.get('type')?.value,
           "fournisseur":{
             "idFournisseur":this.myForm.get('fournisseur')?.value,
          }
        
         })
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Bon was successfully updated"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été modifié avec succes"]));
           window.location.reload();
           console.log(this.bon);
         },

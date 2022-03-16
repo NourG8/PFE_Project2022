@@ -35,6 +35,7 @@ export class CreateProduitComponent implements OnInit {
     this.produitService
         .createProduit(this.produit)
         .subscribe(o=>{
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un produit a été ajouté avec succès"]));   
           window.location.reload();
           console.log(this.produit);
         });

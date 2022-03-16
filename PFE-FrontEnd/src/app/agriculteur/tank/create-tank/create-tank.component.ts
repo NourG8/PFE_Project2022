@@ -31,11 +31,10 @@ export class CreateTankComponent implements OnInit {
 
 
   save() {
-    console.log(this.tank);
-    this.tank.idTank = 1;
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été ajouté avec succès"]));  
           window.location.reload();
           console.log(this.tank);
         });
@@ -49,7 +48,7 @@ export class CreateTankComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(['agriculteur/Tank/listeTank']);
+    this.router.navigate(['agriculteur/tank/listeTank']);
   }
 
 
@@ -62,8 +61,6 @@ export class CreateTankComponent implements OnInit {
     this.myForm = new FormGroup({
       'matricule' : new FormControl(null,[Validators.required,]),
       'poidVide' : new FormControl(null,[Validators.required,]),
-      'poidActuel' : new FormControl(null,[Validators.required, ]),
-      'etat' : new FormControl(null,[Validators.required, ]),
       });
  }
 

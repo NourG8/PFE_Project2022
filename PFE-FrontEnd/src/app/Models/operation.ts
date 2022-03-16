@@ -7,6 +7,7 @@ export class Operation{
     poidsLait!: number;
     dateOperation!: string;
     typeOp!: string;
+    code!:number;
     tank!:Tank;
     lait!:Lait;
     

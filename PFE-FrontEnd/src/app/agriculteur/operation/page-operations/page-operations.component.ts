@@ -5,10 +5,12 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
+import { OperationTank } from 'src/app/Models/operationTank';
 import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
 import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
+import { DetailsOperationTankComponent } from '../details-operation-tank/details-operation-tank.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 
@@ -23,6 +25,14 @@ export class PageOperationsComponent implements OnInit {
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
 
+  intervalId?:any;
+  idContenu?: string;
+  idTitle?: string;
+  Toast!: string[];
+  counter: number = 0;
+  ShowToast: string = 'hide';
+
+
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
@@ -36,6 +46,18 @@ export class PageOperationsComponent implements OnInit {
     ngOnInit() {
       this.reloadData();
       console.log(this.tankService.getTanksQteLibre());
+
+      this.idContenu = 'TostSuccessContenu';
+      this.idTitle = 'TostSuccessTile';
+  
+      this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
+      if (this.Toast[0] == 'Success') {
+        console.log('Toast est n est pas vide');
+        this.showToast();
+      } else {
+        console.log('Toast Vide');
+      }
+
     }
   
     reloadData() {
@@ -49,56 +71,42 @@ export class PageOperationsComponent implements OnInit {
       
     }
   
-     deleteOperation(id: number) {
-      this.operationService.getOperation(id).subscribe(o =>{
-        this.ELEMENT_DATA= o;});
-        console.log(this.ELEMENT_DATA);
-        //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer le Operation où son id est egale à : "+id+" ??")
-      if(confirmation)
-      this.operationService.deleteOperation(id).subscribe(data => {
-            console.log(data);
-            window.location.reload();
-      });
-    }
-  
-  
-    detailsOperation(operation:Operation){
+    detailsOperationTank(operation:OperationTank){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
-      localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
-      this.dialog.open(DetailsOperationComponent, dialogConfig);
+      localStorage.setItem('IdOperationTank', JSON.stringify(operation.idOpTank));
+      this.dialog.open(DetailsOperationTankComponent, dialogConfig);
       //this.router.navigate(['employees/admin/detailemployee', id]);
     }
-  
-    updateOperation(operation:Operation){
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
-      this.dialog.open(UpdateOperationComponent, dialogConfig);
-      //this.router.navigate(['employees/admin/updateemployee', id]);
-    }
-  
-    onOpenDialogCreate():void{
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      this.dialog.open(CreateOperationComponent, dialogConfig);
-    }
-  
-    onOpenDialogCreate2():void{
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      this.dialog.open(CreateOperationRemplissageComponent, dialogConfig);
-    }
-  
   
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
     }
+    showToast() {
+      if (this.ShowToast == 'hide') {
+        setTimeout(() => {
+          this.ShowToast = 'show';
+          console.log(this.ShowToast);
+        }, 1);
+      }
+  
+      setTimeout(() => {
+        this.ShowToast = 'hide';
+        this.Toast = [];
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        console.log(this.ShowToast);
+      }, 6100);
+      this.intervalId = setInterval(() => {
+        this.counter = this.counter + 1;
+        console.log(this.counter);
+        if (this.counter === 6)
+        clearInterval(this.intervalId);
+      }, 1000);
+      this.counter=0
+  
+    }
   
   }
+
 

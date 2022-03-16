@@ -23,11 +23,18 @@ export class ListeOperationsRetraitComponent implements OnInit {
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
 
+  intervalId?:any;
+  idContenu?: string;
+  idTitle?: string;
+  Toast!: string[];
+  counter: number = 0;
+  ShowToast: string = 'hide';
+
   ELEMENT_DATA?:Operation[];
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
-  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
@@ -36,6 +43,18 @@ export class ListeOperationsRetraitComponent implements OnInit {
     ngOnInit() {
       this.reloadData();
       console.log(this.tankService.getTanksQteLibre());
+
+     this.idContenu = 'TostSuccessContenu';
+      this.idTitle = 'TostSuccessTile';
+  
+      this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
+      if (this.Toast[0] == 'Success') {
+        console.log('Toast est n est pas vide');
+        this.showToast();
+      } else {
+        console.log('Toast Vide');
+      }
+  
     }
   
     reloadData() {
@@ -57,11 +76,20 @@ export class ListeOperationsRetraitComponent implements OnInit {
       let confirmation =confirm("Êtes-vous sûr de supprimer le Operation où son id est egale à : "+id+" ??")
       if(confirmation)
       this.operationService.deleteOperation(id).subscribe(data => {
-            console.log(data);
-            window.location.reload();
-      });
-    }
-  
+        this.Toast[0] = 'Success';
+        this.Toast[1] ='Operation a été supprimé avec succès';
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        window.location.reload();
+      },
+      (error) => {
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Failed';
+        this.Toast[1] ='Échec de la suppression du Operation !!';
+        this.showToast();
+      }
+    );
+  }
   
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
@@ -99,6 +127,30 @@ export class ListeOperationsRetraitComponent implements OnInit {
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
     }
+    showToast() {
+      if (this.ShowToast == 'hide') {
+        setTimeout(() => {
+          this.ShowToast = 'show';
+          console.log(this.ShowToast);
+        }, 1);
+      }
+  
+      setTimeout(() => {
+        this.ShowToast = 'hide';
+        this.Toast = [];
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        console.log(this.ShowToast);
+      }, 6100);
+      this.intervalId = setInterval(() => {
+        this.counter = this.counter + 1;
+        console.log(this.counter);
+        if (this.counter === 6)
+        clearInterval(this.intervalId);
+      }, 1000);
+      this.counter=0
+  
+    }
   
   }
+
 

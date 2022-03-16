@@ -14,6 +14,11 @@ public interface OperationRepository extends JpaRepository<Operation,Integer>{
    @Query("select o from OperationTank  o")
 	public List<OperationTank> findAllOperationsTank();
    
+   @Query("select o from OperationTank  o where o.idOpTank=:idOpTank")
+	public OperationTank getOperationTank(@Param("idOpTank") Integer idOpTank);
+   
    @Query("select op from Operation op where op.typeOp=:typeOp")
 	public List<Operation> findAllOperationsRemplissages(@Param("typeOp") String typeOp);
+   
+   
 }

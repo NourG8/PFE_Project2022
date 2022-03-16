@@ -21,6 +21,13 @@ export class ListeFournisseurComponent implements OnInit {
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
 
+  intervalId?:any;
+  idContenu?: string;
+  idTitle?: string;
+  Toast!: string[];
+  counter: number = 0;
+  ShowToast: string = 'hide';
+
   ELEMENT_DATA?:Fournisseur[];
   fournisseur?:Fournisseur;
   dataSource!:MatTableDataSource<any>;
@@ -31,6 +38,18 @@ export class ListeFournisseurComponent implements OnInit {
 
     ngOnInit() {
       this.reloadData();
+
+      this.idContenu = 'TostSuccessContenu';
+      this.idTitle = 'TostSuccessTile';
+  
+      this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
+      if (this.Toast[0] == 'Success') {
+        console.log('Toast est n est pas vide');
+        this.showToast();
+      } else {
+        console.log('Toast Vide');
+      }
+  
      
     }
   
@@ -44,19 +63,25 @@ export class ListeFournisseurComponent implements OnInit {
         console.log(this.ELEMENT_DATA);});
       
     }
-  
-     deleteFournisseur(id: number) {
-      this.fournisseurService.getFournisseur(id).subscribe(o =>{
-        this.ELEMENT_DATA= o;});
-        console.log(this.ELEMENT_DATA);
-        //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer le fournisseur où son id est egale à : "+id+" ??")
+
+    deleteFournisseur(id: number) {
+      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
       if(confirmation)
-      this.fournisseurService.deleteFournisseur(id).subscribe(data => {
-            console.log(data);
-            window.location.reload();
-      });
-    }
+      this.fournisseurService. deleteFournisseur(id).subscribe(()=>{
+        this.Toast[0] = 'Success';
+        this.Toast[1] ='Fournisseur a été supprimé avec succès';
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        window.location.reload();
+      },
+      (error) => {
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Failed';
+        this.Toast[1] ='Échec de la suppression du fournisseur !!';
+        this.showToast();
+      }
+    );
+  }
   
   
     detailsFournisseur(fournisseur:Fournisseur){
@@ -89,5 +114,30 @@ export class ListeFournisseurComponent implements OnInit {
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
     }
+
+    showToast() {
+      if (this.ShowToast == 'hide') {
+        setTimeout(() => {
+          this.ShowToast = 'show';
+          console.log(this.ShowToast);
+        }, 1);
+      }
+  
+      setTimeout(() => {
+        this.ShowToast = 'hide';
+        this.Toast = [];
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        console.log(this.ShowToast);
+      }, 6100);
+      this.intervalId = setInterval(() => {
+        this.counter = this.counter + 1;
+        console.log(this.counter);
+        if (this.counter === 6)
+        clearInterval(this.intervalId);
+      }, 1000);
+      this.counter=0
+  
+    }
   
   }
+

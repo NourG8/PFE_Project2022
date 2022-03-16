@@ -37,7 +37,13 @@ export class CreateFournisseurComponent implements OnInit {
         .subscribe(o=>{
           window.location.reload();
           console.log(this.fournisseur);
-        });
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été ajouté avec succès"]));
+          window.location.reload();      
+        },
+        (error) => {
+          console.log("Failed")
+        }
+      );
     }
 
 

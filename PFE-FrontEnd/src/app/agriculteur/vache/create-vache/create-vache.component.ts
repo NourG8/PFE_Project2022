@@ -35,6 +35,7 @@ export class CreateVacheComponent implements OnInit {
     this.vacheService
         .createVache(this.vache)
         .subscribe(o=>{
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une vache a été ajouté avec succès"]));   
           window.location.reload();
           console.log(this.vache);
         });

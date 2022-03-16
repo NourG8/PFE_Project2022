@@ -49,8 +49,7 @@ export class UpdateTankComponent implements OnInit {
   ValidatedForm(){
     this.myForm = new FormGroup({
       'poidVide' : new FormControl(null,[Validators.required,]),
-      'poidActuel' : new FormControl(null,[Validators.required, ]),
-      'etat' : new FormControl(null,[Validators.required, ]),
+      'matricule' : new FormControl(null,[Validators.required, ]),
       });
  }
 
@@ -59,13 +58,10 @@ export class UpdateTankComponent implements OnInit {
   return this.myForm.get('poidVide') ;
 }
 
-get poidActuel(){
-  return this.myForm.get('poidActuel') ;
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
-get etat(){
-  return this.myForm.get('etat') ;
-}
 
   onClose() {
     this.dialogClose.closeAll();

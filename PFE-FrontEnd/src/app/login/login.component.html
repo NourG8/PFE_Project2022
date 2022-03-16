@@ -12,8 +12,8 @@
            </div>
            <br> -->
 
-           <div  class="alert alert-danger" style="height:40px;width:190px;text-align:center;" *ngIf="err==1">
-            <strong>login ou mot de passe erronés ...</strong>
+           <div  class="alert alert-danger" style="height:90px;width:295px;text-align:center;padding:10px;" *ngIf="err==1">
+            <strong>Erreur !!<br> le nom d'utilisateur ou le mot de passe est incorecte ...</strong>
            </div>
            <br>
   
@@ -25,7 +25,7 @@
         </div>
         <div class="input-field">
           <i class="fa fa-lock"></i>
-          <input  type="password"   name="password" placeholder="Password"  [(ngModel)]="user.password"  />
+          <input  type="{{ password }}"   name="password" placeholder="Password"  [(ngModel)]="user.password"  />
         </div>
 
       
@@ -57,18 +57,13 @@
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
-          <h3>Nice to see you again</h3>
+          <h3>C'est un plaisir de vous revoir</h3>
           <p style="font-size:17px;">
-            Log in with your data that you entered when registering  </p>
+            Connectez-vous avec vos données que vous avez saisies lors de votre inscription </p>
           <br>
           <p style="font-size:27px;">
-            Welcome to our website !
+            Bienvenue sur notre site !
           </p>
-          <button class="btn transparent" id="sign-up-btn"
-            style="font-family: Verdana, Geneva, Tahoma, sans-serif;padding-left: 5px;padding-right: 5px;font-size: 15px;height: 60px;width: 180px;"
-            routerLink="/agriculteur">
-            Home Page
-          </button>
         </div>
         <img src="../../assets/loginRec-removebg-preview.png" class="image" alt="aaaaaaaaaa" />
       </div>
