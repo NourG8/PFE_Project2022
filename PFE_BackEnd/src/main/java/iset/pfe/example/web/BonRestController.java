@@ -111,16 +111,15 @@ public class BonRestController {
 	}
 	
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
-	@PreAuthorize("hasAuthority('USER')")
 	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
         Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
         b.setIdBon(idBon);
-    	b.setDate(bon.getDate());
+//    	b.setDate(bon.getDate());
     	b.setPrix(bon.getPrix());
-    	b.setType(bon.getType());
-    	b.setAgriculteur(bon.getAgriculteur());
+//    	b.setType(bon.getType());
+//    	b.setAgriculteur(agriculteurRepository.findAll().get(0));
     	b.setFournisseur(bon.getFournisseur());
-    	b.setProduit(bon.getProduit());
+//    	b.setProduit(bon.getProduit());
     	b.setQuantite(bon.getQuantite());
     	bonRepository.save(b);
 	  	return b;

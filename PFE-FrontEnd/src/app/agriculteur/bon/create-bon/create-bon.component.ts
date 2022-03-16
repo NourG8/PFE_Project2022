@@ -108,6 +108,8 @@ export class CreateBonComponent implements OnInit {
         .subscribe(o=>{
           window.location.reload();
           console.log(this.bon);
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été ajouté avec succès"]));
+          window.location.reload();      
         });
     }
 

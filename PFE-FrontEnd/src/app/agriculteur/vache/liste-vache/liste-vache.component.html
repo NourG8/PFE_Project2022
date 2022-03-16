@@ -5,7 +5,7 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 
-<div class="main-content">
+<!-- <div class="main-content">
   <div id="btnAddSearch">
       <div>
         <div  class="search-container">
@@ -32,14 +32,12 @@
 <div class="row">
   <div class="col-md-12" id="card-Table">
     <div class="card">
-      <!-- <div class="card-header card-header-danger" id="title-Table">
-        <h3 class="card-title" id="titre">Table Employees</h3><br>
-      </div> -->
+    
       <div class="card-body">
         <div class="table-responsive">
                 <table mat-table matSort [dataSource]="dataSource!" class="table">
                   <ng-container matColumnDef="idVache">
-                    <!-- <th  mat-header-cell *matHeaderCellDef hidden> id Employee </th> -->
+                  
                     <th  mat-header-cell *matHeaderCellDef > #id  </th>
                     <td mat-cell *matCellDef="let element" > {{element.idVache}} </td>
                   </ng-container>
@@ -84,7 +82,6 @@
                   </a>
   
                   <a (click)="deleteVache(element.idVache)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
-                    <!-- (click)="deleteEmployee(element.idUser)" -->
                   <i class="far fa-trash-alt"></i> 
               </a>
                   </td>
@@ -120,4 +117,139 @@
         "autoWidth": false,
       });
     });
-  </script>
+  </script> -->
+
+
+
+
+
+
+
+
+<div class="main-content">
+  <div id="btnAddSearch">
+      <div>
+        <div  class="search-container">
+          <mat-form-field id="formSearch" appearance="fill" aria-autocomplete="off" (keyup)="filterData($event)">
+          <div id="search">
+                <div><input id="inputSearch" matInput placeholder="Recherche ..."/></div>
+                <div><span class='material-icons'>search</span></div>
+          </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div style="margin-left:450px;">
+        <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
+          <i class="fas fa-plus"></i>
+          Ajouter un element
+        </button>
+      </div>
+
+  </div>
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-12" id="card-Table">
+    <div class="card">
+      <div class="card-header card-header-danger" id="title-Table">
+        <h3 class="card-title" id="titre">Table des vaches</h3><br>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table mat-table matSort [dataSource]="dataSource!" class="table">
+            <ng-container matColumnDef="idVache">
+              <!-- <th  mat-header-cell *matHeaderCellDef hidden> id Employee </th> -->
+              <th  mat-header-cell *matHeaderCellDef > #Id  </th>
+              <td mat-cell *matCellDef="let element" > &nbsp;&nbsp;&nbsp;&nbsp;{{element.idVache}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="matricule">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef >&nbsp;Matricule</th>
+              <td mat-cell *matCellDef="let element" >&nbsp;{{element.matricule}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="poids">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef >Poids</th>
+              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;{{element.poids}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="etat">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Etat vache</th>
+              <td id="alignement"mat-cell *matCellDef="let element">{{element.etat}}</td>
+            </ng-container>
+            <ng-container matColumnDef="race">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>Race de la vache</th>
+              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.race}} </td>
+            </ng-container>
+            <ng-container matColumnDef="dateNaissance">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date de Naissance</th>
+              <td id="alignement" mat-cell *matCellDef="let element" >{{element.dateNaissance}}</td>
+            </ng-container>
+
+         
+
+            <ng-container matColumnDef="qte_prodLait">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef>&nbsp;&nbsp; Quantité de production lait </th>
+              <td id="alignement"mat-cell *matCellDef="let element"style="padding-right:110px;text-align:center;"> {{element.qte_prodLait}} </td>
+            </ng-container>
+
+           
+
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="margin-left:-350px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action</th>
+              <td mat-cell *matCellDef="let element">
+                <a (click)="updateVache(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
+                  <i class="fas fa-edit"></i>
+              </a>
+
+              <a  (click)="detailsVache(element)" class="btn  btn-secondary" style="margin-right:15px;margin-bottom:15px;">
+                <i class="fas fa-info"></i>
+              </a>
+
+              <a (click)="deleteVache(element.idVache)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
+                <!-- (click)="deleteEmployee(element.idUser)" -->
+              <i class="far fa-trash-alt"></i> 
+          </a>
+              </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+             </table>
+             <mat-paginator #paginator
+                            [pageSize]="3"
+                            [pageSizeOptions]="[2, 3, 5, 10, 25, 100]">
+            </mat-paginator>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+<div class="toast {{ShowToast}}" id="ToastDiv">
+  <div id={{idTitle}} class="toast-header">
+  <strong class="mr-auto">
+    <span class="mr-3">
+    <i *ngIf="Toast[0] == 'Success'" class="fas fa-check"></i>
+    <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
+  </span>
+    {{Toast[0]}}</strong>
+  <small style="color: gray;">
+    {{counter}} second ago</small>
+  </div>
+  <div id={{idContenu}} class="toast-body">
+  {{Toast[1]}}
+  </div>
+  </div>
+  
+  

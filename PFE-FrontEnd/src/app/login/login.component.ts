@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
 
 
 
-    mdp = "password"
+    password = "password"
      myFunction() {
-      if (this.mdp === "password") {
-        this.mdp = "text";
+      if (this.password === "password") {
+        this.password = "text";
       } else {
-        this.mdp = "password";
+        this.password = "password";
       }
     }
 

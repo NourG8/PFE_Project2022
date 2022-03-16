@@ -75,7 +75,14 @@ export class CreateOperationRemplissageComponent implements OnInit {
         .subscribe(o=>{
           window.location.reload();
           console.log(this.operation);
-        });
+
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
+          window.location.reload();      
+        },
+        (error) => {
+          console.log("Failed")
+        }
+      );
     
       
   }

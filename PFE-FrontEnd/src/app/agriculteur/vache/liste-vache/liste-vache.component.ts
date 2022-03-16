@@ -21,16 +21,34 @@ export class ListeVacheComponent implements OnInit {
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
 
+  intervalId?:any;
+  idContenu?: string;
+  idTitle?: string;
+  Toast!: string[];
+  counter: number = 0;
+  ShowToast: string = 'hide';
+
   ELEMENT_DATA?:Vache[];
   vache?:Vache;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idVache','matricule','poids', 'race', 'dateNaissance','etat','qte_prodLait','action'];
+  displayedColumns: string[] = ['idVache','matricule','poids','etat', 'race', 'dateNaissance','qte_prodLait','action'];
   constructor(private vacheService: VacheService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
       this.reloadData();
+
+      this.idContenu = 'TostSuccessContenu';
+      this.idTitle = 'TostSuccessTile';
+  
+      this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
+      if (this.Toast[0] == 'Success') {
+        console.log('Toast est n est pas vide');
+        this.showToast();
+      } else {
+        console.log('Toast Vide');
+      }
      
     }
   
@@ -44,19 +62,27 @@ export class ListeVacheComponent implements OnInit {
         console.log(this.ELEMENT_DATA);});
       
     }
-  
-     deleteVache(id: number) {
-      this.vacheService.getVache(id).subscribe(o =>{
-        this.ELEMENT_DATA= o;});
-        console.log(this.ELEMENT_DATA);
-        //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer le Vache où son id est egale à : "+id+" ??")
+
+     
+    deleteVache(id: number) {
+      let confirmation =confirm("Êtes-vous sûr de supprimer le produit où son id est egale à : "+id+" ??")
       if(confirmation)
-      this.vacheService.deleteVache(id).subscribe(data => {
-            console.log(data);
-            window.location.reload();
-      });
-    }
+      this.vacheService.deleteVache(id).subscribe(()=>{
+        this.Toast[0] = 'Success';
+        this.Toast[1] ='Vache a été supprimée avec succès';
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        window.location.reload();
+      },
+      (error) => {
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Failed';
+        this.Toast[1] ='Échec de la suppression de la vache !!';
+        this.showToast();
+      }
+    );
+  }
+  
   
   
     detailsVache(vache:Vache){
@@ -89,5 +115,30 @@ export class ListeVacheComponent implements OnInit {
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
     }
+    showToast() {
+      if (this.ShowToast == 'hide') {
+        setTimeout(() => {
+          this.ShowToast = 'show';
+          console.log(this.ShowToast);
+        }, 1);
+      }
+  
+      setTimeout(() => {
+        this.ShowToast = 'hide';
+        this.Toast = [];
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        console.log(this.ShowToast);
+      }, 6100);
+      this.intervalId = setInterval(() => {
+        this.counter = this.counter + 1;
+        console.log(this.counter);
+        if (this.counter === 6)
+        clearInterval(this.intervalId);
+      }, 1000);
+      this.counter=0
+  
+    }
   
   }
+
+

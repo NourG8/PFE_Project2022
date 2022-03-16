@@ -11,24 +11,16 @@
         <div  class="search-container">
           <mat-form-field id="formSearch" appearance="fill" aria-autocomplete="off" (keyup)="filterData($event)">
           <div id="search">
-                <div><input id="inputSearch" matInput placeholder="Recherche ...."/></div>
-                <div><span class='material-icons'>Search</span></div>
+                <div><input id="inputSearch" matInput placeholder="Recherche ..."/></div>
+                <div><span class='material-icons'>search</span></div>
           </div>
-
           </mat-form-field>
         </div>
       </div>
-      <div>
-
-
-
-        <!-- <Button id="btn"  class="btn  btn" style="margin-right:15px;">
-          <i class="fas fa-plus"></i> Ajouter un bon
-      </Button> -->
-
+      <div style="margin-left:450px;">
         <button class="btn btn" id="btn" (click)="onOpenDialogCreate()">
           <i class="fas fa-plus"></i>
-          Ajouter un element 
+          Ajouter un element
         </button>
       </div>
 
@@ -38,73 +30,84 @@
 <div class="row">
   <div class="col-md-12" id="card-Table">
     <div class="card">
-      <!-- <div class="card-header card-header-danger" id="title-Table">
-        <h3 class="card-title" id="titre">Table Employees</h3><br>
-      </div> -->
+      <div class="card-header card-header-danger" id="title-Table">
+        <h3 class="card-title" id="titre">Table Fournisseurs</h3><br>
+      </div>
       <div class="card-body">
         <div class="table-responsive">
-                <table mat-table matSort [dataSource]="dataSource!" class="table">
-                  <ng-container matColumnDef="idFournisseur">
-                    <th  mat-header-cell *matHeaderCellDef > #id  </th>
-                    <td mat-cell *matCellDef="let element" > {{element.idFournisseur}} </td>
-                  </ng-container>
-                  
-                  <ng-container matColumnDef="nom">
-                    <th mat-sort-header mat-header-cell *matHeaderCellDef >Nom  </th>
-                    <td mat-cell *matCellDef="let element" style="padding-right:80px;text-align:center;"> {{element.nom}}</td>
-                  </ng-container>
-                  <ng-container matColumnDef="matricule">
-                    <th mat-sort-header mat-header-cell *matHeaderCellDef> Matricule  </th>
-                    <td mat-cell *matCellDef="let element"> {{element.matricule}} </td>
-                  </ng-container>
-                  
-  
-                  <ng-container matColumnDef="action">
-                  <th mat-header-cell *matHeaderCellDef style="margin-left:-350px"> Action</th>
-                  <td mat-cell *matCellDef="let element">
-                    <a (click)="updateFournisseur(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
-                      <i class="fas fa-edit"></i>
-                  </a>
-  
-                  <a  (click)="detailsFournisseur(element)" class="btn  btn-info" style="margin-right:15px;margin-bottom:15px;">
-                    <i class="fas fa-info"></i>
-                  </a>
-  
-                  <a (click)="deleteFournisseur(element.idFournisseur)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
-                    <!-- (click)="deleteEmployee(element.idUser)" -->
-                  <i class="far fa-trash-alt"></i> 
+          <table mat-table matSort [dataSource]="dataSource!" class="table">
+            <ng-container matColumnDef="idFournisseur">
+              <!-- <th  mat-header-cell *matHeaderCellDef hidden> id Employee </th> -->
+              <th  mat-header-cell *matHeaderCellDef >#id</th>
+              <td mat-cell *matCellDef="let element">{{element.idFournisseur}} </td>
+            </ng-container>
+            <ng-container matColumnDef="nom">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef >Nom du fournisseur</th>
+              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;{{element.nom}}</td>
+            </ng-container>
+            <ng-container matColumnDef="matricule">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef > &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Matricule</th>
+              <td id="alignement" mat-cell *matCellDef="let element" >{{element.matricule}}</td>
+            </ng-container>
+
+           
+
+
+            <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef style="margin-left:-350px">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Action</th>
+              <td mat-cell *matCellDef="let element">
+                <a (click)="updateFournisseur(element)"  class="btn btn-success" style="margin-right:15px;margin-bottom:15px;">
+                  <i class="fas fa-edit"></i>
               </a>
-                  </td>
-                  </ng-container>
-  
-  
-                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  
-                 </table>
-                 <mat-paginator #paginator
-                                [pageSize]="3"
-                                [pageSizeOptions]="[2, 3, 5, 10, 25, 100]">
-                </mat-paginator>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+              <a  (click)="detailsFournisseur(element)" class="btn  btn-secondary" style="margin-right:15px;margin-bottom:15px;">
+                <i class="fas fa-info"></i>
+              </a>
+
+              <a (click)="deleteFournisseur(element.idFournisseur)" class="btn  btn-danger" style="margin-right:15px;margin-bottom:15px">
+                <!-- (click)="deleteEmployee(element.idUser)" -->
+              <i class="far fa-trash-alt"></i> 
+          </a>
+              </td>
+              </ng-container>
+
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          </table>
+          <mat-paginator #paginator
+                         [pageSize]="4"
+                         [pageSizeOptions]="[2, 3,4, 5, 10, 25, 100]">
+         </mat-paginator>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="toast {{ShowToast}}" id="ToastDiv">
+  <div id={{idTitle}} class="toast-header">
+  <strong class="mr-auto">
+    <span class="mr-3">
+    <i *ngIf="Toast[0] == 'Success'" class="fas fa-check"></i>
+    <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
+  </span>
+    {{Toast[0]}}</strong>
+  <small style="color: gray;">
+    {{counter}} second ago</small>
+  </div>
+  <div id={{idContenu}} class="toast-body">
+  {{Toast[1]}}
+  </div>
   </div>
   
+  
 
-<script>
-    $(function () {
-      $("#example1").DataTable();
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-      });
-    });
-  </script>

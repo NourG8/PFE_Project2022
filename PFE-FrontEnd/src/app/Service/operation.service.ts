@@ -72,6 +72,15 @@ export class OperationService {
     return this.http.get(url,{headers:httpHeaders});
   }
 
+  
+  getOperationTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl5}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
   createOperation(f:any){
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;

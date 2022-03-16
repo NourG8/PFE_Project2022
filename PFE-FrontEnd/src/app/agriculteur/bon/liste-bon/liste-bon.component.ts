@@ -21,6 +21,13 @@ export class ListeBonComponent implements OnInit {
   // AddForSotedData
   @ViewChild(MatSort) matSort!:MatSort;
 
+  intervalId?:any;
+  idContenu?: string;
+  idTitle?: string;
+  Toast!: string[];
+  counter: number = 0;
+  ShowToast: string = 'hide';
+
   ELEMENT_DATA?:Bon[];
   bon?:Bon;
   dataSource!:MatTableDataSource<any>;
@@ -32,6 +39,18 @@ export class ListeBonComponent implements OnInit {
 
     ngOnInit() {
       this.reloadData();
+
+      this.idContenu = 'TostSuccessContenu';
+      this.idTitle = 'TostSuccessTile';
+  
+      this.Toast = JSON.parse(localStorage.getItem('Toast') || '[]') || [];
+      if (this.Toast[0] == 'Success') {
+        console.log('Toast est n est pas vide');
+        this.showToast();
+      } else {
+        console.log('Toast Vide');
+      }
+  
      
     }
   
@@ -46,18 +65,27 @@ export class ListeBonComponent implements OnInit {
       
     }
   
-     deleteBon(id: number) {
-      this.bonService.getBon(id).subscribe(o =>{
-        this.ELEMENT_DATA= o;});
-        console.log(this.ELEMENT_DATA);
-        //console.log(this.id);
-      let confirmation =confirm("Êtes-vous sûr de supprimer le bon où son id est egale à : "+id+" ??")
+   
+
+    deleteBon(id:number){
+      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
       if(confirmation)
-      this.bonService.deleteBon(id).subscribe(data => {
-            console.log(data);
-            window.location.reload();
-      });
-    }
+      this.bonService.deleteBon(id).subscribe(()=>{
+        this.Toast[0] = 'Success';
+        this.Toast[1] ='Bon a été supprimé avec succès';
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        window.location.reload();
+      },
+      (error) => {
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Failed';
+        this.Toast[1] ='Échec de la suppression du bon !!';
+        this.showToast();
+      }
+    );
+  }
+  
   
   
     detailsBon(bon:Bon){
@@ -89,6 +117,30 @@ export class ListeBonComponent implements OnInit {
   
     filterData($event:any){
       this.dataSource.filter = $event.target.value;
+    }
+
+    showToast() {
+      if (this.ShowToast == 'hide') {
+        setTimeout(() => {
+          this.ShowToast = 'show';
+          console.log(this.ShowToast);
+        }, 1);
+      }
+  
+      setTimeout(() => {
+        this.ShowToast = 'hide';
+        this.Toast = [];
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        console.log(this.ShowToast);
+      }, 6100);
+      this.intervalId = setInterval(() => {
+        this.counter = this.counter + 1;
+        console.log(this.counter);
+        if (this.counter === 6)
+        clearInterval(this.intervalId);
+      }, 1000);
+      this.counter=0
+  
     }
   
   }

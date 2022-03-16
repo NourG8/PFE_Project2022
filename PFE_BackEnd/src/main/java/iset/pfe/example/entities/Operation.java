@@ -26,6 +26,7 @@ public class Operation implements Serializable{
 	private double poidsLait;
 	private String dateOperation;
 	private String typeOp;
+	private Integer code=10000;
 
 //	@ManyToOne
 //	@JoinColumn(name="idTank")
@@ -75,6 +76,18 @@ public class Operation implements Serializable{
 		this.typeOp = typeOp;
 	}
 
+
+
+	public Operation(double poidsLait, String dateOperation, String typeOp, Integer code,
+			Set<OperationTank> operationstank, Lait lait) {
+		super();
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.code = code;
+		this.operationstank = operationstank;
+		this.lait = lait;
+	}
 
 
 	public Integer getIdOperation() {
@@ -127,6 +140,16 @@ public class Operation implements Serializable{
 
 	public void setOperationstank(Set<OperationTank> operationstank) {
 		this.operationstank = operationstank;
+	}
+
+
+	public Integer getCode() {
+		return code;
+	}
+
+
+	public void setCode(Integer code) {
+		this.code = code;
 	}
 
 }

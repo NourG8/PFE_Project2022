@@ -1,9 +1,10 @@
 #modal-title{
-    color: #ea4542;
+    color: #fc9209;
     transform: translateX(-500px);
     animation: fadeIn 1.5s;
     animation-fill-mode: forwards
   }
+ 
   .form-control.ng-touched.ng-invalid {
     border:1px solid rgb(238, 28, 28);
    }

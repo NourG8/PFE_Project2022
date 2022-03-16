@@ -1,4 +1,4 @@
-<div class="ContenuCard"  >
+<!-- <div class="ContenuCard"  >
   <div class="modal-header">
       <h1 id="modal-title"><b>Details pour le bon numero : {{idB}} </b></h1>
 <div>
@@ -42,4 +42,78 @@
   <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
 </div>
 </div>
+ -->
 
+
+
+
+
+
+<div class="wrapper" *ngIf="bon">
+  <div class="card text-white">
+      <div class="bg-pink"></div>
+      <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter le bon numero</h5> </div>
+      <div class="user">
+          <div class="h5 text-center m-0"> {{idB}} </div>
+      </div>
+      <div class="px-3">
+          <div class="d-flex align-items-center justify-content-between py-3 pe-none">
+              <div class="details snippets">
+              </div>
+              <div class="details post">
+              </div>
+          </div>
+          <div class="skills">
+              <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+              <div class=" pb-5 pt-3">
+
+                <div class="text-uppercase fs-08">
+                  <span id="titre"> Prix : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{bon.prix}}</span>
+                </div>
+
+                <div class="text-uppercase fs-08">
+                  <span id="titre"> Quantite : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{bon.quantite}}</span>
+                </div>
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> Type (Entree/Sortie) :</span>
+                    <span id="titre">{{bon.type}}</span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> Date du bon: </span>
+                    <span> {{bon.date}}</span>
+                  </div>
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Intitulé produit : </span>
+                    <span> {{bon.produit.intitule}}</span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Nom de l'agriculteur :</span>
+                    <span> {{bon.agriculteur.nom}}</span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Nom du fournisseur : </span>
+                    <span> {{bon.fournisseur.nom}}</span>
+                  </div>
+
+               
+                  
+              </div>
+          </div>
+
+          <div class="details project">
+            <div class="head text-uppercase">
+              <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
+                Close Details
+              </button>
+            </div>
+        </div>
+
+
+      </div>
+  </div>
+</div>

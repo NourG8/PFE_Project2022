@@ -35,7 +35,7 @@ export class UpdateOperationComponent implements OnInit {
     this.operationService
         .updateOperation(this.operation.idOperation,this.operation)
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Operation was successfully updated"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succes"]));
           window.location.reload();
           console.log(this.operation);
         },

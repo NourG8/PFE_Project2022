@@ -54,6 +54,15 @@ public class OperationRestController {
 			return op.get();
 		}else throw new RuntimeException("Operation introuvable !!");
 	}
+	
+	
+	
+	@RequestMapping(value="/operationsTank/{idOpTank}",method = RequestMethod.GET)
+	public OperationTank getOperationTank(@PathVariable Integer idOpTank) {
+	OperationTank opT = operationRepository.getOperationTank(idOpTank);
+		return opT;
+	}
+
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.DELETE)
 	@ResponseBody
@@ -214,6 +223,7 @@ public class OperationRestController {
 						}
 		}
 			
+		operation.setCode(null);
 		operationRepository.save(operation);
 		
 		
@@ -363,7 +373,7 @@ public class OperationRestController {
 					}
 
 		
-
+    operation.setCode(operation.getCode()+operationRepository.findAll().size());
 	return operationRepository.save(operation);
 }
 

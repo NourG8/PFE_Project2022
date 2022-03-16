@@ -55,7 +55,8 @@
                          <p>Tanks</p>
                        </div>
                        <div class="icon">
-                         <i class="ion ion-person-stalker"></i>
+                        <i class="ion ion-ios-flask-outline"></i>
+                         <!-- <i class="ion ion-person-stalker"></i> -->
                        </div>
                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
@@ -70,7 +71,7 @@
                          <p>Vaches</p>
                        </div>
                        <div class="icon">
-                         <i class="ion ion-person-add"></i>
+                         <i class="ion  ion-ios-paw"></i>
                        </div>
                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
@@ -85,9 +86,9 @@
                          <p>Fournisseurs</p>
                        </div>
                        <div class="icon">
-                         <i class="ion ion-ios-calendar-outline"></i>
+                         <i class="ion ion-person-stalker"></i>
                        </div>
-                       <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                       <a routerLink="fournisseur/listeFournisseur" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <div class="col-lg-2 col-6">
@@ -99,7 +100,7 @@
                         <p>Produits</p>
                       </div>
                       <div class="icon">
-                        <i class="ion ion-ios-calendar-outline"></i>
+                        <i class="ion ion-cash"></i>
                       </div>
                       <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -198,44 +199,57 @@
                              <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
 
                              <p class="text-center">
-                               <strong style="margin-right:95px;">Goal Completion</strong>
+                               <strong style="margin-right:95px;">Time</strong>
                              </p>
-
-                             <div class="progress-group" style="margin-top:100px">
-                               Interviews
-                               <span class="float-right"><b>160</b>/200</span>
-                               <div class="progress progress-sm">
-                                 <div class="progress-bar bg-primary" style="width: 80%"></div>
+                             <div  style="margin-top:45px;margin-left:-20px;margin-right:70px">
+                               <!-- Info Boxes Style 2 -->
+                               <div class="info-box mb-3 bg-warning">
+                                 <span class="info-box-icon"><i class="ion ion-ios-paw" style="color: white"></i></span>
+          
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des vaches</span>
+                                   <span class="info-box-number">{{somVache}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
                                </div>
-                             </div>
-                             <!-- /.progress-group -->
-
-                             <div class="progress-group">
-                               Projects
-                               <span class="float-right"><b>310</b>/400</span>
-                               <div class="progress progress-sm">
-                                 <div class="progress-bar bg-danger" style="width: 75%"></div>
+                               <!-- /.info-box -->
+                               <div class="info-box mb-3 bg-success">
+                                 <span class="info-box-icon"> <i class="ion ion-ios-flask-outline"></i></span>
+          
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des tanks</span>
+                                   <span class="info-box-number">{{somTank}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
                                </div>
-                             </div>
-
-                             <!-- /.progress-group -->
-                             <div class="progress-group">
-                               <span class="progress-text">Employees</span>
-                               <span class="float-right"><b>480</b>/800</span>
-                               <div class="progress progress-sm">
-                                 <div class="progress-bar bg-success" style="width: 60%"></div>
+                               <!-- /.info-box -->
+          
+                               <div class="info-box mb-3 bg-danger" >
+                                 <span class="info-box-icon">  <i class="ion ion-person-stalker"></i></span>
+          
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des fournisseurs</span>
+                                   <span class="info-box-number">{{somFournisseur}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
                                </div>
-                             </div>
-
-                             <!-- /.progress-group -->
-                             <div class="progress-group">
-                               Cv
-                               <span class="float-right"><b>250</b>/500</span>
-                               <div class="progress progress-sm">
-                                 <div class="progress-bar bg-warning" style="width: 50%"></div>
+                               <!-- /.info-box -->
+                               <div class="info-box mb-3 bg-info">
+                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+          
+                                 <div class="info-box-content">
+                                   <span class="info-box-text">Nombre des operations</span>
+                                   <span class="info-box-number">{{somOperation}}</span>
+                                 </div>
+                                 <!-- /.info-box-content -->
                                </div>
+                               <!-- /.info-box -->
+          
+                               <!-- PRODUCT LIST -->
+          
+                               <!-- /.card -->
                              </div>
-                             <!-- /.progress-group -->
+                             <!-- /.col -->
 
 
                            </div>
@@ -362,56 +376,7 @@
                   
                    </div>
                    <!-- /.col -->
-<br> <br>
-                   <div class="col-md-4" style="margin-top:45px;padding-bottom:50px">
-                     <!-- Info Boxes Style 2 -->
-                     <div class="info-box mb-3 bg-warning">
-                       <span class="info-box-icon"> <i class="ion ion-person-add" style="color: white"></i></span>
-
-                       <div class="info-box-content">
-                         <span class="info-box-text">Vaches</span>
-                         <span class="info-box-number">{{somVache}}</span>
-                       </div>
-                       <!-- /.info-box-content -->
-                     </div>
-                     <!-- /.info-box -->
-                     <div class="info-box mb-3 bg-success">
-                       <span class="info-box-icon"><i class="ion ion-person-stalker"></i></span>
-
-                       <div class="info-box-content">
-                         <span class="info-box-text">Tanks</span>
-                         <span class="info-box-number">{{somTank}}</span>
-                       </div>
-                       <!-- /.info-box-content -->
-                     </div>
-                     <!-- /.info-box -->
-
-                     <div class="info-box mb-3 bg-danger" >
-                       <span class="info-box-icon"> <i class="ion ion-ios-calendar-outline"></i></span>
-
-                       <div class="info-box-content">
-                         <span class="info-box-text">Fournisseurs</span>
-                         <span class="info-box-number">{{somFournisseur}}</span>
-                       </div>
-                       <!-- /.info-box-content -->
-                     </div>
-                     <!-- /.info-box -->
-                     <div class="info-box mb-3 bg-info">
-                       <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
-
-                       <div class="info-box-content">
-                         <span class="info-box-text">Projects</span>
-                         <span class="info-box-number">150</span>
-                       </div>
-                       <!-- /.info-box-content -->
-                     </div>
-                     <!-- /.info-box -->
-
-                     <!-- PRODUCT LIST -->
-
-                     <!-- /.card -->
-                   </div>
-                   <!-- /.col -->
+<br>
                  </div>
                  <!-- /.row -->
                </div><!--/. container-fluid -->

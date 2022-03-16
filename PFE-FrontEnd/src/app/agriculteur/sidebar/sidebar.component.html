@@ -1,5 +1,7 @@
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="position: fixed !important;">
+  
     <!-- Brand Logo -->
     <a class="brand-link">
       <img src="assets/logo_ag2.png" alt="RMS Logo" class="image-responsive img-circle elevation-1" style="margin-left: -13px">
@@ -31,16 +33,17 @@
 
           <li class="nav-item">
             <a routerLink="dashboard" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
+              <i class="nav-icon fas fa-chart-area"></i>
+              <!-- <i class="fas fa-chart-area"></i> -->
               <p>DashBoard</p>
             </a>
           </li>
 
           <li  class="nav-item">
             <a routerLink="bon/listeBon" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
-               Liste des bons
+                Gestion des bons
               </p>
             </a>
           </li>
@@ -48,57 +51,55 @@
           <!-- Partie Profil lel Les employee lkol -->
           <li class="nav-item">
             <a routerLink="fournisseur/listeFournisseur" class="nav-link" routerLinkActive="active">
-              <i class="nav-icon fas fa-user-alt"></i>
-              <p>
-                Liste des fournisseurs
-              </p>
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>Gestion fournisseurs</p>
             </a>
           </li>
-  
-          <!-- Partie Employees List lel Admin khw -->
-          <li class="nav-item">
-            <a  routerLink="operation/listeOperation" class="nav-link ">
-              <i class="nav-icon fas fa-users"></i>
-              <p>Liste des operations de &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; remplissage</p>
-            </a>
-          </li>
+         
           <!-- Partie Job Offers lel Admin w recruteur -->
           <li class="nav-item">
             <a routerLink="produit/listeProduit" class="nav-link ">
-              <i class="nav-icon fas fa-briefcase"></i>
-              <p>Liste des produits</p>
+              <i class="nav-icon fab fa-product-hunt"></i>
+              <p>Gestion des produits</p>
             </a>
           </li>
           <!-- Partie Condidates List lel Recruteur wel admin -->
           <li class="nav-item">
             <a routerLink="tank/listeTank" class="nav-link ">
-              <i class="nav-icon fas fa-user-friends"></i>
-              <p>Liste des tanks</p>
+              <i class="nav-icon fas fa-glass"></i>
+              <!-- <i class="fal fa-glass"></i> -->
+              <p>Gestion des tanks</p>
             </a>
           </li>
           <!-- Partie Interviews List lel Interviewr wel admin -->
           <li class="nav-item">
             <a routerLink="vache/listeVache" class="nav-link ">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>Liste des vaches</p>
-            </a>
-          </li>
-          <!-- Partie Questions List lel Interviewr wel admin -->
-          <li class="nav-item">
-            <a routerLink="operation/operationPage" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>Liste des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sur les tanks </p>
+              <i class="nav-icon fas fa-hippo"></i>
+            
+              <p>Gestion des vaches</p>
             </a>
           </li>
 
+          <li class="nav-item">
+            <a  routerLink="operation/listeOperation" class="nav-link ">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a routerLink="operation/listeOperationRetrait" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>Liste des operations de &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; retrait</p>
+              <i class="nav-icon fas fa-minus"></i>
+              <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; de retrait</p>
             </a>
           </li>
-         
+
+          <li class="nav-item">
+            <a routerLink="operation/operationPage" class="nav-link">
+              <i class="nav-icon fa fa-id-card-o"></i>
+              <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sur les tanks </p>
+            </a>
+          </li>
          
 <!-- 
           <li class="nav-item">

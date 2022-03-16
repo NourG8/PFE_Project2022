@@ -36,7 +36,7 @@ export class UpdateFournisseurComponent implements OnInit {
     this.fournisseurService
         .updateFournisseur(this.fournisseur.idFournisseur,this.fournisseur)
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","fournisseur modifié avec succes ! "]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été modifié avec succes "]));
           window.location.reload();
           console.log(this.fournisseur);
         },

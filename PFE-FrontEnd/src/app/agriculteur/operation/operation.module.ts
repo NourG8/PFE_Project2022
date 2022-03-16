@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CreateOperationRemplissageComponent } from './create-operation-remplissage/create-operation-remplissage.component';
 import { PageOperationsComponent } from './page-operations/page-operations.component';
 import { ListeOperationsRetraitComponent } from './liste-operations-retrait/liste-operations-retrait.component';
+import { DetailsOperationTankComponent } from './details-operation-tank/details-operation-tank.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ListeOperationsRetraitComponent } from './liste-operations-retrait/list
     DetailsOperationComponent,
     CreateOperationRemplissageComponent,
     PageOperationsComponent,
-    ListeOperationsRetraitComponent
+    ListeOperationsRetraitComponent,
+    DetailsOperationTankComponent
   ],
   imports: [
     CommonModule,
