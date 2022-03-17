@@ -56,7 +56,7 @@
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.poidsLait}}</span>
                   </div>
 
-                   <div class="text-uppercase fs-08">
+                   <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
                     <span id="titre">Code operation : </span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
                   </div>

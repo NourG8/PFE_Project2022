@@ -30,7 +30,7 @@
 
       <div class="form-group">
         <label>Poids :</label>
-        <input type="text"
+        <input type="number"
                class="form-control"
                formControlName="poids"
                name="poids"
@@ -48,7 +48,7 @@
          </div>
       </div>
   
-      <div class="lg mb-3">
+      <!-- <div class="lg mb-3">
         <label>Race :</label>
         <input class="form-control"
                   placeholder="Description Post here ...."
@@ -66,7 +66,29 @@
                  class="text-success">
                   Race valide !
             </div>
-      </div>
+      </div> -->
+
+
+
+      
+      <div class="form-group">
+        <label for="pseudo"> Race :</label>
+          <select type="text" class="form-select" id="race"   [(ngModel)]="vache.race"  name="race" formControlName="race" >
+         <option selected >{{vache.race}}</option>
+         <option *ngIf="vache.race=='Charolaise'" value="Hollandaise">Hollandaise</option>
+         <option *ngIf="vache.race=='Hollandaise'" value="Charolaise">Charolaise</option>
+          </select>
+        <div
+          *ngIf="race?.invalid && race?.touched"
+           class="text-danger">  
+              invalide race!
+       </div>
+         <div
+         *ngIf="race?.valid && race?.touched"
+         class="text-success">
+         Race valide!
+       </div>
+    </div>
   
       <div class="form-group">
         <label for="disabledTextInput">Date Naissance:</label>
@@ -88,7 +110,7 @@
          </div>
       </div>
   
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="disabledTextInput">Etat :</label>
         <input type="text"
                class="form-control"
@@ -106,11 +128,31 @@
               class="text-success">
                 Etat valide !
          </div>
+      </div> -->
+
+
+      <div class="form-group">
+          <label for="pseudo"> Etat :</label>
+            <select type="text" class="form-select" id="etat"   [(ngModel)]="vache.etat"  name="etat" formControlName="etat" >
+           <option selected >{{vache.etat}}</option>
+              <option *ngIf="vache.etat=='Malade'" value="Bonne">Bonne</option>
+            <option *ngIf="vache.etat=='Bonne'" value="Malade">Malade</option>
+            </select>
+          <div
+            *ngIf="etat?.invalid && etat?.touched"
+             class="text-danger">  
+                invalide etat!
+         </div>
+           <div
+           *ngIf="etat?.valid && etat?.touched"
+           class="text-success">
+           Etat valide!
+         </div>
       </div>
 
       <div class="form-group">
         <label for="disabledTextInput">Quantité production laits :</label>
-        <input type="text"
+        <input type="number"
                class="form-control"
                name="qte_prodLait"
                formControlName="qte_prodLait"

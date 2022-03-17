@@ -108,4 +108,10 @@ public class OperationTank implements Serializable{
 		this.qteInsereTank = qteInsereTank;
 	}
 
+	@Override
+	public String toString() {
+		return "OperationTank [idOpTank=" + idOpTank + ", date=" + date + ", qteInsereTank=" + qteInsereTank
+				+ ", operation=" + operation + ", tank=" + tank + "]";
+	}
+
 }

@@ -3,8 +3,10 @@ package iset.pfe.example.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
@@ -19,6 +21,21 @@ public interface OperationRepository extends JpaRepository<Operation,Integer>{
    
    @Query("select op from Operation op where op.typeOp=:typeOp")
 	public List<Operation> findAllOperationsRemplissages(@Param("typeOp") String typeOp);
+   
+   @Query("select op from OperationTank op where op.operation.idOperation=:idOperation")
+	public List<OperationTank> find(@Param("idOperation") Integer idOperation);
+   
+   
+	@Transactional 
+	@Modifying
+	@Query("delete OperationTank op where op.operation.idOperation=:idOperation")
+	void deleteOpTank(@Param("idOperation") Integer idOperation);
+	
+	@Transactional 
+	@Modifying
+	@Query("delete Operation op where op.idOperation=:idOperation")
+	void deleteOp(@Param("idOperation") Integer idOperation);
+	
    
    
 }

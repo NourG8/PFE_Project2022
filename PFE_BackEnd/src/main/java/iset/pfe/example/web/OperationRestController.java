@@ -55,6 +55,12 @@ public class OperationRestController {
 		}else throw new RuntimeException("Operation introuvable !!");
 	}
 	
+	@RequestMapping(value="/find/{idOperation}",method = RequestMethod.GET)
+	public List<OperationTank> fingOperation(@PathVariable Integer idOperation) {
+	List<OperationTank> op = operationRepository.find(idOperation);
+		return op;
+	}
+	
 	
 	
 	@RequestMapping(value="/operationsTank/{idOpTank}",method = RequestMethod.GET)
@@ -62,6 +68,9 @@ public class OperationRestController {
 	OperationTank opT = operationRepository.getOperationTank(idOpTank);
 		return opT;
 	}
+	
+	
+	
 
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.DELETE)
@@ -81,8 +90,9 @@ public class OperationRestController {
 	return operationRepository.save(operation);
 }
 	
-	
 
+
+	
 	@RequestMapping(value="/remplissage",method = RequestMethod.POST)
 		public Operation AddOperationRemplissage(@RequestBody Operation operation){
 		
@@ -380,7 +390,57 @@ public class OperationRestController {
 	
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.PUT)
 	public ResponseEntity<Operation>  EditOperation(@PathVariable Integer idOperation, @RequestBody Operation operation){
-		 return ResponseEntity.ok(operationRepository.save(operation));
+		
+
+		
+		Operation o=operationRepository.findById(idOperation).get();
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+			OperationTank opt=operationRepository.find(idOperation).get(i);
+			if(idOperation==opt.getOperation().getIdOperation()) {
+		
+    		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
+    		System.out.println(t.getIdTank());
+    		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
+    		tankRepository.save(t);
+//			//o.setPoidsLait(operation.getPoidsLait());
+			o.setIdOperation(idOperation);
+			operationRepository.save(o);
+		}
+		}
+		operationRepository.deleteOpTank(idOperation);
+		operationRepository.deleteOp(idOperation);
+    	AddOperationRemplissage(operation);
+//		o.setPoidsLait(operation.getPoidsLait());
+//		o.setDateOperation(operation.getDateOperation());
+		
+		 return ResponseEntity.ok(operation);
+	    }
+	
+	
+	@RequestMapping(value="/operationsR/{idOperation}",method = RequestMethod.PUT)
+	public ResponseEntity<Operation>  EditOperationRetrait(@PathVariable Integer idOperation, @RequestBody Operation operation){
+		
+		Operation o=operationRepository.findById(idOperation).get();
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+			OperationTank opt=operationRepository.find(idOperation).get(i);
+			if(idOperation==opt.getOperation().getIdOperation()) {
+		
+    		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
+    		System.out.println(t.getIdTank());
+    		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
+    		tankRepository.save(t);
+//			//o.setPoidsLait(operation.getPoidsLait());
+			o.setIdOperation(idOperation);
+			operationRepository.save(o);
+		}
+		}
+		operationRepository.deleteOpTank(idOperation);
+		operationRepository.deleteOp(idOperation);
+    	AddOperationRetrait(operation);
+//		o.setPoidsLait(operation.getPoidsLait());
+//		o.setDateOperation(operation.getDateOperation());
+		
+		 return ResponseEntity.ok(operation);
 	    }
 	
 	

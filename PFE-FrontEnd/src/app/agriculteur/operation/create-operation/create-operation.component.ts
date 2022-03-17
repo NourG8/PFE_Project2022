@@ -22,6 +22,7 @@ export class CreateOperationComponent implements OnInit {
   msg="";
   msgErreur=0;
   qteActLaitTank=0;
+  som=10000;
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
      // dateOperation : new FormControl(null,[Validators.required ]),
@@ -44,6 +45,10 @@ export class CreateOperationComponent implements OnInit {
     //this.ValidatedForm();
     this.laits=this.laitService.getLaits();
     this.tanks=this.tankService.getTanksFiltres();
+    this.operationService.getNbOp().subscribe(o=>{
+    console.log(o);
+    this.som=this.som+o+1;  
+    });
   }
 
   newEmployee(): void {
@@ -104,7 +109,7 @@ export class CreateOperationComponent implements OnInit {
 }
 
   gotoList() {
-    this.router.navigate(['agriculteur/operation/listeOperation']);
+    this.router.navigate(['agriculteur/operation/listeOperationRetrait']);
   }
 
 
