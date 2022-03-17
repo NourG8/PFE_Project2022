@@ -10,6 +10,7 @@ import { TankService } from 'src/app/Service/tank.service';
 import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
+import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 
 @Component({
@@ -100,12 +101,12 @@ export class ListeOperationsRetraitComponent implements OnInit {
       //this.router.navigate(['employees/admin/detailemployee', id]);
     }
   
-    updateOperation(operation:Operation){
+    updateOperationR(operation:Operation){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
-      this.dialog.open(UpdateOperationComponent, dialogConfig);
+      this.dialog.open(UpdateOperationRetraitComponent, dialogConfig);
       //this.router.navigate(['employees/admin/updateemployee', id]);
     }
   

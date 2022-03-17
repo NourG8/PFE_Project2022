@@ -10,6 +10,7 @@ import { CreateOperationRemplissageComponent } from './create-operation-rempliss
 import { PageOperationsComponent } from './page-operations/page-operations.component';
 import { ListeOperationsRetraitComponent } from './liste-operations-retrait/liste-operations-retrait.component';
 import { DetailsOperationTankComponent } from './details-operation-tank/details-operation-tank.component';
+import { UpdateOperationRetraitComponent } from './update-operation-retrait/update-operation-retrait.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'addOperationR', component: CreateOperationRemplissageComponent  },
   { path: 'detailsOperation/:id', component: DetailsOperationComponent   },
   { path: 'updateOperation/:id', component: UpdateOperationComponent  },
+  { path: 'updateOperationR/:id', component: UpdateOperationRetraitComponent },
   { path: 'operationPage', component: PageOperationsComponent  },
   { path: 'listeOperationRetrait', component: ListeOperationsRetraitComponent  },
   { path: 'detailsOperationTank/:id', component: DetailsOperationTankComponent  },

@@ -148,6 +148,20 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		
 		
 		System.out.println(operationRepository.findAll().size());
+//		System.out.println(operationRepository.findAll().get(7).getOperationstank());
+		
+		for(int i=0;i<operationRepository.find(22).size();i++) {
+			
+			OperationTank opt=operationRepository.find(22).get(i);
+			Operation o=operationRepository.findById(opt.getOperation().getIdOperation()).get();
+			Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
+			t.setPoidActuel(t.getPoidActuel()-opt.getQteInsereTank());
+			tankRepository.save(t);
+			o.setPoidsLait(0);
+			operationRepository.save(o);
+		}
+		
+		
 		
 		
 //		OperationTank opt1=new OperationTank(date1);

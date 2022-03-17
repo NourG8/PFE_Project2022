@@ -20,6 +20,7 @@ export class OperationService {
   baseUrl4 : string = 'http://localhost:3800/operationsRemplissages';
   baseUrl5 : string = 'http://localhost:3800/operationsTank';
   baseUrl6 : string = 'http://localhost:3800/nbreOp';
+  baseUrl7 : string = 'http://localhost:3800/operationsR';
   
   
 
@@ -100,6 +101,14 @@ export class OperationService {
     jwt = "Bearer "+jwt;
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
+    return this.http.put(url, value,{headers:httpHeaders});
+  }
+
+  updateOperationR(id: number, value:any) {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl7}/${id}`
     return this.http.put(url, value,{headers:httpHeaders});
   }
 

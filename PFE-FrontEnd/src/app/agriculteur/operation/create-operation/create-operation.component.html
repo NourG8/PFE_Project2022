@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h2 id="modal-title"><b>Creer une operation de retrait :</b></h2>
+      <h3 id="modal-title"><b>Creer une operation de retrait :</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -8,8 +8,9 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-12 mb-3">
+
                 <label>Poids Lait : </label>
-                <input type="text"
+                <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
                  id="poidsLait"
@@ -27,6 +28,8 @@
                 </div>
     
               </div>
+
+              &nbsp;&nbsp;  <h5 style="color:blue">Voici le code de la livraison  :<strong><i> {{som}} </i> </strong> </h5><br><br>
   
             </div>
   

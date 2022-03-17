@@ -5,11 +5,11 @@ import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
 
 @Component({
-  selector: 'app-update-operation',
-  templateUrl: './update-operation.component.html',
-  styleUrls: ['./update-operation.component.css']
+  selector: 'app-update-operation-retrait',
+  templateUrl: './update-operation-retrait.component.html',
+  styleUrls: ['./update-operation-retrait.component.css']
 })
-export class UpdateOperationComponent implements OnInit {
+export class UpdateOperationRetraitComponent implements OnInit {
 
   operation:Operation=new Operation();
   myForm!:FormGroup;
@@ -33,7 +33,7 @@ export class UpdateOperationComponent implements OnInit {
   updateOperation(){
 
     this.operationService
-        .updateOperation(this.operation.idOperation,{
+        .updateOperationR(this.operation.idOperation,{
           "poidsLait":this.myForm.get('poidsLait')?.value,
           "dateOperation":this.myForm.get('dateOperation')?.value,
         })
