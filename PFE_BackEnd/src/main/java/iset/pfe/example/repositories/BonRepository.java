@@ -29,4 +29,7 @@ public interface BonRepository extends JpaRepository<Bon,Integer>{
 	
 	 @Query("select sum(b.quantite),b.produit.idProduit from Bon b join b.produit p where b.type=:type  group by b.produit.idProduit ,b.type ")
 		public List<String>findAllBon(@Param("type") String type);
+	 
+	 @Query("select b from Bon b where b.type=:type")
+		public List<Bon>findAllBonSortie(@Param("type") String type);
 }

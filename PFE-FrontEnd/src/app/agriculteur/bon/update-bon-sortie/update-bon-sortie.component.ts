@@ -12,12 +12,13 @@ import { ProduitService } from 'src/app/Service/produit.service';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 
+
 @Component({
-  selector: 'app-update-bon',
-  templateUrl: './update-bon.component.html',
-  styleUrls: ['./update-bon.component.css']
+  selector: 'app-update-bon-sortie',
+  templateUrl: './update-bon-sortie.component.html',
+  styleUrls: ['./update-bon-sortie.component.css']
 })
-export class UpdateBonComponent implements OnInit {
+export class UpdateBonSortieComponent implements OnInit {
 
   bon:Bon=new Bon();
  // myForm!:FormGroup;
@@ -26,8 +27,6 @@ export class UpdateBonComponent implements OnInit {
 
   myForm=new  FormGroup({
     quantite : new FormControl(null,[Validators.required]),
-    prix : new FormControl(null,[Validators.required ]),
-    fournisseur : new FormControl(null,[Validators.required ]),
   
 })
 produits!:Observable<Produit[]>;
@@ -62,13 +61,8 @@ fournisseurs!:Observable<Fournisseur[]>;
 
     this.bonService
     // .updateBon(this.bon.idBon,this.bon)
-        .updateBon(this.bon.idBon,{
+        .updateBonSortie(this.bon.idBon,{
           "quantite":this.myForm.get('quantite')?.value,
-          "prix":this.myForm.get('prix')?.value,
-          "fournisseur":{
-            "idFournisseur":this.myForm.get('fournisseur')?.value,
-         },
-       
         })
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été modifié avec succes"]));

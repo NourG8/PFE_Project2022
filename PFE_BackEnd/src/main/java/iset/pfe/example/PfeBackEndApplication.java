@@ -120,18 +120,18 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
 		fournisseurRepository.save(f1);
 		
-		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
-		bonRepository.save(b1);
+//		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
+//		bonRepository.save(b1);
 		
-		Bon b2=new Bon(140.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
-		bonRepository.save(b2);
+//		Bon b2=new Bon(140.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
+//		bonRepository.save(b2);
+//		
+//		Bon b3=new Bon(120.0, 180.0, "Sortie", currentDateTime,a1,p1,f1);
+//		bonRepository.save(b3);
 		
-		Bon b3=new Bon(120.0, 180.0, "Sortie", currentDateTime,a1,p1,f1);
-		bonRepository.save(b3);
-		
-		Bon b4=new Bon(110.0, 180.0, "Entree", currentDateTime,a1,p2,f1);
-		bonRepository.save(b4);
-		
+//		Bon b4=new Bon(110.0, 180.0, "Entree", currentDateTime,a1,p2,f1);
+//		bonRepository.save(b4);
+//		
 		
 		
 		Lait l1=new Lait(currentDateTime, 20, 0, 20, v1);
@@ -140,12 +140,12 @@ public class PfeBackEndApplication implements CommandLineRunner{
 //		Operation op1=new Operation(35, date1, "Remplissage", l1);
 //		operationRepository.save(op1);
 		
-		Operation o1=new Operation( 200, currentDateTime, "Remplissage");
-		operationRepository.save(o1);
-		
-		Operation o2=new Operation( 200, currentDateTime, "Retrait");
-		operationRepository.save(o2);
-		
+//		Operation o1=new Operation( 200, currentDateTime, "Remplissage");
+//		operationRepository.save(o1);
+//		
+//		Operation o2=new Operation( 200, currentDateTime, "Retrait");
+//		operationRepository.save(o2);
+//		
 		
 		System.out.println(operationRepository.findAll().size());
 //		System.out.println(operationRepository.findAll().get(7).getOperationstank());

@@ -15,6 +15,7 @@ export class CreateTankComponent implements OnInit {
   tank:Tank = new Tank();
   submitted = false;
   myForm!:FormGroup;
+  msg="";
 
   constructor(private tankService: TankService,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -31,6 +32,22 @@ export class CreateTankComponent implements OnInit {
 
 
   save() {
+    
+    if(this.myForm.get('matricule')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('poidVide')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null){
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
@@ -39,7 +56,7 @@ export class CreateTankComponent implements OnInit {
           console.log(this.tank);
         });
     }
-
+  }
 
   onSubmit() {
     this.submitted = true;

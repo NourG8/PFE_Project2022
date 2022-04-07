@@ -40,7 +40,13 @@ public class BonRestController {
 	@RequestMapping(value="/bons",method = RequestMethod.GET)
 	@PreAuthorize("hasAuthority('USER')")
 	public List<Bon> getBons(){
-		return bonRepository.findAll();
+		return bonRepository.findAllBonSortie("Entree");
+	}
+	
+	@RequestMapping(value="/bonsSortie",method = RequestMethod.GET)
+	@PreAuthorize("hasAuthority('USER')")
+	public List<Bon> getBonsSortie(){
+		return bonRepository.findAllBonSortie("Sortie");
 	}
 	
 	@RequestMapping(value="/nbreB",method = RequestMethod.GET)
@@ -64,15 +70,28 @@ public class BonRestController {
 	@PreAuthorize("hasAuthority('USER')")
 	public void deleteBon(@PathVariable Integer idBon) {
 		Optional<Bon> b = bonRepository.findById(idBon);
+		Produit p=produitRepository.findById(b.get().getProduit().getIdProduit()).get();
+		double qte =b.get().getQuantite();
 		b.get().setAgriculteur(null);
 		b.get().setProduit(null);
 		b.get().setFournisseur(null);
 		System.out.println(b.get().getIdBon());
-				if (b.isPresent()) { 
+				if (b.isPresent() && b.get().getType().equals("Entree") ) { 
+					
+					p.setQte(p.getQte()-qte);
 //					bonRepository.save(b.get());
 //					bonRepository.deleteById(b.get().getIdBon());
+					produitRepository.save(p);
 					bonRepository.deleteBon(idBon);
-		    }else throw new RuntimeException("Bon introuvable ! vous ne pouvez pas le supprimer !!");
+		    }else if (b.isPresent() && b.get().getType().equals("Sortie") ) { 
+				
+				p.setQte(p.getQte()+qte);
+//				bonRepository.save(b.get());
+//				bonRepository.deleteById(b.get().getIdBon());
+				produitRepository.save(p);
+				bonRepository.deleteBon(idBon);
+	    }
+				else throw new RuntimeException("Bon introuvable ! vous ne pouvez pas le supprimer !!");
 	}
 	
 	@RequestMapping(value="/bons",method = RequestMethod.POST)
@@ -88,31 +107,52 @@ public class BonRestController {
 		bon.setDate(currentDateTime);
 		Agriculteur a=agriculteurRepository.findAll().get(0);
 		bon.setAgriculteur(a);
-		bonRepository.save(bon);
+		bon.setType("Entree");
 		
-		if(bon.getType().equals(t1)) {
-			
+					
 			p.setQte(p.getQte()+bon.getQuantite());
 			produitRepository.save(p);
-		}
-		else if(bon.getType().equals(t2) && bon.getQuantite()>p.getQte()) {
-			System.out.println("errreeeuuuur  !!!!!!");
-		}
-		else if(bon.getType().equals(t2) && bon.getQuantite()<=p.getQte()) {
-			
-			p.setQte(p.getQte()-bon.getQuantite());
-			produitRepository.save(p);
-		}
-		
 		
 		bon.setProduit(p);
 	
 		return bonRepository.save(bon);
 	}
 	
+	
+	@RequestMapping(value="/bonsSortie",method = RequestMethod.POST)
+	public Bon AddBonSortie(@RequestBody Bon bon){
+	
+	String t2="Sortie";
+	 Produit p=produitRepository.findById(bon.getProduit().getIdProduit()).get();
+	 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+     String currentDateTime = dateFormatter.format(new Date());
+     System.out.println(currentDateTime);
+     
+	bon.setDate(currentDateTime);
+	Agriculteur a=agriculteurRepository.findAll().get(0);
+	bon.setAgriculteur(a);
+	
+		bon.setFournisseur(null);
+		bon.setPrix(-1);
+		bonRepository.save(bon);
+		
+		p.setQte(p.getQte()-bon.getQuantite());
+		produitRepository.save(p);
+		bon.setType("Sortie");
+	
+		bon.setProduit(p);
+
+	return bonRepository.save(bon);
+}
+	
 	@RequestMapping(value="/bons/{idBon}",method = RequestMethod.PUT)
 	public Bon EditBon(@PathVariable Integer idBon, @RequestBody Bon bon){
         Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
+        Bon b1=bonRepository.findById(idBon).get();
+        double qte=b1.getQuantite();
+        System.out.println("a5a52ss2002d652 "+b1.getQuantite());
+        Produit p=produitRepository.findById(b.getProduit().getIdProduit()).get();
+        produitRepository.save(p);
         b.setIdBon(idBon);
 //    	b.setDate(bon.getDate());
     	b.setPrix(bon.getPrix());
@@ -122,8 +162,47 @@ public class BonRestController {
 //    	b.setProduit(bon.getProduit());
     	b.setQuantite(bon.getQuantite());
     	bonRepository.save(b);
+    	
+    	System.out.println("aaaaaa "+(p.getQte()-qte+bon.getQuantite()));
+    	p.setQte(p.getQte()-qte+bon.getQuantite());
+    	System.out.println(p.getQte());
+    	System.out.println(b.getQuantite());
+    	System.out.println(bon.getQuantite());
+    	produitRepository.save(p);
+    	System.out.println("************************************************");
+    	System.out.println(p.getQte());
+    	System.out.println(b.getQuantite());
+    	System.out.println(bon.getQuantite());
+    	bonRepository.save(b);
 	  	return b;
     }
+	
+	
+
+	@RequestMapping(value="/bonsSortie/{idBon}",method = RequestMethod.PUT)
+	public Bon EditBonSortie(@PathVariable Integer idBon, @RequestBody Bon bon){
+        Bon b = bonRepository.findById(idBon).orElseThrow(()->new ResourceNotFoundException("Cet Bon n'existe pas"));
+        Bon b1=bonRepository.findById(idBon).get();
+        double qte=b1.getQuantite();
+        Produit p=produitRepository.findById(b.getProduit().getIdProduit()).get();
+        produitRepository.save(p);
+        b.setIdBon(idBon);
+    	b.setPrix(bon.getPrix());
+    	b.setFournisseur(bon.getFournisseur());
+    	b.setQuantite(bon.getQuantite());
+    	bonRepository.save(b);
+    	
+//    	System.out.println("aaaaaa "+(p.getQte()-qte+bon.getQuantite()));
+    	p.setQte(p.getQte()+qte-bon.getQuantite());
+    	System.out.println(p.getQte());
+    	System.out.println(b.getQuantite());
+    	System.out.println(bon.getQuantite());
+    	produitRepository.save(p);
+    	System.out.println("************************************************");
+    	bonRepository.save(b);
+	  	return b;
+    }
+	
 	
 	
 	@RequestMapping(value="/bonsEntree",method = RequestMethod.GET)

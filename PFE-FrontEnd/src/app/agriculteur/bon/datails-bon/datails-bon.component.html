@@ -67,7 +67,7 @@
               <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
               <div class=" pb-5 pt-3">
 
-                <div class="text-uppercase fs-08">
+                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
                   <span id="titre"> Prix : </span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{bon.prix}}</span>
                 </div>
@@ -95,7 +95,7 @@
                     <span> {{bon.agriculteur.nom}}</span>
                   </div>
 
-                  <div class="text-uppercase fs-08">
+                  <div class="text-uppercase fs-08"  *ngIf="bon.type=='Entree'">
                     <span id="titre">Nom du fournisseur : </span>
                     <span> {{bon.fournisseur.nom}}</span>
                   </div>

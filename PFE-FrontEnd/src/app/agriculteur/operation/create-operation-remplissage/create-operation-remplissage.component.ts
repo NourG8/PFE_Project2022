@@ -61,8 +61,15 @@ export class CreateOperationRemplissageComponent implements OnInit {
 
   save() {
 
+    if(this.myForm.get('poidsLait')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+     
 
-   
+     if(this.myForm.get('poidsLait')?.value!=null){
 
     this.operationService
         .createOperationRemplissage(
@@ -83,7 +90,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
           console.log("Failed")
         }
       );
-    
+      }
       
   }
 
