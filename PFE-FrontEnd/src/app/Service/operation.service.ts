@@ -21,10 +21,49 @@ export class OperationService {
   baseUrl5 : string = 'http://localhost:3800/operationsTank';
   baseUrl6 : string = 'http://localhost:3800/nbreOp';
   baseUrl7 : string = 'http://localhost:3800/operationsR';
-  
+  baseUrl8 : string = 'http://localhost:3800/opTank';
+  baseUrl9 : string = 'http://localhost:3800/NbOpTankTotal';
+  baseUrl10 : string = 'http://localhost:3800/NbOpTank1';
+  baseUrl11 : string = 'http://localhost:3800/NbOpTankRetrait';
+ 
   
 
   constructor(private http: HttpClient,private authService :AuthService) { }
+
+
+
+  getOpTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl8}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+  getNbOpTankTotal(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl9}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+  getNbOpTank(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl10}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+
+  getNbOpTankRetrait(id: number): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl11}/${id}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
 
 
 

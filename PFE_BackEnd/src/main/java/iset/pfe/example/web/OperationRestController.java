@@ -2,6 +2,7 @@ package iset.pfe.example.web;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +71,60 @@ public class OperationRestController {
 	}
 	
 	
+	@RequestMapping(value="/opTank/{idOperation}",method = RequestMethod.GET)
+	public List<OperationTank> getOpTanks(@PathVariable Integer idOperation) {
+		List<OperationTank> liste = new ArrayList<OperationTank>();
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+		OperationTank opt= operationRepository.find(idOperation).get(i);
+		liste.add(opt);
+		}
+		return liste;
+	}
+	
+	
+	@RequestMapping(value="/NbOpTank/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanks(@PathVariable Integer idOperation) {
+		int j=0;
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+		OperationTank opt= operationRepository.find(idOperation).get(i);
+		if(opt.getTank().getPoidActuel()>0) {
+			j=j+1;
+		}
+		}
+		return j;
+	}
+	
+	@RequestMapping(value="/NbOpTank1/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanks1(@PathVariable Integer idOperation) {
+		int j=0;
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+		OperationTank opt= operationRepository.find(idOperation).get(i);
+		if(opt.getTank().getPoidActuel()>0 && opt.getQteInsereTank()<=opt.getTank().getPoidActuel()) {
+			j=j+1;
+		}
+		}
+		return j;
+	}
+	
+	
+	@RequestMapping(value="/NbOpTankRetrait/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanksRetrait(@PathVariable Integer idOperation) {
+		int j=0;
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+		OperationTank opt= operationRepository.find(idOperation).get(i);
+		if(opt.getTank().getPoidActuel()>0 && (-opt.getQteInsereTank()<=(opt.getTank().getPoidVide()-opt.getTank().getPoidActuel()))) {
+			j=j+1;
+		}
+		}
+		return j;
+	}
+	
+	
+	
+	@RequestMapping(value="/NbOpTankTotal/{idOperation}",method = RequestMethod.GET)
+	public int getNbOpTanksTotal(@PathVariable Integer idOperation) {
+		return operationRepository.find(idOperation).size();
+	}
 	
 
 		
@@ -84,11 +139,16 @@ public class OperationRestController {
 		
     		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
     		System.out.println(t.getIdTank());
+    		if(t.getPoidActuel()>0) {
     		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
     		tankRepository.save(t);
 //			//o.setPoidsLait(operation.getPoidsLait());
 			o.setIdOperation(idOperation);
 			operationRepository.save(o);
+    		}
+    		else {
+    			//erreeeeuuuuuuuuuurrrr !!!!!
+    		}
 			
 			if(t.getPoidActuel()==0) {
 				tankRepository.save(t);
@@ -241,12 +301,12 @@ public class OperationRestController {
 							Tank tank2=tankRepository.findAll().get(i);
 							
 							if(tank2.getPoidActuel()==tank2.getPoidVide()) {
-							tank2.setEtat("Totalement remplis");
+							tank2.setEtat("Remplis");
 							tankRepository.save(tank2);
 						
 							}
 							else if(tank2.getPoidActuel()==0) {
-								tank2.setEtat("Non remplis");
+								tank2.setEtat("Vide");
 								tankRepository.save(tank2);
 								
 								}
