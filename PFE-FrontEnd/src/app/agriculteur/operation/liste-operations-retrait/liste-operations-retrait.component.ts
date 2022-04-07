@@ -35,6 +35,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
+
+  // tank?:Tank = new Tank();
+  p=0;
+  q=0;
+  msg='';
+  test1=0;
+  test2=0;
+
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
@@ -92,6 +100,45 @@ export class ListeOperationsRetraitComponent implements OnInit {
     );
   }
   
+
+  
+  deleteOp(id: number){
+
+    this.tankService.getTanksQteLibre().subscribe(o=>{
+      console.log(o);
+      this.q=o;
+      this.operationService.getOperation(id).subscribe(a=>{
+        console.log(a.poidsLait);
+        this.p=a.poidsLait;
+
+
+        this.operationService.getNbOpTankTotal(id).subscribe(b=>{
+          console.log(b);
+          this.test1=b;
+
+          this.operationService.getNbOpTankRetrait(id).subscribe(c=>{
+            console.log(c);
+            this.test2=c;
+
+            if(this.p<=this.q && this.test1==this.test2){
+              this.deleteOperation(id);
+            }else{
+          this.idContenu = 'TostDangerContenu';
+          this.idTitle = 'TostDangerTile';
+          this.Toast[0] = 'Failed';
+          this.Toast[1] ='Vous ne pouvez pas supprimer cette opereation, car la quantite restante est inferieur a la quantite que vous voulez la supprimer !!';
+          this.showToast();
+        }
+      });
+    });
+  });
+  
+      });
+
+     
+  }
+
+
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
