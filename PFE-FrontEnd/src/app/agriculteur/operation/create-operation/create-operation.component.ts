@@ -26,8 +26,8 @@ export class CreateOperationComponent implements OnInit {
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
      // dateOperation : new FormControl(null,[Validators.required ]),
-      typeOp : new FormControl(null,[Validators.required ]),
-      tank : new FormControl(null,[Validators.required ]),
+    //  typeOp : new FormControl(null,[Validators.required ]),
+      //tank : new FormControl(null,[Validators.required ]),
      // lait : new FormControl(null,[Validators.required ]),
     
   })
@@ -58,6 +58,17 @@ export class CreateOperationComponent implements OnInit {
 
   save() {
 
+    
+    if(this.myForm.get('poidsLait')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+     
+
+     if(this.myForm.get('poidsLait')?.value!=null){
+
     this.operationService
     .createOperation(
       {
@@ -75,6 +86,7 @@ export class CreateOperationComponent implements OnInit {
       console.log("Failed")
     }
   );
+     }
     //  ****************   Tank    ******************
 //     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
 //       this.t=o;
@@ -120,15 +132,6 @@ export class CreateOperationComponent implements OnInit {
 
  get poidsLait(){
   return this.myForm.get('poidsLait') ;
-}
-
-
-get typeOp(){
-  return this.myForm.get('typeOp') ;
-}
-
-get tank(){
-  return this.myForm.get('tank') ;
 }
 
 

@@ -13,7 +13,7 @@
   
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info" style="margin-left:35px" >
-          <a  class="d-block" style="margin-left:40px;" >{{authService.loggedUser}} <br>&nbsp;{{authService.getRole()}}</a>
+          <a  class="d-block" style="margin-left:2px;color:white; font-weight: bold;" > Bienvenu(e) {{authService.loggedUser}}</a>
         </div>
       </div>
 
@@ -39,15 +39,6 @@
             </a>
           </li>
 
-          <li  class="nav-item">
-            <a routerLink="bon/listeBon" routerLinkActive="active" class="nav-link">
-              <i class="nav-icon fas fa-list"></i>
-              <p>
-                Gestion des bons
-              </p>
-            </a>
-          </li>
-  
           <!-- Partie Profil lel Les employee lkol -->
           <li class="nav-item">
             <a routerLink="fournisseur/listeFournisseur" class="nav-link" routerLinkActive="active">
@@ -80,10 +71,29 @@
             </a>
           </li>
 
+          <li  class="nav-item">
+            <a routerLink="bon/listeBon" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Gestion des bons &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d'entree
+              </p>
+            </a>
+          </li>
+
+          <li  class="nav-item">
+            <a routerLink="bon/listeBonSortie" routerLinkActive="active" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+                Gestion des bons  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de sortie
+              </p>
+            </a>
+          </li>
+  
+
           <li class="nav-item">
             <a  routerLink="operation/listeOperation" class="nav-link ">
               <i class="nav-icon fas fa-plus"></i>
-              <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
+              <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
             </a>
           </li>
 
@@ -109,9 +119,9 @@
             </a>
           </li> -->
   
-          <li class="nav-header">Schedule</li>
+          <!-- <li class="nav-header">Schedule</li> -->
           <!-- Partie Calendar lel Les employee lkol -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link">
               <i class="nav-icon far fa-calendar-alt"></i>
               <p>
@@ -119,7 +129,7 @@
                 <span class="badge badge-info right">2</span>
               </p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

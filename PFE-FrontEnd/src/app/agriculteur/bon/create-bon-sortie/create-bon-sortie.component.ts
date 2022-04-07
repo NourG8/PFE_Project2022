@@ -13,11 +13,11 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 
 @Component({
-  selector: 'app-create-bon',
-  templateUrl: './create-bon.component.html',
-  styleUrls: ['./create-bon.component.css']
+  selector: 'app-create-bon-sortie',
+  templateUrl: './create-bon-sortie.component.html',
+  styleUrls: ['./create-bon-sortie.component.css']
 })
-export class CreateBonComponent implements OnInit {
+export class CreateBonSortieComponent implements OnInit {
 
   bon:Bon = new Bon();
   submitted = false;
@@ -28,10 +28,10 @@ export class CreateBonComponent implements OnInit {
   myForm=new  FormGroup({
       quantite : new FormControl(null,[Validators.required]),
       //type : new FormControl(null,[Validators.required ]),
-      prix : new FormControl(null,[Validators.required ]),
+      // prix : new FormControl(null,[Validators.required ]),
      // agriculteur : new FormControl(null,[Validators.required ]),
       produit : new FormControl(null,[Validators.required ]),
-      fournisseur : new FormControl(null,[Validators.required ]),
+      // fournisseur : new FormControl(null,[Validators.required ]),
 
   })
   produits!:Observable<Produit[]>;
@@ -63,13 +63,6 @@ export class CreateBonComponent implements OnInit {
     this.msg="";
    }
 
-   if(this.myForm.get('prix')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
-
 
   if(this.myForm.get('produit')?.value==null){
     this.msg="vous devez remplir le formulaire !!";
@@ -78,26 +71,15 @@ export class CreateBonComponent implements OnInit {
     this.msg="";
    }
 
-   if(this.myForm.get('fournisseur')?.value==null){
-    this.msg="vous devez remplir le formulaire !!";
-  }
-  else{
-    this.msg="";
-   }
 
-   if(this.myForm.get('quantite')?.value!=null && this.myForm.get('prix')?.value!=null 
-   && this.myForm.get('produit')?.value!=null && this.myForm.get('fournisseur')?.value!=null ){
+   if(this.myForm.get('quantite')?.value!=null && this.myForm.get('produit')?.value!=null ){
 
     this.bonService
-        .createBon({
+        .createBonSortie({
           "quantite":this.myForm.get('quantite')?.value,
-          "prix":this.myForm.get('prix')?.value,
           "produit":{
              "idProduit":this.myForm.get('produit')?.value,
           },
-          "fournisseur":{
-            "idFournisseur":this.myForm.get('fournisseur')?.value,
-         }
 
         })
         .subscribe(o=>{
@@ -115,15 +97,20 @@ export class CreateBonComponent implements OnInit {
     this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
       o=>{
       console.log(o.qte);
-        this.save();
-
-
+      if(this.myForm.get('quantite')?.value<=o.qte )
+      this.save();
+     else{
+     this.msgErreur=1;
+     this.qteAct=o.qte;
+     }
+        // this.msgErreur=0;
+    
     });
 
   }
 
   gotoList() {
-    this.router.navigate(['agriculteur/bon/listeBon']);
+    this.router.navigate(['agriculteur/bon/listeBonSortie']);
   }
 
 

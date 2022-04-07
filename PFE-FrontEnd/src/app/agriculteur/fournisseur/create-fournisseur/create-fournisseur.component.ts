@@ -15,6 +15,7 @@ export class CreateFournisseurComponent implements OnInit {
   fournisseur:Fournisseur = new Fournisseur();
   submitted = false;
   myForm!:FormGroup;
+  msg="";
 
   constructor(private fournisseurService: FournisseurService,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -30,6 +31,22 @@ export class CreateFournisseurComponent implements OnInit {
 
 
   save() {
+
+    if(this.myForm.get('nom')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('matricule')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null){
     console.log(this.fournisseur);
     this.fournisseur.idFournisseur = 1;
     this.fournisseurService
@@ -38,13 +55,14 @@ export class CreateFournisseurComponent implements OnInit {
           window.location.reload();
           console.log(this.fournisseur);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été ajouté avec succès"]));
-          window.location.reload();      
+          window.location.reload();
         },
         (error) => {
           console.log("Failed")
         }
       );
     }
+  }
 
 
   onSubmit() {

@@ -1,0 +1,40 @@
+<div class="ContenuCard" >
+    <div class="modal-header">
+      <h2 id="modal-title"><b>Modifier le bon numero : {{bon.idBon}}</b></h2>
+      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div><br>
+    <form [formGroup]="myForm" class="needs-validation" novalidate>
+  
+      <div class="form-group">
+        <div class="col-md-12 mb-3">
+        <label>Quantite :</label>
+        <input type="number"
+               class="form-control"
+               formControlName="quantite"
+               name="quantite"
+               [(ngModel)]="bon.quantite"
+               placeholder="Post Name here ..">
+          <div
+               *ngIf="quantite?.invalid && quantite?.touched"
+                class="text-danger">
+                Quantite invalide !
+         </div>
+         <div
+              *ngIf="quantite?.valid && quantite?.touched"
+              class="text-success">
+               Quantite valide !
+         </div>
+        </div>
+  
+     </div>
+  
+      <div class="modal-footer">
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+        <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      </div>
+    </form>
+  
+  </div>
+  

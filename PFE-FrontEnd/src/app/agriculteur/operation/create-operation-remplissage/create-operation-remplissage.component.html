@@ -31,18 +31,23 @@
 
 
 
-<br><br><br>
+<br>
+<div class="form-group">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="cgu" required>
+    <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation</label>
+    <br>
+    <span style="color:red;margin-bottom:45px;">{{msg}}</span>
+    <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+  </div>
+</div>
+<button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
+<!-- close popup -->
+<button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
 
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="cgu" required>
-                <label class="form-check-label" for="cgu">J'accepte les conditions générales d'utilisation</label>
-                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
-              </div>
-            </div>
-            <button class="btn btn-primary" style="margin:20px" (click)="onSubmit()"  type="submit">Envoyer</button>
-            <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-          </form>
-        </div>
+</form>
+</div>
+
+
+
 

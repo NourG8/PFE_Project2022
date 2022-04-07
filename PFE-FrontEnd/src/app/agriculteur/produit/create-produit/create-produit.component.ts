@@ -15,6 +15,7 @@ export class CreateProduitComponent implements OnInit {
   produit:Produit = new Produit();
   submitted = false;
   myForm!:FormGroup;
+  msg="";
 
   constructor(private produitService: ProduitService,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -30,6 +31,24 @@ export class CreateProduitComponent implements OnInit {
 
 
   save() {
+
+    if(this.myForm.get('intitule')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('libelle')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+
+     
+     if(this.myForm.get('intitule')?.value!=null && this.myForm.get('libelle')?.value!=null){
     console.log(this.produit);
     this.produit.idProduit = 1;
     this.produitService
@@ -40,6 +59,7 @@ export class CreateProduitComponent implements OnInit {
           console.log(this.produit);
         });
     }
+  }
 
 
   onSubmit() {

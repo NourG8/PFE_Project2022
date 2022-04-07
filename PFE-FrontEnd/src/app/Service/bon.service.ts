@@ -13,6 +13,7 @@ const httpOptions = {
 export class BonService {
 
   baseUrl : string = 'http://localhost:3800/bons';
+  baseUrl5 : string = 'http://localhost:3800/bonsSortie';
   baseUrl6 : string = 'http://localhost:3800/nbreB';
 
 
@@ -33,6 +34,14 @@ export class BonService {
     return this.http.get(`${this.baseUrl}`,{headers:httpHeaders});
   }
 
+  getbonsSortie(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    // return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+    return this.http.get(`${this.baseUrl5}`,{headers:httpHeaders});
+  }
+
   getBon(id: number): Observable<any> {
     let jwt = this.authService.getToken();
     jwt = "Bearer "+jwt;
@@ -46,8 +55,17 @@ export class BonService {
   // }
 
   createBon(bon:any){
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.post(this.baseUrl,bon,{headers:httpHeaders});
+  }
 
-    return this.http.post(this.baseUrl,bon);
+  createBonSortie(bon:any){
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.post(this.baseUrl5,bon,{headers:httpHeaders});
   }
 
   updateBon(id: number, value:any){
@@ -58,6 +76,16 @@ export class BonService {
     const url = `${this.baseUrl}/${id}`
     return this.http.put(url, value,{headers:httpHeaders});
   }
+
+  updateBonSortie(id: number, value:any){
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+
+    const url = `${this.baseUrl5}/${id}`
+    return this.http.put(url, value,{headers:httpHeaders});
+  }
+
 
 
 

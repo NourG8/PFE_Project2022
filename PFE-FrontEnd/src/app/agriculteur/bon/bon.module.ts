@@ -23,13 +23,21 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 //add Snackbar
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CreateBonSortieComponent } from './create-bon-sortie/create-bon-sortie.component';
+import { DetailsBonSortieComponent } from './details-bon-sortie/details-bon-sortie.component';
+import { ListeBonSortieComponent } from './liste-bon-sortie/liste-bon-sortie.component';
+import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.component';
 
 @NgModule({
   declarations: [
     ListeBonComponent,
     CreateBonComponent,
     UpdateBonComponent,
-    DatailsBonComponent
+    DatailsBonComponent,
+    CreateBonSortieComponent,
+    DetailsBonSortieComponent,
+    ListeBonSortieComponent,
+    UpdateBonSortieComponent
   ],
   imports: [
     CommonModule,

@@ -77,10 +77,34 @@ public class OperationRestController {
 	@ResponseBody
 	public void deleteOperation(@PathVariable Integer idOperation) {
 		Optional<Operation> op= operationRepository.findById(idOperation);
-			if (op.isPresent()) { 
-				operationRepository.deleteById(idOperation);
+		Operation o=operationRepository.findById(idOperation).get();
+		for( int i=0;i<operationRepository.find(idOperation).size();i++) {
+			OperationTank opt=operationRepository.find(idOperation).get(i);
+			if(idOperation==opt.getOperation().getIdOperation()) {
+		
+    		Tank t=tankRepository.findById(opt.getTank().getIdTank()).get();
+    		System.out.println(t.getIdTank());
+    		t.setPoidActuel((t.getPoidActuel()-opt.getQteInsereTank()));
+    		tankRepository.save(t);
+//			//o.setPoidsLait(operation.getPoidsLait());
+			o.setIdOperation(idOperation);
+			operationRepository.save(o);
+			
+			if(t.getPoidActuel()==0) {
+				tankRepository.save(t);
+		}
+		}
+		}
+		
+		operationRepository.deleteOpTank(idOperation);
+		
+		//operationRepository.deleteOp(idOperation);			
+		if (op.isPresent()) { 
+				operationRepository.deleteOp(idOperation);
 			}else throw new RuntimeException("Operation introuvable ! vous ne pouvez pas le supprimer !!");
 		}
+		
+	
 		
 	
 	
