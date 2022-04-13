@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from './Service/auth.service';
 
 @Component({
@@ -10,7 +10,17 @@ import { AuthService } from './Service/auth.service';
 export class AppComponent {
   title = 'FrontEndAngular';
   isLoggedin?: boolean ;
-  constructor (public authService: AuthService,private router: Router) {}
+  mySubscription: any;
+
+  constructor(public authService: AuthService,private router: Router, private activatedRoute: ActivatedRoute){
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.mySubscription = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+         // Trick the Router into believing it's last link wasn't previously loaded
+         this.router.navigated = false;
+      }
+    }); 
+ }
 
 ngOnInit () {
   this.authService.loadToken();
@@ -19,6 +29,12 @@ ngOnInit () {
         this.router.navigate(['/login']);
    
       }
+}
+
+ngOnDestroy(){
+  if (this.mySubscription) {
+    this.mySubscription.unsubscribe();
+  }
 }
 
 onLogout(){
