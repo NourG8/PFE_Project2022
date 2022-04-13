@@ -50,7 +50,9 @@ public class Operation implements Serializable{
 	@JoinColumn(name="idLait")
 	private Lait lait;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="idAcheteur")
+	private Acheteur acheteur;
 	
 	public Operation() {
 		super();
