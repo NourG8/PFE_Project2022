@@ -8,8 +8,13 @@ import {Lait } from 'src/app/Models/lait';
 import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
 import  {LaitService } from 'src/app/Service/lait.service';
+import  {CollecteurService } from 'src/app/Service/collecteur.service';
+import { Collecteur } from 'src/app/Models/collecteur';
+
+
 import { ethers } from 'ethers';
 import { asyncScheduler, Observable } from 'rxjs';
+import { Agriculteur } from 'src/app/Models/agriculteur';
 
 declare let require: any;
 declare let window: any;
@@ -29,9 +34,11 @@ export class CreateOperationComponent implements OnInit {
   qteActLaitTank=0;
   som=10000;
   tab!: any[];
-
+  tabstr!: string[];
+  tabint!: number[];
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required]),
+      collecteur : new FormControl(null,[Validators.required ]),
      // dateOperation : new FormControl(null,[Validators.required ]),
     //  typeOp : new FormControl(null,[Validators.required ]),
       //tank : new FormControl(null,[Validators.required ]),
@@ -40,20 +47,21 @@ export class CreateOperationComponent implements OnInit {
   })
   laits!:Observable<Lait[]>;
   tanks!:Observable<Tank[]>;
-
+  collecteurs!:Observable<Collecteur[]>;
   constructor(
     private operationService: OperationService,
     private tankService:TankService,
     private laitService:LaitService,
+    private collecteurService:CollecteurService,
     private router: Router,
     private dialogClose: MatDialog) { }
 
   ngOnInit() {
     //this.ValidatedForm();
     this.laits=this.laitService.getLaits();
+    this.collecteurs=this.collecteurService.getCollecteurs(); 
     this.tanks=this.tankService.getTanksFiltres();
     this.operationService.getNbOp().subscribe(o=>{
-    console.log(o);
     this.som=this.som+o+1;
     });
   }
@@ -72,20 +80,36 @@ export class CreateOperationComponent implements OnInit {
 
 
   async save() {
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null ){
     this.operationService.createOperation({
      "poidsLait": this.myForm.get('poidsLait')?.value,
+     "collecteur":{
+      "idCollecteur":this.myForm.get('collecteur')?.value,  
    },
-         ).subscribe(  async o=>{    
+   },
+         ).subscribe(  async o=>{   
+            this.collecteurService.getCollecteur(this.myForm.get('collecteur')?.value).subscribe(
+              b=>{
+                console.log(b)
+                localStorage.setItem('idcoll',b.idCollecteur)
+                localStorage.setItem('nomcoll',b.nomCollecteur)
+                localStorage.setItem('address',b.adresse)
+                localStorage.setItem('tel',b.tel)
+              }
+            )
            this.tab = Object.values(o)
+         console.log(this.tab);
           localStorage.setItem('idop',this.tab[0])
            localStorage.setItem('poid',this.tab[1])
            localStorage.setItem('date',this.tab[2])
            localStorage.setItem('type',this.tab[3])
            localStorage.setItem('code',this.tab[4])
-           window.localStorage.reload;
-           console.log('notmal partie');
-          console.log("just a tets");
-          console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0]);
+
+           localStorage.setItem('agriconom',this.tab[5].nom)
+           localStorage.setItem('agricoprenom',this.tab[5].prenom)
+       
+          
+       //   console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0],this.tab[5],this.tab[6],this.tab[7]);
        },
        (error) => {
          console.log("Failed")
@@ -93,27 +117,61 @@ export class CreateOperationComponent implements OnInit {
      );
     }
 
+  }
 
+  agri:Agriculteur=  new Agriculteur();
+  oppr:Operation = new Operation();
+  collect:Collecteur = new Collecteur();
 
+  mm!:number;
      async saveInBc(){
       const depKEY=Object.keys(Remplissage.networks)[0];
       await this.requestAccount()
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner()
       const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
-    
-    
-        var kk1= JSON.parse(localStorage.getItem('idop') || '[]') || []
-        var kk2=JSON.parse(localStorage.getItem('poid') || '[]') || []
-        var kk3= localStorage.getItem('date') 
-        var kk4=localStorage.getItem('type')
-        var kk5=JSON.parse(localStorage.getItem('code') || '[]') || []
-        const transaction = await contract.addOperation(kk2,kk3,kk4,kk5,kk1);
-        await transaction.wait();
-       
-            
-    
-        }
+
+      this.oppr.idOperation=JSON.parse(localStorage.getItem('idop') || '[]') || []
+      this.oppr.poidsLait=JSON.parse(localStorage.getItem('poid') || '[]') || []
+      this.oppr.dateOperation=JSON.parse(JSON.stringify(localStorage.getItem('date') )|| '[]') || []
+      this.oppr.typeOp=JSON.parse(JSON.stringify(localStorage.getItem('type'))|| '[]') || []
+      this.oppr.code=JSON.parse(localStorage.getItem('code') || '[]') || []
+
+      this.collect.nomCollecteur=JSON.parse(JSON.stringify(localStorage.getItem('nomcoll') )|| '[]') || []
+      this.collect.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
+      this.collect.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
+      this.collect.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
+
+      this.agri.nom=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
+      this.agri.prenom=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || []
+  
+
+
+      console.log("this.agri");
+      console.log(this.agri);
+
+
+
+
+
+
+      console.log("this.collect");
+      console.log(this.collect);
+
+      this.oppr.collecteur=this.collect;
+     // this.oppr.collecteur.nomCollecteur =JSON.parse(JSON.stringify(localStorage.getItem('nomcoll') )|| '[]') || [];
+     // this.oppr.collecteur.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
+     // this.oppr.collecteur.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
+      //this.oppr.collecteur.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
+      console.log("this.oppr");
+      console.log(this.oppr);
+  
+  
+      const transaction = await contract.addOperation2(this.oppr);
+        
+      await transaction.wait() ; 
+  
+      }
     
 
 
@@ -168,6 +226,8 @@ export class CreateOperationComponent implements OnInit {
 
 
  // }
+//for testing
+
 
 
   reLoad(){
@@ -179,11 +239,12 @@ export class CreateOperationComponent implements OnInit {
 onSubmit() {
   this.tankService.getTanksQteGenerale().subscribe(
      o=>{
-    console.log(o);
     if(this.myForm.get('poidsLait')?.value<=o){
    this.save()
   this.reLoad()
+  this.onClose()
     this.saveInBc()
+  
     }
    
     else{
@@ -208,6 +269,10 @@ onSubmit() {
   return this.myForm.get('poidsLait') ;
 }
 
+
+get collecteur(){
+  return this.myForm.get('collecteur') ;
+}
 
 // get lait(){
 //   return this.myForm.get('lait') ;

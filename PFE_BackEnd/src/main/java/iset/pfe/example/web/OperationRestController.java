@@ -24,6 +24,7 @@ import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Tank;
+import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.OperationTankRepository;
@@ -41,6 +42,9 @@ public class OperationRestController {
 	private LaitRepository laitRepository;
 	@Autowired
 	private OperationTankRepository operationTankRepository;
+	@Autowired
+	private AgriculteurRepository agriculeurRepository;
+	
 	
 	@RequestMapping(value="/operations",method = RequestMethod.GET)
 	public List<Operation> getOperations(){
@@ -336,6 +340,7 @@ public class OperationRestController {
 	     String currentDateTime = dateFormatter.format(new Date());
 	     System.out.println(currentDateTime);
 	Date date1=new Date();
+	operation.setAgriculteur(agriculeurRepository.findAll().get(0));
 	operation.setDateOperation(currentDateTime);
 	operation.setTypeOp("Retrait");
 	operationRepository.save(operation);

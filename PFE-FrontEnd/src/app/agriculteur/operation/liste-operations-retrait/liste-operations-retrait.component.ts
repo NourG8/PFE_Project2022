@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
@@ -13,6 +14,11 @@ import { DetailsOperationComponent } from '../details-operation/details-operatio
 import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 
+import { ethers } from 'ethers';
+
+declare let require: any;
+declare let window: any;
+let Remplissage = require('../../../../../build/contracts/Remplissage.json');
 @Component({
   selector: 'app-liste-operations-retrait',
   templateUrl: './liste-operations-retrait.component.html',
@@ -43,14 +49,27 @@ export class ListeOperationsRetraitComponent implements OnInit {
   test1=0;
   test2=0;
 
-  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','collecteur','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
+    
+    operations: Observable<Operation[]> | undefined;
 
 
+    reloadData00() {  
+      const depKEY=Object.keys(Remplissage.networks)[0];
+      if (typeof window.ethereum !== 'undefined') {
+     const provider = new ethers.providers.Web3Provider(window.ethereum);
+     const signer = provider.getSigner()
+     console.log(signer);
+     const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
+     this.operations = contract.getOperations();}
+     console.log(this.operations);
+    }
     ngOnInit() {
       this.reloadData();
+      this.reloadData00();
       console.log(this.tankService.getTanksQteLibre());
 
      this.idContenu = 'TostSuccessContenu';

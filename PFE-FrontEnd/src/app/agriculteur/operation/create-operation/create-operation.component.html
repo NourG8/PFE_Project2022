@@ -28,7 +28,23 @@
                 </div>
     
               </div>
-
+              <div class="col-md-6 mb-3">
+                <label class="mr-sm-5" for="inlineFormCustomSelect">collecteur : <span style="color:red;">*</span></label>
+                <select formControlName="collecteur" name="collecteur"  class="custom-select mr-sm-2" id="collecteur" >
+                  <option disabled selected value [ngValue]="null">Choisir un collecteur...</option>
+                  <option *ngFor="let collecteur of collecteurs | async" [value]="collecteur.idCollecteur">{{collecteur.nomCollecteur}}</option>
+                </select>
+                <div
+                *ngIf="collecteur?.invalid && collecteur?.touched"
+                 class="text-danger">
+                    invalide collecteur!
+             </div>
+                 <div
+                  *ngIf="collecteur?.valid && collecteur?.touched"
+               class="text-success">
+               collecteur valide!
+             </div>
+              </div>
               &nbsp;&nbsp;  <h5 style="color:blue">Voici le code de la livraison  :<strong><i> {{som}} </i> </strong> </h5><br><br>
   
             </div>
@@ -50,6 +66,7 @@
           </form>
         </div>
   
+ 
   
   
     

@@ -158,7 +158,10 @@
               <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;&nbsp;&nbsp;&nbsp;Code Operation </th>
               <td id="alignement" mat-cell *matCellDef="let element" >{{element.code}}</td>
             </ng-container>
-           
+            <ng-container matColumnDef="collecteur">
+              <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;&nbsp;&nbsp;&nbsp;Collecteur </th>
+              <td id="alignement" mat-cell *matCellDef="let element" >{{element.collecteur.nomCollecteur}}</td>
+            </ng-container>
 
 
             <ng-container matColumnDef="action">
@@ -215,7 +218,48 @@
   {{Toast[1]}}
   </div>
   </div>
-  
+
+  <div  *ngFor="let fff of operations | async" >
+    <span class="timeline-body">
+      /---------- idOperation:  {{fff.idOperation}}  ||
+    </span>
+    <span class="timeline-body">
+      poidsLait: {{fff.poidsLait}}   ||
+    </span>
+    <span class="timeline-body">
+      dateOperation:  {{fff.dateOperation}}   ||
+    </span>
+    <span class="timeline-body">
+      typeOp:  {{fff.typeOp}}   ||
+    </span>
+    <span class="timeline-body">
+        || code: {{fff.code}}  
+    </span>
+ <br>
+    <span class="timeline-body">
+    -------------------  idCollecteur: {{fff.collecteur.idCollecteur}}   ||
+    </span>
+    <span class="timeline-body">
+      nomCollecteur: {{fff.collecteur.nomCollecteur}}   ||
+    </span>
+    <span class="timeline-body">
+      adresse: {{fff.collecteur.adresse}}   ||
+    </span>
+    <span class="timeline-body">
+      tel: {{fff.collecteur.tel}}   ||
+    </span>
+    <br>
+    <span class="timeline-body">
+    -------------------  idAgriculteur: {{fff.agriculteur.idAgriculteur}}   ||
+    </span>
+    <span class="timeline-body">
+      nomagriculteur: {{fff.agriculteur.nom}}   ||
+    </span>
+    <span class="timeline-body">
+      prenom: {{fff.agriculteur.prenom}}   ||
+    </span>
+
+  </div>
   
 
 
