@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import iset.pfe.example.entities.Collecteur;
 import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
@@ -18,6 +20,7 @@ import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Role;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.entities.Vache;
+import iset.pfe.example.repositories.CollecteurRepository;
 import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.BonRepository;
 import iset.pfe.example.repositories.FournisseurRepository;
@@ -52,6 +55,8 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	private OperationTankRepository operationTankRepository;
 	@Autowired
 	private RoleRepository roleRepository;
+	@Autowired
+	private CollecteurRepository collecteurRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(PfeBackEndApplication.class, args);
@@ -120,6 +125,10 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
 		fournisseurRepository.save(f1);
 		
+		Collecteur u1=new Collecteur("Collecteur 1","bizerte",524587);
+		collecteurRepository.save(u1);
+		Collecteur u2=new Collecteur("Collecteur 2","bizerte",78899);
+		collecteurRepository.save(u2);
 //		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 //		bonRepository.save(b1);
 		

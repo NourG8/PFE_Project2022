@@ -49,6 +49,30 @@ public class Agriculteur implements Serializable , UserDetails{
 	@JsonIgnore
 	private Set<Role> roles = new HashSet<>();
 	
+	@OneToMany(mappedBy="agriculteur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonIgnore
+	private Set<Operation> operations;
+	
+	
+	
+	public Agriculteur(Integer idAgriculteur, String nom, String prenom, String email, String adress, int cin,
+			String username, String password, Set<Tank> tanks, Set<Bon> bons, Set<Role> roles,
+			Set<Operation> operations) {
+		super();
+		this.idAgriculteur = idAgriculteur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.adress = adress;
+		this.cin = cin;
+		this.username = username;
+		this.password = password;
+		this.tanks = tanks;
+		this.bons = bons;
+		this.roles = roles;
+		this.operations = operations;
+	}
+
 
 	public Agriculteur() {
 		super();
@@ -231,6 +255,16 @@ public class Agriculteur implements Serializable , UserDetails{
 		return "Agriculteur [idAgriculteur=" + idAgriculteur + ", nom=" + nom + ", prenom=" + prenom + ", email="
 				+ email + ", adress=" + adress + ", cin=" + cin + ", username=" + username + ", password=" + password
 				+ ", tanks=" + tanks + ", bons=" + bons + ", roles=" + roles + "]";
+	}
+
+
+	public Set<Operation> getOperations() {
+		return operations;
+	}
+
+
+	public void setOperations(Set<Operation> operations) {
+		this.operations = operations;
 	}
 	
 	

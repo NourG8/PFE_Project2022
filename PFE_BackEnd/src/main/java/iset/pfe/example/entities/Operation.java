@@ -28,6 +28,27 @@ public class Operation implements Serializable{
 	private String typeOp;
 	private Integer code=10000;
 
+	
+	@ManyToOne
+	@JoinColumn(name="idAgriculteur")
+	private Agriculteur agriculteur;
+	
+	
+public Operation(Integer idOperation, double poidsLait, String dateOperation, String typeOp, Integer code,
+			Agriculteur agriculteur, Set<OperationTank> operationstank, Lait lait, Collecteur collecteur) {
+		super();
+		this.idOperation = idOperation;
+		this.poidsLait = poidsLait;
+		this.dateOperation = dateOperation;
+		this.typeOp = typeOp;
+		this.code = code;
+		this.agriculteur = agriculteur;
+		this.operationstank = operationstank;
+		this.lait = lait;
+		this.collecteur = collecteur;
+	}
+
+
 //	@ManyToOne
 //	@JoinColumn(name="idTank")
 //	private Tank tank;
@@ -51,8 +72,8 @@ public class Operation implements Serializable{
 	private Lait lait;
 	
 	@ManyToOne
-	@JoinColumn(name="idAcheteur")
-	private Acheteur acheteur;
+	@JoinColumn(name="idCollecteur")
+	private Collecteur collecteur;
 	
 	public Operation() {
 		super();
@@ -81,7 +102,7 @@ public class Operation implements Serializable{
 
 
 	public Operation(double poidsLait, String dateOperation, String typeOp, Integer code,
-			Set<OperationTank> operationstank, Lait lait) {
+			Set<OperationTank> operationstank, Lait lait,Collecteur collecteur) {
 		super();
 		this.poidsLait = poidsLait;
 		this.dateOperation = dateOperation;
@@ -89,6 +110,7 @@ public class Operation implements Serializable{
 		this.code = code;
 		this.operationstank = operationstank;
 		this.lait = lait;
+		this.collecteur=collecteur;
 	}
 
 
@@ -152,6 +174,26 @@ public class Operation implements Serializable{
 
 	public void setCode(Integer code) {
 		this.code = code;
+	}
+
+
+	public Collecteur getCollecteur() {
+		return collecteur;
+	}
+
+
+	public void setCollecteur(Collecteur collecteur) {
+		this.collecteur = collecteur;
+	}
+
+
+	public Agriculteur getAgriculteur() {
+		return agriculteur;
+	}
+
+
+	public void setAgriculteur(Agriculteur agriculteur) {
+		this.agriculteur = agriculteur;
 	}
 
 }
