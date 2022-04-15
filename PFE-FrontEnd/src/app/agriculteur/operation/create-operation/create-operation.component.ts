@@ -136,24 +136,23 @@ export class CreateOperationComponent implements OnInit {
       this.oppr.dateOperation=JSON.parse(JSON.stringify(localStorage.getItem('date') )|| '[]') || []
       this.oppr.typeOp=JSON.parse(JSON.stringify(localStorage.getItem('type'))|| '[]') || []
       this.oppr.code=JSON.parse(localStorage.getItem('code') || '[]') || []
-
+     
       this.collect.nomCollecteur=JSON.parse(JSON.stringify(localStorage.getItem('nomcoll') )|| '[]') || []
       this.collect.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
       this.collect.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
       this.collect.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
+      
+    var s1=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
+    //  this.oppr.agriculteur.nom=this.agri.nom;
+    var s2=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || ''  
+     // this.oppr.agriculteur.type='0'
+     // this.oppr.agriculteur.username='0'
+    //  this.oppr.agriculteur.password='0'
+var s3 =s1 +" "+ s2 
 
-      this.agri.nom=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
-      this.agri.prenom=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || []
-  
-
-
-      console.log("this.agri");
-      console.log(this.agri);
-
-
-
-
-
+console.log("var3");
+console.log(s3);
+this.oppr.sender=s3
 
       console.log("this.collect");
       console.log(this.collect);
