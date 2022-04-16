@@ -87,6 +87,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 				ag.setEmail("ahmed.bensaber@gmail.com");
 				ag.setNom("Ben saber");
 				ag.setPrenom("Ahmed");
+				ag.setTel(22556487);
 				ag.setUsername("ahmed");
 				encoder = new BCryptPasswordEncoder();
 				ag.setPassword(encoder.encode("ahmed"));

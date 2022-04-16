@@ -27,6 +27,11 @@ public class AgriculteurRestController {
 		return agriculteurRepository.findAll();
 	}
 	
+	@RequestMapping(value="/getUser/{username}",method = RequestMethod.GET)
+    public Agriculteur getuser(@PathVariable String username) {
+		Agriculteur u=agriculteurRepository.findUserWithName(username).get();
+		return u;
+	}
 		
 	@RequestMapping(value="/agriculteurs/{idAgriculteur}",method = RequestMethod.GET)
     public Agriculteur getAgriculteur(@PathVariable Integer idAgriculteur) {

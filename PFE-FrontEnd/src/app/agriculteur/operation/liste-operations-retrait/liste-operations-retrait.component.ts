@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
+import { ProduitService } from 'src/app/Service/produit.service';
 import { TankService } from 'src/app/Service/tank.service';
 import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
@@ -52,6 +53,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','collecteur','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
+    private produitService:ProduitService,
     private router: Router, private dialog:MatDialog) { }
     
     operations: Observable<Operation[]> | undefined;
@@ -70,7 +72,8 @@ export class ListeOperationsRetraitComponent implements OnInit {
     ngOnInit() {
       this.reloadData();
       this.reloadData00();
-      console.log(this.tankService.getTanksQteLibre());
+      //console.log(this.tankService.getTanksQteLibre());
+
 
      this.idContenu = 'TostSuccessContenu';
       this.idTitle = 'TostSuccessTile';
@@ -177,11 +180,24 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.tankService.getTanksQteGenerale().subscribe(b=>{
+        console.log(b);
+       if(b>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationComponent, dialogConfig);
+       }
+       else{
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Erreur';
+        this.Toast[1] ='Les tanks sont vides !! \n Vous ne pouvez pas effectuer cette operation !!';
+        this.showToast();
     }
+    });
+  }
+      
   
     onOpenDialogCreate2():void{
       const dialogConfig = new MatDialogConfig();
@@ -207,11 +223,11 @@ export class ListeOperationsRetraitComponent implements OnInit {
         this.Toast = [];
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         console.log(this.ShowToast);
-      }, 6100);
+      }, 9100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
         console.log(this.counter);
-        if (this.counter === 6)
+        if (this.counter === 9)
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0

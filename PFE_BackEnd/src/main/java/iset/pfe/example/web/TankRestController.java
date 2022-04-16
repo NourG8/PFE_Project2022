@@ -1,5 +1,8 @@
 package iset.pfe.example.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,6 +53,42 @@ public class TankRestController {
 		}else throw new RuntimeException("Tank introuvable !!");
 	}
 	
+	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
+    public double getQteTankLibres() {
+		double qte=0;
+		double qteLibreLait=0;
+		double qteGeneraleLait=0;
+		
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     
+		for(int j=0;j<tankRepository.findAll().size();j++) 
+		{
+			
+			Tank tank3=tankRepository.findAll().get(j);
+			if(tank3.getDateIns()!=null) {
+				 String dateP=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+				 String dateP2=tank3.getDateIns().charAt(8)+""+tank3.getDateIns().charAt(9);
+			if(Integer.parseInt(dateP2)==Integer.parseInt(dateP) ) {
+			qte=qte+tank3.getPoidVide();
+			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
+		}
+		}
+			
+			if(tank3.getDateIns()==null) {
+				
+			qte=qte+tank3.getPoidVide();
+			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();	
+		}
+		}
+		qteLibreLait=qte-qteGeneraleLait;
+		System.out.println("######"+qteLibreLait);
+		return qteLibreLait;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/qteTanksGenerale",method = RequestMethod.GET)
     public double getQteTankGenerale() {
 		double qteGeneraleLait=0;
@@ -60,22 +99,22 @@ public class TankRestController {
 		return qteGeneraleLait;
 	}
 	
-	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
-    public double getQteTankLibre() {
-		double qte=0;
-		double qteLibreLait=0;
-		double qteGeneraleLait=0;
-		for(int j=0;j<tankRepository.findAll().size();j++) 
-		{
-			Tank tank3=tankRepository.findAll().get(j);
-			qte=qte+tank3.getPoidVide();
-			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
-		}
-		qteLibreLait=qte-qteGeneraleLait;
-		System.out.println("######"+qteLibreLait);
-		return qteLibreLait;
-	}
-	
+//	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
+//    public double getQteTankLibre() {
+//		double qte=0;
+//		double qteLibreLait=0;
+//		double qteGeneraleLait=0;
+//		for(int j=0;j<tankRepository.findAll().size();j++) 
+//		{
+//			Tank tank3=tankRepository.findAll().get(j);
+//			qte=qte+tank3.getPoidVide();
+//			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
+//		}
+//		qteLibreLait=qte-qteGeneraleLait;
+//		System.out.println("######"+qteLibreLait);
+//		return qteLibreLait;
+//	}
+//	
 	
 	
 	//delete tank method
