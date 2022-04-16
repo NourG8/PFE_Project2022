@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
+import iset.pfe.example.entities.Produit;
 import iset.pfe.example.repositories.FournisseurRepository;
 
 @RestController
@@ -34,6 +35,36 @@ public class FournisseurRestController {
 		return fournisseurRepository.findAll().size();
 	}
 		
+	
+	//si le matricule existe ou nn
+		@RequestMapping(value="/fournis/{matricule}",method = RequestMethod.GET)
+		public int getFMatricule(@PathVariable String matricule){
+			int msg=0;
+			for(int i=0;i<fournisseurRepository.findAll().size();i++) {
+				Fournisseur t=fournisseurRepository.findAll().get(i);
+				if(matricule.equals(t.getMatricule()))
+					msg=1;
+			}
+			return msg;
+		}
+		
+		
+		
+		//si le nom existe ou nn
+		@RequestMapping(value="/fournis1/{nom}",method = RequestMethod.GET)
+		public int getFNom(@PathVariable String nom){
+			int msg=0;
+			for(int i=0;i<fournisseurRepository.findAll().size();i++) {
+				Fournisseur t=fournisseurRepository.findAll().get(i);
+				if(nom.equals(t.getNom()))
+					msg=1;
+			}
+			return msg;
+		}
+		
+	
+	
+	
 	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.GET)
     public Fournisseur getFournisseur(@PathVariable Integer idFournisseur) {
 		Optional<Fournisseur> f= fournisseurRepository.findById(idFournisseur);

@@ -50,6 +50,9 @@ export class ListeTankComponent implements OnInit {
       } else {
         console.log('Toast Vide');
       }
+
+
+   
   
      
     }
@@ -79,7 +82,7 @@ export class ListeTankComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du bon !!';
+        this.Toast[1] ='Échec de la suppression du tank: '+id+' !! Ce tank est remplis vous ne pouvez pas le supprimer';
         this.showToast();
       }
     );

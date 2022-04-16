@@ -17,6 +17,8 @@ export class ProduitService {
   baseUrl6 : string = 'http://localhost:3800/nbreP';
   baseUrl7 : string = 'http://localhost:3800/getProduitsDispo';
   baseUrl8 : string = 'http://localhost:3800/getSomStock';
+  baseUrl9 : string = 'http://localhost:3800/prod1';
+  baseUrl10 : string = 'http://localhost:3800/prod';
   
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -52,6 +54,26 @@ export class ProduitService {
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
+
+//si l'intitule du produit est utilise ou nn 
+  getProduitIntitule(intitule: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl10}/${intitule}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+  //si le libelle du produit est utilise ou nn 
+  getProduitLibelle(libelle: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl9}/${libelle}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+
 
   getProduitsDispo(): Observable<any> {
     let jwt = this.authService.getToken();

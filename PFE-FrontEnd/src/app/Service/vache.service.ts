@@ -16,6 +16,7 @@ export class VacheService {
 
   baseUrl : string = 'http://localhost:3800/vaches';
   baseUrl6 : string = 'http://localhost:3800/nbreV';
+  baseUrl7 : string = 'http://localhost:3800/vache';
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -40,6 +41,16 @@ export class VacheService {
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
+
+
+  getVacheMatricule(matricule: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl7}/${matricule}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
 
 
   createVache(vache:Vache):Observable<Vache>{

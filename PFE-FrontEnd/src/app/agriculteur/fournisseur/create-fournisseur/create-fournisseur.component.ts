@@ -16,6 +16,8 @@ export class CreateFournisseurComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
+  msg1=0;
+  msg2=0;
 
   constructor(private fournisseurService: FournisseurService,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -46,7 +48,25 @@ export class CreateFournisseurComponent implements OnInit {
       this.msg="";
      }
 
-     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null){
+     this.fournisseurService.getFournisseurNom(this.myForm.get('nom')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+
+       this.fournisseurService.getFournisseurMatricule(this.myForm.get('matricule')?.value).subscribe(l=>{
+        console.log(l);
+        if(l==1){
+          this.msg2=1;
+         }
+         else{
+          this.msg2=0;
+         }
+
+     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0){
     console.log(this.fournisseur);
     this.fournisseur.idFournisseur = 1;
     this.fournisseurService
@@ -62,6 +82,8 @@ export class CreateFournisseurComponent implements OnInit {
         }
       );
     }
+  });
+});
   }
 
 

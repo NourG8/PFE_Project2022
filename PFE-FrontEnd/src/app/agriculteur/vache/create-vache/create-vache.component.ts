@@ -15,7 +15,7 @@ export class CreateVacheComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
-
+  msg2=0;
   constructor(private vacheService: VacheService,
     private router: Router, private dialogClose: MatDialog,) { }
     
@@ -76,9 +76,18 @@ export class CreateVacheComponent implements OnInit {
       this.msg="";
      }
     
+     this.vacheService.getVacheMatricule(this.myForm.get('matricule')?.value).subscribe(l=>{
+      console.log(l);
+      if(l==1){
+        this.msg2=1;
+       }
+       else{
+        this.msg2=0;
+       }
+
 
      if(this.myForm.get('qte_prodLait')?.value!=null && this.myForm.get('matricule')?.value!=null &&this.myForm.get('race')?.value!=null &&
-      this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null ){
+      this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null && l==0){
     console.log(this.vache);
     this.vache.idVache = 1;
     this.vacheService
@@ -89,6 +98,7 @@ export class CreateVacheComponent implements OnInit {
           console.log(this.vache);
         });
     }
+  });
   }
 
 

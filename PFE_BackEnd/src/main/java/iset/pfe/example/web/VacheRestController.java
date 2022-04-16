@@ -36,6 +36,19 @@ public class VacheRestController {
 		return vacheRepository.findAll().size();
 	}
 	
+	//Si le nom du tank est utilisé ou nn !
+		@RequestMapping(value="/vache/{matricule}",method = RequestMethod.GET)
+		public int getVacheMatricule(@PathVariable String matricule){
+			int msg=0;
+			for(int i=0;i<vacheRepository.findAll().size();i++) {
+				Vache t=vacheRepository.findAll().get(i);
+				if(matricule.equals(t.getMatricule())) {
+					msg=1;
+				}
+				
+			}
+			return msg;
+		}
 		
 	@RequestMapping(value="/vaches/{idVache}",method = RequestMethod.GET)
     public Vache getVache(@PathVariable Integer idVache) {
