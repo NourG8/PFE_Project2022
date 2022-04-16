@@ -30,8 +30,38 @@ public class TankRestController {
 	//getALL tanks method
 	@RequestMapping(value="/tanks",method = RequestMethod.GET)
 	public List<Tank> getTanks(){
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank t=tankRepository.findAll().get(i);
+			if(t.getPoidActuel()==0) {
+				t.setEtat("Vide");
+			}
+			else if(t.getPoidActuel()>0 && t.getPoidActuel()<t.getPoidVide()) {
+				t.setEtat("En cours");
+			}
+			else if(t.getPoidActuel()==t.getPoidVide()) {
+				t.setEtat("Remplis");
+			}
+		}
+		
 		return tankRepository.findAll();
 	}
+	
+	@RequestMapping(value="/nbTankRemplis",method = RequestMethod.GET)
+	public int getnbTankRemplis(){
+		return tankRepository.findTankEtat("Remplis").size();
+	}
+	
+	@RequestMapping(value="/nbTankVide",method = RequestMethod.GET)
+	public int getnbTankVide(){
+		return tankRepository.findTankEtat("Vide").size();
+	}
+	
+	@RequestMapping(value="/nbTankEnCours",method = RequestMethod.GET)
+	public int getnbTankEnCours(){
+		return tankRepository.findTankEtat("En cours").size();
+	}
+	
+	
 	
 	@RequestMapping(value="/nbreT",method = RequestMethod.GET)
 	public int getNbTanks(){
