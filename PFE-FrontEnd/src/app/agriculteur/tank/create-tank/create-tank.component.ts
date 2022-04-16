@@ -16,12 +16,14 @@ export class CreateTankComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
+  msg1=0;
 
   constructor(private tankService: TankService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
     this.ValidatedForm();
+  
   }
 
   newEmployee(): void {
@@ -47,15 +49,25 @@ export class CreateTankComponent implements OnInit {
       this.msg="";
      }
 
-     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null){
+     this.tankService.getTankUtilise(this.myForm.get('matricule')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null && t==0){
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été ajouté avec succès"]));  
           window.location.reload();
           console.log(this.tank);
-        });
+        }); 
     }
+  });
   }
 
   onSubmit() {

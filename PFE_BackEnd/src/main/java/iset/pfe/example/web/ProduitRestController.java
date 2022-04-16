@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Produit;
+import iset.pfe.example.entities.Tank;
 import iset.pfe.example.repositories.ProduitRepository;
 
 @RestController
@@ -29,6 +30,35 @@ public class ProduitRestController {
 	public List<Produit> getNourritures(){
 		return produitRepository.findAll();
 	}
+	
+	
+	//si l'intitule du produit existe ou nn
+	@RequestMapping(value="/prod/{intitule}",method = RequestMethod.GET)
+	public int getProdIntitule(@PathVariable String intitule){
+		int msg=0;
+		for(int i=0;i<produitRepository.findAll().size();i++) {
+			Produit t=produitRepository.findAll().get(i);
+			if(intitule.equals(t.getIntitule()))
+				msg=1;
+		}
+		return msg;
+	}
+	
+	
+	
+	//si l'intitule du produit existe ou nn
+	@RequestMapping(value="/prod1/{libelle}",method = RequestMethod.GET)
+	public int getProdLibelle(@PathVariable String libelle){
+		int msg=0;
+		for(int i=0;i<produitRepository.findAll().size();i++) {
+			Produit t=produitRepository.findAll().get(i);
+			if(libelle.equals(t.getLibelle()))
+				msg=1;
+		}
+		return msg;
+	}
+	
+	
 	
 	@RequestMapping(value="/getProduitsDispo",method = RequestMethod.GET)
 	public List<Produit> getProdDispo(){

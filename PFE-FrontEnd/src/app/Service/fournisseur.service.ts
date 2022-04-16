@@ -14,6 +14,9 @@ const httpOptions = {
 export class FournisseurService {
   baseUrl6 : string = 'http://localhost:3800/nbreF';
   baseUrl : string = 'http://localhost:3800/fournisseurs';
+  baseUrl7 : string = 'http://localhost:3800/fournis';
+  baseUrl8 : string = 'http://localhost:3800/fournis1';
+
   
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -40,6 +43,26 @@ export class FournisseurService {
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
+
+
+  getFournisseurNom(nom: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl8}/${nom}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+
+  getFournisseurMatricule(matricule: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl7}/${matricule}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
+
+
 
   createFournisseur(f:Fournisseur):Observable<Fournisseur>{
     let jwt = this.authService.getToken();

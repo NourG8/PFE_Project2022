@@ -38,6 +38,20 @@ public class TankRestController {
 		return tankRepository.findAll().size();
 	}
 	
+	//Si le nom du tank est utilisé ou nn !
+	@RequestMapping(value="/tank/{matricule}",method = RequestMethod.GET)
+	public int getTanksUtilise(@PathVariable String matricule){
+		int msg=0;
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank t=tankRepository.findAll().get(i);
+			if(matricule.equals(t.getMatricule())) {
+				msg=1;
+			}
+			
+		}
+		return msg;
+	}
+	
 	
 	@RequestMapping(value="/tanksFilres",method = RequestMethod.GET)
 	public List<Tank> getAllTanks(){
@@ -123,7 +137,7 @@ public class TankRestController {
 	public void deleteTank(@PathVariable Integer idTank) {
 		Optional<Tank> tank = tankRepository.findById(idTank);
 				if (tank.isPresent()) { 
-					tankRepository.deleteById(idTank);
+					tankRepository.deleteTank(idTank);
 		    }else throw new RuntimeException("Tank introuvable ! vous ne pouvez pas le supprimer !!");
 	}
 	

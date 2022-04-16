@@ -99,7 +99,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
       
     }
   
-     deleteOperation(id: number) {
+    deleteOperation(id: number) {
       this.operationService.getOperation(id).subscribe(o =>{
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
@@ -123,7 +123,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
   }
   
 
-  
   deleteOp(id: number){
 
     this.tankService.getTanksQteLibre().subscribe(o=>{
@@ -133,18 +132,9 @@ export class ListeOperationsRetraitComponent implements OnInit {
         console.log(a.poidsLait);
         this.p=a.poidsLait;
 
-
-        this.operationService.getNbOpTankTotal(id).subscribe(b=>{
-          console.log(b);
-          this.test1=b;
-
-          this.operationService.getNbOpTankRetrait(id).subscribe(c=>{
-            console.log(c);
-            this.test2=c;
-
-            if(this.p<=this.q && this.test1==this.test2){
-              this.deleteOperation(id);
-            }else{
+        if(this.p<=this.q){
+          this.deleteOperation(id);
+        }else{
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
@@ -152,12 +142,8 @@ export class ListeOperationsRetraitComponent implements OnInit {
           this.showToast();
         }
       });
-    });
-  });
   
-      });
-
-     
+      });  
   }
 
 
