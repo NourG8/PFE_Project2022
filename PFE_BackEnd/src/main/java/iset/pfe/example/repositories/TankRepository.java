@@ -31,6 +31,9 @@ public interface TankRepository extends JpaRepository<Tank,Integer>{
 		@Modifying
 		@Query("delete Tank t where t.idTank=:idTank")
 		void deleteTank(@Param("idTank") Integer idTank);
+		
+		  @Query("select t from Tank t where t.etat=:etat")
+			public List<Tank> findTankEtat(@Param("etat") String etat);
 	
 	
 }

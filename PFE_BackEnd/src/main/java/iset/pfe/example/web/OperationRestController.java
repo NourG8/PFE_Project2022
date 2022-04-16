@@ -51,6 +51,16 @@ public class OperationRestController {
 		return operationRepository.findAll();
 	}
 	
+	@RequestMapping(value="/nbOpRetrait",method = RequestMethod.GET)
+	public int getnbOpRetrait(){
+		return operationRepository.findAllOperationsRemplissages("Retrait").size();
+	}
+	
+	@RequestMapping(value="/nbOpRemplissage",method = RequestMethod.GET)
+	public int getnbOpRemplissage(){
+		return operationRepository.findAllOperationsRemplissages("Remplissage").size();
+	}
+	
 		
 	@RequestMapping(value="/operations/{idOperation}",method = RequestMethod.GET)
 	public Operation getOperation(@PathVariable Integer idOperation) {
@@ -497,14 +507,287 @@ public class OperationRestController {
 	     String currentDateTime = dateFormatter.format(new Date());
 	     System.out.println(currentDateTime);
 	Date date1=new Date();
-	operation.setAgriculteur(agriculeurRepository.findAll().get(0));
 	operation.setDateOperation(currentDateTime);
 	operation.setTypeOp("Retrait");
+	operation.setAgriculteur(agriculeurRepository.findAll().get(0));
+	int b=operationRepository.findAll().size();
+	//operation.setCode(10000+b);
 	operationRepository.save(operation);
+	
+	// nverifi 3la date idha 3andha date a9al heya eli nlivriha lowla 
+	
+		for(int j=0;j<tankRepository.findAll().size();j++){
+			Tank tank=tankRepository.findAll().get(j);
+			s=tank.getPoidVide()-tank.getPoidActuel();
+			
+			if(tank.getDateIns()!=null) {
+			
+			 String date11=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+			 String date22=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+			 
+			 String date12=currentDateTime.charAt(5)+""+currentDateTime.charAt(6);
+			 String date13=tank.getDateIns().charAt(5)+""+tank.getDateIns().charAt(6);
+			 
+			 String date14=currentDateTime.charAt(0)+""+currentDateTime.charAt(1)+""+currentDateTime.charAt(2)+""+currentDateTime.charAt(3);
+			 String date15=tank.getDateIns().charAt(0)+""+tank.getDateIns().charAt(1)+""+tank.getDateIns().charAt(2)+""+tank.getDateIns().charAt(3);
+			 
+			if(tank.getPoidActuel()>0 && a>0 && tank.getPoidActuel()<tank.getPoidVide() && a<tank.getPoidVide()  && a<=tank.getPoidActuel() &&
+					Integer.parseInt(date22)<Integer.parseInt(date11)) {
+				p=tank.getPoidActuel()-a;
+				
+				tank.setPoidActuel(p);
+				tankRepository.save(tank);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank);
+				opt.setQteInsereTank(a*-1);
+				operationTankRepository.save(opt);
+				a=0;
+				//operation.getTanks().add(tank);
+			}
+			
+			else if(tank.getPoidActuel()>0 && a>0 && tank.getPoidActuel()<tank.getPoidVide() && a<tank.getPoidVide()  && a<=tank.getPoidActuel() &&
+					Integer.parseInt(date13)<Integer.parseInt(date12)) {
+				p=tank.getPoidActuel()-a;
+				
+				tank.setPoidActuel(p);
+				tankRepository.save(tank);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank);
+				opt.setQteInsereTank(a*-1);
+				operationTankRepository.save(opt);
+				a=0;
+				//operation.getTanks().add(tank);
+			}
+			
+		}	
+	}
+		
+		
+		
+		//Verif 3la date 9bal kima eli l fou9
+		
+		for(int j=0;j<tankRepository.findAll().size();j++){
+			Tank tank=tankRepository.findAll().get(j);
+			s=tank.getPoidVide()-tank.getPoidActuel();
+			if(tank.getDateIns()!=null) {
+				
+				 String date11=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+				 String date22=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+				 
+				 String date12=currentDateTime.charAt(5)+""+currentDateTime.charAt(6);
+				 String date13=tank.getDateIns().charAt(5)+""+tank.getDateIns().charAt(6);
+				 
+				 String date14=currentDateTime.charAt(0)+""+currentDateTime.charAt(1)+""+currentDateTime.charAt(2)+""+currentDateTime.charAt(3);
+				 String date15=tank.getDateIns().charAt(0)+""+tank.getDateIns().charAt(1)+""+tank.getDateIns().charAt(2)+""+tank.getDateIns().charAt(3);
+				 
+			if(a>0 && tank.getPoidActuel()==tank.getPoidVide() && a==tank.getPoidActuel() && 
+					Integer.parseInt(date22)<Integer.parseInt(date11)) {
+				
+				p=tank.getPoidActuel()-a;
+				
+				tank.setPoidActuel(p);
+				tankRepository.save(tank);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank);
+				opt.setQteInsereTank(a*-1);
+				operationTankRepository.save(opt);
+				a=0;
+				//operation.getTanks().add(tank);
+			}
+			
+			else if(a>0 && tank.getPoidActuel()==tank.getPoidVide() && a==tank.getPoidActuel() && 
+					Integer.parseInt(date13)<Integer.parseInt(date12)) {
+				
+				p=tank.getPoidActuel()-a;
+				
+				tank.setPoidActuel(p);
+				tankRepository.save(tank);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank);
+				opt.setQteInsereTank(a*-1);
+				operationTankRepository.save(opt);
+				a=0;
+				//operation.getTanks().add(tank);
+			}
+		}
+	}
+	
+		//Verif 3la date 
+		
+		for(int j=0;j<tankRepository.findAll().size();j++){
+			Tank tank=tankRepository.findAll().get(j);
+			s=tank.getPoidVide()-tank.getPoidActuel();
+
+			if(tank.getDateIns()!=null) {
+			 String date11=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+			 String date22=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+			 
+			 String date12=currentDateTime.charAt(5)+""+currentDateTime.charAt(6);
+			 String date13=tank.getDateIns().charAt(5)+""+tank.getDateIns().charAt(6);
+			 
+			 String date14=currentDateTime.charAt(0)+""+currentDateTime.charAt(1)+""+currentDateTime.charAt(2)+""+currentDateTime.charAt(3);
+			 String date15=tank.getDateIns().charAt(0)+""+tank.getDateIns().charAt(1)+""+tank.getDateIns().charAt(2)+""+tank.getDateIns().charAt(3);
+			
+		if(tank.getPoidActuel()>0 && tank.getPoidActuel()<tank.getPoidVide() && a>0 && a>=tank.getPoidVide() && 
+				Integer.parseInt(date22)<Integer.parseInt(date11)) {
+			p=tank.getPoidActuel();
+			a=a-tank.getPoidActuel();
+			tank.setPoidActuel(0);
+			tankRepository.save(tank);
+			OperationTank opt=new OperationTank(currentDateTime);
+			opt.setOperation(operation);
+			opt.setTank(tank);
+			opt.setQteInsereTank(p*-1);
+			operationTankRepository.save(opt);
+			//operation.getTanks().add(tank);
+		}
+		
+		else if(tank.getPoidActuel()>0 && tank.getPoidActuel()<tank.getPoidVide() && a>0 && a>=tank.getPoidVide() && 
+				Integer.parseInt(date13)<Integer.parseInt(date12)) {
+			p=tank.getPoidActuel();
+			a=a-tank.getPoidActuel();
+			tank.setPoidActuel(0);
+			tankRepository.save(tank);
+			OperationTank opt=new OperationTank(currentDateTime);
+			opt.setOperation(operation);
+			opt.setTank(tank);
+			opt.setQteInsereTank(p*-1);
+			operationTankRepository.save(opt);
+			//operation.getTanks().add(tank);
+		}
+		}
+	}
+		
+		
+		//verif 3la date
+		
+				for(int i=0;i<tankRepository.findAll().size();i++) {
+					Tank tank1=tankRepository.findAll().get(i);
+					if(tank1.getDateIns()!=null) {
+					
+					 String date11=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+					 String date22=tank1.getDateIns().charAt(8)+""+tank1.getDateIns().charAt(9);
+					 
+					 String date12=currentDateTime.charAt(5)+""+currentDateTime.charAt(6);
+					 String date13=tank1.getDateIns().charAt(5)+""+tank1.getDateIns().charAt(6);
+					 
+					 String date14=currentDateTime.charAt(0)+""+currentDateTime.charAt(1)+""+currentDateTime.charAt(2)+""+currentDateTime.charAt(3);
+					 String date15=tank1.getDateIns().charAt(0)+""+tank1.getDateIns().charAt(1)+""+tank1.getDateIns().charAt(2)+""+tank1.getDateIns().charAt(3);
+					
+					if(tank1.getPoidActuel()==tank1.getPoidVide() && a>=tank1.getPoidVide() && a>0 && 
+							Integer.parseInt(date22)<Integer.parseInt(date11)) {
+						p=tank1.getPoidActuel();
+						tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
+						tankRepository.save(tank1);
+						//operation.getTanks().add(tank1);
+						OperationTank opt=new OperationTank(currentDateTime);
+						opt.setOperation(operation);
+						opt.setTank(tank1);
+						opt.setQteInsereTank(p*-1);
+						operationTankRepository.save(opt);
+						a=a-tank1.getPoidVide();
+						System.out.println("id tank : "+tank1.getIdTank());
+						System.out.println(" a="+a);	
+					}
+					
+					else if(tank1.getPoidActuel()==tank1.getPoidVide() && a>=tank1.getPoidVide() && a>0 && 
+							Integer.parseInt(date13)<Integer.parseInt(date12)) {
+						p=tank1.getPoidActuel();
+						tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
+						tankRepository.save(tank1);
+						//operation.getTanks().add(tank1);
+						OperationTank opt=new OperationTank(currentDateTime);
+						opt.setOperation(operation);
+						opt.setTank(tank1);
+						opt.setQteInsereTank(p*-1);
+						operationTankRepository.save(opt);
+						a=a-tank1.getPoidVide();
+						System.out.println("id tank : "+tank1.getIdTank());
+						System.out.println(" a="+a);	
+					}
+					
+					
+					if(tank1.getPoidActuel()==tank1.getPoidVide() && a<tank1.getPoidVide() && a>0 && 
+							Integer.parseInt(date22)<Integer.parseInt(date11)) {
+						
+						tank1.setPoidActuel(tank1.getPoidActuel()-a);
+						tankRepository.save(tank1);
+						//operation.getTanks().add(tank1);
+						OperationTank opt=new OperationTank(currentDateTime);
+						opt.setOperation(operation);
+						opt.setTank(tank1);
+						opt.setQteInsereTank(a*-1);
+						operationTankRepository.save(opt);
+						
+						a=0;
+						System.out.println("id tank : "+tank1.getIdTank());
+						System.out.println(" a="+a);	
+						
+					}
+					
+					else if(tank1.getPoidActuel()==tank1.getPoidVide() && a<tank1.getPoidVide() && a>0 && 
+							Integer.parseInt(date13)<Integer.parseInt(date12)) {
+						
+						tank1.setPoidActuel(tank1.getPoidActuel()-a);
+						tankRepository.save(tank1);
+						//operation.getTanks().add(tank1);
+						OperationTank opt=new OperationTank(currentDateTime);
+						opt.setOperation(operation);
+						opt.setTank(tank1);
+						opt.setQteInsereTank(a*-1);
+						operationTankRepository.save(opt);
+						
+						a=0;
+						System.out.println("id tank : "+tank1.getIdTank());
+						System.out.println(" a="+a);	
+						
+					}
+				}
+					
+			}
+				
+	
+	
 	
 	for(int j=0;j<tankRepository.findAll().size();j++){
 		Tank tank=tankRepository.findAll().get(j);
 		s=tank.getPoidVide()-tank.getPoidActuel();
+		
+		
+		if(tank.getDateIns()!=null) {
+			
+			 String date11=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+			 String date22=tank.getDateIns().charAt(8)+""+tank.getDateIns().charAt(9);
+			 
+			 String date12=currentDateTime.charAt(5)+""+currentDateTime.charAt(6);
+			 String date13=tank.getDateIns().charAt(5)+""+tank.getDateIns().charAt(6);
+			 
+			 String date14=currentDateTime.charAt(0)+""+currentDateTime.charAt(1)+""+currentDateTime.charAt(2)+""+currentDateTime.charAt(3);
+			 String date15=tank.getDateIns().charAt(0)+""+tank.getDateIns().charAt(1)+""+tank.getDateIns().charAt(2)+""+tank.getDateIns().charAt(3);
+			 
+			 if(tank.getPoidActuel()>0 && a>0 && tank.getPoidActuel()<tank.getPoidVide() && a<tank.getPoidVide()  && a<=tank.getPoidActuel() && 
+				Integer.parseInt(date22)<Integer.parseInt(date11)&&
+				Integer.parseInt(date13)<Integer.parseInt(date12)&& 
+				Integer.parseInt(date15)<Integer.parseInt(date14)) {
+			
+			p=tank.getPoidActuel()-a;
+			
+			tank.setPoidActuel(p);
+			tankRepository.save(tank);
+			OperationTank opt=new OperationTank(currentDateTime);
+			opt.setOperation(operation);
+			opt.setTank(tank);
+			opt.setQteInsereTank(a*-1);
+			operationTankRepository.save(opt);
+			a=0;
+			//operation.getTanks().add(tank);
+		}
+	}
+		
 		
 		
 		if(tank.getPoidActuel()>0 && a>0 && tank.getPoidActuel()<tank.getPoidVide() && a<tank.getPoidVide()  && a<=tank.getPoidActuel()) {
@@ -545,6 +828,11 @@ public class OperationRestController {
 		
 	}
 	
+	
+
+	
+	
+	
 	for(int j=0;j<tankRepository.findAll().size();j++){
 		Tank tank=tankRepository.findAll().get(j);
 		s=tank.getPoidVide()-tank.getPoidActuel();
@@ -561,12 +849,52 @@ public class OperationRestController {
 		operationTankRepository.save(opt);
 		//operation.getTanks().add(tank);
 	}
-	
-	
 	}
 	
 	
 		System.out.println("hahahaha : "+a);
+		
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank tank1=tankRepository.findAll().get(i);
+			if(tank1.getPoidActuel()==tank1.getPoidVide() && a>=tank1.getPoidVide() && a>0) {
+				p=tank1.getPoidActuel();
+				tank1.setPoidActuel(tank1.getPoidVide()-tank1.getPoidActuel());
+				tankRepository.save(tank1);
+				//operation.getTanks().add(tank1);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank1);
+				opt.setQteInsereTank(p*-1);
+				operationTankRepository.save(opt);
+				a=a-tank1.getPoidVide();
+				System.out.println("id tank : "+tank1.getIdTank());
+				System.out.println(" a="+a);	
+			}
+			
+			
+			if(tank1.getPoidActuel()==tank1.getPoidVide() && a<tank1.getPoidVide() && a>0) {
+				
+				tank1.setPoidActuel(tank1.getPoidActuel()-a);
+				tankRepository.save(tank1);
+				//operation.getTanks().add(tank1);
+				OperationTank opt=new OperationTank(currentDateTime);
+				opt.setOperation(operation);
+				opt.setTank(tank1);
+				opt.setQteInsereTank(a*-1);
+				operationTankRepository.save(opt);
+				
+				a=0;
+				System.out.println("id tank : "+tank1.getIdTank());
+				System.out.println(" a="+a);	
+				
+			}
+			
+		}
+		
+		
+		
+		
+		
 
 			for(int i=0;i<tankRepository.findAll().size();i++) {
 				Tank tank1=tankRepository.findAll().get(i);
@@ -613,11 +941,12 @@ public class OperationRestController {
 						Tank tank2=tankRepository.findAll().get(i);
 						
 						if(tank2.getPoidActuel()==tank2.getPoidVide()) {
-						tank2.setEtat("Totalement remplis");
+						tank2.setEtat("Remplis");
 						tankRepository.save(tank2);
 						}
 						else if(tank2.getPoidActuel()==0) {
-							tank2.setEtat("Non remplis");
+							tank2.setEtat("Vide");
+							tank2.setDateIns(null);
 							tankRepository.save(tank2);
 							}
 						else if(tank2.getPoidActuel()<tank2.getPoidVide()) {
@@ -629,7 +958,7 @@ public class OperationRestController {
 					}
 
 		
-    operation.setCode(operation.getCode()+operationRepository.findAll().size());
+   // operation.setCode(operation.getCode()+operationRepository.findAll().size());
 	return operationRepository.save(operation);
 }
 
