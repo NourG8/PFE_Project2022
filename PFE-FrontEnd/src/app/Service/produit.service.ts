@@ -15,6 +15,9 @@ const httpOptions = {
 export class ProduitService {
   baseUrl : string = 'http://localhost:3800/produits';
   baseUrl6 : string = 'http://localhost:3800/nbreP';
+  baseUrl7 : string = 'http://localhost:3800/getProduitsDispo';
+  baseUrl8 : string = 'http://localhost:3800/getSomStock';
+  
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -24,6 +27,15 @@ export class ProduitService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     return this.http.get(`${this.baseUrl6}`,{headers:httpHeaders});
   }
+
+
+  getSomStock(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl8}`,{headers:httpHeaders});
+  }
+
 
 
   getProduits(): Observable<any> {
@@ -39,6 +51,13 @@ export class ProduitService {
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     const url = `${this.baseUrl}/${id}`
     return this.http.get(url,{headers:httpHeaders});
+  }
+
+  getProduitsDispo(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    return this.http.get(`${this.baseUrl7}`,{headers:httpHeaders});
   }
 
   createProduit(f:Produit):Observable<Produit>{

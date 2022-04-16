@@ -16,10 +16,10 @@
                  id="quantite"
                  name="quantite">
   
-                <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
+                <div *ngIf="quantite?.invalid && quantite?.touched && msgErreur==1" class="text-danger">
                   Quantite invalide !
                 </div>
-                <div *ngIf="quantite?.valid && quantite?.touched " class="text-success">
+                <div *ngIf="quantite?.valid && quantite?.touched && msgErreur==0 " class="text-success">
                   Quantite valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">

@@ -112,6 +112,35 @@ export class CreateBonComponent implements OnInit {
 
   onSubmit() {
 
+    if(this.myForm.get('quantite')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+  
+     if(this.myForm.get('prix')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+  
+  
+    if(this.myForm.get('produit')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+  
+     if(this.myForm.get('fournisseur')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+
     this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
       o=>{
       console.log(o.qte);

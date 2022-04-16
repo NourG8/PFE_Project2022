@@ -201,10 +201,22 @@ export class ListeOperationComponent implements OnInit {
     }
 
     onOpenDialogCreate():void{
+      this.tankService.getTanksQteLibre().subscribe(t=>{
+        console.log(t);
+     if(t>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationRemplissageComponent, dialogConfig);
+     }
+     else{
+      this.idContenu = 'TostDangerContenu';
+      this.idTitle = 'TostDangerTile';
+      this.Toast[0] = 'Erreur';
+      this.Toast[1] ='Les tanks sont totalement remplis !! \n Vous ne pouvez pas effectuer cette operation !!';
+      this.showToast();
+     }
+    });
     }
 
     onOpenDialogCreate2():void{

@@ -43,7 +43,7 @@ export class CreateBonSortieComponent implements OnInit {
 
   ngOnInit() {
     //this.ValidatedForm();
-    this.produits=this.produitService.getProduits();
+    this.produits=this.produitService.getProduitsDispo();
     this.fournisseurs=this.fournisseurService.getFournisseurs();
     this.agriculteurs=this.agriculteurService.getagriculteurs();
 
@@ -94,11 +94,28 @@ export class CreateBonSortieComponent implements OnInit {
 
   onSubmit() {
 
+    if(this.myForm.get('quantite')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+  
+  
+    if(this.myForm.get('produit')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+
     this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
       o=>{
       console.log(o.qte);
-      if(this.myForm.get('quantite')?.value<=o.qte )
+      if(this.myForm.get('quantite')?.value<=o.qte ){
       this.save();
+      this.msgErreur=0;
+      }
      else{
      this.msgErreur=1;
      this.qteAct=o.qte;

@@ -32,6 +32,7 @@ public class Agriculteur implements Serializable , UserDetails{
 	private String prenom;
 	private String email;
 	private String adress;
+	private int tel;
 	private int cin;
 	private String username;
 	private String password;
@@ -265,6 +266,16 @@ public class Agriculteur implements Serializable , UserDetails{
 
 	public void setOperations(Set<Operation> operations) {
 		this.operations = operations;
+	}
+
+
+	public int getTel() {
+		return tel;
+	}
+
+
+	public void setTel(int tel) {
+		this.tel = tel;
 	}
 	
 	
