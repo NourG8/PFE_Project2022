@@ -26,9 +26,9 @@ export class CreateBonComponent implements OnInit {
   qteAct=0;
 
   myForm=new  FormGroup({
-      quantite : new FormControl(null,[Validators.required]),
+      quantite : new FormControl(null,[Validators.required,Validators.min(1)]),
       //type : new FormControl(null,[Validators.required ]),
-      prix : new FormControl(null,[Validators.required ]),
+      prix : new FormControl(null,[Validators.required,Validators.min(1)]),
      // agriculteur : new FormControl(null,[Validators.required ]),
       produit : new FormControl(null,[Validators.required ]),
       fournisseur : new FormControl(null,[Validators.required ]),
@@ -85,7 +85,8 @@ export class CreateBonComponent implements OnInit {
     this.msg="";
    }
 
-   if(this.myForm.get('quantite')?.value!=null && this.myForm.get('prix')?.value!=null 
+   if(this.myForm.get('quantite')?.value!=null  && this.myForm.get('prix')?.value!=null 
+   && this.myForm.get('quantite')?.value!=0 && this.myForm.get('prix')?.value!=0
    && this.myForm.get('produit')?.value!=null && this.myForm.get('fournisseur')?.value!=null ){
 
     this.bonService
@@ -101,10 +102,11 @@ export class CreateBonComponent implements OnInit {
 
         })
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.bon);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été ajouté avec succès"]));
-          window.location.reload();
+          // window.location.reload();
+          this.onClose();
         });
       }
     }
@@ -156,9 +158,15 @@ export class CreateBonComponent implements OnInit {
   }
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
  get quantite(){

@@ -37,7 +37,7 @@ export class CreateOperationComponent implements OnInit {
   tabstr!: string[];
   tabint!: number[];
   myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required]),
+      poidsLait : new FormControl(null,[Validators.required ,Validators.min(1)]),
       collecteur : new FormControl(null,[Validators.required ]),
      // dateOperation : new FormControl(null,[Validators.required ]),
     //  typeOp : new FormControl(null,[Validators.required ]),
@@ -95,7 +95,7 @@ export class CreateOperationComponent implements OnInit {
       this.msg="";
      }
 
-    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null ){
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0 ){
     this.operationService.createOperation({
      "poidsLait": this.myForm.get('poidsLait')?.value,
      "collecteur":{
@@ -272,7 +272,7 @@ onSubmit() {
   this.tankService.getTanksQteGenerale().subscribe(
      o=>{
        
-      if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null ){
+      if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0){
     if(this.myForm.get('poidsLait')?.value<=o ){
    this.save()
   this.reLoad()

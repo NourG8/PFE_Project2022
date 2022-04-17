@@ -66,16 +66,18 @@ export class CreateFournisseurComponent implements OnInit {
           this.msg2=0;
          }
 
-     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0){
+     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0
+     && this.myForm.get('nom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
     console.log(this.fournisseur);
     this.fournisseur.idFournisseur = 1;
     this.fournisseurService
         .createFournisseur(this.fournisseur)
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.fournisseur);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été ajouté avec succès"]));
-          window.location.reload();
+          // window.location.reload();
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
@@ -98,15 +100,21 @@ export class CreateFournisseurComponent implements OnInit {
   }
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,]),
-      'matricule' : new FormControl(null,[Validators.required, ]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
       });
  }
 

@@ -8,7 +8,7 @@
         <form [formGroup]="myForm"  novalidate >
           <div class="form-row">
             <div class="form-group col-md-6 mb-3">
-              <label>Intitulé : </label>
+              <label>Intitulé (minimum 3 caracteres): </label>
               <input type="text"
                formControlName="intitule"
                class="form-control"
@@ -30,7 +30,7 @@
             </div>
 
             <div class="col-md-6 mb-3">
-              <label for="type">Libellé :</label>
+              <label for="type">Libellé (minimum 8 caracteres):</label>
               <input type="text"
                class="form-control"
                 id="libelle"

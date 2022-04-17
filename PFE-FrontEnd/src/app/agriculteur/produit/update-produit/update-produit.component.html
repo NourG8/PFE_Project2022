@@ -7,7 +7,7 @@
     </div><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Intitulé :</label>
+        <label>Intitulé (minimum 3 caracteres): </label>
         <input type="text"
                class="form-control"
                formControlName="intitule"
@@ -27,7 +27,7 @@
       </div>
   
       <div class="lg mb-3">
-        <label>Libellé :</label>
+        <label for="type">Libellé (minimum 8 caracteres):</label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="libelle"

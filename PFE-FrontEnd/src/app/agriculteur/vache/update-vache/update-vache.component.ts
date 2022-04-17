@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Vache } from 'src/app/Models/vache';
+import { Router } from '@angular/router';
 import { VacheService } from 'src/app/Service/vache.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class UpdateVacheComponent implements OnInit {
   CheckesCompetance:boolean=false;
 
   constructor(
+    private router: Router,
     private dialogClose: MatDialog,
     private vacheService:VacheService,
   ) { }
@@ -35,8 +37,9 @@ export class UpdateVacheComponent implements OnInit {
         .updateVache(this.vache.idVache,this.vache)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Vache a été modifié avec succès"]));
-          window.location.reload();
+          // window.location.reload();
           console.log(this.vache);
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
@@ -47,7 +50,7 @@ export class UpdateVacheComponent implements OnInit {
   ValidatedForm(){
     this.myForm = new FormGroup({
       'matricule' : new FormControl(null,[Validators.required,]),
-      'poids' : new FormControl(null,[Validators.required,]),
+      'poids' : new FormControl(null,[Validators.required, Validators.min(30)]),
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
       'etat' : new FormControl(null,[Validators.required, ]),
@@ -80,9 +83,15 @@ get matricule(){
 }
 
 
+onReload(){
+  this.router.navigate([this.router.url]);
+}
 
-  onClose() {
-    this.dialogClose.closeAll();
-  }
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
 }

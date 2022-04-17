@@ -58,13 +58,14 @@ export class CreateTankComponent implements OnInit {
         this.msg1=0;
        }
 
-     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null && t==0){
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null && t==0 && this.myForm.get('poidVide')?.value>=30 ){
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été ajouté avec succès"]));  
-          window.location.reload();
+          // window.location.reload();
           console.log(this.tank);
+          this.onClose();
         }); 
     }
   });
@@ -80,16 +81,21 @@ export class CreateTankComponent implements OnInit {
     this.router.navigate(['agriculteur/tank/listeTank']);
   }
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
 
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'matricule' : new FormControl(null,[Validators.required,]),
-      'poidVide' : new FormControl(null,[Validators.required,]),
+      'matricule' : new FormControl(null,[Validators.required]),
+      'poidVide' : new FormControl(null,[Validators.required,Validators.min(30)]),
       });
  }
 
