@@ -58,7 +58,8 @@ export class CreateTankComponent implements OnInit {
         this.msg1=0;
        }
 
-     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null && t==0 && this.myForm.get('poidVide')?.value>=30 ){
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null 
+     && t==0 && this.myForm.get('poidVide')?.value>=30 && this.myForm.get('matricule')?.value.length>=8){
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
@@ -94,7 +95,7 @@ export class CreateTankComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'matricule' : new FormControl(null,[Validators.required]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'poidVide' : new FormControl(null,[Validators.required,Validators.min(30)]),
       });
  }

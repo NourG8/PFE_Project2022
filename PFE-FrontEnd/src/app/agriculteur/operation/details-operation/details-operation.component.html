@@ -53,25 +53,25 @@
   
                   <div class="text-uppercase fs-08">
                     <span id="titre">Poids Lait (Kg) : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{operation.poidsLait}} Kg </span> </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{operation.poidsLait}} Kg </span> </span>
                   </div>
 
                    <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
                     <span id="titre">Code operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
-                    <span id="titre">Code operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.collecteur.nomCollecteur}}</span>
+                    <span id="titre">Nom du collecteur:</span>
+                    <span  id="titre">{{operation.collecteur.nomCollecteur}}</span>
                   </div>
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Type operation : </span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;{{operation.typeOp}}</span>
+                      <span id="titre">Type operation:</span>
+                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.typeOp}}</span>
                     </div> 
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Date operation : </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{operation.dateOperation}}</span>
+                      <span id="titre">Date operation:</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{operation.dateOperation}}</span>
                     </div>                   
                 </div>
             </div>

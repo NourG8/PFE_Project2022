@@ -95,12 +95,15 @@ export class CreateOperationComponent implements OnInit {
       this.msg="";
      }
 
+
+
     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0 ){
     this.operationService.createOperation({
      "poidsLait": this.myForm.get('poidsLait')?.value,
      "collecteur":{
       "idCollecteur":this.myForm.get('collecteur')?.value,  
    },
+   "code":this.som,
    },
          ).subscribe(  async o=>{   
             this.collecteurService.getCollecteur(this.myForm.get('collecteur')?.value).subscribe(
