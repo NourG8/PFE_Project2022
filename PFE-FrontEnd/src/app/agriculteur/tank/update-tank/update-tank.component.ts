@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Tank } from 'src/app/Models/tank';
 import { TankService } from 'src/app/Service/tank.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-tank',
@@ -15,6 +16,7 @@ export class UpdateTankComponent implements OnInit {
   CheckesCompetance:boolean=false;
 
   constructor(
+    private router: Router,
     private dialogClose: MatDialog,
     private tankService:TankService,
 
@@ -32,24 +34,26 @@ export class UpdateTankComponent implements OnInit {
   }
 
   updateTank(){
-
+    if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null && this.myForm.get('poidVide')?.value>=30 ){
     this.tankService
         .updateTank(this.tank.idTank,this.tank)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Tank modifié avec succes ! "]));
-          window.location.reload();
+          // window.location.reload();
           console.log(this.tank);
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
         }
       );
+    }
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'poidVide' : new FormControl(null,[Validators.required,]),
-      'matricule' : new FormControl(null,[Validators.required, ]),
+      'matricule' : new FormControl(null,[Validators.required]),
+      'poidVide' : new FormControl(null,[Validators.required,Validators.min(30)]),
       });
  }
 
@@ -63,8 +67,15 @@ get matricule(){
 }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-  }
+onReload(){
+  this.router.navigate([this.router.url]);
+}
+
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
 }

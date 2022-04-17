@@ -68,15 +68,17 @@ export class CreateProduitComponent implements OnInit {
          }
 
      
-     if(this.myForm.get('intitule')?.value!=null && this.myForm.get('libelle')?.value!=null && t==0 && l==0){
+     if(this.myForm.get('intitule')?.value!=null && this.myForm.get('libelle')?.value!=null && t==0 && l==0
+     && this.myForm.get('intitule')?.value.length>=3 && this.myForm.get('libelle')?.value.length>=8 ){
     console.log(this.produit);
     this.produit.idProduit = 1;
     this.produitService
         .createProduit(this.produit)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un produit a été ajouté avec succès"]));   
-          window.location.reload();
+          // window.location.reload();
           console.log(this.produit);
+          this.onClose();
         });
     }
   });
@@ -94,16 +96,21 @@ export class CreateProduitComponent implements OnInit {
     this.router.navigate(['agriculteur/produit/listeProduit']);
   }
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
 
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'intitule' : new FormControl(null,[Validators.required,]),
-      'libelle' : new FormControl(null,[Validators.required, ]),
+      'intitule' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'libelle' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
       });
  }
 

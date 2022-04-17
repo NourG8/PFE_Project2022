@@ -35,6 +35,7 @@ agriculteurs!:Observable<Agriculteur[]>;
 fournisseurs!:Observable<Fournisseur[]>;
 
   constructor(
+    private router:Router,
     private dialogClose: MatDialog,
     private bonService:BonService,
     private produitService:ProduitService,
@@ -77,12 +78,14 @@ fournisseurs!:Observable<Fournisseur[]>;
           console.log(this.myForm.get('quantite')?.value);
           console.log(this.bon.quantite);
           console.log(this.bon.produit.qte);
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
         }
       );
   }
+  
 
  get quantite(){
   return this.myForm.get('quantite') ;
@@ -99,8 +102,14 @@ get prix(){
 }
 
 
-  onClose() {
-    this.dialogClose.closeAll();
-  }
+onReload(){
+  this.router.navigate([this.router.url]);
+}
 
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 }

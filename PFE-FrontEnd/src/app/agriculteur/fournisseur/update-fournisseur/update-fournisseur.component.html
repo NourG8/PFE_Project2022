@@ -7,11 +7,12 @@
     </div><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Nom :</label>
+        <label>Nom (minimum 3 caracteres) :</label>
         <input type="text"
                class="form-control"
                formControlName="nom"
                name="nom"
+               minlength="3"
                [(ngModel)]="fournisseur.nom"
                placeholder="Post Name here ..">
           <div
@@ -27,10 +28,11 @@
       </div>
   
       <div class="lg mb-3">
-        <label>Matricule :</label>
+        <label>Matricule (minimum 8 caracteres) :</label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="matricule"
+                  minlength="8"
                   formControlName="matricule"
                   [(ngModel)]="fournisseur.matricule"
                   >

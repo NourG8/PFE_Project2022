@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Creer une operation de remplissage :</b></h3>
+      <h4 id="modal-title"><b>Créer une operation de remplissage :</b></h4>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -8,7 +8,7 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="col-md-12 mb-3">
-                <label>Poids Lait : </label>
+                <label>Poids Lait (Kg) : </label>
                 <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
@@ -22,7 +22,7 @@
                   Poids valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">
-                  Vous ne pouvez pas inserer cette quantite dans les tanks ,car la quantite disponible que tu peut l'inserer est : {{qteRsetLait}} !!
+                  Vous devez inserer une quantite comprise entre 0 et {{qteRsetLait}} !!<br> NB : La quantite disponible dans les tanks est {{qteRsetLait}}
                 </div>
 
               </div>

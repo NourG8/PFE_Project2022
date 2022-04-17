@@ -68,38 +68,39 @@
               <div class=" pb-5 pt-3">
 
                 <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
-                  <span id="titre"> Prix : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{bon.prix}}</span>
+                  <span id="titre"> Prix (dt) : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
                 </div>
 
                 <div class="text-uppercase fs-08">
-                  <span id="titre"> Quantite : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;{{bon.quantite}}</span>
+                  <span id="titre"> Quantite (Kg) : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}  Kg</span></span>
                 </div>
                   <div class="text-uppercase fs-08">
                     <span id="titre"> Type (Entree/Sortie) :</span>
                     <span id="titre">{{bon.type}}</span>
                   </div>
 
-                  <div class="text-uppercase fs-08">
-                    <span id="titre"> Date du bon: </span>
-                    <span> {{bon.date}}</span>
-                  </div>
+                 
                   <div class="text-uppercase fs-08">
                     <span id="titre">Intitulé produit : </span>
-                    <span> {{bon.produit.intitule}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">Nom de l'agriculteur :</span>
-                    <span> {{bon.agriculteur.nom}}</span>
+                    <span>{{bon.agriculteur.nom}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08"  *ngIf="bon.type=='Entree'">
                     <span id="titre">Nom du fournisseur : </span>
-                    <span> {{bon.fournisseur.nom}}</span>
+                    <span>{{bon.fournisseur.nom}}</span>
                   </div>
 
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> Date du bon : </span>
+                    <span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
+                  </div>
                
                   
               </div>

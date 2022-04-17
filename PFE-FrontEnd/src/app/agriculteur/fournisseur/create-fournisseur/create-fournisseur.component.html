@@ -8,10 +8,11 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom : </label>
+                <label>Nom (minimum 3 caracteres) : </label>
                 <input type="text"
                  formControlName="nom"
                  class="form-control"
+                 minlength="3"
                  id="nom"
                  [(ngModel)]="fournisseur.nom"
                  name="nom">
@@ -27,11 +28,12 @@
                 </div>
               </div>
   
-              <div class="col-md-6 mb-3">
-                <label for="type">Matricule :</label>
+              <div class="form-group col-md-6 mb-3">
+                <label for="type">Matricule(min 8 caracteres) :</label>
                 <input type="text"
                  class="form-control"
                   id="matricule"
+                  minlength="8"
                   formControlName="matricule"
                   [(ngModel)]="fournisseur.matricule"
                   name="matricule">

@@ -34,7 +34,7 @@
   <div class="col-md-12" id="card-Table">
     <div class="card">
       <div class="card-header card-header-danger" id="title-Table">
-        <h3 class="card-title" id="titre">Table pour les bons (Entrée/Sortie)</h3><br>
+        <h3 class="card-title" id="titre">Table pour les bons de sorties</h3><br>
       </div>
       <div class="card-body">
         <div class="table-responsive">
@@ -45,7 +45,7 @@
               <td mat-cell *matCellDef="let element" style="padding-right:-10px;text-align:center;">{{element.idBon}} </td>
             </ng-container>
             <ng-container matColumnDef="quantite">
-              <th mat-sort-header mat-header-cell *matHeaderCellDef >&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Quantite</th>
+              <th mat-sort-header mat-header-cell *matHeaderCellDef >&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Quantite (Kg)</th>
               <td mat-cell *matCellDef="let element" style="padding-right:-90px;text-align:center;">{{element.quantite}}</td>
             </ng-container>
             <ng-container matColumnDef="type">
@@ -54,7 +54,7 @@
             </ng-container>
 
             <ng-container matColumnDef="produit">
-              <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; Intitule</th>
+              <th mat-sort-header mat-header-cell *matHeaderCellDef> &nbsp; Intitule du produit</th>
               <td id="alignement"mat-cell *matCellDef="let element" > {{element.produit.intitule}} </td>
             </ng-container>
 

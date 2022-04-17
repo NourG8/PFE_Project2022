@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-update-fournisseur',
@@ -16,6 +17,7 @@ export class UpdateFournisseurComponent implements OnInit {
   CheckesCompetance:boolean=false;
 
   constructor(
+    private router: Router,
     private dialogClose: MatDialog,
     private fournisseurService:FournisseurService,
 
@@ -33,23 +35,27 @@ export class UpdateFournisseurComponent implements OnInit {
 
   updateFournisseur(){
 
+    if(this.myForm.get('nom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
     this.fournisseurService
         .updateFournisseur(this.fournisseur.idFournisseur,this.fournisseur)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été modifié avec succes "]));
-          window.location.reload();
+          // window.location.reload();
           console.log(this.fournisseur);
+          this.onClose();
+     
         },
         (error) => {
           console.log("Failed")
         }
       );
+    }
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,]),
-      'matricule' : new FormControl(null,[Validators.required, ]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
  
       });
  }
@@ -63,8 +69,16 @@ get matricule(){
   return this.myForm.get('matricule') ;
 }
 
-  onClose() {
-    this.dialogClose.closeAll();
-  }
+
+onReload(){
+  this.router.navigate([this.router.url]);
+}
+
+
+onClose() {
+  this.dialogClose.closeAll();
+  // this.gotoList();
+  this.onReload();
+}
 
 }
