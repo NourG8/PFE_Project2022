@@ -4,22 +4,23 @@
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-12 mb-3">
 
-                <label>Poids Lait (Kg): </label>
+                <label>Poids Lait (Kg): <span style="color:red;">*</span></label>
                 <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
                  id="poidsLait"
                  name="poidsLait">
     
-                <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
+                <div *ngIf="poidsLait?.invalid && poidsLait?.touched&& msgErreur==1" class="text-danger">
                   Poids invalide !
                 </div>
-                <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
+                <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0" class="text-success">
                   Poids valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">

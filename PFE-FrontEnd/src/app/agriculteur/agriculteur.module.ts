@@ -13,7 +13,9 @@ import { AgriculteurRoutingModule } from './agriculteur-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale'
+import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale';
+import { CollecteurComponent } from './collecteur/collecteur.component';
+
 
 
 
@@ -28,7 +30,8 @@ import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale'
     BonComponent,
     ProduitComponent,
     FournisseurComponent,
-    DashboardComponent
+    DashboardComponent,
+    CollecteurComponent,
   ],
   imports: [
     CommonModule,

@@ -88,7 +88,7 @@ export class CreateVacheComponent implements OnInit {
 
      if(this.myForm.get('qte_prodLait')?.value!=null && this.myForm.get('matricule')?.value!=null &&this.myForm.get('race')?.value!=null &&
       this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null && l==0
-      && this.myForm.get('qte_prodLait')?.value>0 && this.myForm.get('poids')?.value>0){
+      && this.myForm.get('qte_prodLait')?.value>0 && this.myForm.get('poids')?.value>=30){
     console.log(this.vache);
     this.vache.idVache = 1;
     this.vacheService

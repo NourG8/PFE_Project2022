@@ -1,7 +1,7 @@
 <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4 " style="position: fixed !important;">
-  
+
     <!-- Brand Logo -->
     <a class="brand-link">
       <img src="assets/logo_ag2.png" alt="RMS Logo" class="image-responsive img-circle elevation-1" style="margin-left: -13px">
@@ -10,14 +10,14 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-  
+
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="info" style="margin-left:20px" >
+        <div class="info" style="margin-left:11px" >
           <a  class="d-block" style="margin-left:2px;color:white; font-weight: bold;" > <i style="color:red;" class="fas fa-heart fa-lg fa-spin"></i>&nbsp; Bienvenu(e) {{authService.loggedUser}}</a>
         </div>
       </div>
 
-      <div class="form-inline">
+      <!-- <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
           <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
@@ -26,8 +26,8 @@
             </button>
           </div>
         </div>
-      </div>
-  
+      </div> -->
+
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -42,11 +42,18 @@
           <!-- Partie Profil lel Les employee lkol -->
           <li class="nav-item">
             <a routerLink="fournisseur/listeFournisseur" class="nav-link" routerLinkActive="active">
-              <i class="nav-icon fas fa-user-friends"></i>
+              <i class="nav-icon fas fa-people-carry "></i>
               <p>Gestion fournisseurs</p>
             </a>
           </li>
-         
+          
+          <li class="nav-item">
+            <a routerLink="collecteur/listeCollecteur" class="nav-link">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>Gestion des collecteurs </p>
+            </a>
+          </li>
+
           <!-- Partie Job Offers lel Admin w recruteur -->
           <li class="nav-item">
             <a routerLink="produit/listeProduit" class="nav-link ">
@@ -66,7 +73,7 @@
           <li class="nav-item">
             <a routerLink="vache/listeVache" class="nav-link ">
               <i class="nav-icon fas fa-hippo"></i>
-            
+
               <p>Gestion des vaches</p>
             </a>
           </li>
@@ -88,7 +95,7 @@
               </p>
             </a>
           </li>
-  
+
 
           <li class="nav-item">
             <a  routerLink="operation/listeOperation" class="nav-link ">
@@ -110,15 +117,10 @@
               <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sur les tanks </p>
             </a>
           </li>
-         
-<!-- 
-          <li class="nav-item">
-            <a routerLink="operation/operationPage" class="nav-link">
-              <i class="nav-icon fas fa-clipboard-list"></i>
-              <p>Page operations </p>
-            </a>
-          </li> -->
-  
+
+
+       
+
           <!-- <li class="nav-header">Schedule</li> -->
           <!-- Partie Calendar lel Les employee lkol -->
           <!-- <li class="nav-item">
@@ -136,6 +138,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-  
-  
-  
+
+

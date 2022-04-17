@@ -77,9 +77,12 @@ public class FournisseurRestController {
 	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteFournisseur(@PathVariable Integer idFournisseur) {
+		
+		
 		Optional<Fournisseur> f = fournisseurRepository.findById(idFournisseur);
 				if (f.isPresent()) { 
-					fournisseurRepository.deleteById(idFournisseur);
+//					fournisseurRepository.deleteById(idFournisseur);
+					fournisseurRepository.deleteFournisseur(idFournisseur);
 		    }else throw new RuntimeException("Fournisseur introuvable ! vous ne pouvez pas le supprimer !!");
 	}
 	
