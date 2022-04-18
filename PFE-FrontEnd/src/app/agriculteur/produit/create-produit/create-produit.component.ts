@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-produit',
@@ -20,6 +21,7 @@ export class CreateProduitComponent implements OnInit {
   msg2=0;
 
   constructor(private produitService: ProduitService,
+    private location:Location,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -97,7 +99,10 @@ export class CreateProduitComponent implements OnInit {
   }
 
   onReload(){
-    this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+   this.router.navigateByUrl("/'agriculteur/bon/listeProduit",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
   }
 
 

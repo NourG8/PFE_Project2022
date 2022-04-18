@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-collecteur',
@@ -20,6 +21,7 @@ export class CreateCollecteurComponent implements OnInit {
   msg2=0;
 
   constructor(private collecteurService: CollecteurService,
+    private location:Location,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -109,7 +111,10 @@ export class CreateCollecteurComponent implements OnInit {
 
 
   onReload(){
-    this.router.navigate([this.router.url]);
+      // this.router.navigate([this.router.url]);
+      this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
   }
 
 

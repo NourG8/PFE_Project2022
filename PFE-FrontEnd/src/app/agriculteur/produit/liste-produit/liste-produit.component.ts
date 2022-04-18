@@ -9,6 +9,7 @@ import { ProduitService } from 'src/app/Service/produit.service';
 import { CreateProduitComponent } from '../create-produit/create-produit.component';
 import { DetailsProduitComponent } from '../details-produit/details-produit.component';
 import { UpdateProduitComponent } from '../update-produit/update-produit.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-produit',
@@ -34,6 +35,7 @@ export class ListeProduitComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idProduit','intitule', 'libelle','qte','action'];
   constructor(private produitService: ProduitService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -101,7 +103,10 @@ export class ListeProduitComponent implements OnInit {
 
 
   onReload(){
-    this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+       this.router.navigateByUrl("/'agriculteur/bon/listeProduit",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
   }
 
 

@@ -10,6 +10,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
+    // path: 'agriculteur', component: AgriculteurComponent},
     path: '', component: AgriculteurComponent, children: [
       { path: 'bon',loadChildren: () => import('./bon/bon.module').then(m => m.BonModule)},
       { path: 'operation', loadChildren: () => import('./operation/operation.module').then(m => m.OperationModule) },

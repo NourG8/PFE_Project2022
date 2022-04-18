@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Vache } from 'src/app/Models/vache';
 import { VacheService } from 'src/app/Service/vache.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-vache',
@@ -17,6 +18,7 @@ export class CreateVacheComponent implements OnInit {
   msg="";
   msg2=0;
   constructor(private vacheService: VacheService,
+    private location:Location,
     private router: Router, private dialogClose: MatDialog,) { }
     
 
@@ -115,8 +117,11 @@ export class CreateVacheComponent implements OnInit {
   }
 
   onReload(){
-    this.router.navigate([this.router.url]);
-  }
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeVache",{skipLocationChange: true}).then( response=> {
+     this.router.navigate([decodeURI(this.location.path())]);
+   })
+   }
 
 
   onClose() {

@@ -10,6 +10,7 @@ import { UpdateBonComponent } from '../update-bon/update-bon.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateBonComponent } from '../create-bon/create-bon.component';
 import { DatailsBonComponent} from '../datails-bon/datails-bon.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-bon',
@@ -34,7 +35,7 @@ export class ListeBonComponent implements OnInit {
   displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','agriculteur','fournisseur','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
   constructor(private bonService: BonService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private location:Location, private dialog:MatDialog) { }
 
 
     ngOnInit() {
@@ -89,7 +90,10 @@ export class ListeBonComponent implements OnInit {
   
 
   onReload(){
-    this.router.navigate([this.router.url]);
+     // this.router.navigate([this.router.url]);
+     this.router.navigateByUrl("/'agriculteur/bon/listeBon",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
 
 

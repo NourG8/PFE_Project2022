@@ -10,6 +10,7 @@ import { TankService } from 'src/app/Service/tank.service';
 import  {LaitService } from 'src/app/Service/lait.service';
 import  {CollecteurService } from 'src/app/Service/collecteur.service';
 import { Collecteur } from 'src/app/Models/collecteur';
+import {Location} from "@angular/common";
 
 
 import { ethers } from 'ethers';
@@ -49,6 +50,7 @@ export class CreateOperationComponent implements OnInit {
   tanks!:Observable<Tank[]>;
   collecteurs!:Observable<Collecteur[]>;
   constructor(
+    private location:Location,
     private operationService: OperationService,
     private tankService:TankService,
     private laitService:LaitService,
@@ -136,8 +138,8 @@ export class CreateOperationComponent implements OnInit {
 
            localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
            //  window.location.reload(); 
-           this.onClose(); 
 
+           this.onClose(); 
           
        //   console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0],this.tab[5],this.tab[6],this.tab[7]);
        },
@@ -301,8 +303,8 @@ onSubmit() {
       if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0){
     if(this.myForm.get('poidsLait')?.value<=o ){
    this.save()
-  this.reLoad()
-  this.onClose()
+  // this.gotoList()
+   this.onClose()
     this.saveInBc()
     this.msgErreur=0;
     }
@@ -322,7 +324,10 @@ onSubmit() {
 
 
    onReload(){
-    this.router.navigate([this.router.url]);
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
   
   
@@ -330,6 +335,12 @@ onSubmit() {
     this.dialogClose.closeAll();
     // this.gotoList();
     this.onReload();
+  }
+
+  refresh(){
+    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then(response => {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
 
  get poidsLait(){

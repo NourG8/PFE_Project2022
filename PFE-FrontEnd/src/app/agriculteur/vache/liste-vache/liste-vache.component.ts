@@ -9,6 +9,7 @@ import { VacheService } from 'src/app/Service/vache.service';
 import { CreateVacheComponent } from '../create-vache/create-vache.component';
 import { DetailsVacheComponent } from '../details-vache/details-vache.component';
 import { UpdateVacheComponent } from '../update-vache/update-vache.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-vache',
@@ -33,6 +34,7 @@ export class ListeVacheComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idVache','matricule','poids','etat', 'race', 'dateNaissance','qte_prodLait','action'];
   constructor(private vacheService: VacheService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -85,8 +87,11 @@ export class ListeVacheComponent implements OnInit {
   }
   
   onReload(){
-    this.router.navigate([this.router.url]);
-  }
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeVache",{skipLocationChange: true}).then( response=> {
+     this.router.navigate([decodeURI(this.location.path())]);
+   })
+   }
 
 
   onClose() {

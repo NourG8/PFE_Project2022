@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-fournisseur',
@@ -20,6 +21,7 @@ export class CreateFournisseurComponent implements OnInit {
   msg2=0;
 
   constructor(private fournisseurService: FournisseurService,
+    private location:Location,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
@@ -101,7 +103,10 @@ export class CreateFournisseurComponent implements OnInit {
 
 
   onReload(){
-    this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+   this.router.navigateByUrl("/'agriculteur/bon/listeFournisseur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
   }
 
 

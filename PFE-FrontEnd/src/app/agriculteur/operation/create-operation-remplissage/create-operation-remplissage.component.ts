@@ -9,6 +9,7 @@ import {Lait } from 'src/app/Models/lait';
 import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
 import  {LaitService } from 'src/app/Service/lait.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-operation-remplissage',
@@ -42,6 +43,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
   tanks!:Observable<Tank[]>;
 
   constructor(
+    private location:Location,
     private operationService: OperationService,
     private tankService:TankService,
     private laitService:LaitService,
@@ -119,7 +121,10 @@ export class CreateOperationRemplissageComponent implements OnInit {
 
 
   onReload(){
-    this.router.navigate([this.router.url]);
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/operation/listeOperation",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
 
 

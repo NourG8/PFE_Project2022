@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
 import { Router } from '@angular/router';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-produit',
@@ -18,6 +19,7 @@ export class UpdateProduitComponent implements OnInit {
   constructor(
     private router: Router,
     private dialogClose: MatDialog,
+    private location:Location,
     private produitService:ProduitService,
 
 
@@ -69,7 +71,10 @@ get libelle(){
 }
 
 onReload(){
-  this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+       this.router.navigateByUrl("/'agriculteur/bon/listeProduit",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
 }
 
 

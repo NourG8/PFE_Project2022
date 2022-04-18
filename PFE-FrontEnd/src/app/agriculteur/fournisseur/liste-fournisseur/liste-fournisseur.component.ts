@@ -9,6 +9,7 @@ import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { CreateFournisseurComponent } from '../create-fournisseur/create-fournisseur.component';
 import { DetailsFournissseurComponent } from '../details-fournissseur/details-fournissseur.component';
 import { UpdateFournisseurComponent } from '../update-fournisseur/update-fournisseur.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-fournisseur',
@@ -33,6 +34,7 @@ export class ListeFournisseurComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idFournisseur','nom', 'matricule','action'];
   constructor(private fournisseurService: FournisseurService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -111,7 +113,10 @@ export class ListeFournisseurComponent implements OnInit {
     }
   
     onReload(){
-      this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+       this.router.navigateByUrl("/'agriculteur/bon/listeFournisseur",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
     }
     
     

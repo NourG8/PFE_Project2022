@@ -11,6 +11,7 @@ import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { Fournisseur } from 'src/app/Models/fournisseur';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-create-bon',
@@ -39,7 +40,7 @@ export class CreateBonComponent implements OnInit {
   fournisseurs!:Observable<Fournisseur[]>;
 
   constructor(private bonService: BonService, private produitService:ProduitService,private agriculteurService:AgriculteurService,
-    private fournisseurService:FournisseurService, private router: Router, private dialogClose: MatDialog,) { }
+    private location:Location,private fournisseurService:FournisseurService, private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
     //this.ValidatedForm();
@@ -159,7 +160,10 @@ export class CreateBonComponent implements OnInit {
 
 
   onReload(){
-    this.router.navigate([this.router.url]);
+     // this.router.navigate([this.router.url]);
+     this.router.navigateByUrl("/'agriculteur/bon/listeBon",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
 
 
