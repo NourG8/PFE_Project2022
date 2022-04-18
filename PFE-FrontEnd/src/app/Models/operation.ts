@@ -12,7 +12,8 @@ export class Operation{
     code!:number;
     tank!:Tank;
     collecteur!:Collecteur;
-    sender!:string;
+    agriculteur!:Agriculteur;
+   // sender!:string;
     lait!:Lait;
     
   }
