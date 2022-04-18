@@ -10,7 +10,7 @@
           <div class="form-row">
 
             <div class="form-group col-md-6 mb-3">
-              <label>Matricule : <span style="color:red;">*</span></label>
+              <label>Matricule (min 8 caracteres) : <span style="color:red;">*</span></label>
               <input type="text"
                formControlName="matricule"
                class="form-control"
@@ -33,7 +33,7 @@
 
 
             <div class="form-group col-md-6 mb-3">
-              <label>Poids: (minimum 30kg) : <span style="color:red;">*</span></label>
+              <label>Poids (minimum 30kg) : <span style="color:red;">*</span></label>
               <input type="number"
                formControlName="poids"
                class="form-control"
@@ -146,25 +146,6 @@
              </div>
           </div>
 
-            <div class="col-md-12 mb-3">
-              <label for="prix">Quantité production laits (Litres): <span style="color:red;">*</span></label>
-              <input type="number"
-               class="form-control"
-                 id="qte_prodLait"
-                formControlName="qte_prodLait"
-                required
-                [(ngModel)]="vache.qte_prodLait"
-                name="qte_prodLait">
-  
-                <div *ngIf="qte_prodLait?.invalid && qte_prodLait?.touched" class="text-danger">
-                 Quantité invalide ! 
-                </div>
-                <div *ngIf="qte_prodLait?.valid && qte_prodLait?.touched" class="text-success">
-                  Quantité Valide
-                </div>
-  
-            </div>
-  
           </div>
 
 

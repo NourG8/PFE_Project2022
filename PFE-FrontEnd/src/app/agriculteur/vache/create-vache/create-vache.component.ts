@@ -88,9 +88,9 @@ export class CreateVacheComponent implements OnInit {
        }
 
 
-     if(this.myForm.get('qte_prodLait')?.value!=null && this.myForm.get('matricule')?.value!=null &&this.myForm.get('race')?.value!=null &&
+     if( this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8 &&this.myForm.get('race')?.value!=null &&
       this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null && l==0
-      && this.myForm.get('qte_prodLait')?.value>0 && this.myForm.get('poids')?.value>=30){
+      && this.myForm.get('poids')?.value>=30){
     console.log(this.vache);
     this.vache.idVache = 1;
     this.vacheService
@@ -132,12 +132,11 @@ export class CreateVacheComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'matricule' : new FormControl(null,[Validators.required,]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'poids' : new FormControl(null,[Validators.required, Validators.min(30)]),
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
       'etat' : new FormControl(null,[Validators.required, ]),
-      'qte_prodLait' : new FormControl(null,[Validators.required, ]),
       });
  }
 

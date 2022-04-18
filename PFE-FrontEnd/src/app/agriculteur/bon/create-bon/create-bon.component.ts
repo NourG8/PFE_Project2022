@@ -88,7 +88,8 @@ export class CreateBonComponent implements OnInit {
 
    if(this.myForm.get('quantite')?.value!=null  && this.myForm.get('prix')?.value!=null 
    && this.myForm.get('quantite')?.value!=0 && this.myForm.get('prix')?.value!=0
-   && this.myForm.get('produit')?.value!=null && this.myForm.get('fournisseur')?.value!=null ){
+   && this.myForm.get('produit')?.value!=null && this.myForm.get('fournisseur')?.value!=null 
+   && this.myForm.get('quantite')?.value>0 && this.myForm.get('prix')?.value>0){
 
     this.bonService
         .createBon({
