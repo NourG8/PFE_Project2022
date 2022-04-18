@@ -56,7 +56,7 @@ export class UpdateVacheComponent implements OnInit {
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
       'etat' : new FormControl(null,[Validators.required, ]),
-      'qte_prodLait' : new FormControl(null,[Validators.required, ]),
+      // 'qte_prodLait' : new FormControl(null,[Validators.required, ]),
       });
  }
 

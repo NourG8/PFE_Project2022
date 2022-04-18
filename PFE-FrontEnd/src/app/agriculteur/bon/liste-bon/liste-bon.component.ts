@@ -69,15 +69,24 @@ export class ListeBonComponent implements OnInit {
    
 
     deleteBon(id:number){
+      this.bonService.getBon(id).subscribe(b=>{
+        console.log(b.produit);
+        console.log(b);
+        console.log(b.produit.idProduit);
+       
+   
+     if( b.quantite<=b.produit.qte){
       let confirmation =confirm("Êtes-vous sûr de supprimer ??")
       if(confirmation)
       this.bonService.deleteBon(id).subscribe(()=>{
         this.Toast[0] = 'Success';
         this.Toast[1] ='Bon a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
+
         // window.location.reload();
-        this.onClose();
+       this.onClose();
       },
+   
       (error) => {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
@@ -86,6 +95,15 @@ export class ListeBonComponent implements OnInit {
         this.showToast();
       }
     );
+  }
+  else {
+    this.idContenu = 'TostDangerContenu';
+    this.idTitle = 'TostDangerTile';
+    this.Toast[0] = 'Failed';
+    this.Toast[1] ='Vous avez deja utiliser la quantite du produit affectees a cette operation !!';
+    this.showToast();
+  }
+  });
   }
   
 
