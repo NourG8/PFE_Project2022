@@ -4,14 +4,16 @@
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Nom :</label>
+        <label>Nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                formControlName="nom"
                name="nom"
+               minlength="3"
                [(ngModel)]="fournisseur.nom"
                placeholder="Post Name here ..">
           <div
@@ -27,10 +29,11 @@
       </div>
   
       <div class="lg mb-3">
-        <label>Matricule :</label>
+        <label>Matricule (minimum 8 caracteres) : <span style="color:red;">*</span></label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="matricule"
+                  minlength="8"
                   formControlName="matricule"
                   [(ngModel)]="fournisseur.matricule"
                   >

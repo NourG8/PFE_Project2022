@@ -26,11 +26,11 @@ export class CreateBonSortieComponent implements OnInit {
   qteAct=0;
 
   myForm=new  FormGroup({
-      quantite : new FormControl(null,[Validators.required]),
+      quantite : new FormControl(null,[Validators.required,Validators.min(1)]),
       //type : new FormControl(null,[Validators.required ]),
       // prix : new FormControl(null,[Validators.required ]),
      // agriculteur : new FormControl(null,[Validators.required ]),
-      produit : new FormControl(null,[Validators.required ]),
+      produit : new FormControl(null,[Validators.required ,Validators.min(1)]),
       // fournisseur : new FormControl(null,[Validators.required ]),
 
   })
@@ -43,7 +43,7 @@ export class CreateBonSortieComponent implements OnInit {
 
   ngOnInit() {
     //this.ValidatedForm();
-    this.produits=this.produitService.getProduits();
+    this.produits=this.produitService.getProduitsDispo();
     this.fournisseurs=this.fournisseurService.getFournisseurs();
     this.agriculteurs=this.agriculteurService.getagriculteurs();
 
@@ -72,7 +72,8 @@ export class CreateBonSortieComponent implements OnInit {
    }
 
 
-   if(this.myForm.get('quantite')?.value!=null && this.myForm.get('produit')?.value!=null ){
+   if(this.myForm.get('quantite')?.value!=null && this.myForm.get('produit')?.value!=null
+   && this.myForm.get('quantite')?.value!=0 && this.myForm.get('produit')?.value!=0 ){
 
     this.bonService
         .createBonSortie({
@@ -83,10 +84,11 @@ export class CreateBonSortieComponent implements OnInit {
 
         })
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.bon);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été ajouté avec succès"]));
-          window.location.reload();
+          // window.location.reload();
+          this.onClose();
         });
       }
     }
@@ -94,11 +96,28 @@ export class CreateBonSortieComponent implements OnInit {
 
   onSubmit() {
 
+    if(this.myForm.get('quantite')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+  
+  
+    if(this.myForm.get('produit')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+    }
+    else{
+      this.msg="";
+     }
+
     this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
       o=>{
       console.log(o.qte);
-      if(this.myForm.get('quantite')?.value<=o.qte )
+      if(this.myForm.get('quantite')?.value<=o.qte ){
       this.save();
+      this.msgErreur=0;
+      }
      else{
      this.msgErreur=1;
      this.qteAct=o.qte;
@@ -114,9 +133,15 @@ export class CreateBonSortieComponent implements OnInit {
   }
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
  get quantite(){

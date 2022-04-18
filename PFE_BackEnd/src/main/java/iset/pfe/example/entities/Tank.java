@@ -26,6 +26,7 @@ public class Tank implements Serializable{
 	private double poidVide;
 	private double poidActuel;
 	private String etat;
+	private String DateIns;
 	
 	@ManyToOne
 	@JoinColumn(name="idAgriculteur")
@@ -146,6 +147,20 @@ public class Tank implements Serializable{
 
 	public void setOperationstank(Set<OperationTank> operationstank) {
 		this.operationstank = operationstank;
+	}
+
+
+
+
+	public String getDateIns() {
+		return DateIns;
+	}
+
+
+
+
+	public void setDateIns(String dateIns) {
+		DateIns = dateIns;
 	}
 
 

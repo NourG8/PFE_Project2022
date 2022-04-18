@@ -100,7 +100,7 @@
                         <p>Produits</p>
                       </div>
                       <div class="icon">
-                        <i class="ion ion-cash"></i>
+                        <i class="ion ion-ios-cart"></i>
                       </div>
                       <a href="agriculteur/produit/listeProduit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
@@ -166,41 +166,42 @@
 
                              <div class="chart">
 
+                              <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
+                              [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
+                              [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+                              [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
+                            </ngx-charts-bar-vertical>
 
-                               <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
-                               [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                               [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                               [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
-                             </ngx-charts-bar-vertical>
+                            <br><br><br><br><br><br><br>
 
-                               <!-- <ngx-charts-pie-grid
-                               [view]="[600,300]"
-                               [results]="data"
-                               [scheme]="colorScheme" >
-                             </ngx-charts-pie-grid> -->
+                            <div  style="margin-top:25px;margin-left:-100px;margin-right:70px">
+                            <ngx-charts-pie-chart
+                            [results]="data"
+                            [legend]="true"
+                            [legendTitle]="'Product Sale Report'"
+                            [view]="[1000,400]"
+                            [scheme]="colorScheme"
+                            [labels]="true" >
+                            </ngx-charts-pie-chart>
+                           </div>
 
-                             <!-- <div class="col-sm-3 col-6"> -->
-                               <ngx-charts-pie-grid
-                               [view]="[600,300]"
-                               [results]="data"
-                               [scheme]="colorScheme" >
-                             </ngx-charts-pie-grid>
-                     <!-- </div> -->
+                           <br><br>
+                            <ngx-charts-advanced-pie-chart  style="margin-top:-1020px;margin-bottom:-550px;"
+                            [results]="data"
+                            [view]="[800,300]"
+                            [scheme]="colorScheme"
+                            [gradient]="true" >
+                           </ngx-charts-advanced-pie-chart>
 
-                               <!-- Sales Chart Canvas -->
-                               <!-- <div id="main" height="480" style="height: 480px;"></div> -->
-                               <!-- <canvas id="salesChart" height="180" style="height: 180px;"></canvas> -->
-                             </div>
+
+                            </div>
                              <!-- /.chart-responsive -->
                            </div>
                            <!-- /.col -->
                            <div class="col-md-4">
 
                              <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
-
-                             <p class="text-center">
-                               <strong style="margin-right:95px;">Time</strong>
-                             </p>
+                                <br>
                              <div  style="margin-top:45px;margin-left:-20px;margin-right:70px">
                                <!-- Info Boxes Style 2 -->
                                <div class="info-box mb-3 bg-warning">
@@ -234,15 +235,50 @@
                                  <!-- /.info-box-content -->
                                </div>
                                <!-- /.info-box -->
+
                                <div class="info-box mb-3 bg-info">
-                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
-          
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des operations</span>
-                                   <span class="info-box-number">{{somOperation}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
+                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des operations de remplissage</span>
+                                  <span class="info-box-number">{{somOpRemplissage}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+
+                              <div class="info-box mb-3 bg-light">
+                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des operations de retrait</span>
+                                  <span class="info-box-number">{{somOpRetrait}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+
+                              <div class="info-box mb-3 bg-secondary">
+                                <span class="info-box-icon"> 
+                                  <i class="ion ion-ios-download-outline"></i>
+                                  <i class="ion ion-ios-upload-outline"></i>
+                                </span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des bons</span>
+                                  <span class="info-box-number">{{somBon}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+
+                               <div class="info-box mb-3 bg-dark">
+                                <span class="info-box-icon"> <i class="ion ion-ios-cart-outline"></i></span>
+
+                                <div class="info-box-content">
+                                  <span class="info-box-text">Nombre des produits</span>
+                                  <span class="info-box-number">{{somProduit}}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+
                                <!-- /.info-box -->
           
                                <!-- PRODUCT LIST -->
@@ -260,61 +296,58 @@
                        <!-- ./card-body -->
                        <div class="card-footer">
                          <div class="row">
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
-                               <h5 class="description-header">{{somTank}}</h5>
-                               <span class="description-text">TOTAL TANK</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
-                               <h5 class="description-header">{{somVache}}</h5>
-                               <span class="description-text">TOTAL VACHES</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block border-right">
-                               <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i> 20%</span>
-                               <h5 class="description-header">{{somOperation}}</h5>
-                               <span class="description-text">TOTAL OPERATIONS</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-                           <!-- /.col -->
-                           <div class="col-sm-2 col-6">
-                             <div class="description-block">
-                               <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                               <h5 class="description-header">{{somFournisseur}}</h5>
-                               <span class="description-text">TOTAL FOURNISSEURS</span>
-                             </div>
-                             <!-- /.description-block -->
-                           </div>
-
-                           <div class="col-sm-2 col-6">
-                            <div class="description-block">
-                              <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                              <h5 class="description-header">{{somBon}}</h5>
-                              <span class="description-text">TOTAL BONS</span>
+                             <!-- /.col -->
+                          <div class="col-sm-4 col-6">
+                            <div class="description-block border-right">
+                              <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankRemplis}}%</span>
+                              <h5 class="description-header">{{somTRemplis}}</h5>
+                              <span class="description-text">TOTAL TANKS REMPLIS</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
+                          <!-- /.col -->
 
-                          
-                          <div class="col-sm-2 col-6">
-                            <div class="description-block">
-                              <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
-                              <h5 class="description-header">{{somProduit}}</h5>
-                              <span class="description-text">TOTAL PRODUITS</span>
+
+                          <!-- /.col -->
+                          <div class="col-sm-4 col-6">
+                          <div class="description-block border-right">
+                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankNonRemplis}}%</span>
+                            <h5 class="description-header">{{somTVide}}</h5>
+                            <span class="description-text">TOTAL TANKS VIDES</span>
+                          </div>
+                          <!-- /.description-block -->
+                          </div>
+                          <!-- /.col -->
+
+
+
+                          <!-- /.col -->
+                          <div class="col-sm-4 col-6">
+                          <div class="description-block border-right">
+                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankEnCours}}%</span>
+                            <h5 class="description-header">{{somTEnCours}}</h5>
+                            <span class="description-text">TOTAL TANKS EN COURS DE REMPLISSAGE</span>
+                          </div>
+                          <!-- /.description-block -->
+                          </div>
+                          <div class="col-sm-6 col-6">
+                            <div class="description-block border-right">
+                              <span class="description-percentage  text-primary"><i class="fas fa-caret-up"></i> {{prcOpRetrait}}%</span>
+                              <h5 class="description-header">{{somOpRetrait}}</h5>
+                              <span class="description-text">TOTAL OPERATIONS DE RETARITS</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
-
+                          <!-- /.col -->
+                          <div class="col-sm-6 col-6">
+                            <div class="description-block border-right">
+                              <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i>{{prcOpRemplissage}}%</span>
+                              <h5 class="description-header">{{somOpRemplissage}}</h5>
+                              <span class="description-text">TOTAL  OPERATIONS DE REMPLISSAGES</span>
+                            </div>
+                            <!-- /.description-block -->
+                          </div>
+                          <!-- /.col -->
 
                          </div>
                          <!-- /.row -->

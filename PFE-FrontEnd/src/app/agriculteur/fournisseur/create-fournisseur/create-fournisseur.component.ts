@@ -16,6 +16,8 @@ export class CreateFournisseurComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
+  msg1=0;
+  msg2=0;
 
   constructor(private fournisseurService: FournisseurService,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -46,22 +48,44 @@ export class CreateFournisseurComponent implements OnInit {
       this.msg="";
      }
 
-     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null){
+     this.fournisseurService.getFournisseurNom(this.myForm.get('nom')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+
+       this.fournisseurService.getFournisseurMatricule(this.myForm.get('matricule')?.value).subscribe(l=>{
+        console.log(l);
+        if(l==1){
+          this.msg2=1;
+         }
+         else{
+          this.msg2=0;
+         }
+
+     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0
+     && this.myForm.get('nom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
     console.log(this.fournisseur);
     this.fournisseur.idFournisseur = 1;
     this.fournisseurService
         .createFournisseur(this.fournisseur)
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.fournisseur);
           localStorage.setItem('Toast', JSON.stringify(["Success","Un fournisseur a été ajouté avec succès"]));
-          window.location.reload();
+          // window.location.reload();
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
         }
       );
     }
+  });
+});
   }
 
 
@@ -76,15 +100,21 @@ export class CreateFournisseurComponent implements OnInit {
   }
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,]),
-      'matricule' : new FormControl(null,[Validators.required, ]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
       });
  }
 

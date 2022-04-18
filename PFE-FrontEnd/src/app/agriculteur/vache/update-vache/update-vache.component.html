@@ -9,7 +9,7 @@
 
 
       <div class="form-group">
-        <label>Matricule :</label>
+        <label>Matricule : <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                formControlName="matricule"
@@ -29,7 +29,7 @@
       </div>
 
       <div class="form-group">
-        <label>Poids :</label>
+        <label>Poids (minimum 30kg) : <span style="color:red;">*</span></label>
         <input type="number"
                class="form-control"
                formControlName="poids"
@@ -72,7 +72,7 @@
 
       
       <div class="form-group">
-        <label for="pseudo"> Race :</label>
+        <label for="pseudo"> Race : <span style="color:red;">*</span></label>
           <select type="text" class="form-select" id="race"   [(ngModel)]="vache.race"  name="race" formControlName="race" >
          <option selected >{{vache.race}}</option>
          <option *ngIf="vache.race=='Charolaise'" value="Hollandaise">Hollandaise</option>
@@ -91,7 +91,7 @@
     </div>
   
       <div class="form-group">
-        <label for="disabledTextInput">Date Naissance:</label>
+        <label for="disabledTextInput">Date Naissance : <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                name="dateNaissance"
@@ -132,7 +132,7 @@
 
 
       <div class="form-group">
-          <label for="pseudo"> Etat :</label>
+          <label for="pseudo"> Etat : <span style="color:red;">*</span></label>
             <select type="text" class="form-select" id="etat"   [(ngModel)]="vache.etat"  name="etat" formControlName="etat" >
            <option selected >{{vache.etat}}</option>
               <option *ngIf="vache.etat=='Malade'" value="Bonne">Bonne</option>
@@ -151,7 +151,7 @@
       </div>
 
       <div class="form-group">
-        <label for="disabledTextInput">Quantité production laits :</label>
+        <label for="disabledTextInput">Quantité production laits : <span style="color:red;">*</span></label>
         <input type="number"
                class="form-control"
                name="qte_prodLait"

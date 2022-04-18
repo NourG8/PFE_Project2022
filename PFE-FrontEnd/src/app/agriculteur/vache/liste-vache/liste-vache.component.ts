@@ -71,7 +71,8 @@ export class ListeVacheComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Vache a été supprimée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -83,7 +84,16 @@ export class ListeVacheComponent implements OnInit {
     );
   }
   
-  
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
+  onClose() {
+    this.dialog.closeAll();
+    // this.gotoList();
+    this.onReload();
+  }
   
     detailsVache(vache:Vache){
       const dialogConfig = new MatDialogConfig();

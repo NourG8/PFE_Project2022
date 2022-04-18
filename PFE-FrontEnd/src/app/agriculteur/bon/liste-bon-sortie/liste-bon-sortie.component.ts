@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Bon } from 'src/app/Models/bon';
 import { BonService } from 'src/app/Service/bon.service';
+import { ProduitService } from 'src/app/Service/produit.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DatailsBonComponent} from '../datails-bon/datails-bon.component';
 import { UpdateBonSortieComponent } from '../update-bon-sortie/update-bon-sortie.component';
@@ -28,6 +29,7 @@ export class ListeBonSortieComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
+  erreur =0;
 
   ELEMENT_DATA?:Bon[];
   bon?:Bon;
@@ -35,6 +37,7 @@ export class ListeBonSortieComponent implements OnInit {
   displayedColumns: string[] = ['idBon','quantite', 'type','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
   constructor(private bonService: BonService,
+    private produitService:ProduitService,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -75,7 +78,8 @@ export class ListeBonSortieComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Bon a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -87,6 +91,18 @@ export class ListeBonSortieComponent implements OnInit {
     );
   }
   
+
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
+  onClose() {
+    this.dialog.closeAll();
+    // this.gotoList();
+    this.onReload();
+  }
+
     detailsBon(bon:Bon){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
@@ -106,10 +122,22 @@ export class ListeBonSortieComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.produitService.getSomStock().subscribe( p=>{
+    if(p>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateBonSortieComponent, dialogConfig);
+    }
+    else{
+      this.erreur=1;
+      this.idContenu = 'TostDangerContenu';
+      this.idTitle = 'TostDangerTile';
+      this.Toast[0] = 'Erreur';
+      this.Toast[1] ='Le stock est vide !! \n Vous ne pouvez pas effectuer cette operation !!';
+      this.showToast();
+  }
+  });
     }
   
   

@@ -4,43 +4,50 @@
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom : </label>
+                <label>Nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
                 <input type="text"
                  formControlName="nom"
                  class="form-control"
+                 minlength="3"
                  id="nom"
                  [(ngModel)]="fournisseur.nom"
                  name="nom">
     
-                <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
-                  Quantite invalide !
+                <div *ngIf="nom?.invalid && nom?.touched && msg1==1" class="text-danger">
+                  Nom invalide !
                 </div>
-                <div *ngIf="nom?.valid && nom?.touched" class="text-success">
-                  Quantite valide!
+                <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
+                 Nom valide!
                 </div>
-    
+                <div *ngIf="msg1==1"  class="text-danger">
+                  &nbsp; Nom existe deja !
+                </div>
               </div>
   
-              <div class="col-md-6 mb-3">
-                <label for="type">Matricule :</label>
+              <div class="form-group col-md-6 mb-3">
+                <label for="type">Matricule(min 8 caracteres) : <span style="color:red;">*</span></label>
                 <input type="text"
                  class="form-control"
                   id="matricule"
+                  minlength="8"
                   formControlName="matricule"
                   [(ngModel)]="fournisseur.matricule"
                   name="matricule">
     
-                  <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
-                    invalide type!
+                  <div *ngIf="matricule?.invalid && matricule?.touched && msg2==1" class="text-danger">
+                    invalide matricule!
                   </div>
-                  <div *ngIf="matricule?.valid && matricule?.touched" class="text-success">
-                    Type valide!
+                  <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">
+                    Matricule valide!
                   </div>
-    
+                  <div *ngIf="msg2==1"  class="text-danger">
+                    &nbsp; Matricule existe deja !
+                  </div>
               </div>
   
             </div>

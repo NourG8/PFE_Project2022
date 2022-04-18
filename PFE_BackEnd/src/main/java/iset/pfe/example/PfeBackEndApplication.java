@@ -87,6 +87,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 				ag.setEmail("ahmed.bensaber@gmail.com");
 				ag.setNom("Ben saber");
 				ag.setPrenom("Ahmed");
+				ag.setTel(22556487);
 				ag.setUsername("ahmed");
 				encoder = new BCryptPasswordEncoder();
 				ag.setPassword(encoder.encode("ahmed"));
@@ -100,19 +101,19 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Vache v1=new Vache("vache numero 1",180.00, "race 1", currentDateTime, "malade", 23.5);
 		vacheRepository.save(v1);
 		
-		Tank t1=new Tank("tank numero 1", 100.00, 0, "Remplis", a1);
+		Tank t1=new Tank("tank numero 1", 100.00, 0, "Vide", a1);
 		tankRepository.save(t1);
-		Tank t2=new Tank("tank numero 2", 100.00, 0, "Remplis", a1);
+		Tank t2=new Tank("tank numero 2", 100.00, 0, "Vide", a1);
 		tankRepository.save(t2);
-		Tank t3=new Tank("tank numero 3", 100.00, 0, "Remplis", a1);
+		Tank t3=new Tank("tank numero 3", 100.00, 0, "Vide", a1);
 		tankRepository.save(t3);
-		Tank t4=new Tank("tank numero 4", 120.00, 0, "Remplis", a1);
+		Tank t4=new Tank("tank numero 4", 100.00, 0, "Vide", a1);
 		tankRepository.save(t4);
-		Tank t5=new Tank("tank numero 5", 120.00, 0, "Remplis", a1);
+		Tank t5=new Tank("tank numero 5", 100.00, 0, "Vide", a1);
 		tankRepository.save(t5);
-		Tank t6=new Tank("tank numero 6", 120.00, 0, "Remplis", a1);
+		Tank t6=new Tank("tank numero 6", 100.00, 0, "Vide", a1);
 		tankRepository.save(t6);
-		Tank t7=new Tank("tank numero 7", 100.00, 0, "Remplis", a1);
+		Tank t7=new Tank("tank numero 7", 100.00, 0, "Vide", a1);
 		tankRepository.save(t7);
 		
 		

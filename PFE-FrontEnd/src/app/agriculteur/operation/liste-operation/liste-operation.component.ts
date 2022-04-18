@@ -85,7 +85,8 @@ export class ListeOperationComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -181,6 +182,18 @@ export class ListeOperationComponent implements OnInit {
 
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
+  onClose() {
+    this.dialog.closeAll();
+    // this.gotoList();
+    this.onReload();
+  }
+
+
 
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
@@ -201,10 +214,22 @@ export class ListeOperationComponent implements OnInit {
     }
 
     onOpenDialogCreate():void{
+      this.tankService.getTanksQteLibre().subscribe(t=>{
+        console.log(t);
+     if(t>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationRemplissageComponent, dialogConfig);
+     }
+     else{
+      this.idContenu = 'TostDangerContenu';
+      this.idTitle = 'TostDangerTile';
+      this.Toast[0] = 'Erreur';
+      this.Toast[1] ='Les tanks sont totalement remplis !! \n Vous ne pouvez pas effectuer cette operation !!';
+      this.showToast();
+     }
+    });
     }
 
     onOpenDialogCreate2():void{

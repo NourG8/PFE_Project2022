@@ -17,6 +17,7 @@ const routes: Routes = [
        { path: 'fournisseur', loadChildren: () => import('./fournisseur/fournisseur.module').then(m => m.FournisseurModule) },
        { path: 'tank', loadChildren: () => import('./tank/tank.module').then(m => m.TankModule) },
        { path: 'vache', loadChildren: () => import('./vache/vache.module').then(m => m.VacheModule) },
+       { path: 'collecteur', loadChildren: () => import('./collecteur/collecteur.module').then(m => m.CollecteurModule) },
        { path: 'dashboard', component: DashboardComponent },
       { path: '**', component: NotFoundComponent},
     ]

@@ -50,6 +50,9 @@ export class ListeTankComponent implements OnInit {
       } else {
         console.log('Toast Vide');
       }
+
+
+   
   
      
     }
@@ -73,13 +76,14 @@ export class ListeTankComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Tank a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du bon !!';
+        this.Toast[1] ='Échec de la suppression du tank: '+id+' !! Ce tank est remplis vous ne pouvez pas le supprimer';
         this.showToast();
       }
     );
@@ -87,7 +91,16 @@ export class ListeTankComponent implements OnInit {
   
 
 
-  
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
+  onClose() {
+    this.dialog.closeAll();
+    // this.gotoList();
+    this.onReload();
+  }
   
     detailsTank(Tank:Tank){
       const dialogConfig = new MatDialogConfig();

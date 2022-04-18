@@ -15,7 +15,7 @@ export class CreateVacheComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
-
+  msg2=0;
   constructor(private vacheService: VacheService,
     private router: Router, private dialogClose: MatDialog,) { }
     
@@ -76,19 +76,31 @@ export class CreateVacheComponent implements OnInit {
       this.msg="";
      }
     
+     this.vacheService.getVacheMatricule(this.myForm.get('matricule')?.value).subscribe(l=>{
+      console.log(l);
+      if(l==1){
+        this.msg2=1;
+       }
+       else{
+        this.msg2=0;
+       }
+
 
      if(this.myForm.get('qte_prodLait')?.value!=null && this.myForm.get('matricule')?.value!=null &&this.myForm.get('race')?.value!=null &&
-      this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null ){
+      this.myForm.get('etat')?.value!=null && this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null && l==0
+      && this.myForm.get('qte_prodLait')?.value>0 && this.myForm.get('poids')?.value>=30){
     console.log(this.vache);
     this.vache.idVache = 1;
     this.vacheService
         .createVache(this.vache)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Une vache a été ajouté avec succès"]));   
-          window.location.reload();
+          // window.location.reload();
           console.log(this.vache);
+          this.onClose();
         });
     }
+  });
   }
 
 
@@ -102,16 +114,21 @@ export class CreateVacheComponent implements OnInit {
     this.router.navigate(['agriculteur/vache/listeVache']);
   }
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
 
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
       'matricule' : new FormControl(null,[Validators.required,]),
-      'poids' : new FormControl(null,[Validators.required,]),
+      'poids' : new FormControl(null,[Validators.required, Validators.min(30)]),
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
       'etat' : new FormControl(null,[Validators.required, ]),

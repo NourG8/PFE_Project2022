@@ -37,7 +37,7 @@ export class CreateOperationComponent implements OnInit {
   tabstr!: string[];
   tabint!: number[];
   myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required]),
+      poidsLait : new FormControl(null,[Validators.required ,Validators.min(1)]),
       collecteur : new FormControl(null,[Validators.required ]),
      // dateOperation : new FormControl(null,[Validators.required ]),
     //  typeOp : new FormControl(null,[Validators.required ]),
@@ -80,12 +80,30 @@ export class CreateOperationComponent implements OnInit {
 
 
   async save() {
-    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null ){
+
+    if(this.myForm.get('poidsLait')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('collecteur')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+
+
+    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0 ){
     this.operationService.createOperation({
      "poidsLait": this.myForm.get('poidsLait')?.value,
      "collecteur":{
       "idCollecteur":this.myForm.get('collecteur')?.value,  
    },
+   "code":this.som,
    },
          ).subscribe(  async o=>{   
             this.collecteurService.getCollecteur(this.myForm.get('collecteur')?.value).subscribe(
@@ -114,8 +132,12 @@ export class CreateOperationComponent implements OnInit {
            localStorage.setItem('prenom',this.tab[5].prenom)
            localStorage.setItem('username',this.tab[5].username)
            localStorage.setItem('password',this.tab[5].password)
-      
-       
+
+
+           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
+           //  window.location.reload(); 
+           this.onClose(); 
+
           
        //   console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0],this.tab[5],this.tab[6],this.tab[7]);
        },
@@ -258,20 +280,38 @@ this.oppr.sender=s3*/
 
 
 onSubmit() {
+
+    if(this.myForm.get('poidsLait')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('collecteur')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
   this.tankService.getTanksQteGenerale().subscribe(
      o=>{
-    if(this.myForm.get('poidsLait')?.value<=o){
+       
+      if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0){
+    if(this.myForm.get('poidsLait')?.value<=o ){
    this.save()
   this.reLoad()
   this.onClose()
     this.saveInBc()
-  
+    this.msgErreur=0;
     }
    
     else{
     this.msgErreur=1;
     this.qteActLaitTank=o;
     }
+  }
 });
 }
 
@@ -281,9 +321,15 @@ onSubmit() {
   }
 
 
+   onReload(){
+    this.router.navigate([this.router.url]);
+  }
+  
+  
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
  get poidsLait(){

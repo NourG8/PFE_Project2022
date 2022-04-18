@@ -1,25 +1,26 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Creer une operation de retrait :</b></h3>
+      <h3 id="modal-title"><b>Créer une operation de retrait :</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
-    </div><br>
+    </div>
+    <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-12 mb-3">
 
-                <label>Poids Lait : </label>
+                <label>Poids Lait (Kg): <span style="color:red;">*</span></label>
                 <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
                  id="poidsLait"
                  name="poidsLait">
     
-                <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
+                <div *ngIf="poidsLait?.invalid && poidsLait?.touched&& msgErreur==1" class="text-danger">
                   Poids invalide !
                 </div>
-                <div *ngIf="poidsLait?.valid && poidsLait?.touched || msgErreur==0" class="text-success">
+                <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0" class="text-success">
                   Poids valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">
@@ -28,7 +29,7 @@
                 </div>
     
               </div>
-              <div class="col-md-6 mb-3">
+              <div class="col-md-12 mb-3">
                 <label class="mr-sm-5" for="inlineFormCustomSelect">collecteur : <span style="color:red;">*</span></label>
                 <select formControlName="collecteur" name="collecteur"  class="custom-select mr-sm-2" id="collecteur" >
                   <option disabled selected value [ngValue]="null">Choisir un collecteur...</option>
@@ -40,7 +41,7 @@
                     invalide collecteur!
              </div>
                  <div
-                  *ngIf="collecteur?.valid && collecteur?.touched"
+                  *ngIf="collecteur?.valid && collecteur?.touched && msgErreur==0" 
                class="text-success">
                collecteur valide!
              </div>

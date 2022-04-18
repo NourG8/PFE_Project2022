@@ -25,6 +25,9 @@ export class OperationService {
   baseUrl9 : string = 'http://localhost:3800/NbOpTankTotal';
   baseUrl10 : string = 'http://localhost:3800/NbOpTank1';
   baseUrl11 : string = 'http://localhost:3800/NbOpTankRetrait';
+
+  baseUrl14 : string = 'http://localhost:3800/nbOpRetrait';
+  baseUrl15 : string = 'http://localhost:3800/nbOpRemplissage';
  
   
 
@@ -39,6 +42,23 @@ export class OperationService {
     const url = `${this.baseUrl8}/${id}`
     return this.http.get(url,{headers:httpHeaders});
   }
+
+  getNbOpRetrait(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl14}`,{headers:httpHeaders});
+   }
+
+
+  getNbOpRemplissage(): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt})
+    return this.http.get(`${this.baseUrl15}`,{headers:httpHeaders});
+    // return this.http.get(`${this.baseUrl15}`);
+  }
+
 
   getNbOpTankTotal(id: number): Observable<any> {
     let jwt = this.authService.getToken();

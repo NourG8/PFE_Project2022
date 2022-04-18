@@ -13,6 +13,7 @@ const httpOptions = {
 })
 export class AgriculteurService {
   baseUrl : string = 'http://localhost:3800/agriculteurs';
+  baseUrl1 : string = 'http://localhost:3800/getUser';
 
 
 
@@ -34,6 +35,13 @@ export class AgriculteurService {
     return this.http.get(url,{headers:httpHeaders});
   }
 
+  getUserWithUsername(username: any): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl1}/${username}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
 
   createagriculteur(agriculteur:any){
     let jwt = this.authService.getToken();

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
+import { ProduitService } from 'src/app/Service/produit.service';
 import { TankService } from 'src/app/Service/tank.service';
 import { CreateOperationRemplissageComponent } from '../create-operation-remplissage/create-operation-remplissage.component';
 import { CreateOperationComponent } from '../create-operation/create-operation.component';
@@ -52,6 +53,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','collecteur','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
+    private produitService:ProduitService,
     private router: Router, private dialog:MatDialog) { }
     
     operations: Observable<Operation[]> | undefined;
@@ -70,7 +72,8 @@ export class ListeOperationsRetraitComponent implements OnInit {
     ngOnInit() {
       this.reloadData();
       this.reloadData00();
-      console.log(this.tankService.getTanksQteLibre());
+      //console.log(this.tankService.getTanksQteLibre());
+
 
      this.idContenu = 'TostSuccessContenu';
       this.idTitle = 'TostSuccessTile';
@@ -96,7 +99,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
       
     }
   
-     deleteOperation(id: number) {
+    deleteOperation(id: number) {
       this.operationService.getOperation(id).subscribe(o =>{
         this.ELEMENT_DATA= o;});
         console.log(this.ELEMENT_DATA);
@@ -107,7 +110,8 @@ export class ListeOperationsRetraitComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        window.location.reload();
+        // window.location.reload();
+        this.onClose();
       },
       (error) => {
         this.idContenu = 'TostDangerContenu';
@@ -120,7 +124,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
   }
   
 
-  
   deleteOp(id: number){
 
     this.tankService.getTanksQteLibre().subscribe(o=>{
@@ -130,18 +133,9 @@ export class ListeOperationsRetraitComponent implements OnInit {
         console.log(a.poidsLait);
         this.p=a.poidsLait;
 
-
-        this.operationService.getNbOpTankTotal(id).subscribe(b=>{
-          console.log(b);
-          this.test1=b;
-
-          this.operationService.getNbOpTankRetrait(id).subscribe(c=>{
-            console.log(c);
-            this.test2=c;
-
-            if(this.p<=this.q && this.test1==this.test2){
-              this.deleteOperation(id);
-            }else{
+        if(this.p<=this.q){
+          this.deleteOperation(id);
+        }else{
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
@@ -149,14 +143,20 @@ export class ListeOperationsRetraitComponent implements OnInit {
           this.showToast();
         }
       });
-    });
-  });
   
-      });
-
-     
+      });  
   }
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
+  onClose() {
+    this.dialog.closeAll();
+    // this.gotoList();
+    this.onReload();
+  }
 
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
@@ -177,11 +177,24 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.tankService.getTanksQteGenerale().subscribe(b=>{
+        console.log(b);
+       if(b>0){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       this.dialog.open(CreateOperationComponent, dialogConfig);
+       }
+       else{
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Erreur';
+        this.Toast[1] ='Les tanks sont vides !! \n Vous ne pouvez pas effectuer cette operation !!';
+        this.showToast();
     }
+    });
+  }
+      
   
     onOpenDialogCreate2():void{
       const dialogConfig = new MatDialogConfig();
@@ -207,11 +220,11 @@ export class ListeOperationsRetraitComponent implements OnInit {
         this.Toast = [];
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         console.log(this.ShowToast);
-      }, 6100);
+      }, 9100);
       this.intervalId = setInterval(() => {
         this.counter = this.counter + 1;
         console.log(this.counter);
-        if (this.counter === 6)
+        if (this.counter === 9)
         clearInterval(this.intervalId);
       }, 1000);
       this.counter=0

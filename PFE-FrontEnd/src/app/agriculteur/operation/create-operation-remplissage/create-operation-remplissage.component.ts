@@ -31,7 +31,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
   valeur1=0;
   valeur2=0;
   myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required]),
+      poidsLait : new FormControl(null,[Validators.required,Validators.min(1)]),
      // dateOperation : new FormControl(null,[Validators.required ]),
       // typeOp : new FormControl(null,[Validators.required ]),
       // tank : new FormControl(null,[Validators.required ]),
@@ -80,11 +80,12 @@ export class CreateOperationRemplissageComponent implements OnInit {
           }
         )
         .subscribe(o=>{
-          window.location.reload();
+          // window.location.reload();
           console.log(this.operation);
 
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-          window.location.reload();      
+          // window.location.reload(); 
+          this.onClose();     
         },
         (error) => {
           console.log("Failed")
@@ -100,7 +101,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
     this.tankService.getTanksQteLibre().subscribe(
       o=>{
       console.log(o);
-      if(this.myForm.get('poidsLait')?.value<=o)
+      if(this.myForm.get('poidsLait')?.value<=o &&this.myForm.get('poidsLait')?.value>0 )
       this.save();
       else{
       this.msgErreur=1;
@@ -117,9 +118,15 @@ export class CreateOperationRemplissageComponent implements OnInit {
   }
 
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
+
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
  get poidsLait(){

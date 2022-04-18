@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Collecteur;
+import iset.pfe.example.entities.Fournisseur;
 import iset.pfe.example.repositories.CollecteurRepository;
 
 @RestController
@@ -29,6 +30,34 @@ public class CollecteurRestController {
 	public List<Collecteur> getCollecteurs(){
 		return collecteurRepository.findAll();
 	}
+	
+	
+	@RequestMapping(value="/coll/{tel}",method = RequestMethod.GET)
+	public int getFTel(@PathVariable int tel){
+		int msg=0;
+		for(int i=0;i<collecteurRepository.findAll().size();i++) {
+			Collecteur t=collecteurRepository.findAll().get(i);
+			if(tel==t.getTel())
+				msg=1;
+		}
+		return msg;
+	}
+	
+	
+	
+	//si le nom existe ou nn
+	@RequestMapping(value="/coll1/{nomCollecteur}",method = RequestMethod.GET)
+	public int getFNom(@PathVariable String nomCollecteur){
+		int msg=0;
+		for(int i=0;i<collecteurRepository.findAll().size();i++) {
+			Collecteur t=collecteurRepository.findAll().get(i);
+			if(nomCollecteur.equals(t.getNomCollecteur()))
+				msg=1;
+		}
+		return msg;
+	}
+	
+	
 	
 	@RequestMapping(value="/nbreCollecteur",method = RequestMethod.GET)
 	public int getNbCollecteurs(){
@@ -58,7 +87,7 @@ public class CollecteurRestController {
 		return collecteurRepository.save(collecteur);
 	}
 	
-	@RequestMapping(value="/Collecteurs/{idCollecteur}",method = RequestMethod.PUT)
+	@RequestMapping(value="/collecteurs/{idCollecteur}",method = RequestMethod.PUT)
 	public ResponseEntity<Collecteur> EditCollecteur(@PathVariable Integer idCollecteur, @RequestBody Collecteur collecteur){
 		 return ResponseEntity.ok(collecteurRepository.save(collecteur));
     }

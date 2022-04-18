@@ -1,5 +1,8 @@
 package iset.pfe.example.web;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +30,56 @@ public class TankRestController {
 	//getALL tanks method
 	@RequestMapping(value="/tanks",method = RequestMethod.GET)
 	public List<Tank> getTanks(){
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank t=tankRepository.findAll().get(i);
+			if(t.getPoidActuel()==0) {
+				t.setEtat("Vide");
+			}
+			else if(t.getPoidActuel()>0 && t.getPoidActuel()<t.getPoidVide()) {
+				t.setEtat("En cours");
+			}
+			else if(t.getPoidActuel()==t.getPoidVide()) {
+				t.setEtat("Remplis");
+			}
+		}
+		
 		return tankRepository.findAll();
 	}
+	
+	@RequestMapping(value="/nbTankRemplis",method = RequestMethod.GET)
+	public int getnbTankRemplis(){
+		return tankRepository.findTankEtat("Remplis").size();
+	}
+	
+	@RequestMapping(value="/nbTankVide",method = RequestMethod.GET)
+	public int getnbTankVide(){
+		return tankRepository.findTankEtat("Vide").size();
+	}
+	
+	@RequestMapping(value="/nbTankEnCours",method = RequestMethod.GET)
+	public int getnbTankEnCours(){
+		return tankRepository.findTankEtat("En cours").size();
+	}
+	
+	
 	
 	@RequestMapping(value="/nbreT",method = RequestMethod.GET)
 	public int getNbTanks(){
 		return tankRepository.findAll().size();
+	}
+	
+	//Si le nom du tank est utilisé ou nn !
+	@RequestMapping(value="/tank/{matricule}",method = RequestMethod.GET)
+	public int getTanksUtilise(@PathVariable String matricule){
+		int msg=0;
+		for(int i=0;i<tankRepository.findAll().size();i++) {
+			Tank t=tankRepository.findAll().get(i);
+			if(matricule.equals(t.getMatricule())) {
+				msg=1;
+			}
+			
+		}
+		return msg;
 	}
 	
 	
@@ -50,6 +97,42 @@ public class TankRestController {
 		}else throw new RuntimeException("Tank introuvable !!");
 	}
 	
+	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
+    public double getQteTankLibres() {
+		double qte=0;
+		double qteLibreLait=0;
+		double qteGeneraleLait=0;
+		
+		 DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	     String currentDateTime = dateFormatter.format(new Date());
+	     
+		for(int j=0;j<tankRepository.findAll().size();j++) 
+		{
+			
+			Tank tank3=tankRepository.findAll().get(j);
+			if(tank3.getDateIns()!=null) {
+				 String dateP=currentDateTime.charAt(8)+""+currentDateTime.charAt(9);
+				 String dateP2=tank3.getDateIns().charAt(8)+""+tank3.getDateIns().charAt(9);
+			if(Integer.parseInt(dateP2)==Integer.parseInt(dateP) ) {
+			qte=qte+tank3.getPoidVide();
+			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
+		}
+		}
+			
+			if(tank3.getDateIns()==null) {
+				
+			qte=qte+tank3.getPoidVide();
+			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();	
+		}
+		}
+		qteLibreLait=qte-qteGeneraleLait;
+		System.out.println("######"+qteLibreLait);
+		return qteLibreLait;
+	}
+	
+	
+	
+	
 	@RequestMapping(value="/qteTanksGenerale",method = RequestMethod.GET)
     public double getQteTankGenerale() {
 		double qteGeneraleLait=0;
@@ -60,22 +143,22 @@ public class TankRestController {
 		return qteGeneraleLait;
 	}
 	
-	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
-    public double getQteTankLibre() {
-		double qte=0;
-		double qteLibreLait=0;
-		double qteGeneraleLait=0;
-		for(int j=0;j<tankRepository.findAll().size();j++) 
-		{
-			Tank tank3=tankRepository.findAll().get(j);
-			qte=qte+tank3.getPoidVide();
-			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
-		}
-		qteLibreLait=qte-qteGeneraleLait;
-		System.out.println("######"+qteLibreLait);
-		return qteLibreLait;
-	}
-	
+//	@RequestMapping(value="/qteTanksLibre",method = RequestMethod.GET)
+//    public double getQteTankLibre() {
+//		double qte=0;
+//		double qteLibreLait=0;
+//		double qteGeneraleLait=0;
+//		for(int j=0;j<tankRepository.findAll().size();j++) 
+//		{
+//			Tank tank3=tankRepository.findAll().get(j);
+//			qte=qte+tank3.getPoidVide();
+//			qteGeneraleLait=qteGeneraleLait+tank3.getPoidActuel();
+//		}
+//		qteLibreLait=qte-qteGeneraleLait;
+//		System.out.println("######"+qteLibreLait);
+//		return qteLibreLait;
+//	}
+//	
 	
 	
 	//delete tank method
@@ -84,7 +167,7 @@ public class TankRestController {
 	public void deleteTank(@PathVariable Integer idTank) {
 		Optional<Tank> tank = tankRepository.findById(idTank);
 				if (tank.isPresent()) { 
-					tankRepository.deleteById(idTank);
+					tankRepository.deleteTank(idTank);
 		    }else throw new RuntimeException("Tank introuvable ! vous ne pouvez pas le supprimer !!");
 	}
 	

@@ -16,12 +16,14 @@ export class CreateTankComponent implements OnInit {
   submitted = false;
   myForm!:FormGroup;
   msg="";
+  msg1=0;
 
   constructor(private tankService: TankService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
     this.ValidatedForm();
+  
   }
 
   newEmployee(): void {
@@ -47,15 +49,27 @@ export class CreateTankComponent implements OnInit {
       this.msg="";
      }
 
-     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null){
+     this.tankService.getTankUtilise(this.myForm.get('matricule')?.value).subscribe(t=>{
+      console.log(t);
+      if(t==1){
+        this.msg1=1;
+       }
+       else{
+        this.msg1=0;
+       }
+
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null 
+     && t==0 && this.myForm.get('poidVide')?.value>=30 && this.myForm.get('matricule')?.value.length>=8){
     this.tankService
         .createTank(this.tank)
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un tank a été ajouté avec succès"]));  
-          window.location.reload();
+          // window.location.reload();
           console.log(this.tank);
-        });
+          this.onClose();
+        }); 
     }
+  });
   }
 
   onSubmit() {
@@ -68,16 +82,21 @@ export class CreateTankComponent implements OnInit {
     this.router.navigate(['agriculteur/tank/listeTank']);
   }
 
+  onReload(){
+    this.router.navigate([this.router.url]);
+  }
+
 
   onClose() {
     this.dialogClose.closeAll();
-    this.gotoList();
+    // this.gotoList();
+    this.onReload();
   }
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'matricule' : new FormControl(null,[Validators.required,]),
-      'poidVide' : new FormControl(null,[Validators.required,]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8)]),
+      'poidVide' : new FormControl(null,[Validators.required,Validators.min(30)]),
       });
  }
 

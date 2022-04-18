@@ -1,0 +1,99 @@
+<div class="ContenuCard" >
+  <div class="modal-header">
+    <h3 id="modal-title"><b>Modifier le collecteur numero :{{collecteur.idCollecteur}}</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
+      <input type="text"
+             class="form-control"
+             formControlName="nomCollecteur"
+             name="nomCollecteur"
+             minlength="3"
+             [(ngModel)]="collecteur.nomCollecteur"
+             placeholder="Post Name here ..">
+        <div
+             *ngIf="nomCollecteur?.invalid && nomCollecteur?.touched"
+              class="text-danger">
+                nomCollecteur invalide !
+       </div>
+       <div
+            *ngIf="nomCollecteur?.valid && nomCollecteur?.touched"
+            class="text-success">
+             nomCollecteur valide !
+       </div>
+
+       <div
+       *ngIf="msg1==1"
+        class="text-danger">
+         Vous devez introduire minimum 3 caracteres !
+ </div>
+    </div>
+
+    <div class="lg mb-3">
+      <label>Numero de téléphone (8 caracteres) : <span style="color:red;">*</span></label>
+      <input
+                type="text"
+                class="form-control"
+                placeholder="Description Post here ...."
+                name="tel"
+                minlength="8"
+                formControlName="tel"
+                [(ngModel)]="collecteur.tel"
+                >
+          <div
+                *ngIf="tel?.invalid && tel?.touched"
+                 class="text-danger">
+                 Numero de téléphone invalide !
+          </div>
+          <div
+               *ngIf="tel?.valid && tel?.touched"
+               class="text-success">
+               Numero de téléphone valide !
+          </div>
+          <!-- <div
+          *ngIf="msg==1"
+          class="text-danger">
+         Vous devez introduire exactement 8 caracteres !
+     </div> -->
+    </div>
+
+
+    <div class="lg mb-3">
+      <label>Adresse (minimum 3 caracteres) : <span style="color:red;">*</span></label>
+      <input class="form-control"
+                placeholder="Description Post here ...."
+                name="adresse"
+                formControlName="adresse"
+                [(ngModel)]="collecteur.adresse"
+                >
+          <div
+                *ngIf="adresse?.invalid && adresse?.touched"
+                 class="text-danger">
+                 tel invalide !
+          </div>
+          <div
+               *ngIf="adresse?.valid && adresse?.touched && msg==0"
+               class="text-success">
+               tel valide !
+          </div>
+          <div
+          *ngIf="msg2==1"
+           class="text-danger">
+           Vous devez introduire minimum 3 caracteres !
+    </div>
+    </div>
+
+    
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+      <button type="submit" (click)="updatecollecteur()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+    </div>
+  </form>
+
+</div>
