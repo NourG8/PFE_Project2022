@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Vache } from 'src/app/Models/vache';
 import { Router } from '@angular/router';
 import { VacheService } from 'src/app/Service/vache.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-vache',
@@ -17,6 +18,7 @@ export class UpdateVacheComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private location:Location,
     private dialogClose: MatDialog,
     private vacheService:VacheService,
   ) { }
@@ -84,8 +86,11 @@ get matricule(){
 
 
 onReload(){
-  this.router.navigate([this.router.url]);
-}
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeVache",{skipLocationChange: true}).then( response=> {
+   this.router.navigate([decodeURI(this.location.path())]);
+ })
+ }
 
 
 onClose() {

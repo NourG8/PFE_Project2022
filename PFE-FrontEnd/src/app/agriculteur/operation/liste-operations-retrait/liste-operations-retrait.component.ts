@@ -14,6 +14,7 @@ import { CreateOperationComponent } from '../create-operation/create-operation.c
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
+import {Location} from "@angular/common";
 
 import { ethers } from 'ethers';
 
@@ -54,6 +55,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private produitService:ProduitService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
     
     operations: Observable<Operation[]> | undefined;
@@ -148,7 +150,10 @@ export class ListeOperationsRetraitComponent implements OnInit {
   }
 
   onReload(){
-    this.router.navigate([this.router.url]);
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then( response=> {
+      this.router.navigate([decodeURI(this.location.path())]);
+    })
   }
 
 

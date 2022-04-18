@@ -9,6 +9,7 @@ import { CollecteurService } from 'src/app/Service/collecteur.service';
 import { CreateCollecteurComponent } from '../create-collecteur/create-collecteur.component';
 import { DetailsCollecteurComponent } from '../details-collecteur/details-collecteur.component';
 import { UpdateCollecteurComponent } from '../update-collecteur/update-collecteur.component';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-liste-collecteur',
@@ -33,6 +34,7 @@ export class ListeCollecteurComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','tel','action'];
   constructor(private collcteurService: CollecteurService,
+    private location:Location,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -111,7 +113,10 @@ export class ListeCollecteurComponent implements OnInit {
     }
   
     onReload(){
-      this.router.navigate([this.router.url]);
+      // this.router.navigate([this.router.url]);
+      this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
     }
     
     

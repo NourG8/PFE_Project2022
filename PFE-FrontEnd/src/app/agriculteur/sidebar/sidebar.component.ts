@@ -10,10 +10,20 @@ import { Router } from '@angular/router';
 export class SidebarComponent implements OnInit {
 
   constructor (public authService: AuthService,
-    private router: Router) {}
+    private router: Router) {
+    }
 
 
   ngOnInit(): void {
+
   }
+
+//   routeIsActive(routePath: string) {
+//     return this.router.url == routePath;
+// }
+
+getClass() {
+  return "active"
+}
 
 }

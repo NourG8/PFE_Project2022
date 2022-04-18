@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-collecteur',
@@ -22,6 +23,7 @@ export class UpdateCollecteurComponent implements OnInit {
   constructor(
     private router: Router,
     private dialogClose: MatDialog,
+    private location:Location,
     private collecteurService:CollecteurService,
 
   ) { }
@@ -99,7 +101,10 @@ get tel(){
 
 
 onReload(){
-  this.router.navigate([this.router.url]);
+   // this.router.navigate([this.router.url]);
+   this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+    this.router.navigate([decodeURI(this.location.path())]);
+  })
 }
 
 

@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { Router } from '@angular/router';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-fournisseur',
@@ -19,6 +20,7 @@ export class UpdateFournisseurComponent implements OnInit {
   constructor(
     private router: Router,
     private dialogClose: MatDialog,
+    private location:Location,
     private fournisseurService:FournisseurService,
 
   ) { }
@@ -71,7 +73,10 @@ get matricule(){
 
 
 onReload(){
-  this.router.navigate([this.router.url]);
+       // this.router.navigate([this.router.url]);
+       this.router.navigateByUrl("/'agriculteur/bon/listeFournisseur",{skipLocationChange: true}).then( response=> {
+        this.router.navigate([decodeURI(this.location.path())]);
+      })
 }
 
 

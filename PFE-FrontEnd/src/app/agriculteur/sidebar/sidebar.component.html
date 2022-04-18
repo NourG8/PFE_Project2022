@@ -31,8 +31,8 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item">
-            <a routerLink="dashboard" class="nav-link">
+          <li class="nav-item"> 
+            <a a [routerLink]="['dashboard']" class="nav-link"  [routerLinkActive]="['active']">
               <i class="nav-icon fas fa-chart-area"></i>
               <!-- <i class="fas fa-chart-area"></i> -->
               <p>DashBoard</p>
@@ -41,14 +41,14 @@
 
           <!-- Partie Profil lel Les employee lkol -->
           <li class="nav-item">
-            <a routerLink="fournisseur/listeFournisseur" class="nav-link" routerLinkActive="active">
+            <a routerLink="fournisseur/listeFournisseur"  [routerLinkActive]="['active']" class="nav-link" >
               <i class="nav-icon fas fa-people-carry "></i>
               <p>Gestion fournisseurs</p>
             </a>
           </li>
           
           <li class="nav-item">
-            <a routerLink="collecteur/listeCollecteur" class="nav-link">
+            <a routerLink="collecteur/listeCollecteur" routerLinkActive="active" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>Gestion des collecteurs </p>
             </a>
@@ -56,14 +56,14 @@
 
           <!-- Partie Job Offers lel Admin w recruteur -->
           <li class="nav-item">
-            <a routerLink="produit/listeProduit" class="nav-link ">
+            <a routerLink="produit/listeProduit" class="nav-link" routerLinkActive="active">
               <i class="nav-icon fab fa-product-hunt"></i>
               <p>Gestion des produits</p>
             </a>
           </li>
           <!-- Partie Condidates List lel Recruteur wel admin -->
           <li class="nav-item">
-            <a routerLink="tank/listeTank" class="nav-link ">
+            <a routerLink="tank/listeTank" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-glass"></i>
               <!-- <i class="fal fa-glass"></i> -->
               <p>Gestion des tanks</p>
@@ -71,7 +71,7 @@
           </li>
           <!-- Partie Interviews List lel Interviewr wel admin -->
           <li class="nav-item">
-            <a routerLink="vache/listeVache" class="nav-link ">
+            <a routerLink="vache/listeVache"[routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-hippo"></i>
 
               <p>Gestion des vaches</p>
@@ -79,7 +79,7 @@
           </li>
 
           <li  class="nav-item">
-            <a routerLink="bon/listeBon" routerLinkActive="active" class="nav-link">
+            <a routerLink="bon/listeBon"  [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Gestion des bons &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d'entree
@@ -88,7 +88,7 @@
           </li>
 
           <li  class="nav-item">
-            <a routerLink="bon/listeBonSortie" routerLinkActive="active" class="nav-link">
+            <a routerLink="bon/listeBonSortie" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
                 Gestion des bons  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de sortie
@@ -98,21 +98,21 @@
 
 
           <li class="nav-item">
-            <a  routerLink="operation/listeOperation" class="nav-link ">
+            <a  routerLink="operation/listeOperation" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
               <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a routerLink="operation/listeOperationRetrait" class="nav-link">
+            <a routerLink="operation/listeOperationRetrait" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-minus"></i>
               <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; de retrait</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a routerLink="operation/operationPage" class="nav-link">
+            <a routerLink="operation/operationPage" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fa fa-id-card-o"></i>
               <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sur les tanks </p>
             </a>
