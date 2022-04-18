@@ -98,15 +98,23 @@ export class CreateOperationComponent implements OnInit {
               }
             )
            this.tab = Object.values(o)
-         console.log(this.tab);
+           console.log(this.tab);
+           console.log(this.tab[5]);
+           console.log(this.tab[5].idAgriculteur);
+           console.log(this.tab[5].nom);
+
           localStorage.setItem('idop',this.tab[0])
            localStorage.setItem('poid',this.tab[1])
            localStorage.setItem('date',this.tab[2])
            localStorage.setItem('type',this.tab[3])
            localStorage.setItem('code',this.tab[4])
 
-           localStorage.setItem('agriconom',this.tab[5].nom)
-           localStorage.setItem('agricoprenom',this.tab[5].prenom)
+           localStorage.setItem('idAgric',this.tab[5].idAgriculteur)
+           localStorage.setItem('nom',this.tab[5].nom)
+           localStorage.setItem('prenom',this.tab[5].prenom)
+           localStorage.setItem('username',this.tab[5].username)
+           localStorage.setItem('password',this.tab[5].password)
+      
        
           
        //   console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0],this.tab[5],this.tab[6],this.tab[7]);
@@ -141,18 +149,32 @@ export class CreateOperationComponent implements OnInit {
       this.collect.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
       this.collect.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
       this.collect.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
+
+      this.agri.idAgriculteur =JSON.parse(JSON.stringify(localStorage.getItem('idAgric') )|| '[]') || [];
+      this.agri.nom =JSON.parse(JSON.stringify(localStorage.getItem('nom') )|| '[]') || [];
+      this.agri.prenom =JSON.parse(JSON.stringify(localStorage.getItem('prenom') )|| '[]') || [];
+      this.agri.username =JSON.parse(JSON.stringify(localStorage.getItem('username') )|| '[]') || [];
+      this.agri.password =JSON.parse(JSON.stringify(localStorage.getItem('password') )|| '[]') || [];
+
+      this.oppr.agriculteur=this.agri;
+
+      console.log("this.agriculteur");
+      console.log(this.agri);
+     // this.oppr.collecteur.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
+     // this.oppr.collecteur.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
+      //this.oppr.collecteur.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
       
-    var s1=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
+   // var s1=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
     //  this.oppr.agriculteur.nom=this.agri.nom;
-    var s2=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || ''  
+   // var s2=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || ''  
      // this.oppr.agriculteur.type='0'
      // this.oppr.agriculteur.username='0'
     //  this.oppr.agriculteur.password='0'
-var s3 =s1 +" "+ s2 
+/*var s3 =s1 +" "+ s2 
 
 console.log("var3");
 console.log(s3);
-this.oppr.sender=s3
+this.oppr.sender=s3*/
 
       console.log("this.collect");
       console.log(this.collect);
