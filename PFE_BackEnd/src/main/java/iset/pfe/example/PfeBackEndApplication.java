@@ -13,7 +13,6 @@ import iset.pfe.example.entities.Collecteur;
 import iset.pfe.example.entities.Agriculteur;
 import iset.pfe.example.entities.Bon;
 import iset.pfe.example.entities.Fournisseur;
-import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 import iset.pfe.example.entities.Produit;
@@ -24,7 +23,6 @@ import iset.pfe.example.repositories.CollecteurRepository;
 import iset.pfe.example.repositories.AgriculteurRepository;
 import iset.pfe.example.repositories.BonRepository;
 import iset.pfe.example.repositories.FournisseurRepository;
-import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.OperationTankRepository;
 import iset.pfe.example.repositories.ProduitRepository;
@@ -49,8 +47,6 @@ public class PfeBackEndApplication implements CommandLineRunner{
 	private BonRepository bonRepository;
 	@Autowired
 	private FournisseurRepository fournisseurRepository;
-	@Autowired
-	private LaitRepository laitRepository;
 	@Autowired
 	private OperationTankRepository operationTankRepository;
 	@Autowired

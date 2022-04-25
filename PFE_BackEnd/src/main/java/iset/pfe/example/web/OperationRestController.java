@@ -19,13 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Bon;
-import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 import iset.pfe.example.entities.Produit;
 import iset.pfe.example.entities.Tank;
 import iset.pfe.example.repositories.AgriculteurRepository;
-import iset.pfe.example.repositories.LaitRepository;
 import iset.pfe.example.repositories.OperationRepository;
 import iset.pfe.example.repositories.OperationTankRepository;
 import iset.pfe.example.repositories.TankRepository;
@@ -38,8 +36,7 @@ public class OperationRestController {
 	private OperationRepository operationRepository;
 	@Autowired
 	private TankRepository tankRepository;
-	@Autowired
-	private LaitRepository laitRepository;
+	
 	@Autowired
 	private OperationTankRepository operationTankRepository;
 	@Autowired

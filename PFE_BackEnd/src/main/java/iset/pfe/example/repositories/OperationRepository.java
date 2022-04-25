@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
-import iset.pfe.example.entities.Lait;
 import iset.pfe.example.entities.Operation;
 import iset.pfe.example.entities.OperationTank;
 

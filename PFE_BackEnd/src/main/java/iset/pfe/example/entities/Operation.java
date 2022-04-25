@@ -35,7 +35,7 @@ public class Operation implements Serializable{
 	
 	
 public Operation(Integer idOperation, double poidsLait, String dateOperation, String typeOp, Integer code,
-			Agriculteur agriculteur, Set<OperationTank> operationstank, Lait lait, Collecteur collecteur) {
+			Agriculteur agriculteur, Set<OperationTank> operationstank,  Collecteur collecteur) {
 		super();
 		this.idOperation = idOperation;
 		this.poidsLait = poidsLait;
@@ -44,7 +44,7 @@ public Operation(Integer idOperation, double poidsLait, String dateOperation, St
 		this.code = code;
 		this.agriculteur = agriculteur;
 		this.operationstank = operationstank;
-		this.lait = lait;
+//		this.lait = lait;
 		this.collecteur = collecteur;
 	}
 
@@ -67,9 +67,9 @@ public Operation(Integer idOperation, double poidsLait, String dateOperation, St
 	private Set<OperationTank> operationstank;
 	
 	
-	@ManyToOne
-	@JoinColumn(name="idLait")
-	private Lait lait;
+//	@ManyToOne
+//	@JoinColumn(name="idLait")
+//	private Lait lait;
 	
 	@ManyToOne
 	@JoinColumn(name="idCollecteur")
@@ -78,17 +78,6 @@ public Operation(Integer idOperation, double poidsLait, String dateOperation, St
 	public Operation() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-
-	public Operation(double poidsLait, String dateOperation, String typeOp, Set<OperationTank> operationstank,
-			Lait lait) {
-		super();
-		this.poidsLait = poidsLait;
-		this.dateOperation = dateOperation;
-		this.typeOp = typeOp;
-		this.operationstank = operationstank;
-		this.lait = lait;
 	}
 
 
@@ -101,17 +90,17 @@ public Operation(Integer idOperation, double poidsLait, String dateOperation, St
 
 
 
-	public Operation(double poidsLait, String dateOperation, String typeOp, Integer code,
-			Set<OperationTank> operationstank, Lait lait,Collecteur collecteur) {
-		super();
-		this.poidsLait = poidsLait;
-		this.dateOperation = dateOperation;
-		this.typeOp = typeOp;
-		this.code = code;
-		this.operationstank = operationstank;
-		this.lait = lait;
-		this.collecteur=collecteur;
-	}
+//	public Operation(double poidsLait, String dateOperation, String typeOp, Integer code,
+//			Set<OperationTank> operationstank, Lait lait,Collecteur collecteur) {
+//		super();
+//		this.poidsLait = poidsLait;
+//		this.dateOperation = dateOperation;
+//		this.typeOp = typeOp;
+//		this.code = code;
+//		this.operationstank = operationstank;
+//		this.lait = lait;
+//		this.collecteur=collecteur;
+//	}
 
 
 	public Integer getIdOperation() {
@@ -144,16 +133,6 @@ public Operation(Integer idOperation, double poidsLait, String dateOperation, St
 
 	public void setTypeOp(String typeOp) {
 		this.typeOp = typeOp;
-	}
-
-
-	public Lait getLait() {
-		return lait;
-	}
-
-
-	public void setLait(Lait lait) {
-		this.lait = lait;
 	}
 
 
