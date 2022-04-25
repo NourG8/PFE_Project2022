@@ -27,9 +27,9 @@ public class Vache implements Serializable{
 	private String etat;
 	private double qte_prodLait;
 	
-	@OneToMany(mappedBy="vache",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
-	@JsonIgnore
-	private Set<Lait> laits;
+//	@OneToMany(mappedBy="vache",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+//	@JsonIgnore
+//	private Set<Lait> laits;
 	
 	
 	public Vache() {
@@ -49,17 +49,6 @@ public class Vache implements Serializable{
 	}
 
 
-	public Vache(String matricule, double poids, String race, String dateNaissance, String etat, double qte_prodLait,
-			Set<Lait> laits) {
-		super();
-		this.matricule = matricule;
-		this.poids = poids;
-		this.race = race;
-		this.dateNaissance = dateNaissance;
-		this.etat = etat;
-		this.qte_prodLait = qte_prodLait;
-		this.laits = laits;
-	}
 
 
 	public Integer getIdVache() {
@@ -118,16 +107,6 @@ public class Vache implements Serializable{
 
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
-	}
-
-
-	public Set<Lait> getLaits() {
-		return laits;
-	}
-
-
-	public void setLaits(Set<Lait> laits) {
-		this.laits = laits;
 	}
 	
 }

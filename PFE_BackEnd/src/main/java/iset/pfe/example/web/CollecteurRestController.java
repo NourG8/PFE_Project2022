@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import iset.pfe.example.entities.Collecteur;
 import iset.pfe.example.entities.Fournisseur;
+import iset.pfe.example.entities.Tank;
 import iset.pfe.example.repositories.CollecteurRepository;
 
 @RestController
@@ -22,15 +23,24 @@ import iset.pfe.example.repositories.CollecteurRepository;
 public class CollecteurRestController {
 	@Autowired
 	CollecteurRepository collecteurRepository;
- 
-	
-	
 	
 	@RequestMapping(value="/collecteurs",method = RequestMethod.GET)
 	public List<Collecteur> getCollecteurs(){
 		return collecteurRepository.findAll();
 	}
 	
+	@RequestMapping(value="/centre/{nomCentre}",method = RequestMethod.GET)
+	public int getCollUtilise(@PathVariable String nomCentre){
+		int msg=0;
+		for(int i=0;i<collecteurRepository.findAll().size();i++) {
+			Collecteur t=collecteurRepository.findAll().get(i);
+			if(nomCentre.equals(t.getNomCollecteur())) {
+				msg=1;
+			}
+			
+		}
+		return msg;
+	}
 	
 	@RequestMapping(value="/coll/{tel}",method = RequestMethod.GET)
 	public int getFTel(@PathVariable int tel){
