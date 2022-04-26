@@ -62,17 +62,26 @@ export class ListeTankComponent implements OnInit {
     reloadData() {
         this.tankService.getTanks().subscribe(o =>{
         this.ELEMENT_DATA= o;
+        this.Tank=o;
         this.dataSource = new MatTableDataSource(o);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort =this.matSort;
         console.log(this.dataSource);
-        console.log(this.ELEMENT_DATA);});
+        console.log(this.ELEMENT_DATA);
+        for(let i=0;i<o.length;i++ ){
+          console.log(o[i]);
+          this.Tank=o[i];
+        }
+      });
+
+      console.log(this.Tank)
+      
       
     }
   
 
     deleteTank(id: number) {
-      let confirmation =confirm("Êtes-vous sûr de supprimer le Tank où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le tank où son id est egale à : "+id+" ??")
       if(confirmation)
       this.tankService.deleteTank(id).subscribe(()=>{
         this.Toast[0] = 'Success';

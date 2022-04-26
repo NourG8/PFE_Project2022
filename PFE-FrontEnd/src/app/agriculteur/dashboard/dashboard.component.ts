@@ -8,6 +8,8 @@ import { VacheService } from 'src/app/Service/vache.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { BonService } from 'src/app/Service/bon.service';
 import { ProduitService } from 'src/app/Service/produit.service';
+import {formatDate} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 // import { NgxChartsModule }from '@swimlane/ngx-charts';
 var test: string = "test";
 var somTank: number;
@@ -49,6 +51,8 @@ export class DashboardComponent implements OnInit {
   y=0;
   z=0;
 
+  maDate=new Date();
+
   dataAxis = [];
   data:any[] = [];
   piedata: any[] = [];
@@ -59,13 +63,14 @@ export class DashboardComponent implements OnInit {
 
   view: any[] = [700, 400];
 
+  date ?:any;
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Nom des tanks';
+  xAxisLabel = 'Matricules des tanks';
   showYAxisLabel = true;
   yAxisLabel = 'Etat de remplissage';
 

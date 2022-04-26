@@ -84,8 +84,8 @@
     background-color: #fc9209;
     margin-left: 20px !important;
     margin-right: 20px !important;
-    bottom: 29px;
-    margin-top: 14px;
+    bottom: 19px;
+    margin-top: 34px;
     color: aliceblue;
   }
   
@@ -290,14 +290,14 @@
   .main-datatable .dropdown_icon {
     display: inline-block;
     color: #8a8a8a;
-    font-size: 12px;
+    font-size: 15px;
     border: 1px solid #d4d4d4;
     padding: 10px 11px;
     border-radius: 50%;
     cursor: pointer;
-  }
+  } 
   .btn-group i{
-    color: #8e8e8e; 
+    color: #2399BF; 
     margin: 2px;
   }
   .main-datatable .actionCust a {
@@ -332,12 +332,31 @@
     white-space: nowrap;
     border-bottom: 1px solid #d4d4d4;
   }
-  .main-datatable .dropdown-menu > li > a:hover, 
-  .main-datatable .dropdown-menu > li > a:focus {
+  .main-datatable .dropdown-menu > .li > a:hover, 
+  .main-datatable .dropdown-menu > .li > a:focus {
     color: #fff;
     background: #007bff;
   }
-  .main-datatable .dropdown-menu > li > a:hover i{
+  .main-datatable .dropdown-menu > .li1 > a:hover i{
+    color: #fff; 
+  }
+
+  .main-datatable .dropdown-menu > .li1  > a:hover, 
+  .main-datatable .dropdown-menu > .li1 > a:focus {
+    color: #fff;
+  }
+
+  .main-datatable .dropdown-menu > .li1 > a:hover i{
+    color: #fff; 
+  }
+
+  .main-datatable .dropdown-menu > .li2  > a:hover, 
+  .main-datatable .dropdown-menu > .li2 > a:focus {
+    color: #fff;
+
+  }
+
+  .main-datatable .dropdown-menu > .li2 > a:hover i{
     color: #fff; 
   }
   .main-datatable .dropdown-menu:before {
@@ -389,7 +408,7 @@
     float: right !important;
   }
   .mode{
-    padding:4px 10px;
+    padding:10px 12px;
     line-height: 13px;
     color:#fff;
     font-weight: 400;

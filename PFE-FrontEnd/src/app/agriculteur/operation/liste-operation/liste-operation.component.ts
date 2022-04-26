@@ -45,7 +45,7 @@ export class ListeOperationComponent implements OnInit {
 
   OpTank=new Array();
 
-  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation', 'typeOp','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private location:Location,

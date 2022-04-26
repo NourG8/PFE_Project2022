@@ -32,7 +32,7 @@ export class ListeVacheComponent implements OnInit {
   ELEMENT_DATA?:Vache[];
   vache?:Vache;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idVache','matricule','poids','etat', 'race', 'dateNaissance','qte_prodLait','action'];
+  displayedColumns: string[] = ['idVache','matricule','poids','race', 'dateNaissance','action'];
   constructor(private vacheService: VacheService,
     private location:Location,
     private router: Router, private dialog:MatDialog) { }
@@ -118,6 +118,49 @@ export class ListeVacheComponent implements OnInit {
       //this.router.navigate(['employees/admin/updateemployee', id]);
     }
   
+
+
+    maladeVache(vache : Vache) {
+      let confirmation =confirm("Êtes-vous sûr de modifier les coordonnés de la vache où son id est egale à : "+vache.idVache+" ??")
+      if(confirmation)
+      this.vacheService.maladeVache(vache).subscribe(()=>{
+        this.Toast[0] = 'Success';
+        this.Toast[1] ='Vache a été modifiée avec succès';
+        localStorage.setItem('Toast', JSON.stringify(this.Toast));
+        // window.location.reload();
+        this.onClose();
+      },
+      (error) => {
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Failed';
+        this.Toast[1] ='Échec de la modification de la vache !!';
+        this.showToast();
+      }
+    );
+  }
+
+
+  bonneVache(vache : Vache) {
+    let confirmation =confirm("Êtes-vous sûr de modifier les coordonnés de la vache où son id est egale à : "+vache.idVache+" ??")
+    if(confirmation)
+    this.vacheService.bonneVache(vache).subscribe(()=>{
+      this.Toast[0] = 'Success';
+      this.Toast[1] ='Vache a été modifiée avec succès';
+      localStorage.setItem('Toast', JSON.stringify(this.Toast));
+      // window.location.reload();
+      this.onClose();
+    },
+    (error) => {
+      this.idContenu = 'TostDangerContenu';
+      this.idTitle = 'TostDangerTile';
+      this.Toast[0] = 'Failed';
+      this.Toast[1] ='Échec de la modification de la vache !!';
+      this.showToast();
+    }
+  );
+}
+
     onOpenDialogCreate():void{
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;

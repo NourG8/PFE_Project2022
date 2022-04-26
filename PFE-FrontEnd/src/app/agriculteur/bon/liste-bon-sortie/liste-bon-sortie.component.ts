@@ -35,7 +35,7 @@ export class ListeBonSortieComponent implements OnInit {
   ELEMENT_DATA?:Bon[];
   bon?:Bon;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idBon','quantite', 'type','produit','date','action'];
+  displayedColumns: string[] = ['idBon','quantite','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
   constructor(private bonService: BonService,
     private produitService:ProduitService,

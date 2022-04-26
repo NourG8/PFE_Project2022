@@ -4,4 +4,5 @@ export class Collecteur{
     nomCollecteur!: string;
     adresse!: string;
     tel!:number;
+    matricule!: string;
    }

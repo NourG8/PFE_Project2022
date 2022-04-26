@@ -70,6 +70,7 @@ public class VacheRestController {
 	
 	@RequestMapping(value="/vaches",method = RequestMethod.POST)
 		public Vache AddVache(@RequestBody Vache vache){
+		vache.setEtat("Bonne");
 		return vacheRepository.save(vache);
 	}
 	
@@ -78,5 +79,19 @@ public class VacheRestController {
 	public ResponseEntity<Vache> EditVache(@PathVariable Integer idVache, @RequestBody Vache vache){
 		return ResponseEntity.ok(vacheRepository.save(vache));    }
 	
+	
+@RequestMapping(value="/malade/{idVache}",method = RequestMethod.PUT)
+	
+	public ResponseEntity<Vache> maladeVache( @RequestBody Vache vache){
+	vache.setEtat("Malade");
+		return ResponseEntity.ok(vacheRepository.save(vache));   
+		}
+	
+@RequestMapping(value="/bonne/{idVache}",method = RequestMethod.PUT)
+
+public ResponseEntity<Vache> BonneVache( @RequestBody Vache vache){
+vache.setEtat("Bonne");
+	return ResponseEntity.ok(vacheRepository.save(vache));   
+	}
 
 }

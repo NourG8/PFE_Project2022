@@ -9,7 +9,8 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3">
-                <label>Nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
+                <label>Nom et prénom : <span style="color:red;">*</span></label>
+                <p>(minimum 7 caracteres) </p>
                 <input type="text"
                  formControlName="nom"
                  class="form-control"
@@ -18,19 +19,20 @@
                  [(ngModel)]="fournisseur.nom"
                  name="nom">
     
-                <div *ngIf="nom?.invalid && nom?.touched && msg1==1" class="text-danger">
-                  Nom invalide !
+                <div *ngIf="nom?.invalid && nom?.touched || msg1==1" class="text-danger">
+                 Nom invalide !
                 </div>
                 <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
                  Nom valide!
                 </div>
                 <div *ngIf="msg1==1"  class="text-danger">
-                  &nbsp; Nom existe deja !
+                  &nbsp; Nom et prénom existe deja !
                 </div>
               </div>
   
               <div class="form-group col-md-6 mb-3">
-                <label for="type">Matricule(min 8 caracteres) : <span style="color:red;">*</span></label>
+                <label for="type">Numéro de matricule : <span style="color:red;">*</span></label>
+                <p>(minimum 8 caracteres) </p>
                 <input type="text"
                  class="form-control"
                   id="matricule"
@@ -39,14 +41,14 @@
                   [(ngModel)]="fournisseur.matricule"
                   name="matricule">
     
-                  <div *ngIf="matricule?.invalid && matricule?.touched && msg2==1" class="text-danger">
-                    invalide matricule!
+                  <div *ngIf="matricule?.invalid && matricule?.touched || msg2==1" class="text-danger">
+                    Numéro de matricule invalide !
                   </div>
                   <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">
-                    Matricule valide!
+                    Numéro de matricule valide!
                   </div>
                   <div *ngIf="msg2==1"  class="text-danger">
-                    &nbsp; Matricule existe deja !
+                    &nbsp; Numéro de matricule existe deja !
                   </div>
               </div>
   

@@ -17,6 +17,8 @@ export class VacheService {
   baseUrl : string = 'http://localhost:3800/vaches';
   baseUrl6 : string = 'http://localhost:3800/nbreV';
   baseUrl7 : string = 'http://localhost:3800/vache';
+  baseUrl8 : string = 'http://localhost:3800/bonne';
+  baseUrl9 : string = 'http://localhost:3800/malade';
 
   constructor(private http: HttpClient,private authService :AuthService) { }
 
@@ -68,7 +70,21 @@ export class VacheService {
     return this.http.put(url, value,{headers:httpHeaders});
   }
 
-  
+  bonneVache( value:Vache): Observable<Object> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl8}/${value.idVache}`
+    return this.http.put(url, value,{headers:httpHeaders});
+  }
+
+  maladeVache( value:Vache): Observable<Object> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl9}/${value.idVache}`
+    return this.http.put(url, value,{headers:httpHeaders});
+  }
 
   deleteVache(id: number): Observable<any> {
     let jwt = this.authService.getToken();

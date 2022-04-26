@@ -51,7 +51,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   test1=0;
   test2=0;
 
-  displayedColumns: string[] = ['idOperation','poidsLait','code', 'dateOperation', 'typeOp','collecteur','action'];
+  displayedColumns: string[] = ['idOperation','poidsLait','code','collecteur', 'dateOperation', 'action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private produitService:ProduitService,

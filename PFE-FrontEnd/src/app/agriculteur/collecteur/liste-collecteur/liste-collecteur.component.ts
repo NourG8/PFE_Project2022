@@ -32,7 +32,7 @@ export class ListeCollecteurComponent implements OnInit {
   ELEMENT_DATA?:Collecteur[];
   Collecteur?:Collecteur;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','tel','action'];
+  displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','matricule','tel','action'];
   constructor(private collcteurService: CollecteurService,
     private location:Location,
     private router: Router, private dialog:MatDialog) { }
@@ -67,7 +67,7 @@ export class ListeCollecteurComponent implements OnInit {
     }
 
     deleteCollecteur(id: number) {
-      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le collecteur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.collcteurService.deleteCollecteur(id).subscribe(()=>{
         this.Toast[0] = 'Success';

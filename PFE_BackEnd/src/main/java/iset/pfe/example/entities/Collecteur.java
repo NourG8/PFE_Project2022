@@ -17,6 +17,7 @@ public class Collecteur implements Serializable{
 	@GeneratedValue
 	private Integer idCollecteur;
 	private String nomCollecteur;
+	private String matricule;
 	private String adresse;
 	private int tel;
 	
@@ -98,8 +99,13 @@ public class Collecteur implements Serializable{
 		super();
 	}
 
+	public String getMatricule() {
+		return matricule;
+	}
 
-
+	public void setMatricule(String matricule) {
+		this.matricule = matricule;
+	}
 	
 
 }

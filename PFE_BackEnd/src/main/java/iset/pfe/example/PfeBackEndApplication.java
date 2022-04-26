@@ -91,7 +91,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 				agriculteurRepository.save(ag);
 				
 		
-		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "1234");
+		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "52525252");
 		agriculteurRepository.save(a1);
 		
 //		Vache v1=new Vache("vache numero 1",180.00, "race 1", currentDateTime, "malade", 23.5);
@@ -107,24 +107,26 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		tankRepository.save(t4);
 		Tank t5=new Tank("tank numero 5", 100.00, 0, "Vide", a1);
 		tankRepository.save(t5);
-		Tank t6=new Tank("tank numero 6", 100.00, 0, "Vide", a1);
-		tankRepository.save(t6);
-		Tank t7=new Tank("tank numero 7", 100.00, 0, "Vide", a1);
-		tankRepository.save(t7);
+//		Tank t6=new Tank("tank numero 6", 100.00, 0, "Vide", a1);
+//		tankRepository.save(t6);
+//		Tank t7=new Tank("tank numero 7", 100.00, 0, "Vide", a1);
+//		tankRepository.save(t7);
 		
 		
-		Produit p1=new Produit("Prod 1", "12se54z5");
+		Produit p1=new Produit("produit 1", "12se54z4s5");
 		produitRepository.save(p1);
 		
-		Produit p2=new Produit("Prod 2", "12se54z5");
+		Produit p2=new Produit("produit 2", "1q54z84z5");
 		produitRepository.save(p2);
 		
 		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
 		fournisseurRepository.save(f1);
 		
-		Collecteur u1=new Collecteur("Collecteur 1","bizerte",524587);
+		Collecteur u1=new Collecteur("Collecteur 1","bizerte",52458787);
+		u1.setMatricule("akdoz6s2z6");
 		collecteurRepository.save(u1);
-		Collecteur u2=new Collecteur("Collecteur 2","bizerte",78899);
+		Collecteur u2=new Collecteur("Collecteur 2","bizerte",78899899);
+		u2.setMatricule("akdoz6s2z6");
 		collecteurRepository.save(u2);
 //		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 //		bonRepository.save(b1);

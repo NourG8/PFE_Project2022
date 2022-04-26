@@ -37,7 +37,7 @@ export class UpdateFournisseurComponent implements OnInit {
 
   updateFournisseur(){
 
-    if(this.myForm.get('nom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
+    if(this.myForm.get('nom')?.value.length>=7 && this.myForm.get('matricule')?.value.length>=8){
     this.fournisseurService
         .updateFournisseur(this.fournisseur.idFournisseur,this.fournisseur)
         .subscribe(o=>{
@@ -56,7 +56,7 @@ export class UpdateFournisseurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
       'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
  
       });

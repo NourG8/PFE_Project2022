@@ -53,31 +53,31 @@
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">#id  : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.idOpTank}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.idOpTank}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">Matricule tank : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.tank.matricule}}</span>
+                    <span>&nbsp;{{operation.tank.matricule}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
                     <span id="titre">id Operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
                   </div>
   
                     <div class="text-uppercase fs-08">
                       <span id="titre">Date operation :</span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.date}}</span>
+                      <span>&nbsp;{{operation.date}}</span>
                     </div>       
                     
                     <div class="text-uppercase fs-08">
                       <span id="titre">Quantité(Inserer/Retirer) : </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;{{operation.qteInsereTank}}</span>
+                      <span>{{operation.qteInsereTank}}</span>
                     </div>
                 </div>
             </div>
-  
+            <br> <br>
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">

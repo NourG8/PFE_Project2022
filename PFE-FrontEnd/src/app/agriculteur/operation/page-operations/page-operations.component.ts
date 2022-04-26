@@ -37,7 +37,7 @@ export class PageOperationsComponent implements OnInit {
   operation?:Operation;
   dataSource!:MatTableDataSource<any>;
   v=0;
-  displayedColumns: string[] = ['idOpTank','operation','idTank','matricule','date', 'qteInsereTank','action'];
+  displayedColumns: string[] = ['idOpTank','operation','matricule','qteInsereTank','date', 'action'];
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private router: Router, private dialog:MatDialog) { }
