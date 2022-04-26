@@ -11,6 +11,7 @@ import { Fournisseur } from 'src/app/Models/fournisseur';
 import { ProduitService } from 'src/app/Service/produit.service';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-update-bon',
@@ -35,6 +36,7 @@ agriculteurs!:Observable<Agriculteur[]>;
 fournisseurs!:Observable<Fournisseur[]>;
 
   constructor(
+    private location:Location,
     private router:Router,
     private dialogClose: MatDialog,
     private bonService:BonService,
@@ -103,13 +105,17 @@ get prix(){
 
 
 onReload(){
-  this.router.navigate([this.router.url]);
+  // this.router.navigate([this.router.url]);
+  this.router.navigateByUrl("/'agriculteur/bon/listeCollecteur",{skipLocationChange: true}).then( response=> {
+   this.router.navigate([decodeURI(this.location.path())]);
+ })
 }
 
 
 onClose() {
-  this.dialogClose.closeAll();
-  // this.gotoList();
-  this.onReload();
+ this.dialogClose.closeAll();
+ // this.gotoList();
+ this.onReload();
 }
+
 }

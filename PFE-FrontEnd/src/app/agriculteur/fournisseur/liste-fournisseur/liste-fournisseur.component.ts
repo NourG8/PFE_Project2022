@@ -67,7 +67,7 @@ export class ListeFournisseurComponent implements OnInit {
     }
 
     deleteFournisseur(id: number) {
-      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le fournisseur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.fournisseurService. deleteFournisseur(id).subscribe(()=>{
         this.Toast[0] = 'Success';

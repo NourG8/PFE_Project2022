@@ -19,6 +19,7 @@ export class CreateCollecteurComponent implements OnInit {
   msg="";
   msg1=0;
   msg2=0;
+  msg3=0;
 
   constructor(private collecteurService: CollecteurService,
     private location:Location,
@@ -36,21 +37,8 @@ export class CreateCollecteurComponent implements OnInit {
 
   save() {
 
-    if(this.myForm.get('nomCollecteur')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
-
-     if(this.myForm.get('adresse')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
-
-     if(this.myForm.get('tel')?.value==null){
+    if(this.myForm.get('nomCollecteur')?.value==null || this.myForm.get('adresse')?.value==null || 
+    this.myForm.get('tel')?.value==null || this.myForm.get('matricule')?.value==null){
       this.msg="vous devez remplir le formulaire !!";
      }
      else{
@@ -66,6 +54,15 @@ export class CreateCollecteurComponent implements OnInit {
         this.msg1=0;
        }
 
+       this.collecteurService.getCollecteurMatricule(this.myForm.get('matricule')?.value).subscribe(m=>{
+        console.log(m);
+        if(m==1){
+          this.msg3=1;
+         }
+         else{
+          this.msg3=0;
+         }
+
        this.collecteurService.getCollecteurTel(this.myForm.get('tel')?.value).subscribe(l=>{
         console.log(l);
         if(l==1){
@@ -75,9 +72,10 @@ export class CreateCollecteurComponent implements OnInit {
           this.msg2=0;
          }
 
-     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('adresse')?.value!=null && t==0 && l==0
-     && this.myForm.get('nomCollecteur')?.value.length>=3 && this.myForm.get('adresse')?.value.length>=3
-     && this.myForm.get('tel')?.value!=null  && this.myForm.get('tel')?.value.length==8  ){
+     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('adresse')?.value!=null && t==0 && l==0 && m==0
+     && this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8
+     && this.myForm.get('nomCollecteur')?.value.length>=7 && this.myForm.get('adresse')?.value.length>=3
+     && this.myForm.get('tel')?.value!=null  && this.myForm.get('tel')?.value.toString().length==8  ){
     console.log(this.collecteur);
     this.collecteur.idCollecteur = 1;
     this.collecteurService
@@ -95,6 +93,7 @@ export class CreateCollecteurComponent implements OnInit {
       );
     }
   });
+});
 });
   }
 
@@ -126,9 +125,10 @@ export class CreateCollecteurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nomCollecteur' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'nomCollecteur' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
       'adresse' : new FormControl(null,[Validators.required,Validators.minLength(3) ]),
-      'tel' : new FormControl(null,[Validators.required,Validators.minLength(8),Validators.maxLength(8) ]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
+      'tel' : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
       });
  }
 
@@ -142,6 +142,10 @@ get adresse(){
 
 get tel(){
   return this.myForm.get('tel') ;
+}
+
+get matricule(){
+  return this.myForm.get('matricule') ;
 }
 
 }

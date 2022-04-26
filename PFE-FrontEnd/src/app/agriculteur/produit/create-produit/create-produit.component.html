@@ -9,7 +9,8 @@
         <form [formGroup]="myForm"  novalidate >
           <div class="form-row">
             <div class="form-group col-md-6 mb-3">
-              <label>Intitulé (min 3 caracteres): <span style="color:red;">*</span></label>
+              <label>Intitulé : <span style="color:red;">*</span></label>
+              <p>(minimum 3 caracteres)</p>
               <input type="text"
                formControlName="intitule"
                class="form-control"
@@ -17,7 +18,7 @@
                [(ngModel)]="produit.intitule"
                name="intitule">
   
-              <div *ngIf="intitule?.invalid && intitule?.touched && msg1==1" class="text-danger">
+              <div *ngIf="intitule?.invalid && intitule?.touched || msg1==1" class="text-danger">
                 Intitule invalide !
               </div>
               <div *ngIf="intitule?.valid && intitule?.touched && msg1==0" class="text-success">
@@ -25,13 +26,14 @@
               </div>
 
               <div *ngIf="msg1==1"  class="text-danger">
-                &nbsp; Intitule existe deja !
+                 Intitule existe deja !
               </div>
   
             </div>
 
             <div class="col-md-6 mb-3">
-              <label for="type">Libellé (min8 caracteres): <span style="color:red;">*</span></label>
+              <label for="type">Libellé : <span style="color:red;">*</span></label>
+              <p>(minimum 8 caracteres)</p>
               <input type="text"
                class="form-control"
                 id="libelle"
@@ -39,14 +41,14 @@
                 [(ngModel)]="produit.libelle"
                 name="libelle">
   
-                <div *ngIf="libelle?.invalid && libelle?.touched && msg2==1" class="text-danger">
-                  invalide libellé!
+                <div *ngIf="libelle?.invalid && libelle?.touched || msg2==1" class="text-danger">
+                  Libellé invalide!
                 </div>
                 <div *ngIf="libelle?.valid && libelle?.touched && msg2==0" class="text-success">
                  Libellé valide!
                 </div>
                 <div *ngIf="msg2==1"  class="text-danger">
-                  &nbsp; Intitule existe deja !
+                 libellé existe deja !
                 </div>
   
             </div>

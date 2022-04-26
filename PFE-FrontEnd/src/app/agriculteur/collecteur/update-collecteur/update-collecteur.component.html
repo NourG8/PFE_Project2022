@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
   <div class="modal-header">
-    <h3 id="modal-title"><b>Modifier le collecteur numero :{{collecteur.idCollecteur}}</b></h3>
+    <h3 id="modal-title"><b>Modifier le collecteur numéro :{{collecteur.idCollecteur}}</b></h3>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,7 +8,7 @@
   <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
   <form [formGroup]="myForm" class="needs-validation" novalidate>
     <div class="form-group">
-      <label>nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
+      <label>nom et prénom (minimum 7 caracteres) : <span style="color:red;">*</span></label>
       <input type="text"
              class="form-control"
              formControlName="nomCollecteur"
@@ -19,25 +19,50 @@
         <div
              *ngIf="nomCollecteur?.invalid && nomCollecteur?.touched"
               class="text-danger">
-                nomCollecteur invalide !
+                Nom du collecteur invalide !
        </div>
        <div
             *ngIf="nomCollecteur?.valid && nomCollecteur?.touched"
             class="text-success">
-             nomCollecteur valide !
+            Nom du collecteur valide !
        </div>
 
        <div
        *ngIf="msg1==1"
         class="text-danger">
-         Vous devez introduire minimum 3 caracteres !
+         Vous devez introduire minimum 7 caracteres !
  </div>
     </div>
 
     <div class="lg mb-3">
-      <label>Numero de téléphone (8 caracteres) : <span style="color:red;">*</span></label>
+      <label>Numéro de matricule (minimum 8 caracteres) : <span style="color:red;">*</span></label>
+      <input class="form-control"
+                placeholder="Description Post here ...."
+                name="matricule"
+                formControlName="matricule"
+                [(ngModel)]="collecteur.matricule"
+                >
+          <div
+                *ngIf="matricule?.invalid && matricule?.touched"
+                 class="text-danger">
+                 Numéro de matricule invalide !
+          </div>
+          <div
+               *ngIf="matricule?.valid && matricule?.touched && msg3==0"
+               class="text-success">
+               Numéro de matricule valide !
+          </div>
+          <div
+          *ngIf="msg3==1"
+           class="text-danger">
+           Vous devez introduire minimum 8 caracteres !
+    </div>
+    </div>
+
+    <div class="lg mb-3">
+      <label>Numéro de téléphone (exactement 8 caracteres) : <span style="color:red;">*</span></label>
       <input
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="Description Post here ...."
                 name="tel"
@@ -48,12 +73,12 @@
           <div
                 *ngIf="tel?.invalid && tel?.touched"
                  class="text-danger">
-                 Numero de téléphone invalide !
+                 Numéro de téléphone invalide !
           </div>
           <div
                *ngIf="tel?.valid && tel?.touched"
                class="text-success">
-               Numero de téléphone valide !
+               Numéro de téléphone valide !
           </div>
           <!-- <div
           *ngIf="msg==1"
@@ -74,12 +99,12 @@
           <div
                 *ngIf="adresse?.invalid && adresse?.touched"
                  class="text-danger">
-                 tel invalide !
+                Adresse invalide !
           </div>
           <div
-               *ngIf="adresse?.valid && adresse?.touched && msg==0"
+               *ngIf="adresse?.valid && adresse?.touched && msg2==0"
                class="text-success">
-               tel valide !
+               Adresse valide !
           </div>
           <div
           *ngIf="msg2==1"

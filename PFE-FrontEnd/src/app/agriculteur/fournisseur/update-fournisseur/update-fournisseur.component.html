@@ -8,7 +8,7 @@
     <span style="color:red;margin-top:-105px;">(*) champ obligatoire</span><br><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Nom (minimum 3 caracteres) : <span style="color:red;">*</span></label>
+        <label>Nom et prénom (minimum 7 caracteres) : <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                formControlName="nom"
@@ -29,7 +29,7 @@
       </div>
   
       <div class="lg mb-3">
-        <label>Matricule (minimum 8 caracteres) : <span style="color:red;">*</span></label>
+        <label>Numéro de matricule (minimum 8 caracteres) : <span style="color:red;">*</span></label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="matricule"
@@ -40,12 +40,12 @@
             <div
                   *ngIf="matricule?.invalid && matricule?.touched"
                    class="text-danger">
-                   matricule invalide !
+                   Numéro de matricule invalide !
             </div>
             <div
                  *ngIf="matricule?.valid && matricule?.touched"
                  class="text-success">
-                 matricule valide !
+                 Numéro de matricule valide !
             </div>
       </div>
   

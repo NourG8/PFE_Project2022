@@ -13,6 +13,7 @@ export class CollecteurService {
   baseUrl1 : string = 'http://localhost:3800/nbreCollecteur';
   baseUrl7 : string = 'http://localhost:3800/coll';
   baseUrl8 : string = 'http://localhost:3800/coll1';
+  baseUrl9 : string = 'http://localhost:3800/collec';
 
 
   constructor(private http: HttpClient,private authService :AuthService) { }
@@ -42,6 +43,13 @@ export class CollecteurService {
     return this.http.get(url,{headers:httpHeaders});
   }
 
+  getCollecteurMatricule(matricule: string): Observable<any> {
+    let jwt = this.authService.getToken();
+    jwt = "Bearer "+jwt;
+    let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
+    const url = `${this.baseUrl9}/${matricule}`
+    return this.http.get(url,{headers:httpHeaders});
+  }
 
   getNbCollecteurs(): Observable<any> {
     let jwt = this.authService.getToken();

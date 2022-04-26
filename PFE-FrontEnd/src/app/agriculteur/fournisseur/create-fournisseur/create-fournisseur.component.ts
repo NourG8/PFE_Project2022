@@ -69,7 +69,7 @@ export class CreateFournisseurComponent implements OnInit {
          }
 
      if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0
-     && this.myForm.get('nom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
+     && this.myForm.get('nom')?.value.length>=7 && this.myForm.get('matricule')?.value.length>=8){
     console.log(this.fournisseur);
     this.fournisseur.idFournisseur = 1;
     this.fournisseurService
@@ -118,7 +118,7 @@ export class CreateFournisseurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
       'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
       });
  }

@@ -19,6 +19,7 @@ export class UpdateCollecteurComponent implements OnInit {
   msg=0;
   msg1=0;
   msg2=0;
+  msg3=0;
 
   constructor(
     private router: Router,
@@ -49,7 +50,7 @@ export class UpdateCollecteurComponent implements OnInit {
 
 
 
-    if(this.myForm.get('nomCollecteur')?.value.length>=3)
+    if(this.myForm.get('nomCollecteur')?.value.length>=7)
     this.msg1=0;
     else
     this.msg1=1;
@@ -59,10 +60,18 @@ export class UpdateCollecteurComponent implements OnInit {
     this.msg2=0;
     else
     this.msg2=1;
+
+    if(this.myForm.get('matricule')?.value.length>=8)
+    this.msg3=0;
+    else
+    this.msg3=1;
     
 
     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('tel')?.value!=null
-    && this.myForm.get('adresse')?.value!=null &&  this.msg1==0 && this.msg2==0 ){
+    && this.myForm.get('adresse')?.value!=null &&  this.msg1==0 && this.msg2==0 && this.msg3==0
+    && this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8
+    && this.myForm.get('nomCollecteur')?.value.length>=7 && this.myForm.get('adresse')?.value.length>=3 
+    && this.myForm.get('tel')?.value.toString().length==8 ){
     this.collecteurService
         .updateCollecteur(this.collecteur.idCollecteur,this.collecteur)
         .subscribe(o=>{
@@ -81,9 +90,10 @@ export class UpdateCollecteurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nomCollecteur' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
+      'nomCollecteur' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
       'adresse' : new FormControl(null,[Validators.required,Validators.minLength(3) ]),
-      'tel' : new FormControl(null,[Validators.required,Validators.minLength(8),Validators.maxLength(8)  ]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
+      'tel' : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
       });
  }
 
@@ -99,6 +109,9 @@ get tel(){
   return this.myForm.get('tel') ;
 }
 
+get matricule(){
+  return this.myForm.get('matricule') ;
+}
 
 onReload(){
    // this.router.navigate([this.router.url]);

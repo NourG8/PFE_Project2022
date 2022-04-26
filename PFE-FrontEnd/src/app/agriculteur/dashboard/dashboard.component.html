@@ -41,7 +41,7 @@
                        <div class="icon">
                          <i class="ion ion-ios-list-outline"></i>
                        </div>
-                       <a  routerLink="/agriculteur/dashboard" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/dashboard" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    
@@ -58,7 +58,7 @@
                         <i class="ion ion-ios-flask-outline"></i>
                          <!-- <i class="ion ion-person-stalker"></i> -->
                        </div>
-                       <a routerLink="/agriculteur/tank/listeTank" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                       <a routerLink="/agriculteur/tank/listeTank" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -73,7 +73,7 @@
                        <div class="icon">
                          <i class="ion  ion-ios-paw"></i>
                        </div>
-                       <a  routerLink="/agriculteur/vache/listeVache" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/vache/listeVache" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -88,7 +88,7 @@
                        <div class="icon">
                          <i class="ion ion-person-stalker"></i>
                        </div>
-                       <a  routerLink="/agriculteur/fournisseur/listeFournisseur" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/fournisseur/listeFournisseur" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <div class="col-lg-2 col-6">
@@ -102,7 +102,7 @@
                       <div class="icon">
                         <i class="ion ion-ios-cart"></i>
                       </div>
-                      <a  routerLink="/agriculteur/produit/listeProduit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  routerLink="/agriculteur/produit/listeProduit" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
 
@@ -117,7 +117,7 @@
                       <div class="icon">
                         <i class="ion ion-ios-calendar-outline"></i>
                       </div>
-                      <a  routerLink="/agriculteur/bon/listeBon" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  routerLink="/agriculteur/bon/listeBon" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
 
@@ -129,7 +129,7 @@
                    <div class="col-md-12">
                      <div class="card">
                        <div class="card-header">
-                         <h2 class="card-title">Monthly Recap Report</h2>
+                         <h2 class="card-title">rapport recapitulatif quotidien</h2>
 
                          <!-- <tr *ngFor="let l of list ">
                            <td>{{l}}</td>
@@ -139,18 +139,7 @@
                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
                              <i class="fas fa-minus"></i>
                            </button>
-                           <div class="btn-group">
-                             <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                               <i class="fas fa-wrench"></i>
-                             </button>
-                             <div class="dropdown-menu dropdown-menu-right" role="menu">
-                               <a href="#" class="dropdown-item">Action</a>
-                               <a href="#" class="dropdown-item">Another action</a>
-                               <a href="#" class="dropdown-item">Something else here</a>
-                               <a class="dropdown-divider"></a>
-                               <a href="#" class="dropdown-item">Separated link</a>
-                             </div>
-                           </div>
+                          
                            <button type="button" class="btn btn-tool" data-card-widget="remove">
                              <i class="fas fa-times"></i>
                            </button>
@@ -160,8 +149,8 @@
                        <div class="card-body">
                          <div class="row">
                            <div class="col-md-8">
-                             <p class="text-center">
-                               <strong>{{myDate}}</strong>
+                             <p style="margin-left:155px;margin-bottom:30px;">
+                               <strong>Date : {{myDate  | date:"dd-MM-yyyy  HH:mm:ss" }}</strong>
                              </p>
 
                              <div class="chart">
@@ -174,12 +163,12 @@
 
                             <br><br><br><br><br><br><br>
 
-                            <div  style="margin-top:25px;margin-left:-100px;margin-right:70px">
+                            <div  style="margin-top:25px;margin-left:-220px;margin-right:90px">
                             <ngx-charts-pie-chart
                             [results]="data"
                             [legend]="true"
-                            [legendTitle]="'Product Sale Report'"
-                            [view]="[1000,400]"
+                            [legendTitle]="'Rapport sur l\'etat des tanks'"
+                            [view]="[1150,400]"
                             [scheme]="colorScheme"
                             [labels]="true" >
                             </ngx-charts-pie-chart>

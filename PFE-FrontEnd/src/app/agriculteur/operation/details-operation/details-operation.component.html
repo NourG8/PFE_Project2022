@@ -52,8 +52,8 @@
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Poids Lait (Kg) : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{operation.poidsLait}} Kg </span> </span>
+                    <span id="titre">Quantité de lait (Kg) : </span>
+                    <span>{{operation.poidsLait}} Kg </span>
                   </div>
 
                    <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
@@ -75,7 +75,7 @@
                     </div>                   
                 </div>
             </div>
-  
+  <br> <br> 
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">

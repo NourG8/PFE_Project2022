@@ -53,6 +53,17 @@ public class CollecteurRestController {
 		return msg;
 	}
 	
+	//si le matricule existe ou nn
+	@RequestMapping(value="/collec/{matricule}",method = RequestMethod.GET)
+	public int getCMatricule(@PathVariable String matricule){
+		int msg=0;
+		for(int i=0;i<collecteurRepository.findAll().size();i++) {
+			Collecteur t=collecteurRepository.findAll().get(i);
+			if(matricule.equals(t.getMatricule()))
+				msg=1;
+		}
+		return msg;
+	}
 	
 	
 	//si le nom existe ou nn
