@@ -75,6 +75,19 @@ export class CreateTankComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.myForm.get('matricule')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('poidVide')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
     this.submitted = true;
     this.save();
 

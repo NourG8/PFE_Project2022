@@ -53,27 +53,36 @@
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">#id  : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.idOpTank}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.idOpTank}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">Matricule tank : </span>
-                    <span>&nbsp;{{operation.tank.matricule}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.tank.matricule}}</span>
                   </div>
   
                   <div class="text-uppercase fs-08">
                     <span id="titre">id Operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.operation.idOperation}}</span>
                   </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Type de l'opération : </span>
+                    <span>&nbsp;{{operation.operation.typeOp}}</span>
+                  </div>   
+
   
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Date operation :</span>
-                      <span>&nbsp;{{operation.date}}</span>
-                    </div>       
+                      <span id="titre">Date operation : </span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.date}}</span>
+                    </div>      
+                    
+                
                     
                     <div class="text-uppercase fs-08">
                       <span id="titre">Quantité(Inserer/Retirer) : </span>
-                      <span>{{operation.qteInsereTank}}</span>
+                      <span>&nbsp;{{operation.qteInsereTank}}</span>
                     </div>
                 </div>
             </div>

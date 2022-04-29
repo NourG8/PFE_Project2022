@@ -18,7 +18,7 @@
                [(ngModel)]="vache.matricule"
                name="matricule">
   
-              <div *ngIf="matricule?.invalid && matricule?.touched && msg2==1" class="text-danger">
+              <div *ngIf="matricule?.invalid && matricule?.touched || msg2==1" class="text-danger">
                 Matricule invalide !
               </div>
               <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">

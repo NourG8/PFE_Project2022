@@ -1,6 +1,6 @@
 <div class="ContenuCard" >
   <div class="modal-header">
-    <h3 id="modal-title"><b>Creer un bon (Entree/Sortie) :</b></h3>
+    <h2 id="modal-title"><b>Créer un bon d'entrée : </b></h2>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -17,10 +17,10 @@
                name="quantite">
 
               <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
-                Quantite invalide !
+                Quantité invalide !
               </div>
               <div *ngIf="quantite?.valid && quantite?.touched " class="text-success">
-                Quantite valide!
+                Quantité valide!
               </div>
               <div *ngIf="msgErreur==1" class="text-danger">
                 Vous ne pouvez pas prendre cette quantité!! car la quantité disponible dans le stock est: {{qteAct}} !

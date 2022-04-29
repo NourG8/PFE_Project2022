@@ -530,7 +530,7 @@ public class OperationRestController {
 			}
 			
 			
-		operation.setCode(operation.getCode());
+		operation.setCode(null);
 		operationRepository.save(operation);
 		
 		
