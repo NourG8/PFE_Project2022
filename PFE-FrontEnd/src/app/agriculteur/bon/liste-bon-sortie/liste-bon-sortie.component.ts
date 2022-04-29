@@ -74,7 +74,7 @@ export class ListeBonSortieComponent implements OnInit {
   
    
     deleteBon(id:number){
-      let confirmation =confirm("Êtes-vous sûr de supprimer ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le bon de sortie où son id est egale à : "+id+" ??")
       if(confirmation)
       this.bonService.deleteBon(id).subscribe(()=>{
         this.Toast[0] = 'Success';

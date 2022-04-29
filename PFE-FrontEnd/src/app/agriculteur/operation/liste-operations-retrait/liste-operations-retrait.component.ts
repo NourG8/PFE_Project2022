@@ -112,7 +112,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
         this.Toast[0] = 'Success';
         this.Toast[1] ='Operation a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
-        // window.location.reload();
         this.onClose();
       },
       (error) => {
@@ -137,6 +136,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
 
         if(this.p<=this.q){
           this.deleteOperation(id);
+          this.onClose();
         }else{
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
@@ -151,7 +151,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
 
   onReload(){
     // this.router.navigate([this.router.url]);
-    this.router.navigateByUrl("/agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then( response=> {
+    this.router.navigateByUrl("/'agriculteur/operation/listeOperation",{skipLocationChange: true}).then( response=> {
       this.router.navigate([decodeURI(this.location.path())]);
     })
   }
@@ -162,7 +162,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
     // this.gotoList();
     this.onReload();
   }
-
     detailsOperation(operation:Operation){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;

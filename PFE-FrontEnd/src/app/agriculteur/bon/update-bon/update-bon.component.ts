@@ -75,7 +75,7 @@ fournisseurs!:Observable<Fournisseur[]>;
         })
         .subscribe(o=>{
           localStorage.setItem('Toast', JSON.stringify(["Success","Un bon a été modifié avec succes"]));
-           window.location.reload();
+          //  window.location.reload();
           console.log(this.bon);
           console.log(this.myForm.get('quantite')?.value);
           console.log(this.bon.quantite);

@@ -71,7 +71,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
      }
      
 
-     if(this.myForm.get('poidsLait')?.value!=null){
+     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('poidsLait')?.value>0){
 
     this.operationService
         .createOperationRemplissage(

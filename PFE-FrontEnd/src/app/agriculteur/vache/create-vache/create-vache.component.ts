@@ -108,6 +108,35 @@ export class CreateVacheComponent implements OnInit {
 
 
   onSubmit() {
+    
+    if(this.myForm.get('poids')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('race')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     
+     if(this.myForm.get('dateNaissance')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
+
+     if(this.myForm.get('matricule')?.value==null){
+      this.msg="vous devez remplir le formulaire !!";
+     }
+     else{
+      this.msg="";
+     }
     this.submitted = true;
     this.save();
 
