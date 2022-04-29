@@ -22,7 +22,53 @@
    <section class="content">
        <div class="container-fluid">
          <!-- Small boxes (Stat box) -->
-
+         <!-- <div class="row">
+          <div class="col-md-3 animated fadeIn">
+            <div class="card card-block tip-card">
+              <div class="tip-msg">
+                <h3>Users</h3>
+                <span>118 / 251</span>
+              </div>
+              <button class="tip-ico tip-ico-primary">
+                <i class="fa fa-group fa-fw"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 animated fadeIn">
+            <div class="card card-block tip-card">
+              <div class="tip-msg">
+                <h3>Messages</h3>
+                <span>2 messages</span>
+              </div>
+              <button class="tip-ico tip-ico-info">
+                <i class="fa fa-comments fa-fw"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 animated fadeIn">
+            <div class="card card-block tip-card">
+              <div class="tip-msg">
+                <h3>Mails</h3>
+                <span>2 mails</span>
+              </div>
+              <button class="tip-ico tip-ico-success">
+                <i class="fa fa-envelope fa-fw"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-3 animated fadeIn">
+            <div class="card card-block tip-card">
+              <div class="tip-msg">
+                <h3>Feedback</h3>
+                <span>20 feedbacks</span>
+              </div>
+              <button class="tip-ico tip-ico-danger">
+                <i class="fa fa-warning fa-fw"></i>
+              </button>
+            </div>
+          </div>
+         
+        </div> -->
          <!-- /.row -->
          <!-- Main row -->
          <div class="row">
@@ -32,7 +78,7 @@
                  <div class="row">
                    <div class="col-lg-2 col-6">
                      <!-- small box -->
-                     <div class="small-box bg-info">
+                     <div class="small-box" style="background-color:#148F77">
                        <div class="inner">
                          <h3>{{somOperation}}</h3>
 
@@ -48,7 +94,7 @@
                    <!-- ./col -->
                    <div class="col-lg-2 col-6">
                      <!-- small box -->
-                     <div class="small-box bg-success">
+                     <div class="small-box" style="background-color: #17A589;">
                        <div class="inner">
                          <h3>{{somTank}}</h3>
 
@@ -64,7 +110,7 @@
                    <!-- ./col -->
                    <div class="col-lg-2 col-6">
                      <!-- small box -->
-                     <div class="small-box bg-warning">
+                     <div class="small-box" style="background-color: #1ABC9C;">
                        <div class="inner">
                          <h3>{{somVache}}</h3>
 
@@ -79,7 +125,7 @@
                    <!-- ./col -->
                    <div class="col-lg-2 col-6">
                      <!-- small box -->
-                     <div class="small-box bg-danger">
+                     <div class="small-box" style="background-color: #48C9B0;">
                        <div class="inner">
                          <h3>{{somFournisseur}}</h3>
 
@@ -93,7 +139,7 @@
                    </div>
                    <div class="col-lg-2 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-secondary">
+                    <div class="small-box" style="background-color: #76D7C4;">
                       <div class="inner">
                         <h3>{{somProduit}}</h3>
 
@@ -108,7 +154,7 @@
 
                   <div class="col-lg-2 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-light">
+                    <div class="small-box" style="background-color: #A3E4D7;">
                       <div class="inner">
                         <h3>{{somBon}}</h3>
 
@@ -181,6 +227,16 @@
                             [scheme]="colorScheme"
                             [gradient]="true" >
                            </ngx-charts-advanced-pie-chart>
+                           <br><br>   <br><br>
+<!-- 
+                           <ngx-charts-pie-chart
+                           [view]="[300, 0]"
+                           [scheme]="colorScheme"
+                           [results]="data"
+                           [legend]="true"
+                           [doughnut]="true"
+                           [legendTitle]="''">
+                        </ngx-charts-pie-chart> -->
 
 
                             </div>

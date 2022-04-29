@@ -17,7 +17,7 @@ export class AgriculteurComponent implements OnInit {
     //      // Trick the Router into believing it's last link wasn't previously loaded
     //      this.router.navigated = false;
     //   }
-    // }); 
+    // });
  }
 
 ngOnInit () {
