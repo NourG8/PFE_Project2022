@@ -30,20 +30,20 @@
                                       <td mat-cell *matCellDef="let element">{{element.idBon}}</td>
                                   </ng-container>
                                   <ng-container matColumnDef="quantite" >
-                                    <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantite (Kg)</th>
-                                    <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.quantite}}</td>
+                                    <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantité (Kg)</th>
+                                    <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.quantite}} Kg</td>
                                   </ng-container>
                                   <!-- <ng-container matColumnDef="prix">
                                     <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Prix</th>
                                     <td mat-cell *matCellDef="let element" ><span class="mode mode_process">{{element.prix}}</span></td>
                                   </ng-container> -->
                                   <ng-container matColumnDef="produit">
-                                    <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Intitule du produit</th>
+                                    <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Intitulé du produit</th>
                                     <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.produit.intitule}}</td>
                                   </ng-container>
                                   <ng-container  matColumnDef="date" >
                                     <th  mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de consommation</th>
-                                    <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_on" style="font-size: small;">&nbsp;<b>{{element.date}}</b>&nbsp;</span></td>
+                                    <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;<b>{{element.date}}</b>&nbsp;</span></td>
                                   </ng-container>
                                   <ng-container matColumnDef="action">
                                     <th  mat-header-cell *matHeaderCellDef style="min-width:150px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>

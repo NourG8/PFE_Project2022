@@ -28,23 +28,23 @@
                                 <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.idOperation}}</td>
                             </ng-container>
                             <ng-container matColumnDef="poidsLait" >
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantite de lait (Kg)</th>
-                              <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantité de lait prise (Kg)</th>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
                             </ng-container>
 
                             <ng-container matColumnDef="code">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Code opération</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.code}}</td>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_code" style="font-size: small;font-weight:bold;color:black;">&nbsp;<b>{{element.code}}</b>&nbsp;</span></td>
                             </ng-container>
 
                             <ng-container matColumnDef="collecteur">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Nom du collecteur</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.collecteur.nomCollecteur}}</td>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Collecteur</th>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.collecteur.nomCollecteur}}</td>
                             </ng-container>
 
                             <ng-container matColumnDef="dateOperation">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de l'opération</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.dateOperation}}</td>
+                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;<b>{{element.dateOperation}}</b>&nbsp;</span></td>
                             </ng-container>
                             
                             <ng-container matColumnDef="action">
