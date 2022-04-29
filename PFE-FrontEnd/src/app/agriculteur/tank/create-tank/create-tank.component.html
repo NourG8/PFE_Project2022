@@ -18,7 +18,7 @@
                [(ngModel)]="tank.matricule"
                name="matricule">
   
-              <div *ngIf="matricule?.invalid && matricule?.touched && msg1==1" class="text-danger">
+              <div *ngIf="matricule?.invalid && matricule?.touched || msg1==1" class="text-danger">
                 Matricule invalide !
               </div>
               <div *ngIf="matricule?.valid && matricule?.touched && msg1==0" class="text-success">

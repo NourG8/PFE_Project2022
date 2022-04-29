@@ -50,12 +50,12 @@
     <div class="card text-white">
       
         <div class="bg-pink">
-
+<!-- 
           <div tyle="margin-left:120px">
             <button type="button" style="margin-left:-420px ;color:white;size:750px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
-            </div><br>
+            </div><br> -->
 
         </div>
         
@@ -75,33 +75,34 @@
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Matricule : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.matricule}}</span>
+                    <span id="titre">Matricule de la vache :</span>
+                    <span>{{vache.matricule}}</span>
                   </div>
   
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">Poids de la vache (Kg):</span>
-                    <span><span id="titre">{{vache.poids}} Kg </span></span>
-                  </div>
-                    <div class="text-uppercase fs-08">
+                    <!-- <div class="text-uppercase fs-08">
                       <span id="titre"> Etat de la vache :</span>
                       <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.etat}}</span>
-                    </div>
+                    </div> -->
 
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Race de la vache :</span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.race}}</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.race}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
                       <span id="titre"> Date de naissance :</span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.dateNaissance}}</span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.dateNaissance}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
+                      <span id="titre">Poids de la vache : </span>
+                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.poids}} Kg </span>
+                    </div>
+
+                    <!-- <div class="text-uppercase fs-08">
                       <span id="titre"> Quantité de production laits:</span>
                       <span><span id="titre">{{vache.qte_prodLait}}litres</span></span>
-                    </div>
+                    </div> -->
 
                     
                     

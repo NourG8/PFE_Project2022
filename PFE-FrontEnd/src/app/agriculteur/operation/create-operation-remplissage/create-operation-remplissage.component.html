@@ -9,7 +9,7 @@
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="col-md-12 mb-3">
-                <label>Poids Lait (Kg): <span style="color:red;">*</span></label>
+                <label>Quantité de lait (Kg)  : <span style="color:red;">*</span></label>
                 <input type="number"
                  formControlName="poidsLait"
                  class="form-control"
@@ -17,13 +17,13 @@
                  name="poidsLait">
 
                 <div *ngIf="poidsLait?.invalid && poidsLait?.touched" class="text-danger">
-                  Poids invalide !
+                  Quantité de lait invalide !
                 </div>
                 <div *ngIf="poidsLait?.valid && poidsLait?.touched && msgErreur==0"  class="text-success">
-                  Poids valide!
+                  Quantité de lait valide!
                 </div>
                 <div *ngIf="msgErreur==1" class="text-danger">
-                  Vous devez inserer une quantite comprise entre 0 et {{qteRsetLait}} !!<br> NB : La quantite disponible dans les tanks est {{qteRsetLait}}
+                  Vous devez inserer une Quantité de lait comprise entre 0 et {{qteRsetLait}} !!<br> NB : La Quantité de lait disponible dans les tanks est {{qteRsetLait}}
                 </div>
 
               </div>
