@@ -1,13 +1,13 @@
 <div class="container p-30">
   <div class="row">
- 
+
       <div class="col-md-12 main-datatable">
         <div class="card-header card-header-danger" id="title-Table">
           <h3 class="card-title" id="titre">Table pour les bons d'entrées</h3><br>
         </div>
           <div class="card_body">
               <div class="row d-flex">
-                  <div class="col-sm-4 createSegment"> 
+                  <div class="col-sm-4 createSegment">
                    <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un element </a>
                   </div>
                   <div class="col-sm-8 add_flex">
@@ -15,7 +15,7 @@
                           <label for="email">Recherche:</label>
                           <input type="search"  class="form-control" id="filterbox" matInput placeholder=" ">
                       </div>
-                  </div> 
+                  </div>
               </div>
               <div class="overflow-x">
                   <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer" mat-table matSort [dataSource]="dataSource!"  >
@@ -35,7 +35,7 @@
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">&nbsp;&nbsp;Prix (dt)</th>
                               <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.prix}} dt</td>
                             </ng-container>
-<!-- 
+<!--
                             <ng-container matColumnDef="fournisseur">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Nom du fournisseur</th>
                               <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.fournisseur.nom}}</td>
@@ -45,8 +45,8 @@
                               <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.produit.intitule}}</td>
                             </ng-container>
                             <ng-container  matColumnDef="date" >
-                              <th  mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de livraison</th>
-                              <td mat-cell *matCellDef="let element"><span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;<b>{{element.date}}</b>&nbsp;</span></td>
+                              <th  mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Date de réception</th>
+                              <td mat-cell *matCellDef="let element">&nbsp;<span class="mode mode_date" style="font-size: small;font-weight:bold;color:blue">&nbsp;&nbsp;<b>{{element.date}}</b>&nbsp;&nbsp;</span></td>
                             </ng-container>
                             <ng-container matColumnDef="action">
                               <th  mat-header-cell *matHeaderCellDef style="min-width:150px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Action</th>
@@ -57,16 +57,16 @@
                                       <ul class="dropdown-menu">
                                         <li class="li2">
                                           <a (click)="updateBon(element)" target="_blank">
-                                            <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"> Modifier </i> 
+                                            <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"> Modifier </i>
                                           </a>
                                       </li>
-                                   
+
                                       </ul>
                                   </div>
                                   &nbsp;
-                                  
+
                                   <div class="btn-group" style="margin-top:-8px;">
-                                      <a class="dropdown-toggle dropdown_icon" style="color:#2399BF;border: 1px solid #2399BF" data-toggle="dropdown"> 
+                                      <a class="dropdown-toggle dropdown_icon" style="color:#2399BF;border: 1px solid #2399BF" data-toggle="dropdown">
                                           <i class="fa fa-info-circle fa-lg" ></i>
                                       </a>
                                       <ul class="dropdown-menu dropdown_more">
@@ -80,12 +80,12 @@
                                   &nbsp;
 
                                   <div class="btn-group" style="margin-top:-8px;">
-                                    <a class="dropdown-toggle dropdown_icon"style="color:#D41616;border: 1px solid #D41616"  data-toggle="dropdown"> 
+                                    <a class="dropdown-toggle dropdown_icon"style="color:#D41616;border: 1px solid #D41616"  data-toggle="dropdown">
                                       <i class="fa fa-trash fa-lg" style="color:#D41616;"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown_more">
                                         <li class="li1">
-                                         
+
                                     <a (click)="deleteBon(element.idBon)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>Supprimer</b></i></a>
                                   </li>
                                 </ul>
