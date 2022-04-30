@@ -15,18 +15,19 @@
               <input type="text"
                formControlName="matricule"
                class="form-control"
+               placeholder="1a1a1a1a ..."
                id="matricule"
                [(ngModel)]="tank.matricule"
                name="matricule">
   
-              <div *ngIf="matricule?.invalid && matricule?.touched || msg1==1" class="text-danger">
+              <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
                 Matricule invalide !
               </div>
               <div *ngIf="matricule?.valid && matricule?.touched && msg1==0" class="text-success">
                 Matricule valide!
               </div>
               <div *ngIf="msg1==1"  class="text-danger">
-                &nbsp; Matricule existe deja !
+               Matricule existe déjà !
               </div>
   
             </div>
@@ -39,6 +40,7 @@
                formControlName="poidVide"
                class="form-control"
                id="poidVide"
+               placeholder="30 kg ..."
                [(ngModel)]="tank.poidVide"
                name="poidVide">
   
