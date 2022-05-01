@@ -19,7 +19,7 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 
 declare let require: any;
 declare let window: any;
-let Remplissage = require('../../../../../build/contracts/Remplissage.json');
+let Remplissage = require('../../../../../build/contracts/RemplissageAgric.json');
 
 @Component({
   selector: 'app-create-operation',
@@ -275,9 +275,7 @@ this.oppr.sender=s3*/
 
 
 
-  reLoad(){
-    this.router.navigate([this.router.url])
-  }
+
 
 
 
@@ -304,7 +302,6 @@ onSubmit() {
     if(this.myForm.get('poidsLait')?.value<=o ){
    this.save()
   // this.gotoList()
-   this.onClose()
     this.saveInBc()
     this.msgErreur=0;
     }
@@ -336,13 +333,6 @@ onSubmit() {
     // this.gotoList();
     this.onReload();
   }
-
-  refresh(){
-    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then(response => {
-      this.router.navigate([decodeURI(this.location.path())]);
-    })
-  }
-
  get poidsLait(){
   return this.myForm.get('poidsLait') ;
 }

@@ -20,7 +20,7 @@ import { ethers } from 'ethers';
 
 declare let require: any;
 declare let window: any;
-let Remplissage = require('../../../../../build/contracts/Remplissage.json');
+let Remplissage = require('../../../../../build/contracts/RemplissageAgric.json');
 @Component({
   selector: 'app-liste-operations-retrait',
   templateUrl: './liste-operations-retrait.component.html',
@@ -73,7 +73,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
     ngOnInit() {
       this.reloadData();
-      this.reloadData00();
+      //  this.reloadData00();
       //console.log(this.tankService.getTanksQteLibre());
 
 
