@@ -4,22 +4,23 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Operation } from 'src/app/Models/operation';
 import { Tank } from 'src/app/Models/tank';
-import {Lait } from 'src/app/Models/lait';
+import { Lait } from 'src/app/Models/lait';
 import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
-import  {LaitService } from 'src/app/Service/lait.service';
-import  {CollecteurService } from 'src/app/Service/collecteur.service';
+import { LaitService } from 'src/app/Service/lait.service';
+import { CollecteurService } from 'src/app/Service/collecteur.service';
 import { Collecteur } from 'src/app/Models/collecteur';
-import {Location} from "@angular/common";
+import { Location } from "@angular/common";
 
 
 import { ethers } from 'ethers';
 import { asyncScheduler, Observable } from 'rxjs';
 import { Agriculteur } from 'src/app/Models/agriculteur';
+import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 
 declare let require: any;
 declare let window: any;
-let Remplissage = require('../../../../../build/contracts/Remplissage.json');
+let Remplissage = require('../../../../../build/contracts/RemplissageAgric.json');
 
 @Component({
   selector: 'app-create-operation',
@@ -27,44 +28,45 @@ let Remplissage = require('../../../../../build/contracts/Remplissage.json');
   styleUrls: ['./create-operation.component.css']
 })
 export class CreateOperationComponent implements OnInit {
-  operation:Operation = new Operation();
-  t:Tank=new Tank();
+  operation: Operation = new Operation();
+  t: Tank = new Tank();
   submitted = false;
-  msg="";
-  msgErreur=0;
-  qteActLaitTank=0;
-  som=10000;
+  msg = "";
+  msgErreur = 0;
+  qteActLaitTank = 0;
+  som = 10000;
   tab!: any[];
   tabstr!: string[];
   tabint!: number[];
-  myForm=new  FormGroup({
-      poidsLait : new FormControl(null,[Validators.required ,Validators.min(1)]),
-      collecteur : new FormControl(null,[Validators.required ]),
-     // dateOperation : new FormControl(null,[Validators.required ]),
+  myForm = new FormGroup({
+    poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
+    collecteur: new FormControl(null, [Validators.required]),
+    // dateOperation : new FormControl(null,[Validators.required ]),
     //  typeOp : new FormControl(null,[Validators.required ]),
-      //tank : new FormControl(null,[Validators.required ]),
-     // lait : new FormControl(null,[Validators.required ]),
+    //tank : new FormControl(null,[Validators.required ]),
+    // lait : new FormControl(null,[Validators.required ]),
 
   })
-  laits!:Observable<Lait[]>;
-  tanks!:Observable<Tank[]>;
-  collecteurs!:Observable<Collecteur[]>;
+  laits!: Observable<Lait[]>;
+  tanks!: Observable<Tank[]>;
+  collecteurs!: Observable<Collecteur[]>;
   constructor(
-    private location:Location,
+    private location: Location,
     private operationService: OperationService,
-    private tankService:TankService,
-    private laitService:LaitService,
-    private collecteurService:CollecteurService,
+    private tankService: TankService,
+    private laitService: LaitService,
+    private collecteurService: CollecteurService,
+    private agriculteurService: AgriculteurService,
     private router: Router,
     private dialogClose: MatDialog) { }
 
   ngOnInit() {
     //this.ValidatedForm();
-    this.laits=this.laitService.getLaits();
-    this.collecteurs=this.collecteurService.getCollecteurs(); 
-    this.tanks=this.tankService.getTanksFiltres();
-    this.operationService.getNbOp().subscribe(o=>{
-    this.som=this.som+o+1;
+    this.laits = this.laitService.getLaits();
+    this.collecteurs = this.collecteurService.getCollecteurs();
+    this.tanks = this.tankService.getTanksFiltres();
+    this.operationService.getNbOp().subscribe(o => {
+      this.som = this.som + o + 1;
     });
   }
 
@@ -74,150 +76,80 @@ export class CreateOperationComponent implements OnInit {
   }
 
 
-  async  requestAccount() {
+  async requestAccount() {
     if (typeof window.ethereum !== 'undefined') {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
     }
   }
 
 
   async save() {
 
-    if(this.myForm.get('poidsLait')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
-
-     if(this.myForm.get('collecteur')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
-
-
-
-    if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0 ){
-    this.operationService.createOperation({
-     "poidsLait": this.myForm.get('poidsLait')?.value,
-     "collecteur":{
-      "idCollecteur":this.myForm.get('collecteur')?.value,  
-   },
-   "code":this.som,
-   },
-         ).subscribe(  async o=>{   
-            this.collecteurService.getCollecteur(this.myForm.get('collecteur')?.value).subscribe(
-              b=>{
-                console.log(b)
-                localStorage.setItem('idcoll',b.idCollecteur)
-                localStorage.setItem('nomcoll',b.nomCollecteur)
-                localStorage.setItem('address',b.adresse)
-                localStorage.setItem('tel',b.tel)
-              }
-            )
-           this.tab = Object.values(o)
-           console.log(this.tab);
-           console.log(this.tab[5]);
-           console.log(this.tab[5].idAgriculteur);
-           console.log(this.tab[5].nom);
-
-          localStorage.setItem('idop',this.tab[0])
-           localStorage.setItem('poid',this.tab[1])
-           localStorage.setItem('date',this.tab[2])
-           localStorage.setItem('type',this.tab[3])
-           localStorage.setItem('code',this.tab[4])
-
-           localStorage.setItem('idAgric',this.tab[5].idAgriculteur)
-           localStorage.setItem('nom',this.tab[5].nom)
-           localStorage.setItem('prenom',this.tab[5].prenom)
-           localStorage.setItem('username',this.tab[5].username)
-           localStorage.setItem('password',this.tab[5].password)
-
-
-           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-           //  window.location.reload(); 
-
-           this.onClose(); 
-          
-       //   console.log(this.tab[1],this.tab[2],this.tab[3],this.tab[4],this.tab[0],this.tab[5],this.tab[6],this.tab[7]);
-       },
-       (error) => {
-         console.log("Failed")
-       }
-     );
+    if (this.myForm.get('poidsLait')?.value == null) {
+      this.msg = "vous devez remplir le formulaire !!";
     }
-
+    else {
+      this.msg = "";
+    }
+    if (this.myForm.get('collecteur')?.value == null) {
+      this.msg = "vous devez remplir le formulaire !!";
+    }
+    else {
+      this.msg = "";
+    }
+    if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('collecteur')?.value != null && this.myForm.get('poidsLait')?.value > 0) {
+      this.operationService.createOperation({
+        "poidsLait": this.myForm.get('poidsLait')?.value,
+        "collecteur": {
+          "idCollecteur": this.myForm.get('collecteur')?.value,
+        },
+        "code": this.som,
+      },
+      ).subscribe(async o => {
+        this.collecteurService.getCollecteur(this.myForm.get('collecteur')?.value).subscribe(
+          b => {
+            localStorage.setItem('idcoll', JSON.stringify(b))
+          })
+        this.tab = Object.values(o)
+        localStorage.setItem('idop', JSON.stringify(o))
+        localStorage.setItem('Toast', JSON.stringify(["Success", "Une operation a été ajouté avec succès"]));
+        this.onReload();
+      },
+        (error) => {
+          console.log("Failed")
+        }
+      );
+    }
+    this.onReload();
   }
 
-  agri:Agriculteur=  new Agriculteur();
-  oppr:Operation = new Operation();
-  collect:Collecteur = new Collecteur();
+  agri: Agriculteur = new Agriculteur();
+  oppr: Operation = new Operation();
+  collect: Collecteur = new Collecteur();
 
-  mm!:number;
-     async saveInBc(){
-      const depKEY=Object.keys(Remplissage.networks)[0];
-      await this.requestAccount()
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner()
-      const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
-
-      this.oppr.idOperation=JSON.parse(localStorage.getItem('idop') || '[]') || []
-      this.oppr.poidsLait=JSON.parse(localStorage.getItem('poid') || '[]') || []
-      this.oppr.dateOperation=JSON.parse(JSON.stringify(localStorage.getItem('date') )|| '[]') || []
-      this.oppr.typeOp=JSON.parse(JSON.stringify(localStorage.getItem('type'))|| '[]') || []
-      this.oppr.code=JSON.parse(localStorage.getItem('code') || '[]') || []
-     
-      this.collect.nomCollecteur=JSON.parse(JSON.stringify(localStorage.getItem('nomcoll') )|| '[]') || []
-      this.collect.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
-      this.collect.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
-      this.collect.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
-
-      this.agri.idAgriculteur =JSON.parse(JSON.stringify(localStorage.getItem('idAgric') )|| '[]') || [];
-      this.agri.nom =JSON.parse(JSON.stringify(localStorage.getItem('nom') )|| '[]') || [];
-      this.agri.prenom =JSON.parse(JSON.stringify(localStorage.getItem('prenom') )|| '[]') || [];
-      this.agri.username =JSON.parse(JSON.stringify(localStorage.getItem('username') )|| '[]') || [];
-      this.agri.password =JSON.parse(JSON.stringify(localStorage.getItem('password') )|| '[]') || [];
-
-      this.oppr.agriculteur=this.agri;
-
-      console.log("this.agriculteur");
-      console.log(this.agri);
-     // this.oppr.collecteur.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
-     // this.oppr.collecteur.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
-      //this.oppr.collecteur.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
-      
-   // var s1=JSON.parse(JSON.stringify(localStorage.getItem('agriconom') )|| '[]') || []
-    //  this.oppr.agriculteur.nom=this.agri.nom;
-   // var s2=JSON.parse(JSON.stringify(localStorage.getItem('agricoprenom') )|| '[]') || ''  
-     // this.oppr.agriculteur.type='0'
-     // this.oppr.agriculteur.username='0'
-    //  this.oppr.agriculteur.password='0'
-/*var s3 =s1 +" "+ s2 
-
-console.log("var3");
-console.log(s3);
-this.oppr.sender=s3*/
-
-      console.log("this.collect");
-      console.log(this.collect);
-
-      this.oppr.collecteur=this.collect;
-     // this.oppr.collecteur.nomCollecteur =JSON.parse(JSON.stringify(localStorage.getItem('nomcoll') )|| '[]') || [];
-     // this.oppr.collecteur.adresse=JSON.parse(JSON.stringify(localStorage.getItem('address') )|| '[]') || []
-     // this.oppr.collecteur.tel=JSON.parse(localStorage.getItem('tel') || '[]') || []
-      //this.oppr.collecteur.idCollecteur=JSON.parse(localStorage.getItem('idcoll') || '[]') || []
-      console.log("this.oppr");
-      console.log(this.oppr);
-  
-  
-      const transaction = await contract.addOperation2(this.oppr);
-        
-      await transaction.wait() ; 
-  
-      }
+  mm!: number;
+  async saveInBc() {
+    const depKEY = Object.keys(Remplissage.networks)[0];
+    await this.requestAccount()
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(Remplissage.networks[depKEY].address, Remplissage.abi, signer)
     
+    this.agri= JSON.parse(localStorage.getItem('idag') || '[]') || []
+    this.oppr = JSON.parse(localStorage.getItem('idop') || '[]') || []
+    this.collect = JSON.parse(localStorage.getItem('idcoll') || '[]') || []
+    this.oppr.collecteur = this.collect;
+
+    console.log("this.5555555555555555555555555555555555555");
+    console.log(this.oppr);
+
+
+    const transaction = await contract.addOperation2(this.oppr);
+
+    await transaction.wait();
+    this.onClose();
+  }
+
 
 
 
@@ -253,69 +185,66 @@ this.oppr.sender=s3*/
   //   }
   // );
   //    }
-    //  ****************   Tank    ******************
-//     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
-//       this.t=o;
-//       console.log(o);
-//       console.log(this.t);
-//       console.log(o.poidActuel);
-// if(o.poidActuel<this.myForm.get('poidsLait')?.value){
-// this.msgErreur=1;
-// this.qteActLaitTank=o.poidActuel;
-//     }
-// else
-// this.msgErreur=0;
-//     });
-// if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
+  //  ****************   Tank    ******************
+  //     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
+  //       this.t=o;
+  //       console.log(o);
+  //       console.log(this.t);
+  //       console.log(o.poidActuel);
+  // if(o.poidActuel<this.myForm.get('poidsLait')?.value){
+  // this.msgErreur=1;
+  // this.qteActLaitTank=o.poidActuel;
+  //     }
+  // else
+  // this.msgErreur=0;
+  //     });
+  // if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
 
 
 
- // }
-//for testing
+  // }
+  //for testing
 
 
 
-  reLoad(){
-    this.router.navigate([this.router.url])
-  }
 
 
 
-onSubmit() {
 
-    if(this.myForm.get('poidsLait')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
+  onSubmit() {
 
-     if(this.myForm.get('collecteur')?.value==null){
-      this.msg="vous devez remplir le formulaire !!";
-     }
-     else{
-      this.msg="";
-     }
-
-  this.tankService.getTanksQteGenerale().subscribe(
-     o=>{
-       
-      if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('collecteur')?.value!=null && this.myForm.get('poidsLait')?.value>0){
-    if(this.myForm.get('poidsLait')?.value<=o ){
-   this.save()
-  // this.gotoList()
-   this.onClose()
-    this.saveInBc()
-    this.msgErreur=0;
+    if (this.myForm.get('poidsLait')?.value == null) {
+      this.msg = "vous devez remplir le formulaire !!";
     }
-   
-    else{
-    this.msgErreur=1;
-    this.qteActLaitTank=o;
+    else {
+      this.msg = "";
     }
+
+    if (this.myForm.get('collecteur')?.value == null) {
+      this.msg = "vous devez remplir le formulaire !!";
+    }
+    else {
+      this.msg = "";
+    }
+
+    this.tankService.getTanksQteGenerale().subscribe(
+      o => {
+
+        if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('collecteur')?.value != null && this.myForm.get('poidsLait')?.value > 0) {
+          if (this.myForm.get('poidsLait')?.value <= o) {
+            this.save()
+            // this.gotoList()
+            this.saveInBc()
+            this.msgErreur = 0;
+          }
+
+          else {
+            this.msgErreur = 1;
+            this.qteActLaitTank = o;
+          }
+        }
+      });
   }
-});
-}
 
 
   gotoList() {
@@ -323,38 +252,31 @@ onSubmit() {
   }
 
 
-   onReload(){
+  onReload() {
     // this.router.navigate([this.router.url]);
-    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then( response=> {
+    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait", { skipLocationChange: true }).then(response => {
       this.router.navigate([decodeURI(this.location.path())]);
     })
   }
-  
-  
+
+
   onClose() {
     this.dialogClose.closeAll();
     // this.gotoList();
     this.onReload();
   }
-
-  refresh(){
-    this.router.navigateByUrl("/'agriculteur/operation/listeOperationRetrait",{skipLocationChange: true}).then(response => {
-      this.router.navigate([decodeURI(this.location.path())]);
-    })
+  get poidsLait() {
+    return this.myForm.get('poidsLait');
   }
 
- get poidsLait(){
-  return this.myForm.get('poidsLait') ;
-}
 
+  get collecteur() {
+    return this.myForm.get('collecteur');
+  }
 
-get collecteur(){
-  return this.myForm.get('collecteur') ;
-}
-
-// get lait(){
-//   return this.myForm.get('lait') ;
-// }
+  // get lait(){
+  //   return this.myForm.get('lait') ;
+  // }
 
 }
 
