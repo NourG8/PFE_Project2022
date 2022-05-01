@@ -73,6 +73,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
     ngOnInit() {
       this.reloadData();
+
       //this.reloadData00();
       //console.log(this.tankService.getTanksQteLibre());
 
