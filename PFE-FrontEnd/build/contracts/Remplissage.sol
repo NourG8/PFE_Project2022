@@ -174,7 +174,6 @@ struct Operation04{
         uint256 qtePrise;
         Tank tank;
         Produit produit;
-        uint256[] codeRemplissage;
   }
 
 

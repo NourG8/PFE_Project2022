@@ -118,7 +118,9 @@ export class CreateOperationComponent implements OnInit {
         (error) => {
           console.log("Failed")
         }
+        
       );
+      this.onReload();
     }
     this.onReload();
   }
@@ -147,6 +149,9 @@ export class CreateOperationComponent implements OnInit {
     const transaction = await contract.addOperation2(this.oppr);
 
     await transaction.wait();
+    window.localStorage.removeItem("idag");
+    window.localStorage.removeItem("idop");
+    window.localStorage.removeItem("idcoll");
     this.onClose();
   }
 
