@@ -37,12 +37,12 @@ contract RemplissageAgric is Remplissage {
         }
     }
 
-    function GetOperationFarmerByCode(uint256 code)
+    function getOperationbycode(uint256 code, uint256 nin)
         public
         view
         returns (Operation memory operation)
     {
-        for (uint256 i = 0; i < operations2.length; i++) {
+        for (uint256 i = 0; i < nin; i++) {
             if (operations2[i].code == code) {
                 return operations2[i];
             }
