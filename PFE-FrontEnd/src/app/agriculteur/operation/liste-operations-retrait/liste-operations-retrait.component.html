@@ -24,12 +24,12 @@
                                </thead>
                           <tr>
                             <ng-container matColumnDef="idOperation" >
-                                <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
-                                <td mat-cell *matCellDef="let element">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.idOperation}}</td>
-                            </ng-container>
+                              <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
+                              <td mat-cell *matCellDef="let element"><p style="text-align:center;padding-right:20px;">{{element.idOperation}}</p></td>
+                          </ng-container>
                             <ng-container matColumnDef="poidsLait" >
                               <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Quantité de lait prise (Kg)</th>
-                              <td mat-cell *matCellDef="let element" style="font-weight:bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.poidsLait}} kg</td>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold"><p style="text-align:center;padding-right:50px;">{{element.poidsLait}} kg</p></td>
                             </ng-container>
 
                             <ng-container matColumnDef="code">
@@ -38,8 +38,8 @@
                             </ng-container>
 
                             <ng-container matColumnDef="collecteur">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Collecteur</th>
-                              <td mat-cell *matCellDef="let element" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{element.collecteur.nomCollecteur}}</td>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">&nbsp;&nbsp;&nbsp;Collecteur</th>
+                              <td mat-cell *matCellDef="let element" ><p style="text-align:center;padding-left:-40px;">{{element.collecteur.nomCollecteur}}</p></td>
                             </ng-container>
 
                             <ng-container matColumnDef="dateOperation">
@@ -97,7 +97,7 @@
                             </tbody>
                   </table>
                   <mat-paginator #paginator
-                    [pageSize]="5"
+                    [pageSize]="4"
                     [pageSizeOptions]="[ 2, 3, 4, 5, 10, 25, 100]">
                   </mat-paginator>
               </div>

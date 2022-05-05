@@ -37,7 +37,7 @@ export class UpdateFournisseurComponent implements OnInit {
 
   updateFournisseur(){
 
-    if(this.myForm.get('nom')?.value.length>=7 && this.myForm.get('matricule')?.value.length>=8){
+    if(this.myForm.get('nom')?.value.length>=3 && this.myForm.get('prenom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8){
     this.fournisseurService
         .updateFournisseur(this.fournisseur.idFournisseur,this.fournisseur)
         .subscribe(o=>{
@@ -56,7 +56,8 @@ export class UpdateFournisseurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]),
+      'prenom' : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]),
       'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
  
       });
@@ -71,6 +72,9 @@ get matricule(){
   return this.myForm.get('matricule') ;
 }
 
+get prenom(){
+  return this.myForm.get('prenom') ;
+}
 
 onReload(){
        // this.router.navigate([this.router.url]);

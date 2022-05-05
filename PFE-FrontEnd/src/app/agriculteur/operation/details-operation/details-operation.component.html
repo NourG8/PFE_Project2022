@@ -51,35 +51,40 @@
                 <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
                 <div class=" pb-5 pt-3">
   
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">Quantité de lait (Kg) : </span>
-                    <span>{{operation.poidsLait}} Kg </span>
+                  <div class="text-uppercase fs-08" *ngIf="operation.code==null">
+                    <span id="titre">Quantité de lait insérée : </span>
+                    <span>&nbsp;&nbsp;{{operation.poidsLait}} Kg </span>
                   </div>
-
-                   <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
-                    <span id="titre">Code operation : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{operation.code}}</span>
+                  <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
+                    <span id="titre">Quantité de lait retirée : </span>
+                    <span>&nbsp;&nbsp;{{operation.poidsLait}} Kg </span>
                   </div>
 
                   <div class="text-uppercase fs-08" *ngIf="operation.code!=null">
-                    <span id="titre">Nom du collecteur:</span>
+                    <span id="titre">Nom du collecteur : </span>
                     <span  id="titre">{{operation.collecteur.nomCollecteur}}</span>
                   </div>
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Type operation:</span>
+                      <span id="titre">Type operation : </span>
                       <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{operation.typeOp}}</span>
                     </div> 
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Date operation:</span>
+                      <span id="titre">Date operation : </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{operation.dateOperation}}</span>
-                    </div>                   
+                    </div>  
+                    <br>
+
+                    <div class="text fs-08" *ngIf="operation.code!=null">
+                      <span style="margin-left:20px;color:#0776F4 ;">Voici le code de livraison  :  {{operation.code}}</span>
+                    </div>  
+
                 </div>
             </div>
   <br> <br> 
             <div class="details project">
               <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
-                  Close Details
+                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+                  Fermer les détails
                 </button>
               </div>
           </div>

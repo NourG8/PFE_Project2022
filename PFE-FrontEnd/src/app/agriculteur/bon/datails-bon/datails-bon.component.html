@@ -66,35 +66,51 @@
           <div class="skills">
               <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
               <div class=" pb-5 pt-3">
+                <div class="text fs-08" *ngIf="bon.type=='Entree'">
+                  <span style="margin-left:20px;">C'est un bon d'entree</span>
+                </div>
 
-                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
-                  <span id="titre"> Prix (dt) : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
+                <div class="text fs-08" *ngIf="bon.type=='Sortie'">
+                  <span style="margin-left:20px;">C'est un bon de sortie</span>
                 </div>
 
                 <div class="text-uppercase fs-08">
-                  <span id="titre"> Quantite (Kg) : </span>
+                  <span id="titre"> Date du bon : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
+                </div>
+
+                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
+                  <span id="titre"> Prix (dt) : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
+                </div>
+
+                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
+                  <span id="titre"> Quantite inserée : </span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}  Kg</span></span>
                 </div>
-                  <div class="text-uppercase fs-08">
+
+                <div class="text-uppercase fs-08" *ngIf="bon.type=='Sortie'">
+                  <span id="titre"> Quantite retirée : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}  Kg</span></span>
+                </div>
+                  <!-- <div class="text-uppercase fs-08">
                     <span id="titre"> Type (Entree/Sortie) :</span>
                     <span id="titre">{{bon.type}}</span>
-                  </div>
-
-                 
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">Intitulé produit : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
-                  </div>
+                  </div> -->
 
                   <div class="text-uppercase fs-08"  *ngIf="bon.type=='Entree'">
                     <span id="titre">Nom du fournisseur : </span>
-                    <span>{{bon.fournisseur.nom}}</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{bon.fournisseur.nom}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Date du bon : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
+                    <span id="titre">Intitulé produit : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre">Quantité produit : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.qte}} Kg</span>
                   </div>
                
                   
@@ -103,8 +119,8 @@
 
           <div class="details project">
             <div class="head text-uppercase">
-              <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
-                Close Details
+              <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+                Fermer les détails
               </button>
             </div>
         </div>

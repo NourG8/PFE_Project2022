@@ -25,6 +25,7 @@ export class CreateBonSortieComponent implements OnInit {
   msg="";
   msgErreur=0;
   qteAct=0;
+  msg4=0;
 
   myForm=new  FormGroup({
       quantite : new FormControl(null,[Validators.required,Validators.min(1)]),
@@ -32,6 +33,7 @@ export class CreateBonSortieComponent implements OnInit {
       // prix : new FormControl(null,[Validators.required ]),
      // agriculteur : new FormControl(null,[Validators.required ]),
       produit : new FormControl(null,[Validators.required ,Validators.min(1)]),
+      cgu: new FormControl(false, Validators.requiredTrue),
       // fournisseur : new FormControl(null,[Validators.required ]),
 
   })
@@ -74,7 +76,8 @@ export class CreateBonSortieComponent implements OnInit {
 
 
    if(this.myForm.get('quantite')?.value!=null && this.myForm.get('produit')?.value!=null
-   && this.myForm.get('quantite')?.value!=0 && this.myForm.get('produit')?.value!=0 ){
+   && this.myForm.get('quantite')?.value!=0 && this.myForm.get('produit')?.value!=0
+   &&  this.myForm.get('cgu')?.value==true ){
 
     this.bonService
         .createBonSortie({
@@ -111,6 +114,13 @@ export class CreateBonSortieComponent implements OnInit {
     else{
       this.msg="";
      }
+
+     if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
 
     this.produitService.getProduit(this.myForm.get('produit')?.value).subscribe(
       o=>{

@@ -17,6 +17,7 @@ export class CreateVacheComponent implements OnInit {
   myForm!:FormGroup;
   msg="";
   msg2=0;
+  msg4=0;
   constructor(private vacheService: VacheService,
     private location:Location,
     private router: Router, private dialogClose: MatDialog,) { }
@@ -90,6 +91,7 @@ export class CreateVacheComponent implements OnInit {
 
      if( this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8 &&this.myForm.get('race')?.value!=null &&
       // this.myForm.get('etat')?.value!=null && 
+       this.myForm.get('cgu')?.value==true &&
        this.myForm.get('poids')?.value!=null && this.myForm.get('dateNaissance')?.value!=null && l==0
       && this.myForm.get('poids')?.value>=30){
     console.log(this.vache);
@@ -116,6 +118,13 @@ export class CreateVacheComponent implements OnInit {
      else{
       this.msg="";
      }
+
+     if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
 
     this.submitted = true;
     this.save();
@@ -146,6 +155,7 @@ export class CreateVacheComponent implements OnInit {
       'poids' : new FormControl(null,[Validators.required, Validators.min(30)]),
       'race' : new FormControl(null,[Validators.required, ]),
       'dateNaissance' : new FormControl(null,[Validators.required, ]),
+      'cgu': new FormControl(false, Validators.requiredTrue),
       // 'etat' : new FormControl(null,[Validators.required, ]),
       });
  }

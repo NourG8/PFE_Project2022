@@ -29,6 +29,7 @@ public class CollecteurRestController {
 		return collecteurRepository.findAll();
 	}
 	
+	
 	@RequestMapping(value="/centre/{nomCentre}",method = RequestMethod.GET)
 	public int getCollUtilise(@PathVariable String nomCentre){
 		int msg=0;

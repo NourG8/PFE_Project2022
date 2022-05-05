@@ -1,7 +1,7 @@
 <div class="wrapper" *ngIf="collecteur">
     <div class="card text-white">
         <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter le collecteur numéro</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter le centre numéro</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idC}} </div>
         </div>
@@ -17,22 +17,22 @@
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Nom et prénom : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{collecteur.nomCollecteur}}</span>
+                    <span id="titre">Nom du centre : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{collecteur.nomCollecteur}}</span>
                   </div>
                   
-                  <div class="text-uppercase fs-08">
+                  <!-- <div class="text-uppercase fs-08">
                     <span id="titre">NNuméro de matricule :</span>
                     <span>{{collecteur.matricule}}</span>
-                  </div>
+                  </div> -->
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Adresse du collecteur: </span>
+                    <span id="titre">Adresse du centre : </span>
                     <span>{{collecteur.adresse}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> Numéro du téléphone: </span>
+                    <span id="titre">Numéro du téléphone : </span>
                     <span>{{collecteur.tel}}</span>
                   </div>
 
@@ -43,8 +43,8 @@
   
             <div class="details project">
               <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()" class="btn btn ml-150  btn-rounded waves-effect w-md waves-light">
-                  Close Details
+                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+                  Fermer les détails
                 </button>
               </div>
           </div>

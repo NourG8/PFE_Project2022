@@ -62,7 +62,17 @@ public class FournisseurRestController {
 			return msg;
 		}
 		
-	
+		@RequestMapping(value="/fournis2/{prenom}",method = RequestMethod.GET)
+		public int getFPrenom(@PathVariable String prenom){
+			int msg=0;
+			for(int i=0;i<fournisseurRepository.findAll().size();i++) {
+				Fournisseur t=fournisseurRepository.findAll().get(i);
+				if(prenom.equals(t.getPrenom()))
+					msg=1;
+			}
+			return msg;
+		}
+		
 	
 	
 	@RequestMapping(value="/fournisseurs/{idFournisseur}",method = RequestMethod.GET)
