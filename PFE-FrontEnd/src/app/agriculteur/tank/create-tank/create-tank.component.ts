@@ -18,6 +18,7 @@ export class CreateTankComponent implements OnInit {
   myForm!:FormGroup;
   msg="";
   msg1=0;
+  msg4=0;
 
   constructor(private tankService: TankService,
     private location:Location,
@@ -60,7 +61,7 @@ export class CreateTankComponent implements OnInit {
         this.msg1=0;
        }
 
-     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null 
+     if(this.myForm.get('matricule')?.value!=null && this.myForm.get('poidVide')?.value!=null &&  this.myForm.get('cgu')?.value==true
      && t==0 && this.myForm.get('poidVide')?.value>=30 && this.myForm.get('matricule')?.value.length>=8){
     this.tankService
         .createTank(this.tank)
@@ -88,6 +89,14 @@ export class CreateTankComponent implements OnInit {
      else{
       this.msg="";
      }
+
+     if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
     this.submitted = true;
     this.save();
 
@@ -115,6 +124,7 @@ export class CreateTankComponent implements OnInit {
     this.myForm = new FormGroup({
       'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8)]),
       'poidVide' : new FormControl(null,[Validators.required,Validators.min(30)]),
+      'cgu': new FormControl(false, Validators.requiredTrue),
       });
  }
 

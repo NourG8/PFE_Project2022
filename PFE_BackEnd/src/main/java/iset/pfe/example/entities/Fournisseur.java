@@ -18,6 +18,7 @@ public class Fournisseur implements Serializable{
 	@GeneratedValue
 	private Integer idFournisseur;
 	private String nom;
+	private String prenom;
 	private String matricule;
 	
 	@OneToMany(mappedBy="fournisseur",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
@@ -73,6 +74,14 @@ public class Fournisseur implements Serializable{
 
 	public void setBons(Set<Bon> bons) {
 		this.bons = bons;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
 	}
 	
 	

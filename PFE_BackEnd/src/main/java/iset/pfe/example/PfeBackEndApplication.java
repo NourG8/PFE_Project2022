@@ -120,6 +120,7 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		produitRepository.save(p2);
 		
 		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
+		f1.setPrenom("ben jemaa");
 		fournisseurRepository.save(f1);
 		
 		Collecteur u1=new Collecteur("Collecteur 1","bizerte",52458787);

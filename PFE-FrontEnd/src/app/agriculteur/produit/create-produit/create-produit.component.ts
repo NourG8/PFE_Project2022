@@ -19,6 +19,7 @@ export class CreateProduitComponent implements OnInit {
   msg="";
   msg1=0;
   msg2=0;
+  msg4=0;
 
   constructor(private produitService: ProduitService,
     private location:Location,
@@ -71,7 +72,7 @@ export class CreateProduitComponent implements OnInit {
 
      
      if(this.myForm.get('intitule')?.value!=null && this.myForm.get('libelle')?.value!=null && t==0 && l==0
-     && this.myForm.get('intitule')?.value.length>=3 && this.myForm.get('libelle')?.value.length>=8 ){
+     && this.myForm.get('intitule')?.value.length>=3 && this.myForm.get('libelle')?.value.length>=8&& this.myForm.get('cgu')?.value==true ){
     console.log(this.produit);
     this.produit.idProduit = 1;
     this.produitService
@@ -89,6 +90,13 @@ export class CreateProduitComponent implements OnInit {
 
 
   onSubmit() {
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+    
     this.submitted = true;
     this.save();
 
@@ -116,6 +124,7 @@ export class CreateProduitComponent implements OnInit {
     this.myForm = new FormGroup({
       'intitule' : new FormControl(null,[Validators.required,Validators.minLength(3)]),
       'libelle' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
+      'cgu': new FormControl(false, Validators.requiredTrue),
       });
  }
 

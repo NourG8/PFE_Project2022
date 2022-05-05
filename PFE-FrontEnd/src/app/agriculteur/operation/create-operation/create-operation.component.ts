@@ -32,6 +32,7 @@ export class CreateOperationComponent implements OnInit {
   t: Tank = new Tank();
   submitted = false;
   msg = "";
+  msg4=0;
   msgErreur = 0;
   qteActLaitTank = 0;
   som = 10000;
@@ -41,6 +42,7 @@ export class CreateOperationComponent implements OnInit {
   myForm = new FormGroup({
     poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
     collecteur: new FormControl(null, [Validators.required]),
+    cgu: new FormControl(false, Validators.requiredTrue),
     // dateOperation : new FormControl(null,[Validators.required ]),
     //  typeOp : new FormControl(null,[Validators.required ]),
     //tank : new FormControl(null,[Validators.required ]),
@@ -97,7 +99,8 @@ export class CreateOperationComponent implements OnInit {
     else {
       this.msg = "";
     }
-    if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('collecteur')?.value != null && this.myForm.get('poidsLait')?.value > 0) {
+    if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('collecteur')?.value != null && this.myForm.get('poidsLait')?.value > 0
+    &&  this.myForm.get('cgu')?.value==true) {
       this.operationService.createOperation({
         "poidsLait": this.myForm.get('poidsLait')?.value,
         "collecteur": {
@@ -225,6 +228,13 @@ export class CreateOperationComponent implements OnInit {
     }
     else {
       this.msg = "";
+    }
+
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
     }
 
     this.tankService.getTanksQteGenerale().subscribe(

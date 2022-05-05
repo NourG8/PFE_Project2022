@@ -21,6 +21,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
   operation:Operation = new Operation();
   submitted = false;
   msg="";
+  msg4=0;
   l:Lait =new Lait();
   t:Tank=new Tank();
   msgErreur=0;
@@ -33,6 +34,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
   valeur2=0;
   myForm=new  FormGroup({
       poidsLait : new FormControl(null,[Validators.required,Validators.min(1)]),
+      cgu: new FormControl(false, Validators.requiredTrue),
      // dateOperation : new FormControl(null,[Validators.required ]),
       // typeOp : new FormControl(null,[Validators.required ]),
       // tank : new FormControl(null,[Validators.required ]),
@@ -71,7 +73,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
      }
      
 
-     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('poidsLait')?.value>0){
+     if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('poidsLait')?.value>0  &&  this.myForm.get('cgu')?.value==true){
 
     this.operationService
         .createOperationRemplissage(
@@ -100,6 +102,12 @@ export class CreateOperationRemplissageComponent implements OnInit {
 
   onSubmit() {
     //this.submitted = true;
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
     this.tankService.getTanksQteLibre().subscribe(
       o=>{
       console.log(o);

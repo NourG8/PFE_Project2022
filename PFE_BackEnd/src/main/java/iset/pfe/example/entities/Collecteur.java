@@ -17,6 +17,7 @@ public class Collecteur implements Serializable{
 	@GeneratedValue
 	private Integer idCollecteur;
 	private String nomCollecteur;
+	private String prenomCollecteur;
 	private String matricule;
 	private String adresse;
 	private int tel;
@@ -106,6 +107,13 @@ public class Collecteur implements Serializable{
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
-	
 
+	public String getPrenomCollecteur() {
+		return prenomCollecteur;
+	}
+
+	public void setPrenomCollecteur(String prenomCollecteur) {
+		this.prenomCollecteur = prenomCollecteur;
+	}
+	
 }

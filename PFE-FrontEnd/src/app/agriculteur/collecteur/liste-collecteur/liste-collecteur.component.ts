@@ -32,7 +32,7 @@ export class ListeCollecteurComponent implements OnInit {
   ELEMENT_DATA?:Collecteur[];
   Collecteur?:Collecteur;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','matricule','tel','action'];
+  displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','tel','action'];
   constructor(private collcteurService: CollecteurService,
     private location:Location,
     private router: Router, private dialog:MatDialog) { }

@@ -19,6 +19,8 @@ export class CreateFournisseurComponent implements OnInit {
   msg="";
   msg1=0;
   msg2=0;
+  msgTest=0;
+  msg4=0;
 
   constructor(private fournisseurService: FournisseurService,
     private location:Location,
@@ -50,9 +52,29 @@ export class CreateFournisseurComponent implements OnInit {
       this.msg="";
      }
 
+     
+     if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
+    //  if(this.myForm.get('nom')?.value.indexOf(" ")>=0){
+    //    console.log("yesss fiha espace");
+    //     this.msgTest=0;
+    //    console.log(this.myForm.get('nom')?.value.split(" ")[0]);
+    //    console.log(this.myForm.get('nom')?.value.split(" ")[1]);
+    //  }
+    //  else{
+    //   this.msgTest=1;
+    //    console.log("mefihech :( !!!!");
+    //  }
+
      this.fournisseurService.getFournisseurNom(this.myForm.get('nom')?.value).subscribe(t=>{
+      this.fournisseurService.getFournisseurPrenom(this.myForm.get('prenom')?.value).subscribe(h=>{
       console.log(t);
-      if(t==1){
+      if(t==1 && h==1){
         this.msg1=1;
        }
        else{
@@ -68,12 +90,20 @@ export class CreateFournisseurComponent implements OnInit {
           this.msg2=0;
          }
 
-     if(this.myForm.get('nom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0
-     && this.myForm.get('nom')?.value.length>=7 && this.myForm.get('matricule')?.value.length>=8){
+     if(this.myForm.get('nom')?.value!=null && this.myForm.get('prenom')?.value!=null && this.myForm.get('matricule')?.value!=null && t==0 && l==0
+     && this.myForm.get('nom')?.value.length>=3 && this.myForm.get('prenom')?.value.length>=3 && this.myForm.get('matricule')?.value.length>=8
+     && this.myForm.get('cgu')?.value==true){
     console.log(this.fournisseur);
-    this.fournisseur.idFournisseur = 1;
+   // this.fournisseur.idFournisseur = 1;
     this.fournisseurService
-        .createFournisseur(this.fournisseur)
+        .createFournisseur(
+          {
+            "nom": this.myForm.get('nom')?.value,
+            "prenom": this.myForm.get('prenom')?.value,
+            "matricule": this.myForm.get('matricule')?.value,
+            
+          },
+        )
         .subscribe(o=>{
           // window.location.reload();
           console.log(this.fournisseur);
@@ -88,10 +118,19 @@ export class CreateFournisseurComponent implements OnInit {
     }
   });
 });
+});
   }
 
 
   onSubmit() {
+    
+    if(this.myForm.get('cgu')?.value==true){
+      this.msg4=0;
+    }
+    else{
+      this.msg4=1;
+    }
+
     this.submitted = true;
     this.save();
 
@@ -118,13 +157,21 @@ export class CreateFournisseurComponent implements OnInit {
 
   ValidatedForm(){
     this.myForm = new FormGroup({
-      'nom' : new FormControl(null,[Validators.required,Validators.minLength(7)]),
+      'nom' : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]),
+      'prenom' : new FormControl(null,[Validators.required,Validators.minLength(3),Validators.pattern(".*\\S.*[a-zA-z0-9 ]")]),
       'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
+      'cgu': new FormControl(false, Validators.requiredTrue),
       });
  }
 
+
+
  get nom(){
   return this.myForm.get('nom') ;
+}
+
+get prenom(){
+  return this.myForm.get('prenom') ;
 }
 
 get matricule(){

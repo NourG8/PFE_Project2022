@@ -32,7 +32,7 @@ export class ListeFournisseurComponent implements OnInit {
   ELEMENT_DATA?:Fournisseur[];
   fournisseur?:Fournisseur;
   dataSource!:MatTableDataSource<any>;
-  displayedColumns: string[] = ['idFournisseur','nom', 'matricule','action'];
+  displayedColumns: string[] = ['idFournisseur','nom','prenom', 'matricule','action'];
   constructor(private fournisseurService: FournisseurService,
     private location:Location,
     private router: Router, private dialog:MatDialog) { }
