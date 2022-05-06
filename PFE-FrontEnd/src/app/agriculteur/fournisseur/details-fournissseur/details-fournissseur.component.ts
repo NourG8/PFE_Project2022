@@ -22,6 +22,8 @@ export class DetailsFournissseurComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    console.log( this.route.snapshot.params['id']);
+    console.log(this.route.snapshot.paramMap.get('id'));
   
     this.fournisseurService.getFournisseur(JSON.parse(localStorage.getItem('IdF') || '[]') || []).subscribe(o =>{
       this.fournisseur = o;
