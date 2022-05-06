@@ -3,13 +3,14 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { CreateFournisseurComponent } from '../create-fournisseur/create-fournisseur.component';
 import { DetailsFournissseurComponent } from '../details-fournissseur/details-fournissseur.component';
 import { UpdateFournisseurComponent } from '../update-fournisseur/update-fournisseur.component';
 import {Location} from "@angular/common";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-liste-fournisseur',
@@ -28,6 +29,7 @@ export class ListeFournisseurComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
+  bookListUrl!:any;
 
   ELEMENT_DATA?:Fournisseur[];
   fournisseur?:Fournisseur;
@@ -35,6 +37,8 @@ export class ListeFournisseurComponent implements OnInit {
   displayedColumns: string[] = ['idFournisseur','nom','prenom', 'matricule','action'];
   constructor(private fournisseurService: FournisseurService,
     private location:Location,
+    private route: ActivatedRoute,
+    private _httpClient: HttpClient,
     private router: Router, private dialog:MatDialog) { }
 
 
@@ -51,8 +55,13 @@ export class ListeFournisseurComponent implements OnInit {
       } else {
         console.log('Toast Vide');
       }
-  
-     
+  console.log("==================>")
+    console.log( this.router.navigate([decodeURI(this.location.path())]));
+    console.log(this.route.snapshot.params);
+    // this.bookListUrl = 'http://localhost:4200/agriculteur/fournisseur/listeFournisseur/id2';
+    console.log(this.route.snapshot.paramMap.get('id'));
+    console.log(this._httpClient.get(this.bookListUrl));
+   
     }
   
     reloadData() {
