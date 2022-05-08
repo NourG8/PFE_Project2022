@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Vache } from 'src/app/Models/vache';
 import { VacheService } from 'src/app/Service/vache.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-vache',
@@ -19,11 +20,19 @@ export class CreateVacheComponent implements OnInit {
   msg2=0;
   msg4=0;
   constructor(private vacheService: VacheService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialogClose: MatDialog,) { }
     
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.ValidatedForm();
   }
 

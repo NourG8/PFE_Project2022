@@ -5,6 +5,7 @@ import { Vache } from 'src/app/Models/vache';
 import { Router } from '@angular/router';
 import { VacheService } from 'src/app/Service/vache.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-vache',
@@ -21,9 +22,17 @@ export class UpdateVacheComponent implements OnInit {
     private location:Location,
     private dialogClose: MatDialog,
     private vacheService:VacheService,
+    private authService:AuthService,
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
    
     this.ValidatedForm();
     this.vacheService.getVache(JSON.parse(localStorage.getItem('IdVache') || '[]') || []).subscribe(o =>{

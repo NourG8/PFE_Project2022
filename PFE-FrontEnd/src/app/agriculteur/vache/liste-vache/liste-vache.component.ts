@@ -10,6 +10,7 @@ import { CreateVacheComponent } from '../create-vache/create-vache.component';
 import { DetailsVacheComponent } from '../details-vache/details-vache.component';
 import { UpdateVacheComponent } from '../update-vache/update-vache.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-vache',
@@ -34,11 +35,19 @@ export class ListeVacheComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idVache','matricule','poids','race', 'dateNaissance','action'];
   constructor(private vacheService: VacheService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -67,6 +76,14 @@ export class ListeVacheComponent implements OnInit {
 
      
     deleteVache(id: number) {
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer le produit où son id est egale à : "+id+" ??")
       if(confirmation)
       this.vacheService.deleteVache(id).subscribe(()=>{
@@ -101,6 +118,14 @@ export class ListeVacheComponent implements OnInit {
   }
   
     detailsVache(vache:Vache){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -110,6 +135,14 @@ export class ListeVacheComponent implements OnInit {
     }
   
     updateVache(vache:Vache){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -162,6 +195,14 @@ export class ListeVacheComponent implements OnInit {
 }
 
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

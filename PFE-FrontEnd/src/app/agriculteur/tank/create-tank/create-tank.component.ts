@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Tank } from 'src/app/Models/tank';
 import { TankService } from 'src/app/Service/tank.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-tank',
@@ -21,10 +22,18 @@ export class CreateTankComponent implements OnInit {
   msg4=0;
 
   constructor(private tankService: TankService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.ValidatedForm();
   
   }

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-details-fournissseur',
@@ -18,9 +19,18 @@ export class DetailsFournissseurComponent implements OnInit {
   constructor(
     private dialogClose: MatDialog,
     private route: ActivatedRoute,private router: Router,
+    private authService:AuthService,
     private fournisseurService: FournisseurService) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.id = this.route.snapshot.params['id'];
     console.log( this.route.snapshot.params['id']);
     console.log(this.route.snapshot.paramMap.get('id'));

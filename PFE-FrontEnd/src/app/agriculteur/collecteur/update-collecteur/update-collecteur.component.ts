@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-collecteur',
@@ -25,11 +26,19 @@ export class UpdateCollecteurComponent implements OnInit {
     private router: Router,
     private dialogClose: MatDialog,
     private location:Location,
+    private authService:AuthService,
     private collecteurService:CollecteurService,
 
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
    
     this.ValidatedForm();
     this.collecteurService.getCollecteur(JSON.parse(localStorage.getItem('IdC') || '[]') || []).subscribe(o =>{

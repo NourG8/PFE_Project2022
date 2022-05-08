@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-collecteur',
@@ -23,10 +24,18 @@ export class CreateCollecteurComponent implements OnInit {
   msg4=0;
 
   constructor(private collecteurService: CollecteurService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.ValidatedForm();
   }
 

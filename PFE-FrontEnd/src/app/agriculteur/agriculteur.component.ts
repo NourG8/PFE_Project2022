@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { AuthService } from '../Service/auth.service';
 
 @Component({
   selector: 'app-agriculteur',
@@ -10,7 +11,7 @@ export class AgriculteurComponent implements OnInit {
 
   mySubscription: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute){
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,private authService:AuthService){
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.mySubscription = this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
@@ -21,6 +22,12 @@ export class AgriculteurComponent implements OnInit {
  }
 
 ngOnInit () {
+  this.authService.loadToken();
+  if (this.authService.getToken()==null ||
+      this.authService.isTokenExpired()){
+        this.router.navigate(['/login']);
+
+      }
 }
 
 // ngOnDestroy(){

@@ -10,6 +10,7 @@ import { OperationService } from 'src/app/Service/operation.service';
 import { TankService } from 'src/app/Service/tank.service';
 import  {LaitService } from 'src/app/Service/lait.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-operation-remplissage',
@@ -49,10 +50,19 @@ export class CreateOperationRemplissageComponent implements OnInit {
     private operationService: OperationService,
     private tankService:TankService,
     private laitService:LaitService,
+    private authService:AuthService,
     private router: Router,
     private dialogClose: MatDialog) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     //this.ValidatedForm();
     this.laits=this.laitService.getLaits();
     this.tanks=this.tankService.getTanks();

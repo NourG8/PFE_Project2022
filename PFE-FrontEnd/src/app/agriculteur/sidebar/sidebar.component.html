@@ -12,8 +12,8 @@
     <div class="sidebar">
 
       <div class="user-panel mt-2 pb-1 mb-1  d-flex">
-        <div class="info" style="margin-left:11px" >
-          <a  class="d-block" style="margin-left:2px;color:white;font-weight: bold;" >  <img style="padding-left:-55px;margin-bottom:8px;width:40px;height:40px;" src="../../assets/person.png" alt="cccccccc">&nbsp; Bienvenu(e) {{authService.loggedUser}}</a>        </div>
+        <div class="info" style="margin-left:21px" >
+          <a  class="d-block" style="margin-left:2px;color:white;font-weight: bold;" >  &nbsp; Bienvenu(e) {{authService.loggedUser}}</a>        </div>
       </div>
 
       <div class="form-inline">
@@ -30,7 +30,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          <li class="nav-item"> 
+          <li class="nav-item">
             <a a [routerLink]="['dashboard']" class="nav-link"  [routerLinkActive]="['active']">
               <i class="nav-icon fas fa-chart-area"></i>
               <!-- <i class="fas fa-chart-area"></i> -->
@@ -45,7 +45,7 @@
               <p>Gestion fournisseurs</p>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a routerLink="collecteur/listeCollecteur" routerLinkActive="active" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
@@ -76,7 +76,7 @@
               <p>Gestion des vaches</p>
             </a>
           </li>
-
+<!--
           <li  class="nav-item">
             <a routerLink="bon/listeBon"  [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
@@ -93,10 +93,51 @@
                 Gestion des bons  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de sortie
               </p>
             </a>
-          </li>
-
+          </li> -->
 
           <li class="nav-item">
+            <a href="#" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fas fa-list"></i>
+              <p>Gestion des bons<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a routerLink="bon/listeBon"  class="nav-link " routerLinkActive="active">
+                  <i class="nav-icon fas fa-plus"></i>
+                  <p>Bons d'entrée</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a  routerLink="bon/listeBonSortie" class="nav-link" routerLinkActive="active">
+                  <i class="nav-icon fas fa-minus"></i>
+                  <p>Bons de sortie</p>
+                </a>
+              </li>
+            </ul>
+            </li>
+
+            <li class="nav-item">
+              <a href="#" class="nav-link" routerLinkActive="active">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Gestion des operations<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active">
+                    <i class="nav-icon fas fa-plus"></i>
+                    <p>Remplissage</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a  routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active">
+                    <i class="nav-icon fas fa-minus"></i>
+                    <p>Retrait</p>
+                  </a>
+                </li>
+              </ul>
+              </li>
+
+          <!-- <li class="nav-item">
             <a  routerLink="operation/listeOperation" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
               <p>Gestion des operations  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;de remplissage</p>
@@ -108,7 +149,7 @@
               <i class="nav-icon fas fa-minus"></i>
               <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; de retrait</p>
             </a>
-          </li>
+          </li> -->
 
           <li class="nav-item">
             <a routerLink="operation/operationPage" [routerLinkActive]="['active']" class="nav-link">
@@ -118,7 +159,7 @@
           </li>
 
 
-       
+
 
           <!-- <li class="nav-header">Schedule</li> -->
           <!-- Partie Calendar lel Les employee lkol -->

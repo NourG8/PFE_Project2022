@@ -5,6 +5,7 @@ import { Tank } from 'src/app/Models/tank';
 import { TankService } from 'src/app/Service/tank.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-tank',
@@ -19,13 +20,21 @@ export class UpdateTankComponent implements OnInit {
   constructor(
     private router: Router,
     private location:Location,
-    private dialogClose: MatDialog,
+    private dialogClose: MatDialog,   
+    private authService:AuthService,
     private tankService:TankService,
 
 
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
    
     this.ValidatedForm();
     this.tankService.getTank(JSON.parse(localStorage.getItem('IdT') || '[]') || []).subscribe(o =>{

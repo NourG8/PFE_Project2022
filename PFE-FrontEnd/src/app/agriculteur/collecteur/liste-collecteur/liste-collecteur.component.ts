@@ -10,6 +10,7 @@ import { CreateCollecteurComponent } from '../create-collecteur/create-collecteu
 import { DetailsCollecteurComponent } from '../details-collecteur/details-collecteur.component';
 import { UpdateCollecteurComponent } from '../update-collecteur/update-collecteur.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-collecteur',
@@ -34,11 +35,19 @@ export class ListeCollecteurComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','tel','action'];
   constructor(private collcteurService: CollecteurService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -67,6 +76,14 @@ export class ListeCollecteurComponent implements OnInit {
     }
 
     deleteCollecteur(id: number) {
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer le collecteur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.collcteurService.deleteCollecteur(id).subscribe(()=>{
@@ -88,6 +105,14 @@ export class ListeCollecteurComponent implements OnInit {
   
   
     detailsCollecteur(collecteur:Collecteur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -97,6 +122,14 @@ export class ListeCollecteurComponent implements OnInit {
     }
   
     updateCollecteur(collecteur:Collecteur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -106,6 +139,14 @@ export class ListeCollecteurComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

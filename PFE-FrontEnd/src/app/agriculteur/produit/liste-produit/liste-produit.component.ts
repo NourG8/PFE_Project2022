@@ -10,6 +10,7 @@ import { CreateProduitComponent } from '../create-produit/create-produit.compone
 import { DetailsProduitComponent } from '../details-produit/details-produit.component';
 import { UpdateProduitComponent } from '../update-produit/update-produit.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-produit',
@@ -35,11 +36,19 @@ export class ListeProduitComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idProduit','intitule', 'libelle','qte','action'];
   constructor(private produitService: ProduitService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -81,6 +90,14 @@ export class ListeProduitComponent implements OnInit {
     // }
   
     deleteProduit(id: number) {
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer le produit où son id est egale à : "+id+" ??")
       if(confirmation)
       this.produitService.deleteProduit(id).subscribe(()=>{
@@ -119,6 +136,14 @@ export class ListeProduitComponent implements OnInit {
 
   
     detailsProduit(produit:Produit){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -128,6 +153,14 @@ export class ListeProduitComponent implements OnInit {
     }
   
     updateProduit(produit:Produit){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -138,6 +171,14 @@ export class ListeProduitComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

@@ -13,6 +13,7 @@ import { CreateOperationComponent } from '../create-operation/create-operation.c
 import { DetailsOperationTankComponent } from '../details-operation-tank/details-operation-tank.component';
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-page-operations',
@@ -39,11 +40,19 @@ export class PageOperationsComponent implements OnInit {
   v=0;
   displayedColumns: string[] = ['idOpTank','operation','matricule','qteInsereTank','date', 'action'];
   constructor(private operationService: OperationService,
-    private tankService:TankService,
+    private tankService:TankService,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
       console.log(this.tankService.getTanksQteLibre());
 

@@ -15,6 +15,7 @@ import { DetailsOperationComponent } from '../details-operation/details-operatio
 import { UpdateOperationRetraitComponent } from '../update-operation-retrait/update-operation-retrait.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 import { ethers } from 'ethers';
 
@@ -55,7 +56,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   constructor(private operationService: OperationService,
     private tankService:TankService,
     private produitService:ProduitService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
     
     operations: Observable<Operation[]> | undefined;
@@ -72,6 +73,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
      console.log(this.operations);
     }
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       //this.reloadData00();
@@ -127,6 +136,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
   
 
   deleteOp(id: number){
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.onClose();
+          this.router.navigate(['/login']);
+          this.onClose();
+
+        }
 
     this.tankService.getTanksQteLibre().subscribe(o=>{
       console.log(o);
@@ -164,6 +181,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
     this.onReload();
   }
     detailsOperation(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -173,6 +198,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
   
     updateOperationR(operation:Operation){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -182,6 +215,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       this.tankService.getTanksQteGenerale().subscribe(b=>{
         console.log(b);
        if(b>0){
@@ -202,6 +243,14 @@ export class ListeOperationsRetraitComponent implements OnInit {
       
   
     onOpenDialogCreate2():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

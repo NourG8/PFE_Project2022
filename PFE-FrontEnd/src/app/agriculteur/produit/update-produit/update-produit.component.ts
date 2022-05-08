@@ -5,6 +5,7 @@ import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-produit',
@@ -19,13 +20,21 @@ export class UpdateProduitComponent implements OnInit {
   constructor(
     private router: Router,
     private dialogClose: MatDialog,
-    private location:Location,
+    private location:Location,   
+    private authService:AuthService,
     private produitService:ProduitService,
 
 
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
    
     this.ValidatedForm();
     this.produitService.getProduit(JSON.parse(localStorage.getItem('IdP') || '[]') || []).subscribe(o =>{
