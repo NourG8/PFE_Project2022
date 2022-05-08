@@ -11,7 +11,7 @@ export class AgriculteurComponent implements OnInit {
 
   mySubscription: any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,private authService:AuthService){
+  constructor(){
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.mySubscription = this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
@@ -22,12 +22,12 @@ export class AgriculteurComponent implements OnInit {
  }
 
 ngOnInit () {
-  this.authService.loadToken();
-  if (this.authService.getToken()==null ||
-      this.authService.isTokenExpired()){
-        this.router.navigate(['/login']);
+  // this.authService.loadToken();
+  // if (this.authService.getToken()==null ||
+  //     this.authService.isTokenExpired()){
+  //       this.router.navigate(['/login']);
 
-      }
+  //     }
 }
 
 // ngOnDestroy(){

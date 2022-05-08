@@ -26,19 +26,19 @@ export class NavbarComponent implements OnInit {
   constructor(
   public authService: AuthService,
    private agriculteurService:AgriculteurService,
-   private router: Router ,
+  //  private router: Router ,
    private dialog: MatDialog,) {} 
 
   ngOnInit(): void {
 
-    this.authService.loadToken();
-    if (this.authService.getToken()==null || 
-        this.authService.isTokenExpired()){
-          this.dialog.closeAll();
-          this.router.navigate(['/login']);
-          this.dialog.closeAll();
+    // this.authService.loadToken();
+    // if (this.authService.getToken()==null || 
+    //     this.authService.isTokenExpired()){
+    //       this.dialog.closeAll();
+    //       this.router.navigate(['/login']);
+    //       this.dialog.closeAll();
      
-        }
+    //     }
 
   this.agriculteurService.getagriculteur(JSON.parse(localStorage.getItem('IdUser') || '[]') || []).subscribe(o=>{
     this.cin = o.cin;
