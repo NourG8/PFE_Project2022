@@ -12,6 +12,7 @@ import { ProduitService } from 'src/app/Service/produit.service';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-bon',
@@ -43,9 +44,18 @@ fournisseurs!:Observable<Fournisseur[]>;
     private produitService:ProduitService,
     private agriculteurService:AgriculteurService,
     private fournisseurService:FournisseurService,
+    private authService:AuthService
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     //this.ValidatedForm();
     this.bonService.getBon(JSON.parse(localStorage.getItem('IdBon') || '[]') || []).subscribe(o =>{
       this.bon = o;

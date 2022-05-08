@@ -11,6 +11,7 @@ import { LaitService } from 'src/app/Service/lait.service';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import { Collecteur } from 'src/app/Models/collecteur';
 import { Location } from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 
 import { ethers } from 'ethers';
@@ -60,9 +61,18 @@ export class CreateOperationComponent implements OnInit {
     private collecteurService: CollecteurService,
     private agriculteurService: AgriculteurService,
     private router: Router,
+    private authService:AuthService,
     private dialogClose: MatDialog) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     //this.ValidatedForm();
     this.laits = this.laitService.getLaits();
     this.collecteurs = this.collecteurService.getCollecteurs();

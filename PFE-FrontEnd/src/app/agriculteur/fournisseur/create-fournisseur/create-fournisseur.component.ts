@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-fournisseur',
@@ -23,10 +24,18 @@ export class CreateFournisseurComponent implements OnInit {
   msg4=0;
 
   constructor(private fournisseurService: FournisseurService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.ValidatedForm();
   }
 

@@ -11,6 +11,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CreateBonComponent } from '../create-bon/create-bon.component';
 import { DatailsBonComponent} from '../datails-bon/datails-bon.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-bon',
@@ -34,11 +35,19 @@ export class ListeBonComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idBon','quantite', 'prix','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
-  constructor(private bonService: BonService,
+  constructor(private bonService: BonService,private authService:AuthService,
     private router: Router, private location:Location, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -69,6 +78,14 @@ export class ListeBonComponent implements OnInit {
    
 
     deleteBon(id:number){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       this.bonService.getBon(id).subscribe(b=>{
         console.log(b.produit);
         console.log(b);
@@ -123,6 +140,14 @@ export class ListeBonComponent implements OnInit {
   
   
     detailsBon(bon:Bon){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -132,6 +157,14 @@ export class ListeBonComponent implements OnInit {
     }
   
     updateBon(bon:Bon){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -141,6 +174,14 @@ export class ListeBonComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

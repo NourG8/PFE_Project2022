@@ -12,6 +12,7 @@ import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-bon',
@@ -42,9 +43,19 @@ export class CreateBonComponent implements OnInit {
   fournisseurs!:Observable<Fournisseur[]>;
 
   constructor(private bonService: BonService, private produitService:ProduitService,private agriculteurService:AgriculteurService,
-    private location:Location,private fournisseurService:FournisseurService, private router: Router, private dialogClose: MatDialog,) { }
+    private location:Location,private fournisseurService:FournisseurService, private router: Router, private dialogClose: MatDialog,
+    private authService:AuthService) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
+
     //this.ValidatedForm();
     this.produits=this.produitService.getProduits();
     this.fournisseurs=this.fournisseurService.getFournisseurs();

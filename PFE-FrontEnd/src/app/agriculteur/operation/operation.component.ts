@@ -10,6 +10,7 @@ export class OperationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
 }

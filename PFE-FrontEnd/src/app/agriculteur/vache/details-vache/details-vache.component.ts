@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Vache } from 'src/app/Models/vache';
 import { VacheService } from 'src/app/Service/vache.service';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-details-vache',
@@ -16,11 +17,19 @@ export class DetailsVacheComponent implements OnInit {
   vache?:Vache = new Vache();
 
   constructor(
-    private dialogClose: MatDialog,
+    private dialogClose: MatDialog,    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
     private vacheService: VacheService) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.id = this.route.snapshot.params['id'];
   
     this.vacheService.getVache(JSON.parse(localStorage.getItem('IdVache') || '[]') || []).subscribe(o =>{

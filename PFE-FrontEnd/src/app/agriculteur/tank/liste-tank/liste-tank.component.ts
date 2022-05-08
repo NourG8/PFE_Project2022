@@ -10,6 +10,7 @@ import { CreateTankComponent } from '../create-tank/create-tank.component';
 import { DetailsTankComponent } from '../details-tank/details-tank.component';
 import { UpdateTankComponent } from '../update-tank/update-tank.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-tank',
@@ -35,11 +36,19 @@ export class ListeTankComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idTank','matricule','poidVide', 'poidActuel','etat','action'];
   constructor(private tankService: TankService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -81,6 +90,14 @@ export class ListeTankComponent implements OnInit {
   
 
     deleteTank(id: number) {
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer le tank où son id est egale à : "+id+" ??")
       if(confirmation)
       this.tankService.deleteTank(id).subscribe(()=>{
@@ -117,6 +134,14 @@ export class ListeTankComponent implements OnInit {
   }
   
     detailsTank(Tank:Tank){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -126,6 +151,14 @@ export class ListeTankComponent implements OnInit {
     }
   
     updateTank(Tank:Tank){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -136,6 +169,14 @@ export class ListeTankComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

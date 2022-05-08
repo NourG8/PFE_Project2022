@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-create-produit',
@@ -22,10 +23,18 @@ export class CreateProduitComponent implements OnInit {
   msg4=0;
 
   constructor(private produitService: ProduitService,
-    private location:Location,
+    private location:Location,    private authService:AuthService,
     private router: Router, private dialogClose: MatDialog,) { }
 
   ngOnInit() {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
+
     this.ValidatedForm();
   }
 

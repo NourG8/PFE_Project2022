@@ -5,6 +5,7 @@ import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-update-fournisseur',
@@ -22,10 +23,18 @@ export class UpdateFournisseurComponent implements OnInit {
     private dialogClose: MatDialog,
     private location:Location,
     private fournisseurService:FournisseurService,
+    private authService:AuthService,
 
   ) { }
 
   ngOnInit(): void {
+
+    this.authService.loadToken();
+    if (this.authService.getToken()==null ||
+        this.authService.isTokenExpired()){
+          this.router.navigate(['/login']);
+
+        }
    
     this.ValidatedForm();
     this.fournisseurService.getFournisseur(JSON.parse(localStorage.getItem('IdF') || '[]') || []).subscribe(o =>{

@@ -12,6 +12,7 @@ import { DatailsBonComponent} from '../datails-bon/datails-bon.component';
 import { UpdateBonSortieComponent } from '../update-bon-sortie/update-bon-sortie.component';
 import { CreateBonSortieComponent } from '../create-bon-sortie/create-bon-sortie.component';
 import {Location} from "@angular/common";
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-bon-sortie',
@@ -40,10 +41,18 @@ export class ListeBonSortieComponent implements OnInit {
   constructor(private bonService: BonService,
     private produitService:ProduitService,
     private location:Location,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog,private authService:AuthService) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -74,6 +83,14 @@ export class ListeBonSortieComponent implements OnInit {
   
    
     deleteBon(id:number){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       let confirmation =confirm("Êtes-vous sûr de supprimer le bon de sortie où son id est egale à : "+id+" ??")
       if(confirmation)
       this.bonService.deleteBon(id).subscribe(()=>{
@@ -109,6 +126,14 @@ export class ListeBonSortieComponent implements OnInit {
   }
 
     detailsBon(bon:Bon){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -118,6 +143,14 @@ export class ListeBonSortieComponent implements OnInit {
     }
   
     updateBon(bon:Bon){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -127,6 +160,14 @@ export class ListeBonSortieComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       this.produitService.getSomStock().subscribe( p=>{
     if(p>0){
       const dialogConfig = new MatDialogConfig();

@@ -11,6 +11,7 @@ import { DetailsFournissseurComponent } from '../details-fournissseur/details-fo
 import { UpdateFournisseurComponent } from '../update-fournisseur/update-fournisseur.component';
 import {Location} from "@angular/common";
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
   selector: 'app-liste-fournisseur',
@@ -39,10 +40,19 @@ export class ListeFournisseurComponent implements OnInit {
     private location:Location,
     private route: ActivatedRoute,
     private _httpClient: HttpClient,
+    private authService:AuthService,
     private router: Router, private dialog:MatDialog) { }
 
 
     ngOnInit() {
+
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.router.navigate(['/login']);
+  
+          }
+
       this.reloadData();
 
       this.idContenu = 'TostSuccessContenu';
@@ -75,7 +85,14 @@ export class ListeFournisseurComponent implements OnInit {
       
     }
 
-    deleteFournisseur(id: number) {
+    deleteFournisseur(id: number) {  this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+          }
+          else{
       let confirmation =confirm("Êtes-vous sûr de supprimer le fournisseur où son id est egale à : "+id+" ??")
       if(confirmation)
       this.fournisseurService. deleteFournisseur(id).subscribe(()=>{
@@ -93,10 +110,19 @@ export class ListeFournisseurComponent implements OnInit {
         this.showToast();
       }
     );
+    }
   }
   
   
     detailsFournisseur(fournisseur:Fournisseur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -106,6 +132,13 @@ export class ListeFournisseurComponent implements OnInit {
     }
   
     updateFournisseur(fournisseur:Fournisseur){
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
@@ -115,6 +148,14 @@ export class ListeFournisseurComponent implements OnInit {
     }
   
     onOpenDialogCreate():void{
+      this.authService.loadToken();
+      if (this.authService.getToken()==null ||
+          this.authService.isTokenExpired()){
+            this.onClose();
+            this.router.navigate(['/login']);
+            this.onClose();
+  
+          }
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
