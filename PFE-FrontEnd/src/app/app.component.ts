@@ -12,7 +12,7 @@ export class AppComponent {
   isLoggedin?: boolean ;
   mySubscription: any;
 
-  constructor(public authService: AuthService,private router: Router, private activatedRoute: ActivatedRoute){
+  constructor(public authService: AuthService,){
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.mySubscription = this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
@@ -23,12 +23,12 @@ export class AppComponent {
  }
 
 ngOnInit () {
-  this.authService.loadToken();
-  if (this.authService.getToken()==null || 
-      this.authService.isTokenExpired()){
-        this.router.navigate(['/login']);
+  // this.authService.loadToken();
+  // if (this.authService.getToken()==null || 
+  //     this.authService.isTokenExpired()){
+  //       this.router.navigate(['/login']);
    
-      }
+  //     }
 }
 
 // ngOnDestroy(){
