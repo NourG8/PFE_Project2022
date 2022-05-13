@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 import { Operation } from 'src/app/Models/operation';
 import { OperationService } from 'src/app/Service/operation.service';
 
@@ -15,10 +16,11 @@ export class UpdateOperationComponent implements OnInit {
   myForm!:FormGroup;
   CheckesCompetance:boolean=false;
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private dialogClose: MatDialog,
     private operationService:OperationService,
-  ) { }
+  ) {  this.translateService.setDefaultLang('en');
+  this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit(): void {
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-produit',
@@ -15,10 +16,11 @@ export class DetailsProduitComponent implements OnInit {
   idP!: any;
   produit?:Produit = new Produit();
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private dialogClose: MatDialog,    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
-    private produitService: ProduitService) { }
+    private produitService: ProduitService) {      this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')}
 
   ngOnInit() {
 

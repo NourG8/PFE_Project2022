@@ -3,16 +3,16 @@
 
       <div class="col-md-12 main-datatable">
         <div class="card-header card-header-danger" id="title-Table">
-          <h3 class="card-title" id="titre">Table pour les centres de collecte</h3><br>
+          <h3 class="card-title" id="titre">{{'Table for collection centers' | translate}}</h3><br>
         </div>
           <div class="card_body">
               <div class="row d-flex">
                   <div class="col-sm-4 createSegment">
-                   <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un element </a>
+                   <a class="btn dim_button create_new" (click)="onOpenDialogCreate()"> <span class="glyphicon glyphicon-plus"></span><i class="fa fa-plus" aria-hidden="true"></i> {{'Add item' | translate}} </a>
                   </div>
                   <div class="col-sm-8 add_flex">
                       <div class="form-group searchInput" aria-autocomplete="on" (keyup)="filterData($event)">
-                          <label for="email">Recherche:</label>
+                          <label for="email">{{'Research' | translate}}:</label>
                           <input type="search"  class="form-control" id="filterbox" matInput placeholder=" ">
                       </div>
                   </div>
@@ -28,11 +28,11 @@
                                 <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:58px;">{{element.idCollecteur}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="nomCollecteur" >
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">Nom du centre</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">{{'Center name' | translate}}</th>
                               <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:90px;">{{element.nomCollecteur}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="adresse">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Adresse du centre</th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Center address' | translate}}</th>
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:78px;">{{element.adresse}}</p></td>
                             </ng-container>
                             <!-- <ng-container matColumnDef="matricule">
@@ -40,7 +40,7 @@
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:40px;">{{element.matricule}}</p></td>
                             </ng-container> -->
                             <ng-container matColumnDef="tel">
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">Numéro de téléphone </th>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Phone number' | translate}} </th>
                               <td mat-cell *matCellDef="let element" ><p  style="text-align:center;padding-right:92px;"><span class="mode mode_done" style="font-size: small;"><b>+216 {{element.tel}}</b>&nbsp;</span></p></td>
                             </ng-container>
                             <ng-container matColumnDef="action">
@@ -52,7 +52,7 @@
                                       <ul class="dropdown-menu">
                                         <li class="li2">
                                           <a (click)="updateCollecteur(element)" target="_blank">
-                                            <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"> Modifier </i>
+                                            <i class="fa fa-pencil-square-o fa-lg" style="color:#3E8D07;"> {{'modify' | translate}} </i>
                                           </a>
                                       </li>
 
@@ -67,7 +67,7 @@
                                       <ul class="dropdown-menu dropdown_more">
                                           <li class="li">
                                               <a (click)="detailsCollecteur(element)"target="_black">
-                                                <i class="fa fa-info-circle fa-lg" >  plus de details  </i>
+                                                <i class="fa fa-info-circle fa-lg" >  {{'More_information' | translate}}  </i>
                                               </a>
                                           </li>
                                       </ul>
@@ -81,7 +81,7 @@
                                     <ul class="dropdown-menu dropdown_more">
                                         <li class="li1">
 
-                                    <a (click)="deleteCollecteur(element.idCollecteur)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>Supprimer</b></i></a>
+                                    <a (click)="deleteCollecteur(element.idCollecteur)"> <i class="fa fa-trash fa-lg" style="color:#D41616;">&nbsp; <b>{{'DELETE' | translate}}</b></i></a>
                                   </li>
                                 </ul>
                             </div>

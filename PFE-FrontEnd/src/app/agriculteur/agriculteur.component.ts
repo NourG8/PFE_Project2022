@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../Service/auth.service';
 
 @Component({
@@ -11,14 +12,16 @@ export class AgriculteurComponent implements OnInit {
 
   mySubscription: any;
 
-  constructor(){
+  constructor(private translateService :TranslateService){
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.mySubscription = this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
     //      // Trick the Router into believing it's last link wasn't previously loaded
     //      this.router.navigated = false;
     //   }
-    // });
+    // }); 
+     this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
  }
 
 ngOnInit () {

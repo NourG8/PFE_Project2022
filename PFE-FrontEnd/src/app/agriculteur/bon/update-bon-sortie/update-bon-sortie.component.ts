@@ -13,6 +13,7 @@ import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -35,7 +36,7 @@ produits!:Observable<Produit[]>;
 agriculteurs!:Observable<Agriculteur[]>;
 fournisseurs!:Observable<Fournisseur[]>;
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private location:Location,
     private router:Router,
     private dialogClose: MatDialog,
@@ -44,7 +45,10 @@ fournisseurs!:Observable<Fournisseur[]>;
     private agriculteurService:AgriculteurService,
     private fournisseurService:FournisseurService,
     private authService:AuthService
-  ) { }
+  ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+  }
 
   ngOnInit(): void {
 

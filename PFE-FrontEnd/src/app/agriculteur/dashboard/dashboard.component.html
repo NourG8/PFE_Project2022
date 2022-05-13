@@ -10,7 +10,7 @@
      <div class="container-fluid">
        <div class="row mb-2">
          <div class="col-sm-6">
-           <h1 class="m-0 text-dark">Tableau de bord</h1>
+           <h1 class="m-0 text-dark">{{'boardTable' | translate }}</h1>
          </div><!-- /.col -->
        </div><!-- /.row -->
      </div><!-- /.container-fluid -->
@@ -82,12 +82,12 @@
                        <div class="inner">
                          <h3>{{somOperation}}</h3>
 
-                         <p>Operations</p>
+                         <p>{{'Operations' | translate }}</p>
                        </div>
                        <div class="icon">
                          <i class="ion ion-ios-list-outline"></i>
                        </div>
-                       <a  routerLink="/agriculteur/dashboard" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/dashboard" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    
@@ -98,13 +98,13 @@
                        <div class="inner">
                          <h3>{{somTank}}</h3>
 
-                         <p>Tanks</p>
+                         <p>{{'Tanks' | translate }}</p>
                        </div>
                        <div class="icon">
                         <i class="ion ion-ios-flask-outline"></i>
                          <!-- <i class="ion ion-person-stalker"></i> -->
                        </div>
-                       <a routerLink="/agriculteur/tank/listeTank" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a routerLink="/agriculteur/tank/listeTank" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -114,12 +114,12 @@
                        <div class="inner">
                          <h3>{{somVache}}</h3>
 
-                         <p>Vaches</p>
+                         <p>{{'Cows' | translate }}</p>
                        </div>
                        <div class="icon">
                          <i class="ion  ion-ios-paw"></i>
                        </div>
-                       <a  routerLink="/agriculteur/vache/listeVache" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/vache/listeVache" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <!-- ./col -->
@@ -129,12 +129,12 @@
                        <div class="inner">
                          <h3>{{somFournisseur}}</h3>
 
-                         <p>Fournisseurs</p>
+                         <p>{{'Suppliers' | translate }}</p>
                        </div>
                        <div class="icon">
                          <i class="ion ion-person-stalker"></i>
                        </div>
-                       <a  routerLink="/agriculteur/fournisseur/listeFournisseur" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                       <a  routerLink="/agriculteur/fournisseur/listeFournisseur" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                      </div>
                    </div>
                    <div class="col-lg-2 col-6">
@@ -143,12 +143,12 @@
                       <div class="inner">
                         <h3>{{somProduit}}</h3>
 
-                        <p>Produits</p>
+                        <p>{{'Products' | translate }}</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-ios-cart"></i>
                       </div>
-                      <a  routerLink="/agriculteur/produit/listeProduit" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  routerLink="/agriculteur/produit/listeProduit" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
 
@@ -158,12 +158,12 @@
                       <div class="inner">
                         <h3>{{somBon}}</h3>
 
-                        <p>Bons</p>
+                        <p>{{'Vouchers' | translate }}</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-ios-calendar-outline"></i>
                       </div>
-                      <a  routerLink="/agriculteur/bon/listeBon" class="small-box-footer">Plus d'informations <i class="fas fa-arrow-circle-right"></i></a>
+                      <a  routerLink="/agriculteur/bon/listeBon" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
 
@@ -175,7 +175,7 @@
                    <div class="col-md-12">
                      <div class="card">
                        <div class="card-header">
-                         <h2 class="card-title">rapport recapitulatif quotidien</h2>
+                         <h2 class="card-title">{{'daily summary report' | translate }}</h2>
 
                          <!-- <tr *ngFor="let l of list ">
                            <td>{{l}}</td>
@@ -203,8 +203,8 @@
 
                               <ngx-charts-bar-vertical style="color :white;"  [view]="[600,350]" scheme="cool" [results]="data"
                               [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                              [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                              [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme"  >
+                              [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" xAxisLabel="{{'Tank numbers' | translate }}"
+                              yAxisLabel="{{'Filling state' | translate }}"   [scheme]="colorScheme"  >
                             </ngx-charts-bar-vertical>
 
                             <br><br><br><br><br><br><br>
@@ -213,7 +213,7 @@
                             <ngx-charts-pie-chart
                             [results]="data"
                             [legend]="true"
-                            [legendTitle]="'Rapport sur l\'etat des tanks'"
+                            legendTitle="{{'Tank Status Report' | translate }}"
                             [view]="[1150,400]"
                             [scheme]="colorScheme"
                             [labels]="true" >
@@ -253,7 +253,7 @@
                                  <span class="info-box-icon"><i class="ion ion-ios-paw" style="color: white"></i></span>
           
                                  <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des vaches</span>
+                                   <span class="info-box-text">{{'Number of cows' | translate }}</span>
                                    <span class="info-box-number">{{somVache}}</span>
                                  </div>
                                  <!-- /.info-box-content -->
@@ -263,7 +263,7 @@
                                  <span class="info-box-icon"> <i class="ion ion-ios-flask-outline"></i></span>
           
                                  <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des tanks</span>
+                                   <span class="info-box-text">{{'Number of tanks' | translate }}</span>
                                    <span class="info-box-number">{{somTank}}</span>
                                  </div>
                                  <!-- /.info-box-content -->
@@ -274,7 +274,7 @@
                                  <span class="info-box-icon">  <i class="ion ion-person-stalker"></i></span>
           
                                  <div class="info-box-content">
-                                   <span class="info-box-text">Nombre des fournisseurs</span>
+                                   <span class="info-box-text">{{'Number of suppliers' | translate }}</span>
                                    <span class="info-box-number">{{somFournisseur}}</span>
                                  </div>
                                  <!-- /.info-box-content -->
@@ -285,7 +285,7 @@
                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des operations de remplissage</span>
+                                  <span class="info-box-text">{{'Number of filling operations' | translate }}</span>
                                   <span class="info-box-number">{{somOpRemplissage}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -295,7 +295,7 @@
                                 <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des operations de retrait</span>
+                                  <span class="info-box-text">{{'Number of withdrawal operations' | translate }}</span>
                                   <span class="info-box-number">{{somOpRetrait}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -308,7 +308,7 @@
                                 </span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des bons</span>
+                                  <span class="info-box-text">{{'Number of vouchers' | translate }}</span>
                                   <span class="info-box-number">{{somBon}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -318,7 +318,7 @@
                                 <span class="info-box-icon"> <i class="ion ion-ios-cart-outline"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Nombre des produits</span>
+                                  <span class="info-box-text">{{'Number of products' | translate }}</span>
                                   <span class="info-box-number">{{somProduit}}</span>
                                 </div>
                                 <!-- /.info-box-content -->
@@ -346,7 +346,7 @@
                             <div class="description-block border-right">
                               <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankRemplis}}%</span>
                               <h5 class="description-header">{{somTRemplis}}</h5>
-                              <span class="description-text">TOTAL TANKS TOTALEMENT REMPLIS</span>
+                              <span class="description-text">{{'TOTAL TANKS FULL' | translate }}</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
@@ -358,7 +358,7 @@
                           <div class="description-block border-right">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankNonRemplis}}%</span>
                             <h5 class="description-header">{{somTVide}}</h5>
-                            <span class="description-text">TOTAL TANKS VIDES</span>
+                            <span class="description-text">{{'TOTAL EMPTY TANKS' | translate }}</span>
                           </div>
                           <!-- /.description-block -->
                           </div>
@@ -371,7 +371,7 @@
                           <div class="description-block border-right">
                             <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankEnCours}}%</span>
                             <h5 class="description-header">{{somTEnCours}}</h5>
-                            <span class="description-text">TOTAL TANKS EN COURS DE REMPLISSAGE</span>
+                            <span class="description-text">{{'TOTAL EMPTY TANKS' | translate }}</span>
                           </div>
                           <!-- /.description-block -->
                           </div>
@@ -379,7 +379,7 @@
                             <div class="description-block border-right">
                               <span class="description-percentage  text-primary"><i class="fas fa-caret-up"></i> {{prcOpRetrait}}%</span>
                               <h5 class="description-header">{{somOpRetrait}}</h5>
-                              <span class="description-text">TOTAL OPERATIONS DE RETARITS</span>
+                              <span class="description-text">{{'TOTAL WITHDRAWAL OPERATIONS' | translate }}</span>
                             </div>
                             <!-- /.description-block -->
                           </div>
@@ -388,7 +388,7 @@
                             <div class="description-block border-right">
                               <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i>{{prcOpRemplissage}}%</span>
                               <h5 class="description-header">{{somOpRemplissage}}</h5>
-                              <span class="description-text">TOTAL  OPERATIONS DE REMPLISSAGES</span>
+                              <span class="description-text">{{'TOTAL TANKS FILLING UP' | translate }}</span>
                             </div>
                             <!-- /.description-block -->
                           </div>

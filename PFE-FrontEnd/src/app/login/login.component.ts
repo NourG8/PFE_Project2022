@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { Agriculteur } from '../Models/agriculteur';
 import { AuthService } from '../Service/auth.service';
 import { AgriculteurService } from '../Service/agriculteur.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   constructor( 
     private authService: AuthService,
     private agriculteurService:AgriculteurService,
-    public router:Router ) { }
+    public router:Router,
+    private translateService :TranslateService ) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
 
 

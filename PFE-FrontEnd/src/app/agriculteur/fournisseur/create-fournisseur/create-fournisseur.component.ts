@@ -6,6 +6,7 @@ import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-fournisseur',
@@ -25,7 +26,9 @@ export class CreateFournisseurComponent implements OnInit {
 
   constructor(private fournisseurService: FournisseurService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialogClose: MatDialog,) { }
+    private router: Router, private dialogClose: MatDialog,private translateService :TranslateService) {    
+       this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit() {
 

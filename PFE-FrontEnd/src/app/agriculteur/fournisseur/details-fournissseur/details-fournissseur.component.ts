@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-fournissseur',
@@ -20,7 +21,10 @@ export class DetailsFournissseurComponent implements OnInit {
     private dialogClose: MatDialog,
     private route: ActivatedRoute,private router: Router,
     private authService:AuthService,
-    private fournisseurService: FournisseurService) { }
+    private fournisseurService: FournisseurService,
+    private translateService :TranslateService) {      
+      this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')}
 
   ngOnInit() {
 

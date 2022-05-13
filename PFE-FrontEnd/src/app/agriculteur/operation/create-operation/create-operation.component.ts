@@ -18,6 +18,7 @@ import { ethers } from 'ethers';
 import { asyncScheduler, Observable } from 'rxjs';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
+import { TranslateService } from '@ngx-translate/core';
 
 declare let require: any;
 declare let window: any;
@@ -53,7 +54,7 @@ export class CreateOperationComponent implements OnInit {
   laits!: Observable<Lait[]>;
   tanks!: Observable<Tank[]>;
   collecteurs!: Observable<Collecteur[]>;
-  constructor(
+  constructor(private translateService :TranslateService,
     private location: Location,
     private operationService: OperationService,
     private tankService: TankService,
@@ -62,7 +63,8 @@ export class CreateOperationComponent implements OnInit {
     private agriculteurService: AgriculteurService,
     private router: Router,
     private authService:AuthService,
-    private dialogClose: MatDialog) { }
+    private dialogClose: MatDialog) { this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit() {
 

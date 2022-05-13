@@ -12,6 +12,7 @@ import { UpdateFournisseurComponent } from '../update-fournisseur/update-fournis
 import {Location} from "@angular/common";
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-fournisseur',
@@ -41,7 +42,11 @@ export class ListeFournisseurComponent implements OnInit {
     private route: ActivatedRoute,
     private _httpClient: HttpClient,
     private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog,
+    private translateService :TranslateService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
 
     ngOnInit() {

@@ -10,6 +10,8 @@ import { BonService } from 'src/app/Service/bon.service';
 import { ProduitService } from 'src/app/Service/produit.service';
 import {formatDate} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 // import { NgxChartsModule }from '@swimlane/ngx-charts';
 var test: string = "test";
 var somTank: number;
@@ -71,9 +73,7 @@ export class DashboardComponent implements OnInit {
   gradient = false;
   showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Matricules des tanks';
   showYAxisLabel = true;
-  yAxisLabel = 'Etat de remplissage';
 
   colorScheme : any = {
     // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -81,14 +81,17 @@ export class DashboardComponent implements OnInit {
   };
 
 
-  constructor(
+  constructor(private translateService :TranslateService,private http : HttpClient,
     private operationService: OperationService,
     private tankService:TankService,
     private vacheService:VacheService,
     private fournisseurService:FournisseurService,
     private bonService:BonService,
     private produitService:ProduitService,
-    private router: Router) {}
+    private router: Router) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
 
     getData(){
@@ -280,7 +283,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+const lang = localStorage.getItem('lang');
     this.getData();
 
     this.tankService.getNbTanks().subscribe(o =>{

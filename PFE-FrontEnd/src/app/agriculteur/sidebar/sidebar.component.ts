@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/Service/auth.service';
 
 @Component({
@@ -8,7 +9,9 @@ import { AuthService } from 'src/app/Service/auth.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor (public authService: AuthService) {
+  constructor (public authService: AuthService,private translateService :TranslateService) {
+    this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
     }
 
 

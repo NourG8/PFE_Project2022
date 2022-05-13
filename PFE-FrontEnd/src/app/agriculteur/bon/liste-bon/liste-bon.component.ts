@@ -12,6 +12,7 @@ import { CreateBonComponent } from '../create-bon/create-bon.component';
 import { DatailsBonComponent} from '../datails-bon/datails-bon.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-bon',
@@ -35,8 +36,9 @@ export class ListeBonComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idBon','quantite', 'prix','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
-  constructor(private bonService: BonService,private authService:AuthService,
-    private router: Router, private location:Location, private dialog:MatDialog) { }
+  constructor(private translateService :TranslateService,private bonService: BonService,private authService:AuthService,
+    private router: Router, private location:Location, private dialog:MatDialog) {this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
 
     ngOnInit() {

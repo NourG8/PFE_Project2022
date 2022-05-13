@@ -1,16 +1,16 @@
 <div class="ContenuCard" >
   <div class="modal-header">
-    <h2 id="modal-title"><b>Modifier le bon numéro : {{bon.idBon}}</b></h2>
+    <h2 id="modal-title"><b>{{'Change voucher number' | translate}} : {{bon.idBon}}</b></h2>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}} </span><br><br>
   <form [formGroup]="myForm" class="needs-validation" novalidate>
 
     <div class="form-group">
       <div class="col-md-12 mb-3">
-      <label>Quantité (Kg) : <span style="color:red;">*</span></label>
+      <label>{{'Quantity' | translate}} (Kg) : <span style="color:red;">*</span></label>
       <input type="number"
              class="form-control"
              formControlName="quantite"
@@ -20,12 +20,12 @@
         <div
              *ngIf="quantite?.invalid && quantite?.touched"
               class="text-danger">
-              Quantité invalide !
+              {{'Invalid quantity' | translate}} !
        </div>
        <div
             *ngIf="quantite?.valid && quantite?.touched"
             class="text-success">
-            Quantité valide !
+            {{'Valid quantity' | translate}} !
        </div>
       </div>
    
@@ -50,9 +50,9 @@
 
 
   <div class="col-md-12 mb-3">
-    <label class="mr-sm-5" for="inlineFormCustomSelect">Fournisseur : <span style="color:red;">*</span></label>
+    <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate}} : <span style="color:red;">*</span></label>
     <select formControlName="fournisseur" name="fournisseur"  [(ngModel)]="bon.fournisseur.idFournisseur" class="custom-select mr-sm-2" id="fournisseur" >
-      <option selected>Choisir un fournisseur...</option>
+      <option selected>{{'Choose a' | translate}}{{'supplier' | translate}}...</option>
       <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}</option>
     </select>
   </div>
@@ -60,7 +60,7 @@
 
     <div class="form-group">
       <div class="col-md-12 mb-3">
-      <label for="disabledTextInput">Prix :</label>
+      <label for="disabledTextInput"> {{'price' | translate}}:</label>
       <input type="number"
              class="form-control"
              name="prix"
@@ -70,19 +70,19 @@
         <div
              *ngIf="prix?.invalid && prix?.touched"
               class="text-danger">
-               Prix invalide !
+               {{'Invalid price' | translate}}!
        </div>
        <div
             *ngIf="prix?.valid && prix?.touched"
             class="text-success">
-              Prix valide !
+            {{'Valid price' | translate}}!
        </div>
     </div>
   </div>
 
     <div class="modal-footer">
-      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-      <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+      <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
     </div>
   </form>
 

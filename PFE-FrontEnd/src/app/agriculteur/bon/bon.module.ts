@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BonRoutingModule } from './bon-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ListeBonComponent } from './liste-bon/liste-bon.component';
 import { CreateBonComponent } from './create-bon/create-bon.component';
 import { UpdateBonComponent } from './update-bon/update-bon.component';
@@ -28,6 +28,11 @@ import { DetailsBonSortieComponent } from './details-bon-sortie/details-bon-sort
 import { ListeBonSortieComponent } from './liste-bon-sortie/liste-bon-sortie.component';
 import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.component';
 
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     ListeBonComponent,
@@ -59,6 +64,13 @@ import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.
      MatInputModule,
      MatTableModule,
      MatSnackBarModule,
+     TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
    
   ]
 })

@@ -13,6 +13,7 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 import { Fournisseur } from 'src/app/Models/fournisseur';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-bon',
@@ -42,9 +43,10 @@ export class CreateBonComponent implements OnInit {
   agriculteurs!:Observable<Agriculteur[]>;
   fournisseurs!:Observable<Fournisseur[]>;
 
-  constructor(private bonService: BonService, private produitService:ProduitService,private agriculteurService:AgriculteurService,
+  constructor(private translateService :TranslateService,private bonService: BonService, private produitService:ProduitService,private agriculteurService:AgriculteurService,
     private location:Location,private fournisseurService:FournisseurService, private router: Router, private dialogClose: MatDialog,
-    private authService:AuthService) { }
+    private authService:AuthService) {     this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')}
 
   ngOnInit() {
 

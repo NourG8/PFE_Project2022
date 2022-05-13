@@ -59,7 +59,7 @@
 
         </div>
         
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>Consulter la vache numero</h5> </div>
+        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the cow number' | translate}}</h5> </div>
         <div class="user">
             <div class="h5 text-center m-0"> {{idV}} </div>
         </div>
@@ -71,11 +71,11 @@
                 </div>
             </div>
             <div class="skills">
-                <div class=" head text-uppercase"><h5>Autre Informations :</h5></div>
+                <div class=" head text-uppercase"><h5> {{'Other Information' | translate}}:</h5></div>
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre">Matricule de la vache :</span>
+                    <span id="titre">{{'Cow registration number' | translate}} :</span>
                     <span>{{vache.matricule}}</span>
                   </div>
   
@@ -85,17 +85,17 @@
                     </div> -->
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre"> Race de la vache :</span>
+                      <span id="titre"> {{'breed of cow' | translate}}:</span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.race}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre"> Date de naissance :</span>
+                      <span id="titre">  {{'Date of birth' | translate}}:</span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.dateNaissance}}</span>
                     </div>
 
                     <div class="text-uppercase fs-08">
-                      <span id="titre">Poids de la vache : </span>
+                      <span id="titre"> {{'cow weight' | translate}}: </span>
                       <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.poids}} Kg </span>
                     </div>
 
@@ -113,7 +113,7 @@
             <div class="details project">
               <div class="head text-uppercase">
                 <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  Fermer les détails
+                  {{'Close details' | translate}}
                 </button>
               </div>
           </div>

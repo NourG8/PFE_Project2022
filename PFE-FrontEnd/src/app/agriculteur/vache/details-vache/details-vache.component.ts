@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Vache } from 'src/app/Models/vache';
 import { VacheService } from 'src/app/Service/vache.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-vache',
@@ -19,7 +20,10 @@ export class DetailsVacheComponent implements OnInit {
   constructor(
     private dialogClose: MatDialog,    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
-    private vacheService: VacheService) { }
+    private vacheService: VacheService , private translateService :TranslateService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
 

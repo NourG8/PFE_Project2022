@@ -4,6 +4,7 @@ import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AuthService } from 'src/app/Service/auth.service';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 
 
@@ -22,23 +23,21 @@ export class NavbarComponent implements OnInit {
   prenom?:String;
   nom?:String;
 
+   lang!: any;
+  location: any;
 
-  constructor(
+  constructor(private translateService :TranslateService,
   public authService: AuthService,
    private agriculteurService:AgriculteurService,
-  //  private router: Router ,
-   private dialog: MatDialog,) {} 
+   private router: Router ,
+   private dialog: MatDialog,) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+   } 
 
   ngOnInit(): void {
 
-    // this.authService.loadToken();
-    // if (this.authService.getToken()==null || 
-    //     this.authService.isTokenExpired()){
-    //       this.dialog.closeAll();
-    //       this.router.navigate(['/login']);
-    //       this.dialog.closeAll();
-     
-    //     }
+this.lang = localStorage.getItem('lang') || 'en';
 
   this.agriculteurService.getagriculteur(JSON.parse(localStorage.getItem('IdUser') || '[]') || []).subscribe(o=>{
     this.cin = o.cin;
@@ -51,6 +50,14 @@ export class NavbarComponent implements OnInit {
     console.log("#################################################");
   });
   }
+changeLang(lang: any){
+  localStorage.setItem("lang",lang);
+  
+  window.location.reload();
+console.log(lang);
+}
+
+
 
   onLogout(){
     this.authService.logout();

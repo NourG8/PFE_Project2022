@@ -6,6 +6,7 @@ import { Vache } from 'src/app/Models/vache';
 import { VacheService } from 'src/app/Service/vache.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-vache',
@@ -21,7 +22,11 @@ export class CreateVacheComponent implements OnInit {
   msg4=0;
   constructor(private vacheService: VacheService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialogClose: MatDialog,) { }
+    private router: Router, private dialogClose: MatDialog,
+    private translateService :TranslateService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
     
 
   ngOnInit() {

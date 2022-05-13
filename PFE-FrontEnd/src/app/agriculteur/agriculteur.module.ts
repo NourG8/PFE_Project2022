@@ -15,7 +15,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale';
 import { CollecteurComponent } from './collecteur/collecteur.component';
-
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 
@@ -37,7 +42,14 @@ import { CollecteurComponent } from './collecteur/collecteur.component';
     CommonModule,
     AgriculteurRoutingModule,
     NgxChartsModule,
-    MatSnackBarModule,
+    MatSnackBarModule,   
+     TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
   ]
 })
 export class AgriculteurModule { }
