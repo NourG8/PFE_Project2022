@@ -25,3 +25,6 @@
   margin-top:-10px;
   margin-left:11px;
 }
+ngx-charts-legend {
+  display: block !important;
+}

@@ -7,9 +7,9 @@
   </div>
   <span style="color:red;margin-top:-105px;font-size:1.1em">(*){{'Required Field' | translate}}</span><br><br>
         <form [formGroup]="myForm"  novalidate >
-          <div class="form-row">
 
-            <div class="form-group col-md-6 mb-3">
+
+            <div class="col-md-12 mb-3">
               <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}}: <span style="color:red;">*</span></label>
               <input type="text"
                formControlName="matricule"
@@ -30,9 +30,9 @@
               </div>
   
             </div>
-
-
-            <div class="form-group col-md-6 mb-3">
+    
+         
+            <div class="col-md-12 mb-3">
               <label>{{'Weight' | translate}} (minimum 30kg) : <span style="color:red;">*</span></label>
               <input type="number"
                formControlName="poids"
@@ -47,7 +47,6 @@
               <div *ngIf="poids?.valid && poids?.touched" class="text-success">
                 {{'Valid weight' | translate}}!
               </div>
-  
             </div>
 
             <!-- <div class="col-md-12 mb-3">
@@ -88,7 +87,7 @@
              </div>
           </div>
 
-          </div>
+   
           <div class="form-row">
   
   
@@ -155,7 +154,7 @@
               <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
               <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
               <br>
-              <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
+              <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
               <div class="invalid-feedback">{{'p3' | translate}}</div>
             </div>
           </div>

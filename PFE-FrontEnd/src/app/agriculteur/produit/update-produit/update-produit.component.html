@@ -8,7 +8,7 @@
     <span style="color:red;margin-top:-105px;font-size:1.1em">(*){{'Required Field' | translate}}</span><br><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>{{'(minimum 3 characters)' | translate}}{{'Entitled' | translate}}: <span style="color:red;">*</span></label>
+        <label>{{'Entitled' | translate}} {{'(minimum 3 characters)' | translate}}: <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                formControlName="intitule"
@@ -28,7 +28,7 @@
       </div>
   
       <div class="lg mb-3">
-        <label for="type"> {{'Label' | translate}}{{'(minimum 8 characters)' | translate}}: <span style="color:red;">*</span></label>
+        <label for="type"> {{'Label' | translate}} {{'(minimum 8 characters)' | translate}}: <span style="color:red;">*</span></label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="libelle"

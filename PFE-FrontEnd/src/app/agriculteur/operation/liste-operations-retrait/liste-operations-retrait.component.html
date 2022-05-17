@@ -18,7 +18,7 @@
                   </div> 
               </div>
               <div class="overflow-x">
-                  <table style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer"  mat-table matSort [dataSource]="dataSource!"  >
+                  <table matTableExporter #exporter="matTableExporter" style="width:100%;" id="filtertable" class="table cust-datatable dataTable no-footer"  mat-table matSort [dataSource]="dataSource!"  >
                                <thead>
                                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                                </thead>
@@ -101,6 +101,12 @@
                     [pageSizeOptions]="[ 2, 3, 4, 5, 10, 25, 100]">
                   </mat-paginator>
               </div>
+          </div>
+          <div>
+            <button mat-raised-button (click)="exporter.exportTable('xlsx',{fileName:'footballers_data'})">Excel</button>
+            <button mat-raised-button (click)="exporter.exportTable('csv',{fileName:'footballers_data'})">CSV</button>
+            <button mat-raised-button (click)="exporter.exportTable('json',{fileName:'footballers_data'})">JSON</button>
+            <button mat-raised-button (click)="exporter.exportTable('txt',{fileName:'footballers_data'})">TEXT</button>
           </div>
       </div>
   </div>

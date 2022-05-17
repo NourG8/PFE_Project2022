@@ -32,9 +32,11 @@ import { UpdateOperationRetraitComponent } from './update-operation-retrait/upda
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { MatTableExporterModule } from 'mat-table-exporter';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
 @NgModule({
   declarations: [
     ListeOperationComponent,
@@ -48,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateOperationRetraitComponent
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     OperationRoutingModule,
     FormsModule,

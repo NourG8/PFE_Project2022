@@ -36,7 +36,13 @@ export class NavbarComponent implements OnInit {
    } 
 
   ngOnInit(): void {
-
+    this.authService.loadToken();
+    if (this.authService.getToken()==null || 
+        this.authService.isTokenExpired()){
+          this.dialog.closeAll();
+          this.router.navigate(['/login']);
+     
+        }
 this.lang = localStorage.getItem('lang') || 'en';
 
   this.agriculteurService.getagriculteur(JSON.parse(localStorage.getItem('IdUser') || '[]') || []).subscribe(o=>{
@@ -50,11 +56,25 @@ this.lang = localStorage.getItem('lang') || 'en';
     console.log("#################################################");
   });
   }
+
+  onReload(){
+    // this.router.navigate([this.router.url]);
+    this.router.navigateByUrl("/'agriculteur/bon/listeFournisseur",{skipLocationChange: true}).then( response=> {
+     this.router.navigate([decodeURI(this.location.path())]);
+   })
+ }
+ 
+ 
+ onClose() {
+   this.dialog.closeAll();
+   // this.gotoList();
+   this.onReload();
+ }
+
+
 changeLang(lang: any){
   localStorage.setItem("lang",lang);
-  
-  window.location.reload();
-console.log(lang);
+  location.reload();
 }
 
 

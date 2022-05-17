@@ -27,6 +27,7 @@ import { UpdateCollecteurComponent } from './update-collecteur/update-collecteur
 import { CollecteurRoutingModule } from './collecteur-routing.module';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatTableExporterModule } from 'mat-table-exporter';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -39,6 +40,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DetailsCollecteurComponent,
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     CollecteurRoutingModule,
     FormsModule,

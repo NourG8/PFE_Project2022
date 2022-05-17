@@ -18,6 +18,9 @@ import { CollecteurComponent } from './collecteur/collecteur.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { ChartsModule } from 'ng2-charts';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { MatTableModule } from '@angular/material/table';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -26,6 +29,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 
 @NgModule({
   declarations: [
+   
     AgriculteurComponent,
     NavbarComponent,
     SidebarComponent,
@@ -39,10 +43,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     CollecteurComponent,
   ],
   imports: [
+    MatTableModule,
+    ChartsModule,
     CommonModule,
+    MatTableExporterModule,
     AgriculteurRoutingModule,
     NgxChartsModule,
     MatSnackBarModule,   
+   
      TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

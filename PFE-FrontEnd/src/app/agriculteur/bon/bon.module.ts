@@ -30,6 +30,8 @@ import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatTableExporterModule } from 'mat-table-exporter';
+
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -45,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateBonSortieComponent
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     BonRoutingModule,
     FormsModule,
@@ -80,4 +83,5 @@ export class BonModule {
   timeChangeHandler(event: Event) {
     console.log(event);
 }
+
  }

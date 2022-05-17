@@ -74,7 +74,7 @@
             <div class="col-md-6 mb-3">
               <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate }} : <span style="color:red;">*</span></label>
               <select formControlName="fournisseur" name="fournisseur"  class="custom-select mr-sm-2" id="fournisseur" >
-                <option disabled selected value [ngValue]="null">{{'Choose a' | translate }}{{'supplier' | translate }}...</option>
+                <option disabled selected value [ngValue]="null">{{'Choose a' | translate }} {{'supplier' | translate }}...</option>
                 <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}</option>
               </select>
               <div
@@ -99,7 +99,7 @@
               <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate }}</label>
               <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate }}</label>
               <br>
-              <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
+              <span style="color:red;margin-bottom:45px;font-size:1.1em"*ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
               <div class="invalid-feedback">{{'p3' | translate }}</div>
             </div>
           </div>

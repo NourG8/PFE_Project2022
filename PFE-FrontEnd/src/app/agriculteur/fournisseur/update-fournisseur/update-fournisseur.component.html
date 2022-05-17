@@ -1,14 +1,14 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Modifier le fournisseur numéro :{{fournisseur.idFournisseur}}</b></h3>
+      <h3 id="modal-title"><b>{{'Change supplier number' | translate}} :{{fournisseur.idFournisseur}}</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
     <form [formGroup]="myForm" class="needs-validation" novalidate>
       <div class="form-group">
-        <label>Nom et prénom (minimum 3 caractéres) : <span style="color:red;">*</span></label>
+        <label>{{'Last name and first name' | translate}} {{'(minimum 3 characters)' | translate}}: <span style="color:red;">*</span></label>
         <input type="text"
                class="form-control"
                formControlName="nom"
@@ -19,16 +19,16 @@
           <div
                *ngIf="nom?.invalid && nom?.touched"
                 class="text-danger">
-                  Nom invalide !
+                 {{'Invalid name' | translate}}!
          </div>
          <div
               *ngIf="nom?.valid && nom?.touched"
               class="text-success">
-               Nom valide !
+               {{'Valid name' | translate}} !
          </div>
       </div>
       <div class="lg mb-3">
-        <label>Prénom (minimum 3 caractéres) : <span style="color:red;">*</span></label>
+        <label>{{'First name' | translate}} {{'(minimum 3 characters)' | translate}}: <span style="color:red;">*</span></label>
         <input class="form-control"
                   name="prenom"
                   [(ngModel)]="fournisseur.prenom"
@@ -37,17 +37,17 @@
             <div
                   *ngIf="prenom?.invalid && prenom?.touched"
                    class="text-danger">
-                   Prénom invalide !
+                   {{'Invalid first name' | translate}}!
             </div>
             <div
                  *ngIf="prenom?.valid && prenom?.touched"
                  class="text-success">
-                 Prénom valide !
+                 {{'Valid first name' | translate}}!
             </div>
       </div>
 
       <div class="lg mb-3">
-        <label>Numéro de matricule (minimum 8 caractéres) : <span style="color:red;">*</span></label>
+        <label>{{'matricule' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
         <input class="form-control"
                   placeholder="Description Post here ...."
                   name="matricule"
@@ -58,18 +58,18 @@
             <div
                   *ngIf="matricule?.invalid && matricule?.touched"
                    class="text-danger">
-                   Numéro de matricule invalide !
+                   {{'Invalid registration number' | translate}}!
             </div>
             <div
                  *ngIf="matricule?.valid && matricule?.touched"
                  class="text-success">
-                 Numéro de matricule valide !
+                  {{'Valid registration number' | translate}}!
             </div>
       </div>
   
       <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" (click)="updateFournisseur()" [disabled]="myForm.invalid" class="btn btn-primary">Enregistrer </button>
+        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+        <button type="submit" (click)="updateFournisseur()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
       </div>
     </form>
   
