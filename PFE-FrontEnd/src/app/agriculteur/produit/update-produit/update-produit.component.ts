@@ -6,6 +6,7 @@ import { ProduitService } from 'src/app/Service/produit.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-produit',
@@ -17,7 +18,7 @@ export class UpdateProduitComponent implements OnInit {
   myForm!:FormGroup;
   CheckesCompetance:boolean=false;
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private router: Router,
     private dialogClose: MatDialog,
     private location:Location,   
@@ -25,7 +26,8 @@ export class UpdateProduitComponent implements OnInit {
     private produitService:ProduitService,
 
 
-  ) { }
+  ) {     this.translateService.setDefaultLang('en');
+  this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit(): void {
 

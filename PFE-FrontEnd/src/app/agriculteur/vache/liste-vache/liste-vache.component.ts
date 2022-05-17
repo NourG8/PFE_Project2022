@@ -11,6 +11,7 @@ import { DetailsVacheComponent } from '../details-vache/details-vache.component'
 import { UpdateVacheComponent } from '../update-vache/update-vache.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-vache',
@@ -34,9 +35,12 @@ export class ListeVacheComponent implements OnInit {
   vache?:Vache;
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idVache','matricule','poids','race', 'dateNaissance','action'];
-  constructor(private vacheService: VacheService,
+  constructor(private translateService :TranslateService ,private vacheService: VacheService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
 
     ngOnInit() {

@@ -11,6 +11,7 @@ import { TankService } from 'src/app/Service/tank.service';
 import  {LaitService } from 'src/app/Service/lait.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-operation-remplissage',
@@ -45,14 +46,15 @@ export class CreateOperationRemplissageComponent implements OnInit {
   laits!:Observable<Lait[]>;
   tanks!:Observable<Tank[]>;
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private location:Location,
     private operationService: OperationService,
     private tankService:TankService,
     private laitService:LaitService,
     private authService:AuthService,
     private router: Router,
-    private dialogClose: MatDialog) { }
+    private dialogClose: MatDialog) {  this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit() {
 

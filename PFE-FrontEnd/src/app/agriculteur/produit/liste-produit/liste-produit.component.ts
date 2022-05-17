@@ -11,6 +11,7 @@ import { DetailsProduitComponent } from '../details-produit/details-produit.comp
 import { UpdateProduitComponent } from '../update-produit/update-produit.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-produit',
@@ -35,9 +36,12 @@ export class ListeProduitComponent implements OnInit {
   produit?:Produit;
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idProduit','intitule', 'libelle','qte','action'];
-  constructor(private produitService: ProduitService,
+  constructor(
+    private translateService :TranslateService
+    ,private produitService: ProduitService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {      this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')}
 
 
     ngOnInit() {

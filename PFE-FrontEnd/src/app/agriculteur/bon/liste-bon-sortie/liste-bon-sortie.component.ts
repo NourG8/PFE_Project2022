@@ -13,6 +13,7 @@ import { UpdateBonSortieComponent } from '../update-bon-sortie/update-bon-sortie
 import { CreateBonSortieComponent } from '../create-bon-sortie/create-bon-sortie.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-bon-sortie',
@@ -38,10 +39,13 @@ export class ListeBonSortieComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idBon','quantite','produit','date','action'];
   // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
-  constructor(private bonService: BonService,
+  constructor(private translateService :TranslateService,private bonService: BonService,
     private produitService:ProduitService,
     private location:Location,
-    private router: Router, private dialog:MatDialog,private authService:AuthService) { }
+    private router: Router, private dialog:MatDialog,private authService:AuthService) {
+      this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
 
     ngOnInit() {

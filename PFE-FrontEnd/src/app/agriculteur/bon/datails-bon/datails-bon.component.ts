@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Bon } from 'src/app/Models/bon';
 import { BonService } from 'src/app/Service/bon.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-datails-bon',
@@ -16,11 +17,14 @@ export class DatailsBonComponent implements OnInit {
   idB!: any;
   bon?:Bon = new Bon();
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private dialogClose: MatDialog,
     private route: ActivatedRoute,private router: Router,
     private bonService: BonService,
-    private authService:AuthService) { }
+    private authService:AuthService) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
   ngOnInit() {
 

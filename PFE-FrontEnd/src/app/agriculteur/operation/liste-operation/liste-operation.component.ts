@@ -14,6 +14,7 @@ import { UpdateOperationComponent } from '../update-operation/update-operation.c
 import { Tank } from 'src/app/Models/tank';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-operation',
@@ -47,11 +48,12 @@ export class ListeOperationComponent implements OnInit {
   OpTank=new Array();
 
   displayedColumns: string[] = ['idOperation','poidsLait', 'dateOperation','action'];
-  constructor(private operationService: OperationService,
+  constructor(private translateService :TranslateService,private operationService: OperationService,
     private tankService:TankService,
     private authService:AuthService,
     private location:Location,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {   this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')}
 
 
     ngOnInit() {

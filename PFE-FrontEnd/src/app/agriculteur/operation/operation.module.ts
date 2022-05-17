@@ -29,6 +29,13 @@ import { PageOperationsComponent } from './page-operations/page-operations.compo
 import { ListeOperationsRetraitComponent } from './liste-operations-retrait/liste-operations-retrait.component';
 import { DetailsOperationTankComponent } from './details-operation-tank/details-operation-tank.component';
 import { UpdateOperationRetraitComponent } from './update-operation-retrait/update-operation-retrait.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { MatTableExporterModule } from 'mat-table-exporter';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -43,6 +50,7 @@ import { UpdateOperationRetraitComponent } from './update-operation-retrait/upda
     UpdateOperationRetraitComponent
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     OperationRoutingModule,
     FormsModule,
@@ -62,6 +70,13 @@ import { UpdateOperationRetraitComponent } from './update-operation-retrait/upda
      MatInputModule,
      MatTableModule,
      MatSnackBarModule,
+     TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
   ]
 })
 

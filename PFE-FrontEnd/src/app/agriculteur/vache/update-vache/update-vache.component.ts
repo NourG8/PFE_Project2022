@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { VacheService } from 'src/app/Service/vache.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-vache',
@@ -22,8 +23,11 @@ export class UpdateVacheComponent implements OnInit {
     private location:Location,
     private dialogClose: MatDialog,
     private vacheService:VacheService,
-    private authService:AuthService,
-  ) { }
+    private authService:AuthService,private translateService :TranslateService
+  ) { 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+  }
 
   ngOnInit(): void {
 

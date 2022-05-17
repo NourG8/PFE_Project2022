@@ -6,6 +6,7 @@ import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-collecteur',
@@ -25,7 +26,10 @@ export class CreateCollecteurComponent implements OnInit {
 
   constructor(private collecteurService: CollecteurService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialogClose: MatDialog,) { }
+    private router: Router, private dialogClose: MatDialog,private translateService :TranslateService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
 

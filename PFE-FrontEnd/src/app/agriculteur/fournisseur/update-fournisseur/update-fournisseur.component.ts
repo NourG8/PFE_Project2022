@@ -6,6 +6,7 @@ import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { Router } from '@angular/router';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-fournisseur',
@@ -23,9 +24,11 @@ export class UpdateFournisseurComponent implements OnInit {
     private dialogClose: MatDialog,
     private location:Location,
     private fournisseurService:FournisseurService,
-    private authService:AuthService,
+    private authService:AuthService,private translateService :TranslateService
 
-  ) { }
+  ) {     
+    this.translateService.setDefaultLang('en');
+  this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit(): void {
 

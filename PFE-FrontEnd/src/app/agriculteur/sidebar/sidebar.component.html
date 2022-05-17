@@ -13,7 +13,7 @@
 
       <div class="user-panel mt-2 pb-1 mb-1  d-flex">
         <div class="info" style="margin-left:21px" >
-          <a  class="d-block" style="margin-left:2px;color:white;font-weight: bold;" >  &nbsp; Bienvenu(e) {{authService.loggedUser}}</a>        </div>
+          <a  class="d-block" style="margin-left:2px;color:white;font-weight: bold;" >  &nbsp; {{'Welcome' | translate}} {{authService.loggedUser}}</a>        </div>
       </div>
 
       <div class="form-inline">
@@ -34,7 +34,7 @@
             <a a [routerLink]="['dashboard']" class="nav-link"  [routerLinkActive]="['active']">
               <i class="nav-icon fas fa-chart-area"></i>
               <!-- <i class="fas fa-chart-area"></i> -->
-              <p>Tableau de bord</p>
+              <p>{{'Dashboard' | translate}}</p>
             </a>
           </li>
 
@@ -42,14 +42,14 @@
           <li class="nav-item">
             <a routerLink="fournisseur/listeFournisseur"  [routerLinkActive]="['active']" class="nav-link" >
               <i class="nav-icon fas fa-people-carry "></i>
-              <p>Gestion fournisseurs</p>
+              <p>{{'Supplier management' | translate}}</p>
             </a>
           </li>
 
           <li class="nav-item">
             <a routerLink="collecteur/listeCollecteur" routerLinkActive="active" class="nav-link">
               <i class="nav-icon fas fa-user-friends"></i>
-              <p>Gestion des collecteurs </p>
+              <p> {{'Collector management' | translate}}</p>
             </a>
           </li>
 
@@ -57,7 +57,7 @@
           <li class="nav-item">
             <a routerLink="produit/listeProduit" class="nav-link" routerLinkActive="active">
               <i class="nav-icon fab fa-product-hunt"></i>
-              <p>Gestion des produits</p>
+              <p>{{'Product management' | translate}}</p>
             </a>
           </li>
           <!-- Partie Condidates List lel Recruteur wel admin -->
@@ -65,7 +65,7 @@
             <a routerLink="tank/listeTank" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-glass"></i>
               <!-- <i class="fal fa-glass"></i> -->
-              <p>Gestion des tanks</p>
+              <p>{{'Tank management' | translate}}</p>
             </a>
           </li>
           <!-- Partie Interviews List lel Interviewr wel admin -->
@@ -73,7 +73,7 @@
             <a routerLink="vache/listeVache"[routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fas fa-hippo"></i>
 
-              <p>Gestion des vaches</p>
+              <p>{{'Cow management' | translate}}</p>
             </a>
           </li>
 <!--
@@ -96,42 +96,42 @@
           </li> -->
 
           <li class="nav-item">
-            <a href="#" class="nav-link" routerLinkActive="active">
+            <a href="" class="nav-link" routerLinkActive="active">
               <i class="nav-icon fas fa-list"></i>
-              <p>Gestion des bons<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
+              <p>{{'Voucher management' | translate}}<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a routerLink="bon/listeBon"  class="nav-link " routerLinkActive="active">
                   <i class="nav-icon fas fa-plus"></i>
-                  <p>Bons d'entrée</p>
+                  <p>{{'Entry vouchers' | translate}}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a  routerLink="bon/listeBonSortie" class="nav-link" routerLinkActive="active">
                   <i class="nav-icon fas fa-minus"></i>
-                  <p>Bons de sortie</p>
+                  <p>{{'Exit vouchers' | translate}}</p>
                 </a>
               </li>
             </ul>
             </li>
 
             <li class="nav-item">
-              <a href="#" class="nav-link" routerLinkActive="active">
+              <a href="" class="nav-link" routerLinkActive="active">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Gestion des operations<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
+                <p>{{'Operations management' | translate}}<i class="right fas fa-angle-left"style="margin-left:13px;margin-right:-6px;margin-top:3.5px;"></i></p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
                   <a routerLink="operation/listeOperation" class="nav-link " routerLinkActive="active">
                     <i class="nav-icon fas fa-plus"></i>
-                    <p>Remplissage</p>
+                    <p>{{'Filling' | translate}}</p>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a  routerLink="operation/listeOperationRetrait" class="nav-link" routerLinkActive="active">
                     <i class="nav-icon fas fa-minus"></i>
-                    <p>Retrait</p>
+                    <p>{{'Withdrawal' | translate}}</p>
                   </a>
                 </li>
               </ul>
@@ -154,7 +154,7 @@
           <li class="nav-item">
             <a routerLink="operation/operationPage" [routerLinkActive]="['active']" class="nav-link">
               <i class="nav-icon fa fa-id-card-o"></i>
-              <p>Gestion des operations &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sur les tanks </p>
+              <p>{{'Operations management' | translate}} {{'on the tanks' | translate}} </p>
             </a>
           </li>
 

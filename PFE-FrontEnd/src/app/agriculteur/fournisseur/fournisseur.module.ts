@@ -25,6 +25,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 //add Snackbar
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+import { MatTableExporterModule } from 'mat-table-exporter';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -37,6 +44,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     UpdateFournisseurComponent
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     FournisseurRoutingModule,
     FormsModule,
@@ -56,7 +64,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
      MatInputModule,
      MatTableModule,
      MatSnackBarModule,
-   
+     TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
   ]
 })
 export class FournisseurModule { }

@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { OperationService } from 'src/app/Service/operation.service';
-import { Observable } from 'rxjs';
-import * as echarts from 'echarts';
+
 import { TankService } from 'src/app/Service/tank.service';
 import { VacheService } from 'src/app/Service/vache.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { BonService } from 'src/app/Service/bon.service';
 import { ProduitService } from 'src/app/Service/produit.service';
-import {formatDate} from '@angular/common';
-import localeFr from '@angular/common/locales/fr';
-// import { NgxChartsModule }from '@swimlane/ngx-charts';
+import * as echarts from 'echarts';
+import { TranslateService } from '@ngx-translate/core';
+import { LegendPosition } from '@swimlane/ngx-charts';
 var test: string = "test";
 var somTank: number;
 var s :number;
@@ -62,24 +61,22 @@ export class DashboardComponent implements OnInit {
   single: any[] = [];
   multi: any[] = [];
 
-  view: any[] = [700, 400];
-
+  view: any[] = [700,400];
+  
   date ?:any;
   // options
   showXAxis = true;
   showYAxis = true;
   gradient = false;
-  showLegend = true;
+ // showLegend = true;
   showXAxisLabel = true;
-  xAxisLabel = 'Matricules des tanks';
   showYAxisLabel = true;
-  yAxisLabel = 'Etat de remplissage';
 
   colorScheme : any = {
     // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
     domain: ['#ffc107', '#EE9C4A','#3772C8','#E71F2B ','#28a745', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
   };
-
+  Below: LegendPosition = LegendPosition.Below ;
 
   constructor(
     private operationService: OperationService,
@@ -87,10 +84,46 @@ export class DashboardComponent implements OnInit {
     private vacheService:VacheService,
     private fournisseurService:FournisseurService,
     private bonService:BonService,
-    private produitService:ProduitService,
-    private router: Router) {}
+    private produitService:ProduitService,private translateService :TranslateService,
+   ) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en');
+
+    }
+
+  
+//bar 
 
 
+//     public barChartOptions: ChartOptions = {
+//       responsive: true,
+//     };
+//     public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+//     public barChartType: ChartType = 'bar';
+//     public barChartLegend = true;
+//     public barChartPlugins = [];
+  
+
+
+// //piiee
+// public pieChartOptions: ChartOptions = {
+//   responsive: true,
+// };
+// public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
+// public pieChartData: SingleDataSet = [300, 500, 100];
+// public pieChartType: ChartType = 'pie';
+// public pieChartLegend = true;
+// public pieChartPlugins = [];
+
+
+
+    // options
+    showLegend: boolean = true;
+    showLabels: boolean = true;
+
+    onSelect(event: any) {
+      console.log(event);
+    }
     getData(){
       this.tankService.getTanks().subscribe( (data)=>{
         this.formateDataT(data);
@@ -280,7 +313,6 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.getData();
 
     this.tankService.getNbTanks().subscribe(o =>{
@@ -602,6 +634,6 @@ setInterval(function () {
 }, 1000);
 
 option && myChart.setOption(option);
-
   }
+  
 }

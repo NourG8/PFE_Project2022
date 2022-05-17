@@ -18,6 +18,7 @@ import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
 
 import { ethers } from 'ethers';
+import { TranslateService } from '@ngx-translate/core';
 
 declare let require: any;
 declare let window: any;
@@ -53,11 +54,12 @@ export class ListeOperationsRetraitComponent implements OnInit {
   test2=0;
 
   displayedColumns: string[] = ['idOperation','poidsLait','code','collecteur', 'dateOperation', 'action'];
-  constructor(private operationService: OperationService,
+  constructor(private translateService :TranslateService,private operationService: OperationService,
     private tankService:TankService,
     private produitService:ProduitService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {  this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
     
     operations: Observable<Operation[]> | undefined;
 

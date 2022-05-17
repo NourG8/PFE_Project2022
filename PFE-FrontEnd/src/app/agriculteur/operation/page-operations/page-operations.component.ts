@@ -14,6 +14,7 @@ import { DetailsOperationTankComponent } from '../details-operation-tank/details
 import { DetailsOperationComponent } from '../details-operation/details-operation.component';
 import { UpdateOperationComponent } from '../update-operation/update-operation.component';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-page-operations',
@@ -39,9 +40,10 @@ export class PageOperationsComponent implements OnInit {
   dataSource!:MatTableDataSource<any>;
   v=0;
   displayedColumns: string[] = ['idOpTank','operation','matricule','qteInsereTank','date', 'action'];
-  constructor(private operationService: OperationService,
+  constructor(private translateService :TranslateService,private operationService: OperationService,
     private tankService:TankService,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {  this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
 
     ngOnInit() {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 import { MatDialogModule} from "@angular/material/dialog";
@@ -25,7 +25,12 @@ import { ListeCollecteurComponent } from './liste-collecteur/liste-collecteur.co
 import { UpdateCollecteurComponent } from './update-collecteur/update-collecteur.component';
 
 import { CollecteurRoutingModule } from './collecteur-routing.module';
-
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { MatTableExporterModule } from 'mat-table-exporter';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -35,6 +40,7 @@ import { CollecteurRoutingModule } from './collecteur-routing.module';
     DetailsCollecteurComponent,
   ],
   imports: [
+    MatTableExporterModule,
     CommonModule,
     CollecteurRoutingModule,
     FormsModule,
@@ -54,6 +60,13 @@ import { CollecteurRoutingModule } from './collecteur-routing.module';
      MatInputModule,
      MatTableModule,
      MatSnackBarModule,
+     TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  }),
   ]
 })
 export class CollecteurModule { }

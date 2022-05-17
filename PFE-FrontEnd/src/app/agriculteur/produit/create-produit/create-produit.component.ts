@@ -6,6 +6,7 @@ import { Produit } from 'src/app/Models/produit';
 import { ProduitService } from 'src/app/Service/produit.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-create-produit',
@@ -22,9 +23,10 @@ export class CreateProduitComponent implements OnInit {
   msg2=0;
   msg4=0;
 
-  constructor(private produitService: ProduitService,
+  constructor(private translateService :TranslateService , private produitService: ProduitService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialogClose: MatDialog,) { }
+    private router: Router, private dialogClose: MatDialog,) {     this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en') }
 
   ngOnInit() {
 

@@ -6,6 +6,7 @@ import { Collecteur } from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-collecteur',
@@ -22,14 +23,17 @@ export class UpdateCollecteurComponent implements OnInit {
   msg2=0;
   msg3=0;
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private router: Router,
     private dialogClose: MatDialog,
     private location:Location,
     private authService:AuthService,
     private collecteurService:CollecteurService,
 
-  ) { }
+  ) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
+   }
 
   ngOnInit(): void {
 

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Collecteur} from 'src/app/Models/collecteur';
 import { CollecteurService } from 'src/app/Service/collecteur.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-collecteur',
@@ -16,10 +17,13 @@ export class DetailsCollecteurComponent implements OnInit {
   idC!: any;
   collecteur?:Collecteur = new Collecteur();
 
-  constructor(
+  constructor(private translateService :TranslateService,
     private dialogClose: MatDialog,    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
-    private collecteurService: CollecteurService) { }
+    private collecteurService: CollecteurService) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
   ngOnInit() {
 

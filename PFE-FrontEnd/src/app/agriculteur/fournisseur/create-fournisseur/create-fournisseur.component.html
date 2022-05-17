@@ -1,15 +1,15 @@
 <div class="ContenuCard" >
     <div class="modal-header">
-      <h3 id="modal-title"><b>Créer un nouveau fournisseur :</b></h3>
+      <h3 id="modal-title"><b> {{'Create a new supplier' | translate}}:</b></h3>
       <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) champ obligatoire</span><br><br>
+    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
           <form [formGroup]="myForm"  novalidate >
             <div class="form-row">
               <div class="form-group col-md-6 mb-3" >
-                <label>Nom et prénom : <span style="color:red;">*</span></label>
+                <label>{{'Last name and first name' | translate}} : <span style="color:red;">*</span></label>
                 <p>(minimum 7 caractéres) </p>
                 <input type="text"
                  formControlName="nom"
@@ -20,16 +20,16 @@
                  name="nom">
     
                 <div *ngIf="nom?.invalid && nom?.touched || msg1==1" class="text-danger">
-                 Nom invalide !
+                  {{'Invalid name' | translate}} !
                 </div>
                 <div *ngIf="nom?.valid && nom?.touched && msg1==0" class="text-success">
-                 Nom valide!
+                   {{'Valid name' | translate}}!
                 </div>
               </div>
   
               <div class="form-group col-md-6 mb-3" >
-                <label> Prénom : <span style="color:red;">*</span></label>
-                <p>(minimum 3 caractéres) </p>
+                <label>  {{'First name' | translate}}: <span style="color:red;">*</span></label>
+                <p> {{'(minimum 3 characters)' | translate}} </p>
                 <input type="text"
                  formControlName="prenom"
                  class="form-control"
@@ -39,23 +39,23 @@
                  name="prenom">
     
                 <div *ngIf="prenom?.invalid && prenom?.touched  || msg1==1" class="text-danger">
-                 Prénom invalide !
+                  {{'Invalid first name' | translate}}!
                 </div>
                 <div *ngIf="prenom?.valid && prenom?.touched  && msg1==0" class="text-success">
-                  Prénom valide!
+                  {{'Valid first name' | translate}}!
                 </div>
               </div>
 
               <div *ngIf="msg1==1"  class="text-danger">
-              <p style="text-align: center;margin-left: 150px;"> Nom et prénom existe deja !</p>
+              <p style="text-align: center;margin-left: 150px;">{{'Surname and first name already exist' | translate}}!</p>
               </div>
 
             </div>
 
                  <div class="form-row">
               <div class="form-group col-md-12 mb-3">
-                <label for="type">Numéro de matricule : <span style="color:red;">*</span></label>
-                <p>(minimum 8 caractéres) </p>
+                <label for="type">{{'Registration number' | translate}} : <span style="color:red;">*</span></label>
+                <p>{{'(minimum 8 characters)' | translate}} </p>
                 <input type="text"
                  class="form-control"
                   id="matricule"
@@ -65,13 +65,13 @@
                   name="matricule">
     
                   <div *ngIf="matricule?.invalid && matricule?.touched || msg2==1" class="text-danger">
-                    Numéro de matricule invalide !
+                    {{'Invalid registration number' | translate}} !
                   </div>
                   <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">
-                    Numéro de matricule valide!
+                    {{'Valid registration number' | translate}}!
                   </div>
                   <div *ngIf="msg2==1"  class="text-danger">
-                    &nbsp; Numéro de matricule existe deja !
+                    &nbsp;  {{'Registration number already exists' | translate}}!
                   </div>
               </div>
   
@@ -80,16 +80,16 @@
             <div class="form-group">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">J'accepte les conditions générales d'utilisation</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >J'accepte les conditions générales d'utilisation</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
                 <br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em">{{msg}}</span>
-                <div class="invalid-feedback">Vous devez accepter les CGU pour continuer</div>
+                <span style="color:red;margin-bottom:45px;font-size:1.1em"*ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
+                <div class="invalid-feedback">{{'p3' | translate}}</div>
               </div>
             </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">Envoyer</button>
+            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate}}</button>
             <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
   
           </form>
         </div>

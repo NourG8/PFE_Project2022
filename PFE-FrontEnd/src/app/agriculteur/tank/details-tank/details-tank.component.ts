@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TankService } from 'src/app/Service/tank.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-details-tank',
@@ -19,7 +20,10 @@ export class DetailsTankComponent implements OnInit {
   constructor(
     private dialogClose: MatDialog,    private authService:AuthService,
     private route: ActivatedRoute,private router: Router,
-    private tankService: TankService) { }
+    private tankService: TankService,private translateService :TranslateService) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
   ngOnInit() {
 

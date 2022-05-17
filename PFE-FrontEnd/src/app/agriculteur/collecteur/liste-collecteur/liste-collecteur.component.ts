@@ -11,6 +11,7 @@ import { DetailsCollecteurComponent } from '../details-collecteur/details-collec
 import { UpdateCollecteurComponent } from '../update-collecteur/update-collecteur.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-collecteur',
@@ -34,9 +35,12 @@ export class ListeCollecteurComponent implements OnInit {
   Collecteur?:Collecteur;
   dataSource!:MatTableDataSource<any>;
   displayedColumns: string[] = ['idCollecteur','nomCollecteur', 'adresse','tel','action'];
-  constructor(private collcteurService: CollecteurService,
+  constructor(private translateService :TranslateService,private collcteurService: CollecteurService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog) {
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+     }
 
 
     ngOnInit() {

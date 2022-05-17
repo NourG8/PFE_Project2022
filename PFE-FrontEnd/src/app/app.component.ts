@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from './Service/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class AppComponent {
   isLoggedin?: boolean ;
   mySubscription: any;
 
-  constructor(public authService: AuthService,){
+  constructor(public authService: AuthService,private translateService :TranslateService){
     // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     // this.mySubscription = this.router.events.subscribe((event) => {
     //   if (event instanceof NavigationEnd) {
@@ -20,6 +21,8 @@ export class AppComponent {
     //      this.router.navigated = false;
     //   }
     // }); 
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en')
  }
 
 ngOnInit () {

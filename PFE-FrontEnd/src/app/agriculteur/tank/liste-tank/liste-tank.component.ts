@@ -11,6 +11,7 @@ import { DetailsTankComponent } from '../details-tank/details-tank.component';
 import { UpdateTankComponent } from '../update-tank/update-tank.component';
 import {Location} from "@angular/common";
 import { AuthService } from 'src/app/Service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-liste-tank',
@@ -37,7 +38,10 @@ export class ListeTankComponent implements OnInit {
   displayedColumns: string[] = ['idTank','matricule','poidVide', 'poidActuel','etat','action'];
   constructor(private tankService: TankService,
     private location:Location,    private authService:AuthService,
-    private router: Router, private dialog:MatDialog) { }
+    private router: Router, private dialog:MatDialog,private translateService :TranslateService) { 
+      this.translateService.setDefaultLang('en');
+      this.translateService.use(localStorage.getItem('lang') || 'en')
+    }
 
 
     ngOnInit() {
