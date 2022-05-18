@@ -19,6 +19,10 @@ import { asyncScheduler, Observable } from 'rxjs';
 import { Agriculteur } from 'src/app/Models/agriculteur';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { TranslateService } from '@ngx-translate/core';
+// import { CsvBuilder } from 'filefy';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import { environment } from 'src/environments/environment';
 
 declare let require: any;
 declare let window: any;
@@ -83,6 +87,39 @@ export class CreateOperationComponent implements OnInit {
       this.som = this.som + o + 1;
     });
   }
+  exportOne( op : Operation , confirmation: string){
+    // new CsvBuilder("operation.csv")
+    // .setColumns(["#ID","Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"])
+    // .addRow([op.idOperation.toString() , op.poidsLait.toString() , op.code.toString() , op.collecteur.nomCollecteur , op.dateOperation , confirmation])
+    // .exportFile();
+
+
+    const doc = new jsPDF(); 
+    var imageData = environment.img 
+    const n = op.code.toString() + '.pdf'
+      // const head = [['ID',"Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"]]
+    // const data = [
+    //     [op.idOperation, op.poidsLait, op.code , op.collecteur.nomCollecteur , op.dateOperation , confirmation],
+doc.addImage(imageData,'JPEG',0,0,210,297);
+    // ]
+    doc.text(op.code.toString(),92,54)
+    doc.text(op.agriculteur.nom .toString(),75,107.2)
+    doc.text(op.collecteur.nomCollecteur.toString(),107,139)
+    doc.text(op.dateOperation.toString(),120,123.5)
+    // doc.text(op.code.toString().toString(),92,157)
+    // autoTable(doc, {
+    //     head: head,
+    //     body: data,
+    //     didDrawCell: (data) => { },
+    // });
+
+    doc.save(n);
+    }
+
+
+
+
+
 
   newEmployee(): void {
     this.submitted = false;
@@ -126,6 +163,7 @@ export class CreateOperationComponent implements OnInit {
             localStorage.setItem('idcoll', JSON.stringify(b))
           })
         this.tab = Object.values(o)
+       
         localStorage.setItem('idop', JSON.stringify(o))
         localStorage.setItem('Toast', JSON.stringify(["Success", "Une operation a été ajouté avec succès"]));
         this.onReload();
@@ -143,7 +181,7 @@ export class CreateOperationComponent implements OnInit {
   agri: Agriculteur = new Agriculteur();
   oppr: Operation = new Operation();
   collect: Collecteur = new Collecteur();
-
+  confirmation: string = "confirmed";
   mm!: number;
   async saveInBc() {
     const depKEY = Object.keys(Remplissage.networks)[0];
@@ -160,10 +198,17 @@ export class CreateOperationComponent implements OnInit {
     console.log("this.5555555555555555555555555555555555555");
     console.log(this.oppr);
 
+try {
+  const transaction = await contract.addOperation2(this.oppr);
 
-    const transaction = await contract.addOperation2(this.oppr);
-
-    await transaction.wait();
+  await transaction.wait();
+} catch (error) {
+  this.confirmation = "rejected"
+}
+if(this.confirmation =="confirmed"){
+  this.exportOne(this.oppr,this.confirmation)
+}
+ 
     window.localStorage.removeItem("idag");
     window.localStorage.removeItem("idop");
     window.localStorage.removeItem("idcoll");
@@ -259,7 +304,7 @@ export class CreateOperationComponent implements OnInit {
 
         if (this.myForm.get('poidsLait')?.value != null && this.myForm.get('collecteur')?.value != null && this.myForm.get('poidsLait')?.value > 0) {
           if (this.myForm.get('poidsLait')?.value <= o) {
-            this.save()
+            this.save();
             // this.gotoList()
             this.saveInBc()
             this.msgErreur = 0;
