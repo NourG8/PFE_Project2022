@@ -7,6 +7,9 @@ import { VacheService } from 'src/app/Service/vache.service';
 import { FournisseurService } from 'src/app/Service/fournisseur.service';
 import { BonService } from 'src/app/Service/bon.service';
 import { ProduitService } from 'src/app/Service/produit.service';
+import { Observable } from 'rxjs';
+import {formatDate} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 import * as echarts from 'echarts';
 import { TranslateService } from '@ngx-translate/core';
 import { LegendPosition } from '@swimlane/ngx-charts';
@@ -68,13 +71,17 @@ export class DashboardComponent implements OnInit {
   showXAxis = true;
   showYAxis = true;
   gradient = false;
- // showLegend = true;
+  showLegend = true;
   showXAxisLabel = true;
   showYAxisLabel = true;
 
   colorScheme : any = {
     // domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-    domain: ['#ffc107', '#EE9C4A','#3772C8','#E71F2B ','#28a745', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
+  //  domain: ['#ffc107', '#EE9C4A','#3772C8','#E71F2B ','#28a745', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
+  //  domain: ['#86E3CE', '#D0E6A5','#FFDD94','#FAB97B ','#CCABD8', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
+  //  domain: ['#35B8CA', '#0191B4','#F8D90F','#D3DD18 ','#FE7A15', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
+  domain: ['#FC6B05', '#FFB62B','#65B017','#99D8D8 ','#9BB7BB', '#756E6F','#17a2b8', '#AAAAAA','#32DA1E','#FF5733','#AE0D05']
+
   };
   Below: LegendPosition = LegendPosition.Below ;
 
@@ -85,6 +92,7 @@ export class DashboardComponent implements OnInit {
     private fournisseurService:FournisseurService,
     private bonService:BonService,
     private produitService:ProduitService,private translateService :TranslateService,
+    private router: Router
    ) {
       this.translateService.setDefaultLang('en');
       this.translateService.use(localStorage.getItem('lang') || 'en');
@@ -118,7 +126,7 @@ export class DashboardComponent implements OnInit {
 
 
     // options
-    showLegend: boolean = true;
+
     showLabels: boolean = true;
 
     onSelect(event: any) {

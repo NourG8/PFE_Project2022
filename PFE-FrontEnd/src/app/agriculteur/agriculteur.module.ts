@@ -18,7 +18,6 @@ import { CollecteurComponent } from './collecteur/collecteur.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
-import { ChartsModule } from 'ng2-charts';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatTableModule } from '@angular/material/table';
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +43,6 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     MatTableModule,
-    ChartsModule,
     CommonModule,
     MatTableExporterModule,
     AgriculteurRoutingModule,

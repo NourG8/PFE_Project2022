@@ -1,28 +1,43 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" rel="stylesheet">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css"
+  rel="stylesheet"
+/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link
+  rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+  rel="stylesheet"
+/>
 <script src="node_modules/chart.js/src/chart.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
-   <!-- Content Header (Page header) -->
-   <div class="content-header">
-     <div class="container-fluid">
-       <div class="row mb-2">
-         <div class="col-sm-6">
-           <h1 class="m-0 text-dark">{{'boardTable' | translate }}</h1>
-         </div><!-- /.col -->
-       </div><!-- /.row -->
-     </div><!-- /.container-fluid -->
-   </div>
-   <!-- /.content-header -->
+<!-- Content Header (Page header) -->
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0 text-dark">{{ "boardTable" | translate }}</h1>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
 
-
-   <!-- Main content -->
-   <section class="content">
-       <div class="container-fluid">
-         <!-- Small boxes (Stat box) -->
-         <!-- <div class="row">
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <!-- Small boxes (Stat box) -->
+    <!-- <div class="row">
           <div class="col-md-3 animated fadeIn">
             <div class="card card-block tip-card">
               <div class="tip-msg">
@@ -69,483 +84,632 @@
           </div>
          
         </div> -->
-         <!-- /.row -->
-         <!-- Main row -->
-         <div class="row">
-           
-           <section class="content">
-
-
-
-
-
-
-
-
-            
-               <div class="container-fluid">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <div class="row">
-                  <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                          <div class="card-heading p-4">
-                              <div class="mini-stat-icon float-right">
-                                  <i class="mdi mdi-cube-outline bg-primary  text-white"></i>
-                              </div>
-                              <div>
-                                  <h6 class="font-16">{{'TOTAL TANKS FULL' | translate }} </h6>
-                              </div>
-                              <h3 class="mt-4">{{somTRemplis}}</h3>
-                              <div class="progress mt-4" style="height: 4px;">
-                                  <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="text-muted mt-2 mb-0"><span class="float-right">{{prcTankRemplis}}%</span></p>
-                          </div>
-                      </div>
+    <!-- /.row -->
+    <!-- Main row -->
+    <div class="row">
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 col-xl-3">
+              <div class="card">
+                <div class="card-heading p-4">
+                  <div class="mini-stat-icon float-right">
+                    <i class="mdi mdi-cube-outline bg-primary text-white"></i>
                   </div>
-                  <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                          <div class="card-heading p-4">
-                              <div class="mini-stat-icon float-right">
-                                  <i class="mdi mdi-briefcase-check bg-success text-white"></i>
-                              </div>
-                              <div>
-                                  <h6 class="font-14">{{'TOTAL EMPTY TANKS' | translate }}</h6>
-                              </div>
-                              <h3 class="mt-4">{{somTVide}}</h3>
-                              <div class="progress mt-4" style="height: 4px;">
-                                  <div class="progress-bar bg-success" role="progressbar" style="width: 88%" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="text-muted mt-2 mb-0"><span class="float-right">{{prcTankNonRemplis}}%</span></p>
-                          </div>
-                      </div>
+                  <div>
+                    <h6 class="font-16">
+                      {{ "TOTAL TANKS FULL" | translate }}
+                    </h6>
                   </div>
-                  <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                          <div class="card-heading p-4">
-                              <div class="mini-stat-icon float-right">
-                                  <i class="mdi mdi-tag-text-outline bg-warning text-white"></i>
-                              </div>
-                              <div>
-                                  <h5 class="font-16">{{'TOTAL EMPTY TANKS' | translate }}</h5>
-                              </div>
-                              <h3 class="mt-4">{{somTEnCours}}</h3>
-                              <div class="progress mt-4" style="height: 4px;">
-                                  <div class="progress-bar bg-warning" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="text-muted mt-2 mb-0"><span class="float-right">{{prcTankEnCours}}%</span></p>
-                          </div>
-                      </div>
+                  <h3 class="mt-4">{{ somTRemplis }}</h3>
+                  <div class="progress mt-4" style="height: 4px">
+                    <div
+                      class="progress-bar bg-primary"
+                      role="progressbar"
+                      style="width: {{ prcTankRemplis }}%"
+                      aria-valuenow="75"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
                   </div>
-                  <div class="col-sm-6 col-xl-3">
-                      <div class="card">
-                          <div class="card-heading p-4">
-                              <div class="mini-stat-icon float-right">
-                                  <i class="mdi mdi-buffer bg-danger text-white"></i>
-                              </div>
-                              <div>
-                                  <h6 class="font-16">{{'TOTAL TANKS FILLING UP0' | translate }}</h6>
-                              </div>
-                              <h3 class="mt-4">{{somOpRetrait}}</h3>
-                              <div class="progress mt-4" style="height: 4px;">
-                                  <div class="progress-bar bg-danger" role="progressbar" style="width: 82%" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                              <p class="text-muted mt-2 mb-0"><span class="float-right">{{prcOpRetrait}}%</span></p>
-                          </div>
-                      </div>
-                  </div>
+                  <p class="text-muted mt-2 mb-0">
+                    <span class="float-right">{{ prcTankRemplis }}%</span>
+                  </p>
+                </div>
               </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                 <!-- Small boxes (Stat box) -->
-                 <div class="row">
-                   <div class="col-lg-2 col-6">
-                     <!-- small box #148F77-->
-                     <div class="small-box" style="background-color:#e0dfdf">
-                       <div class="inner">
-                         <h3>{{somOperation}}</h3>
-
-                         <p>{{'Operations' | translate }}</p>
-                       </div>
-                       <div class="icon">
-                         <i class="ion ion-ios-list-outline" style="color: red ;"></i>
-                       </div>
-                       <a  routerLink="/agriculteur/dashboard" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                     </div>
-                   </div>
-                   
-                   <!-- ./col -->
-                   <div class="col-lg-2 col-6">
-                     <!-- small box #17A589;-->
-                     <div class="small-box" style="background-color: #ffffff">
-                       <div class="inner">
-                         <h3>{{somTank}}</h3>
-
-                         <p>{{'Tanks' | translate }}</p>
-                       </div>
-                       <div class="icon">
-                        <i class="ion ion-ios-flask-outline"></i>
-                         <!-- <i class="ion ion-person-stalker"></i> -->
-                       </div>
-                       <a routerLink="/agriculteur/tank/listeTank" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                     </div>
-                   </div>
-                   <!-- ./col -->
-                   <div class="col-lg-2 col-6">
-                     <!-- small box #1ABC9C -->
-                     <div class="small-box" style="background-color: #ffffff;">
-                       <div class="inner">
-                         <h3>{{somVache}}</h3>
-
-                         <p>{{'Cows' | translate }}</p>
-                       </div>
-                       <div class="icon">
-                         <i class="ion  ion-ios-paw"></i>
-                       </div>
-                       <a  routerLink="/agriculteur/vache/listeVache" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                     </div>
-                   </div>
-                   <!-- ./col -->
-                   <div class="col-lg-2 col-6">
-                     <!-- small box #48C9B0-->
-                     <div class="small-box" style="background-color: #ffffff;">
-                       <div class="inner">
-                         <h3>{{somFournisseur}}</h3>
-
-                         <p>{{'Suppliers' | translate }}</p>
-                       </div>
-                       <div class="icon">
-                         <i class="ion ion-person-stalker"></i>
-                       </div>
-                       <a  routerLink="/agriculteur/fournisseur/listeFournisseur" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                     </div>
-                   </div>
-                   <div class="col-lg-2 col-6">
-                    <!-- small box #76D7C4;-->
-                    <div class="small-box" style="background-color: #ffffff;">
-                      <div class="inner">
-                        <h3>{{somProduit}}</h3>
-
-                        <p>{{'Products' | translate }}</p>
-                      </div>
-                      <div class="icon">
-                        <i class="ion ion-ios-cart"></i>
-                      </div>
-                      <a  routerLink="/agriculteur/produit/listeProduit" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card">
+                <div class="card-heading p-4">
+                  <div class="mini-stat-icon float-right">
+                    <i
+                      class="mdi mdi-briefcase-check bg-success text-white"
+                    ></i>
                   </div>
-
-                  <div class="col-lg-2 col-6">
-                    <!-- small box #A3E4D7-->
-                    <div class="small-box" style="background-color: #ffffff;">
-                      <div class="inner">
-                        <h3>{{somBon}}</h3>
-
-                        <p>{{'Vouchers' | translate }}</p>
-                      </div>
-                      <div class="icon">
-                        <i class="ion ion-ios-calendar-outline"></i>
-                      </div>
-                      <a  routerLink="/agriculteur/bon/listeBon" class="small-box-footer">{{'More_information' | translate }} <i class="fas fa-arrow-circle-right"></i></a>
-                    </div>
+                  <div>
+                    <h6 class="font-14">
+                      {{ "TOTAL EMPTY TANKS" | translate }}
+                    </h6>
                   </div>
+                  <h3 class="mt-4">{{ somTVide }}</h3>
+                  <div class="progress mt-4" style="height: 4px">
+                    <div
+                      class="progress-bar bg-success"
+                      role="progressbar"
+                      style="width: {{ prcTankNonRemplis }}%"
+                      aria-valuenow="88"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <p class="text-muted mt-2 mb-0">
+                    <span class="float-right">{{ prcTankNonRemplis }}%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card">
+                <div class="card-heading p-4">
+                  <div class="mini-stat-icon float-right">
+                    <i
+                      class="mdi mdi-tag-text-outline bg-warning text-white"
+                    ></i>
+                  </div>
+                  <div>
+                    <h5 class="font-16">
+                      {{ "TOTAL EMPTY TANKS" | translate }}
+                    </h5>
+                  </div>
+                  <h3 class="mt-4">{{ somTEnCours }}</h3>
+                  <div class="progress mt-4" style="height: 4px">
+                    <div
+                      class="progress-bar bg-warning"
+                      role="progressbar"
+                      style="width: {{ prcTankEnCours }}%"
+                      aria-valuenow="68"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <p class="text-muted mt-2 mb-0">
+                    <span class="float-right">{{ prcTankEnCours }}%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-xl-3">
+              <div class="card">
+                <div class="card-heading p-4">
+                  <div class="mini-stat-icon float-right">
+                    <i class="mdi mdi-buffer bg-danger text-white"></i>
+                  </div>
+                  <div>
+                    <h6 class="font-16">
+                      {{ "TOTAL TANKS FILLING UP" | translate }}
+                    </h6>
+                  </div>
+                  <h3 class="mt-4">{{ somOpRetrait }}</h3>
+                  <div class="progress mt-4" style="height: 4px">
+                    <div
+                      class="progress-bar bg-danger"
+                      role="progressbar"
+                      style="width: {{ prcOpRetrait }}%"
+                      aria-valuenow="82"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <p class="text-muted mt-2 mb-0">
+                    <span class="float-right">{{ prcOpRetrait }}%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
-                   <!-- ./col -->
-                 </div>
-                 <!-- /.row -->
-                 <!-- Main row -->
-                 <div class="row">
-                   <div class="col-md-12">
-                     <div class="card">
-                       <div class="card-header">
-                         <h2 class="card-title">{{'daily summary report' | translate }}</h2>
+          <!-- Small boxes (Stat box) -->
+          <div class="row">
+            <div class="col-lg-2 col-6">
+              <!-- small box #148F77-->
+              <div class="small-box" style="background-color: #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somOperation }}</h3>
 
-                         <!-- <tr *ngFor="let l of list ">
+                  <p>{{ "Operations" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-arrow-down-up-across-line"  style="color: rgb(137, 137, 137)"></i>
+                </div>
+                <a routerLink="/agriculteur/dashboard" class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+              <!-- small box #17A589;-->
+              <div class="small-box" style="background-color: #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somTank }}</h3>
+
+                  <p>{{ "Tanks" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-glass-water-droplet" style="color: rgb(137, 137, 137)"></i>
+                  <!-- <i class="ion ion-person-stalker"></i> -->
+                </div>
+                <a
+                  routerLink="/agriculteur/tank/listeTank"
+                  class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+              <!-- small box #1ABC9C -->
+              <div class="small-box" style="background-color:  #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somVache }}</h3>
+
+                  <p>{{ "Cows" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fas fa-cow" style="color: rgb(137, 137, 137)"></i>
+                </div>
+                <a
+                  routerLink="/agriculteur/vache/listeVache"
+                  class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-2 col-6">
+              <!-- small box #48C9B0-->
+              <div class="small-box" style="background-color:  #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somFournisseur }}</h3>
+
+                  <p>{{ "Suppliers" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-stalker" style="color: rgb(137, 137, 137)"></i>
+                </div>
+                <a
+                  routerLink="/agriculteur/fournisseur/listeFournisseur"
+                  class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-lg-2 col-6">
+              <!-- small box #76D7C4;-->
+              <div class="small-box" style="background-color:  #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somProduit }}</h3>
+
+                  <p>{{ "Products" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-ios-cart" style="color: rgb(137, 137, 137)"></i>
+                </div>
+                <a
+                  routerLink="/agriculteur/produit/listeProduit"
+                  class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-6">
+              <!-- small box #A3E4D7-->
+              <div class="small-box" style="background-color:  #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somBon }}</h3>
+
+                  <p>{{ "Vouchers" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-clipboard" style="color: rgb(137, 137, 137)"></i>
+                </div>
+                <a
+                  routerLink="/agriculteur/bon/listeBon"
+                  class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+          <!-- Main row -->
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">
+                    {{ "daily summary report" | translate }}
+                  </h2>
+
+                  <!-- <tr *ngFor="let l of list ">
                            <td>{{l}}</td>
                          </tr>  -->
 
-                         <div class="card-tools">
-                           <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                             <i class="fas fa-minus"></i>
-                           </button>
-                          
-                           <button type="button" class="btn btn-tool" data-card-widget="remove">
-                             <i class="fas fa-times"></i>
-                           </button>
-                         </div>
-                       </div>
-                       <!-- /.card-header -->
-                       <div class="card-body">
-                         <div class="row">
-                           
-                           <div class="col-xl-4">
-                             <p style="margin-left:155px;margin-bottom:30px;">
-                               <strong>Date : {{myDate  | date:"dd-MM-yyyy  HH:mm:ss" }}</strong>
-                             </p>
+                  <div class="card-tools">
+                    <button
+                      type="button"
+                      class="btn btn-tool"
+                      data-card-widget="collapse"
+                    >
+                      <i class="fas fa-minus"></i>
+                    </button>
 
-                             <div class="chart">
+                    <button
+                      type="button"
+                      class="btn btn-tool"
+                      data-card-widget="remove"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- /.card-header -->
 
-                              <ngx-charts-bar-vertical style="color :white;" 
-                               [view]="[600,350]" 
-                               scheme="cool" 
-                               [results]="data"
-                              [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" 
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-4">
+                      <img src="./../../../assets/buisness2.jpg" alt="" style="  height: 300px; width: 300px; margin-left: 100px;margin-top: 100px;">
+
+
+
+
+
+                    </div>
+                    <div class="col-xl-4">
+                        <div
+                          id="time"
+                          style="
+                            height: 385px;
+                            width: 350px;
+                            margin-top: -20px;
+                            margin-right: -80px;
+                            margin-bottom: -50px;
+                            overflow: hidden;
+                            justify-content: center;
+                          "
+                        ></div>
+                        <p style="margin-left: 77px; margin-bottom: 30px">
+                          <strong
+                            >Date :
+                            {{ myDate | date: "dd-MM-yyyy  HH:mm:ss" }}</strong
+                          >
+                        </p>
+                      </div>
+                  </div>
+         
+                  <div class="row">
+                    <div class="col-xl-7">
+                      <div class="card m-b-30">
+                        <div class="card-body">
+                          <h4 class="mt-0 header-title mb-4">Area Chart</h4>
+                          <div
+                            id="morris-area-example"
+                            class="morris-charts morris-chart-height"
+                          >
+                            <ngx-charts-bar-vertical
+                              style="color: white"
+                              [view]="[700, 400]"
+                              scheme="cool"
+                              [results]="data"
+                              [gradient]="gradient"
+                              [xAxis]="showXAxis"
+                              [yAxis]="showYAxis"
                               [legend]="showLegend"
-                              [showXAxisLabel]="showXAxisLabel" 
+                              [showXAxisLabel]="showXAxisLabel"
                               [showYAxisLabel]="showYAxisLabel"
-                               xAxisLabel="{{'Tank numbers' | translate }}"
-                              yAxisLabel="{{'Filling state' | translate }}"   [scheme]="colorScheme"  >
+                              xAxisLabel="{{ 'Tank numbers' | translate }}"
+                              yAxisLabel="{{ 'Filling state' | translate }}"
+                              [scheme]="colorScheme"
+                            >
                             </ngx-charts-bar-vertical>
-
-                            <br><br><br><br><br><br><br>
-
-                            <div  style="margin-top:25px;margin-left:-220px;margin-right:90px">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xl-5">
+                      <div class="card m-b-30">
+                        <div class="card-body">
+                          <h4 class="mt-0 header-title mb-4">Donut Chart</h4>
+                          <div
+                            id="morris-donut-example"
+                            class="morris-charts morris-chart-height"
+                          >
                             <ngx-charts-pie-chart
-                            [results]="data"
-                            [legend]="true"
-                            legendTitle="{{'Tank Status Report' | translate }}"
-                            [view]="[1150,400]"
-                            [scheme]="colorScheme"
-                            [labels]="true" >
+                              [results]="data"
+                              [legend]="true"
+                              legendTitle ="{{'Tank Status Report' | translate}}"
+                              [view]="[400, 400]"
+                              [scheme]="colorScheme"
+                              [labels]="true"
+                              scheme="cool"
+                              [gradient]="gradient"
+                            >
                             </ngx-charts-pie-chart>
-                           </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                           <br><br>
-                            <ngx-charts-advanced-pie-chart  style="margin-top:-1020px;margin-bottom:-550px;"
-                            [results]="data"
-                            [view]="[800,300]"
-                            [scheme]="colorScheme"
-                            [gradient]="true" >
-                           </ngx-charts-advanced-pie-chart>
-                           <br><br>   <br><br>
-<!-- 
-                           <ngx-charts-pie-chart
-                           [view]="[300, 0]"
-                           [scheme]="colorScheme"
-                           [results]="data"
-                           [legend]="true"
-                           [doughnut]="true"
-                           [legendTitle]="''">
-                        </ngx-charts-pie-chart> -->
-
-
-                            </div>
-                             <!-- /.chart-responsive -->
-                           </div>
-                           <!-- /.col -->
+                  <div class="row">
+                    <div class="col-xl-7">
+                      <div class="card m-b-30">
+                        <div class="card-body">
+                   
+                          <div
+                            id="morris-area-example"
+                            class="morris-charts morris-chart-height"
+                          >
+                            <ngx-charts-advanced-pie-chart
                        
-                            <!-- end col -->
-                            <div class="col-xl-4">
-                          
-                            
-                           
-                                        <ngx-charts-pie-chart
-                                        [view]="[400, 400]"
-                                        [results]="data"
-                                        [legend]="true"
-                                        [labels]="true"
-                                        [doughnut]="true"
-                                        [legendPosition] = "Below"
-                                        [legendTitle]="''"
-                                        [animations]="false">
-                                      </ngx-charts-pie-chart>
-                            </div>
-                            <!-- end col -->
-                      
-                           <div class="col-xl-4">
+                              [results]="data"
+                              [view]="[700,250]"
+                              [scheme]="colorScheme"
+                              [gradient]="true"
+                            >
+                            </ngx-charts-advanced-pie-chart>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card m-b-30">
+                        <div class="card-body">
+                  
+                          <div
+                            id="morris-area-example"
+                            class="morris-charts morris-chart-height"
+                          >
+                          <ngx-charts-pie-chart
+                          [view]="[700,250]"
+                          [results]="data"
+                          [legend]="true"
+                          [labels]="true"
+                          [doughnut]="true"
+                          [legendPosition]="Below"
+                          [legendTitle]="''"
+                          [animations]="false"
+                          [scheme]="colorScheme"
+                          [gradient]="true"
+                        >
+                        </ngx-charts-pie-chart>
+                          </div>
+                        </div>
+                      </div>
 
-                             <div id="time" style="height: 385px;width:350px;margin-top:-20px;margin-right:-80px;margin-bottom:-50px;overflow: hidden"></div>
-                                <br>
-                             <div  style="margin-top:45px;margin-left:-20px;margin-right:70px">
-                               <!-- Info Boxes Style 2 -->
-                               <div class="info-box mb-3 bg-warning">
-                                 <span class="info-box-icon"><i class="ion ion-ios-paw" style="color: white"></i></span>
-          
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">{{'Number of cows' | translate }}</span>
-                                   <span class="info-box-number">{{somVache}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-                               <div class="info-box mb-3 bg-success">
-                                 <span class="info-box-icon"> <i class="ion ion-ios-flask-outline"></i></span>
-          
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">{{'Number of tanks' | translate }}</span>
-                                   <span class="info-box-number">{{somTank}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
-          
-                               <div class="info-box mb-3 bg-danger" >
-                                 <span class="info-box-icon">  <i class="ion ion-person-stalker"></i></span>
-          
-                                 <div class="info-box-content">
-                                   <span class="info-box-text">{{'Number of suppliers' | translate }}</span>
-                                   <span class="info-box-number">{{somFournisseur}}</span>
-                                 </div>
-                                 <!-- /.info-box-content -->
-                               </div>
-                               <!-- /.info-box -->
 
-                               <div class="info-box mb-3 bg-info">
-                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
 
+                    </div>
+                    <div class="col-xl-5">
+                   
+    
+                  
+
+
+                              <!-- Info Boxes Style 2 -->
+                              <div class="info-box mb-3 bg-warning">
+                                <span class="info-box-icon"
+                                  ><i class="ion ion-ios-paw" style="color: white"></i
+                                ></span>
+        
                                 <div class="info-box-content">
-                                  <span class="info-box-text">{{'Number of filling operations' | translate }}</span>
-                                  <span class="info-box-number">{{somOpRemplissage}}</span>
+                                  <span class="info-box-text">{{
+                                    "Number of cows" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{ somVache }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-
+                              <!-- /.info-box -->
+                              <div class="info-box mb-3 bg-success">
+                                <span class="info-box-icon">
+                                  <i class="ion ion-ios-flask-outline"></i
+                                ></span>
+        
+                                <div class="info-box-content">
+                                  <span class="info-box-text">{{
+                                    "Number of tanks" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{ somTank }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+                              <!-- /.info-box -->
+        
+                              <div class="info-box mb-3 bg-danger">
+                                <span class="info-box-icon">
+                                  <i class="ion ion-person-stalker"></i
+                                ></span>
+        
+                                <div class="info-box-content">
+                                  <span class="info-box-text">{{
+                                    "Number of suppliers" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{
+                                    somFournisseur
+                                  }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+                              <!-- /.info-box -->
+        
+                              <div class="info-box mb-3 bg-info">
+                                <span class="info-box-icon">
+                                  <i class="ion ion-ios-list-outline"></i
+                                ></span>
+        
+                                <div class="info-box-content">
+                                  <span class="info-box-text">{{
+                                    "Number of filling operations" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{
+                                    somOpRemplissage
+                                  }}</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                              </div>
+        
                               <div class="info-box mb-3 bg-light">
-                                <span class="info-box-icon"> <i class="ion ion-ios-list-outline"></i></span>
-
+                                <span class="info-box-icon">
+                                  <i class="ion ion-ios-list-outline"></i
+                                ></span>
+        
                                 <div class="info-box-content">
-                                  <span class="info-box-text">{{'Number of withdrawal operations' | translate }}</span>
-                                  <span class="info-box-number">{{somOpRetrait}}</span>
+                                  <span class="info-box-text">{{
+                                    "Number of withdrawal operations" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{
+                                    somOpRetrait
+                                  }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-
+        
                               <div class="info-box mb-3 bg-secondary">
-                                <span class="info-box-icon"> 
+                                <span class="info-box-icon">
                                   <i class="ion ion-ios-download-outline"></i>
                                   <i class="ion ion-ios-upload-outline"></i>
                                 </span>
-
+        
                                 <div class="info-box-content">
-                                  <span class="info-box-text">{{'Number of vouchers' | translate }}</span>
-                                  <span class="info-box-number">{{somBon}}</span>
+                                  <span class="info-box-text">{{
+                                    "Number of vouchers" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{ somBon }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-
-                               <div class="info-box mb-3 bg-dark">
-                                <span class="info-box-icon"> <i class="ion ion-ios-cart-outline"></i></span>
-
+        
+                              <div class="info-box mb-3 bg-dark">
+                                <span class="info-box-icon">
+                                  <i class="ion ion-ios-cart-outline"></i
+                                ></span>
+        
                                 <div class="info-box-content">
-                                  <span class="info-box-text">{{'Number of products' | translate }}</span>
-                                  <span class="info-box-number">{{somProduit}}</span>
+                                  <span class="info-box-text">{{
+                                    "Number of products" | translate
+                                  }}</span>
+                                  <span class="info-box-number">{{ somProduit }}</span>
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
+      
+           
+               
+                    </div>
+                  </div>
 
-                               <!-- /.info-box -->
-          
-                               <!-- PRODUCT LIST -->
-          
-                               <!-- /.card -->
-                             </div>
-                             <!-- /.col -->
+                  <!-- end col -->
+                </div>
+                <!-- end row -->
+              </div>
 
+              <!-- ./card-body -->
+              <div class="card-footer">
+                <div class="row">
+                  <!-- /.col -->
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"
+                        ><i class="fas fa-caret-up"></i>
+                        {{ prcTankRemplis }}%</span
+                      >
+                      <h5 class="description-header">{{ somTRemplis }}</h5>
+                      <span class="description-text">{{
+                        "TOTAL TANKS FULL" | translate
+                      }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
 
-                           </div>
-                           <!-- /.col -->
-                         </div>
-                         <!-- /.row -->
-                       </div>
-                       <!-- ./card-body -->
-                       <div class="card-footer">
-                         <div class="row">
-                             <!-- /.col -->
-                          <div class="col-sm-4 col-6">
-                            <div class="description-block border-right">
-                              <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankRemplis}}%</span>
-                              <h5 class="description-header">{{somTRemplis}}</h5>
-                              <span class="description-text">{{'TOTAL TANKS FULL' | translate }}</span>
-                            </div>
-                            <!-- /.description-block -->
-                          </div>
-                          <!-- /.col -->
+                  <!-- /.col -->
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"
+                        ><i class="fas fa-caret-up"></i>
+                        {{ prcTankNonRemplis }}%</span
+                      >
+                      <h5 class="description-header">{{ somTVide }}</h5>
+                      <span class="description-text">{{
+                        "TOTAL EMPTY TANKS" | translate
+                      }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
 
+                  <!-- /.col -->
+                  <div class="col-sm-4 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-success"
+                        ><i class="fas fa-caret-up"></i>
+                        {{ prcTankEnCours }}%</span
+                      >
+                      <h5 class="description-header">{{ somTEnCours }}</h5>
+                      <span class="description-text">{{
+                        "TOTAL EMPTY TANKS" | translate
+                      }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <div class="col-sm-6 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-primary"
+                        ><i class="fas fa-caret-up"></i>
+                        {{ prcOpRetrait }}%</span
+                      >
+                      <h5 class="description-header">{{ somOpRetrait }}</h5>
+                      <span class="description-text">{{
+                        "TOTAL WITHDRAWAL OPERATIONS" | translate
+                      }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                  <div class="col-sm-6 col-6">
+                    <div class="description-block border-right">
+                      <span class="description-percentage text-primary"
+                        ><i class="fas fa-caret-up"></i
+                        >{{ prcOpRetrait }}%</span
+                      >
+                      <h5 class="description-header">{{ somOpRetrait }}</h5>
+                      <span class="description-text">{{
+                        "TOTAL TANKS FILLING UP" | translate
+                      }}</span>
+                    </div>
+                    <!-- /.description-block -->
+                  </div>
+                  <!-- /.col -->
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
 
-                          <!-- /.col -->
-                          <div class="col-sm-4 col-6">
-                          <div class="description-block border-right">
-                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankNonRemplis}}%</span>
-                            <h5 class="description-header">{{somTVide}}</h5>
-                            <span class="description-text">{{'TOTAL EMPTY TANKS' | translate }}</span>
-                          </div>
-                          <!-- /.description-block -->
-                          </div>
-                          <!-- /.col -->
-
-
-
-                          <!-- /.col -->
-                          <div class="col-sm-4 col-6">
-                          <div class="description-block border-right">
-                            <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> {{prcTankEnCours}}%</span>
-                            <h5 class="description-header">{{somTEnCours}}</h5>
-                            <span class="description-text">{{'TOTAL EMPTY TANKS' | translate }}</span>
-                          </div>
-                          <!-- /.description-block -->
-                          </div>
-                          <div class="col-sm-6 col-6">
-                            <div class="description-block border-right">
-                              <span class="description-percentage  text-primary"><i class="fas fa-caret-up"></i> {{prcOpRetrait}}%</span>
-                              <h5 class="description-header">{{somOpRetrait}}</h5>
-                              <span class="description-text">{{'TOTAL WITHDRAWAL OPERATIONS' | translate }}</span>
-                            </div>
-                            <!-- /.description-block -->
-                          </div>
-                          <!-- /.col -->
-                          <div class="col-sm-6 col-6">
-                            <div class="description-block border-right">
-                              <span class="description-percentage text-primary"><i class="fas fa-caret-up"></i>{{prcOpRetrait}}%</span>
-                              <h5 class="description-header">{{somOpRetrait}}</h5>
-                              <span class="description-text">{{'TOTAL TANKS FILLING UP' | translate }}</span>
-                            </div>
-                            <!-- /.description-block -->
-                          </div>
-                          <!-- /.col -->
-
-                         </div>
-                         <!-- /.row -->
-                       </div>
-                       <!-- /.card-footer -->
-                     </div>
-                     <!-- /.card -->
-                   </div>
-                   <!-- /.col -->
-                 </div>
-                 <!-- /.row -->
-                 <!-- <div style="display: block;">
+          <!-- /.row -->
+          <!-- <div style="display: block;">
                   <canvas baseChart 
                     [datasets]="data"
                     [labels]="barChartLabels"
@@ -565,67 +729,17 @@
                     [legend]="pieChartLegend">
                   </canvas>
                 </div> -->
-                 <!-- Main row -->
-                 <div class="row">
-        
-                   <!-- Left col -->
-                   <!-- <div class="col-md-8"> -->
-                     <!-- MAP & BOX PANE -->
-                     <!-- <div class="card">
-                       <div class="card-header">
-                         <h3 class="card-title">US-Visitors Report</h3> -->
+          <!-- Main row -->
 
-                        
-                       <!-- </div> -->
-                       <!-- /.card-header -->
-                       <!-- <div class="card-body p-0">
-                         <div class="d-md-flex">
-                           <div class="p-1 flex-fill" style="overflow: hidden"> -->
-                             <!-- Map will be created here -->
-                             <!-- <div id="graph2" style="height: 325px; overflow: hidden">
+          <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
 
-                               <div class="map"></div>
-                             </div> -->
-
-                             <!-- <ngx-charts-advanced-pie-chart style="padding:30px; overflow: initial !important;"
-                             [results]="data"
-                             [view]="[700,550]"
-                             [gradient]="true"
-                             [scheme]="colorScheme" >
-                       </ngx-charts-advanced-pie-chart> -->
-
-
-
-
-
-
-                             <!-- <ngx-charts-bar-vertical  [view]="[600,350]" scheme="cool" [results]="data"
-                             [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="showLegend"
-                             [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-                             [yAxisLabel]="yAxisLabel"   [scheme]="colorScheme" >
-                           </ngx-charts-bar-vertical> -->
-
-                           <!-- </div> -->
-                           
-                         <!-- </div> -->
-                         <!-- /.d-md-flex -->
-                       <!-- </div> -->
-                       <!-- /.card-body -->
-                     <!-- </div> -->
-                     <!-- /.card -->
-                  
-                   <!-- </div> -->
-                   <!-- /.col -->
-<br>
-                 </div>
-                 <!-- /.row -->
-               </div><!--/. container-fluid -->
-
-                 <!-- /.row (main row) -->
-             </section>
-         </div>
-         <!-- /.row (main row) -->
-       </div><!-- /.container-fluid -->
-
-     </section>
-     <!-- /.content -->
+        <!-- /.row (main row) -->
+      </section>
+    </div>
+    <!-- /.row (main row) -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
