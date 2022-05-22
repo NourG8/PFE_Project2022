@@ -125,9 +125,11 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		
 		Collecteur u1=new Collecteur("Collecteur 1","bizerte",52458787);
 		u1.setMatricule("akdoz6s2z6");
+		u1.setPrenomCollecteur("fathi");
 		collecteurRepository.save(u1);
 		Collecteur u2=new Collecteur("Collecteur 2","bizerte",78899899);
 		u2.setMatricule("akdoz6s2z6");
+		u2.setPrenomCollecteur("belhefi");
 		collecteurRepository.save(u2);
 //		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 //		bonRepository.save(b1);

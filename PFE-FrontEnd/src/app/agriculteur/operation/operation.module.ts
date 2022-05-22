@@ -51,7 +51,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     UpdateOperationRetraitComponent
   ],
   imports: [
-   
     MatTableExporterModule,
     CommonModule,
     OperationRoutingModule,

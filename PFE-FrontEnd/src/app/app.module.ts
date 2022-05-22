@@ -13,7 +13,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatTableModule} from '@angular/material/table';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {MatTableExporterModule } from 'mat-table-exporter';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -28,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     NotFoundComponent
   ],
   imports: [ 
+    NgxChartsModule,
     MatTableModule,
     MatTableExporterModule,
     BrowserModule,
