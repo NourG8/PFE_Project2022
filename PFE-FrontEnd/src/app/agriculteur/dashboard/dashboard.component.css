@@ -1,5 +1,5 @@
-
-@import '~font-awesome/css/font-awesome.css';
+@import '~@fortawesome/fontawesome-free/css/fontawesome.css';
+@import '~@fortawesome/fontawesome-free/css/solid.css';
 .advanced-pie-legend .legend-items-container .legend-items {
     overflow: initial !important;
     padding:30px;
