@@ -72,10 +72,17 @@ this.lang = localStorage.getItem('lang') || 'en';
  }
 
 
-changeLang(lang: any){
-  localStorage.setItem("lang",lang);
-  location.reload();
+ changeLang(){
+  if (this.lang=="en") {
+    localStorage.setItem("lang","fr");
+    location.reload();
+  }    
+  if (this.lang=="fr") {
+    localStorage.setItem("lang","en");
+    location.reload();
+  }
 }
+
 
 
 

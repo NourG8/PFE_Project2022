@@ -342,12 +342,12 @@ body{
   color: #fff; 
 }
 
-.main-datatable .dropdown-menu > .li1  > a:hover, 
-.main-datatable .dropdown-menu > .li1 > a:focus {
+.li1  > a:hover, 
+ .li1 > a:focus {
   color: #fff;
 }
 
-.main-datatable .dropdown-menu > .li1 > a:hover i{
+ .li1 > a:hover i{
   color: #fff; 
 }
 
