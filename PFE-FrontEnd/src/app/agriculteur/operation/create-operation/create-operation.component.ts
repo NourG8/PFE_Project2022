@@ -186,15 +186,14 @@ export class CreateOperationComponent implements OnInit {
                 this.operation.collecteur = this.collector;
 
                 await this.saveInBc(this.operation);
-                if (this.confirmation == 'rejected') {
+                if (environment.wating  == 'rejected') {
                   localStorage.setItem(
                     'Toast',
                     JSON.stringify([
                       'Failed',
-                      "l'opération a été rejetée",
+                      'l opération a été rejetée',
                     ])
                   );
-             
                 }else{
                   localStorage.setItem(
                     'Toast',
@@ -214,7 +213,7 @@ export class CreateOperationComponent implements OnInit {
     }
   }
 
-  confirmation: string = 'confirmed';
+  confirmation: string = '';
 
   async saveInBc(oppr: Operation) {
     //this is for waiting the metamask window confirmation
@@ -236,6 +235,7 @@ export class CreateOperationComponent implements OnInit {
       environment.wating = 'confirmed';
     } catch (error) {
       this.confirmation = 'rejected';
+      environment.wating = 'rejected';
       console.log('rejected');
     }
     if (this.confirmation == 'confirmed') {
@@ -246,13 +246,6 @@ export class CreateOperationComponent implements OnInit {
 
     if (this.confirmation == 'rejected') {
       environment.wating = 'rejected';
-      localStorage.setItem(
-        'Toast',
-        JSON.stringify([
-          'Rejected',
-          "l'opération a été rejetée",
-        ])
-      );
       this.operationService
         .deleteOperation(oppr.idOperation).subscribe(d=>{ this.onReload(); });
     }
@@ -329,6 +322,7 @@ export class CreateOperationComponent implements OnInit {
       if (
         this.myForm.get('poidsLait')?.value != null &&
         this.myForm.get('collecteur')?.value != null &&
+        this.myForm.get('cgu')?.value==true &&
         this.myForm.get('poidsLait')?.value > 0
       ) {
         if (this.myForm.get('poidsLait')?.value <= o) {
