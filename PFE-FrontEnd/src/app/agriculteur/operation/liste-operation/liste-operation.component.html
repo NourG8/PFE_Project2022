@@ -104,8 +104,8 @@
 <div id={{idTitle}} class="toast-header">
 <strong class="mr-auto">
   <span class="mr-3">
+    <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
   <i *ngIf="Toast[0] == 'Success'" class="fas fa-check"></i>
-  <i *ngIf="Toast[0] == 'Failed'" class="fas fa-exclamation-triangle"></i>
 </span>
   {{Toast[0]}}</strong>
 <small style="color: gray;">
