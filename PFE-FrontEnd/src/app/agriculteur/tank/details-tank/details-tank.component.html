@@ -60,24 +60,25 @@
                 <div class=" pb-5 pt-3">
   
                   <div class="text-uppercase fs-08">
-                    <span id="titre"> {{'Registration number' | translate}} : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{tank.matricule}}</span>
-                  </div>
-  
-                  <div class="text-uppercase fs-08">
-                    <span id="titre"> {{'tank status' | translate}}:</span>
-                    <span >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{tank.etat}}</span>
-                  </div>
-
-                  <div class="text-uppercase fs-08">
-                    <span id="titre"> {{'Maximum capacity' | translate}}: </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidVide}} Kg </span>
+                    <span id="titre"> {{'Tank registration number' | translate}} : </span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{tank.matricule}}</span>
                   </div>
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">  {{'Amount of milk inserted' | translate}}: </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{tank.poidActuel}} Kg </span>
-                  </div>    
+                    <span>{{tank.poidActuel}} Kg </span>
+                  </div>   
+  
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> {{'Maximum capacity' | translate}}: </span>
+                    <span>{{tank.poidVide}} Kg </span>
+                  </div>
+
+                  <div class="text-uppercase fs-08">
+                    <span id="titre"> {{'tanks status' | translate}}:</span>
+                    <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {{tank.etat}}</span>
+                  </div>
 
   
   

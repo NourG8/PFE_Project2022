@@ -83,7 +83,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
      else{
       this.msg="";
      }
-     
+
 
      if(this.myForm.get('poidsLait')?.value!=null && this.myForm.get('poidsLait')?.value>0  &&  this.myForm.get('cgu')?.value==true){
 
@@ -100,15 +100,15 @@ export class CreateOperationRemplissageComponent implements OnInit {
           console.log(this.operation);
 
           localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-          // window.location.reload(); 
-          this.onClose();     
+          // window.location.reload();
+          this.onClose();
         },
         (error) => {
           console.log("Failed")
         }
       );
       }
-      
+
   }
 
 
@@ -130,7 +130,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
       this.qteRsetLait=o;
       }
 
-      
+
   });
 
   }
