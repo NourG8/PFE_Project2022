@@ -78,7 +78,7 @@
      "DELETE" : "Delete", 
 
 
-     "Use-by date" : "Use-by date",
+     "Use-by date" : "date of  consumption",
      "Table for exit vouchers" : "Table for exit vouchers" ,
 
      "Save" : "Save",
@@ -170,7 +170,7 @@
     "Collector name": "Collector name",
     "Operation type" : "Operation type",
     "Operation Date" : "Operation Date",
-    "Tank registration number" : "Tank registration number",
+    "Tank registration number" : "Registration number",
     "Operation ID" : "Operation ID",
     "Type of operation" : "Type of operation",
     "Quantity(Insert/Remove)" : "Quantity(Insert/Remove)",
@@ -223,7 +223,8 @@
     "Maximum valid capacity" : "Maximum valid capacity",
 
     "Consult tank number" : "Consult tank number",
-    "tank status" : "tank status",
+    "tank status" : "Status",
+    "tanks status" : "tank status",
     "Table for tanks" : "Table for tanks",
     "Modify the tank number" :  "Modify the tank number" ,
 
@@ -234,7 +235,7 @@
     "invalid race" : "invalid race",
     "Date of birth" : "Date of birth",
     "Consult the cow number" : "Consult the cow number",
-    "Cow registration number" : "Cow registration number",
+    "Cow registration number" : "Registration number",
     "breed of cow" : "breed of cow",
     "cow weight" : "cow weight",
     "Table for the cows" : "Table for the cows",

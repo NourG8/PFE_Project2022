@@ -79,8 +79,13 @@
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
                 </div>
 
+                <div class="text-uppercase fs-08">
+                  <span id="titre">{{'Product title' | translate}} : </span>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
+                </div>
+
                 <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
-                  <span id="titre">  {{'price' | translate}}(dt) : </span>
+                  <span id="titre">  {{'price' | translate}} (dt) : </span>
                   <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
                 </div>
 
@@ -97,16 +102,14 @@
                     <span id="titre"> Type (Entree/Sortie) :</span>
                     <span id="titre">{{bon.type}}</span>
                   </div> -->
+                
 
                   <div class="text-uppercase fs-08"  *ngIf="bon.type=='Entree'">
-                    <span id="titre">{{'Name of supplier' | translate}} : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;{{bon.fournisseur.nom}}</span>
+                    <span id="titre">{{'Name of supplier' | translate}} :</span>
+                    <span>{{bon.fournisseur.nom}} {{bon.fournisseur.prenom}}</span>
                   </div>
 
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Product title' | translate}} : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
-                  </div>
+               
 
                   <div class="text-uppercase fs-08">
                     <span id="titre">{{'Quantity produced' | translate}} : </span>
@@ -119,7 +122,7 @@
 
           <div class="details project">
             <div class="head text-uppercase">
-              <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+              <button id="btn" (click)="closeDetails()"  style="margin-left:145px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
                 {{'Close' | translate}}
               </button>
             </div>

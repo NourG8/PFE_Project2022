@@ -20,9 +20,9 @@
     "Products" : "Produits",
      "Vouchers" : "Bons",
      "TOTAL TANKS FULL" : "TOTAL TANKS TOTALEMENT REMPLIS",
-     "TOTAL FILLING OPERATIONS" : "TOTAL OPERATIONS DE REMPLISSAGES" , 
+     "TOTAL FILLING OPERATIONS" : "TOTAL OPERATIONS DE REMPLISSAGES" ,
      "Total tanks full" : "Total tanks totalement remplis",
-     "TOTAL TANKS FILLED" : "TOTAL TANKS REMPLIS" , 
+     "TOTAL TANKS FILLED" : "TOTAL TANKS REMPLIS" ,
      "TOTAL EMPTY TANKS" : "TOTAL TANKS VIDES" ,
      "TOTAL TANKS FILLING UP" : "TOTAL TANKS EN COURS DE REMPLISSAGE",
      "TANKS FILLING UP" : "TANKS EN COURS DE REMPLISSAGE",
@@ -30,7 +30,7 @@
      "TOTAL TRANSFORMATION OPERATIONS" :"TOTAL OPERATIONS DE TRANSFORMATIONS",
      "Tank numbers" :"Matricules des tanks",
      "Filling state" : "Etat de remplissage"  ,
-     "Date of operations" : "Date des operations" , 
+     "Date of operations" : "Date des operations" ,
      "Tank Status Report" : "'Rapport sur l'etat des tanks'",
      "Unfilled tanks" : "Tanks non remplis",
      "Tanks being filled" : "Tanks en cours de remplissage",
@@ -68,7 +68,7 @@
      "Quantity inserted" : "Quantité inserée",
      "Quantity withdrawn" : "Quantité retirée",
      "Quantity produced" : "Quantité produit",
-     "Name of supplier" : "Nom du fournisseur",
+     "Name of supplier" : "Nom fournisseur",
      "First name of supplier" : "Prénom du fournisseur",
      "Product title" : "Intitulé du produit",
      "Table for entry vouchers" : "Table pour les bons d'entrées",
@@ -98,7 +98,7 @@
      "Valid center name" :"Nom du centre valide",
      "Center name already exists" : "Nom du centre existe déja",
      "Phone number (8 digits)"  : "Numéro de téléphone (8 chiffres)",
-     "Phone number" : "Numéro de téléphone",
+     "Phone number" : "Téléphone",
      "Invalid phone number" : "Numéro de téléphone invalide",
      "Valid phone number" :"Numéro de téléphone valide",
      "Phone number already exists" : "Numéro de  téléphone existe déjà",
@@ -131,10 +131,10 @@
      "Valid name" : "Nom valide",
      "First name" : "Prénom",
      "(minimum 3 characters)" : "(minimum 3 caractéres)",
-     "Invalid first name" : "Prénom invalide", 
+     "Invalid first name" : "Prénom invalide",
      "Valid first name"  : "Prénom valide",
      "Surname and first name already exist" : "Nom et prénom existe déjà",
-     "Registration number" : "matricule",
+     "Registration number" : "Numéro de matricule",
      "(minimum 8 characters)" : "(minimum 8 caractéres)",
      "Invalid registration number" : "matricule invalide",
      "Valid registration number" : "matricule valide",
@@ -162,7 +162,7 @@
      "Valid amount of milk" : "Quantité de lait valide",
 
      "p7" : "Vous devez inserer une Quantité de lait comprise entre 0 et" ,
-     
+
      "Consult the operation number" : "Consulter l'opération numéro",
      "Amount of milk inserted" : "Quantité de lait inserée",
      "Quantity of milk withdrawn" :"Quantité de lait retirée",
@@ -227,13 +227,14 @@
      "Maximum valid capacity" : "Contenance maximale valide",
 
      "Consult tank number" : "Consulter le tank numéro",
-     "tank status" : "Etat du tank",
+     "tank status" : "Etat",
+     "tanks status" : "Etat du tank",
      "Table for tanks" : "Table pour les tanks",
      "Modify the tank number" : "Modifier le tank numéro",
 
      "Add a cow" : "Ajouter une vache",
      "Weight" : "Poids",
-     "Choose the" : "Choisir la", 
+     "Choose the" : "Choisir la",
      "Dutch" : "Hollandaise",
      "invalid race" : "invalide race",
      "Date of birth" : "Date Naissance",
@@ -263,7 +264,7 @@
      "Invalid code" : "Code invalide",
      "valid code" : "Code valide",
      "Code already exists" : "Code existe déjà",
-     
+
      "You must enter a quantity less than or equal to" : "Vous devez introduire une quantité moins ou égale a",
      "The amount of milk available is" : "La quantité de lait disponible est" ,
      "Factory name" : "Nom de l'usine",
@@ -344,8 +345,7 @@
      "Center management" : "Gestion des centres",
      "Store management" : "Gestion des magasins",
      "Milk/product transfer" : "Transfert lait/produit",
-     "Change supplier number" : "Modifier le fournisseur numéro" 
- 
+     "Change supplier number" : "Modifier le fournisseur numéro"
 
 
 
@@ -361,7 +361,8 @@
 
 
 
-     
-     
+
+
+
 
 }

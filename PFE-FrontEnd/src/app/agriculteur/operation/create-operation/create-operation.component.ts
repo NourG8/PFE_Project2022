@@ -233,7 +233,7 @@ export class CreateOperationComponent implements OnInit {
       const transaction = await contract.addOperation2(oppr);
       await transaction.wait();
       environment.wating = 'confirmed';
-      
+
       this.exportOne(oppr);
     } catch (error) {
       this.confirmation = 'rejected';
@@ -242,7 +242,7 @@ export class CreateOperationComponent implements OnInit {
     }
     if (this.confirmation == 'confirmed') {
       environment.wating = 'confirmed';
-   
+
     }
 
     if (this.confirmation == 'rejected') {
