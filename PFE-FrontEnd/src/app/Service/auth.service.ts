@@ -94,4 +94,12 @@ export class AuthService {
       return this.role;
     }
 
+    
+  isLoggedIn(){
+
+    let token = localStorage.getItem("jwt");
+
+    return this.token!=null;
+  }
+
   }
