@@ -13,6 +13,7 @@ import localeFr from '@angular/common/locales/fr';
 import * as echarts from 'echarts';
 import { TranslateService } from '@ngx-translate/core';
 import { LegendPosition } from '@swimlane/ngx-charts';
+import { AuthService } from 'src/app/Service/auth.service';
 var test: string = "test";
 var somTank: number;
 var s :number;
@@ -86,6 +87,7 @@ export class DashboardComponent implements OnInit {
   Below: LegendPosition = LegendPosition.Below ;
 
   constructor(
+    private authService: AuthService,
     private operationService: OperationService,
     private tankService:TankService,
     private vacheService:VacheService,
@@ -321,6 +323,11 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+if(!localStorage.getItem("jwt")!=null){
+  this.router.navigate(['agriculteur/dashboard'])
+}
+
     this.getData();
 
     this.tankService.getNbTanks().subscribe(o =>{
