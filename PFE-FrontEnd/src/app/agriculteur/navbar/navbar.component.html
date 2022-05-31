@@ -17,7 +17,7 @@
   <ul class="navbar-nav ml-auto ul2">
  <button  style="margin-left : 12px;" class="button" (click)="requestAccount()">00</button>
     <h6 style="margin-left : 4px;margin-right:14px;padding-top:11px;" *ngIf="!connected"> {{'not connect' | translate}}</h6>
-    <h6 style="margin-left : 4px;margin-right:14px;" *ngIf="connected">{{'connect' | translate}}</h6>
+    <h6 style="margin-left : 4px;margin-right:14px;padding-top:11px;" *ngIf="connected">{{'connect' | translate}}</h6>
     <li class="dropdown notification-list list-inline-item d-none d-md-inline-block">
 
       <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false" *ngIf ="lang == 'en'">
