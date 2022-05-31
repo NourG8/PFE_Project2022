@@ -10,6 +10,7 @@ import Web3 from 'web3';
 import { BehaviorSubject } from 'rxjs';
 import { Operation } from 'src/app/Models/operation';
 import { environment } from 'src/environments/environment';
+import { json } from 'd3';
 
 declare let window: any;
 declare let require: any;
@@ -29,7 +30,7 @@ export class NavbarComponent implements OnInit {
   tel?:number;
   prenom?:String;
   nom?:String;
-
+  con?:String;
    lang!: any;
   location: any;
    web3!:Web3;
@@ -42,7 +43,6 @@ export class NavbarComponent implements OnInit {
     this.translateService.use(localStorage.getItem('lang') || 'en')
    } 
      //this IF to check if ure connected to the meta
-
 
 
 
@@ -62,11 +62,13 @@ export class NavbarComponent implements OnInit {
           );
           this.AllOperationsFarmerTab = await contract.getOperations();
           this.connected =true 
-          environment.connected=true;
+          this.con = "connected"
+          localStorage.setItem("state",JSON.stringify(this.con));
        
       } catch (error) {
         this.connected = false
-        environment.connected=false;
+        this.con = "notconnected"
+        localStorage.setItem("state",JSON.stringify(this.con));
       } }
     }
 
@@ -74,9 +76,9 @@ export class NavbarComponent implements OnInit {
     async requestAccount() {
       if (typeof window.ethereum !== 'undefined') {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
- 
+        location.reload();
       } 
-      location.reload();
+      console.log("it does work ")
     }
 
 
