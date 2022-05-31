@@ -36,7 +36,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
-
+  connected !: string;
   ELEMENT_DATA?: Operation[];
   operation?: Operation;
   dataSource!: MatTableDataSource<any>;
@@ -49,7 +49,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   test1 = 0;
   test2 = 0;
   waiting = environment.wating;
-connected = environment.connected;
+
   displayedColumns: string[] = [
     'idOperation',
     'poidsLait',
@@ -75,6 +75,7 @@ connected = environment.connected;
   operations: Observable<Operation[]> | undefined;
 
   ngOnInit() {
+
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -231,28 +232,37 @@ connected = environment.connected;
   }
 
   onOpenDialogCreate(): void {
-    this.authService.loadToken();
-    if (
-      this.authService.getToken() == null ||
-      this.authService.isTokenExpired()
-    ) {
-      this.onClose();
-      this.router.navigate(['/login']);
-      this.onClose();
-    }
+    this.connected = JSON.parse(localStorage.getItem('state') || '[]') || []
+    console.log(this.connected)
+    // this.authService.loadToken();
+    // if (
+    //   this.authService.getToken() == null ||
+    //   this.authService.isTokenExpired()
+    // ) {
+    //   this.onClose();
+    //   this.router.navigate(['/login']);
+    //   this.onClose();
+    // }
     this.tankService.getTanksQteGenerale().subscribe((b) => {
       console.log(b);
-      if (b > 0) {
+      if (b > 0 && this.connected == "connected") {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
         this.dialog.open(CreateOperationComponent, dialogConfig);
-      } else {
+      } else if(b<=0){
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Erreur';
         this.Toast[1] =
           'Les tanks sont vides !! \n Vous ne pouvez pas effectué cette opération !!';
+        this.showToast();
+      }else if(this.connected == "notconnected"){
+        this.idContenu = 'TostDangerContenu';
+        this.idTitle = 'TostDangerTile';
+        this.Toast[0] = 'Erreur';
+        this.Toast[1] =
+          'Vous n\'êtes pas connecté !! \n vous devez d\'abord vous connecter à metamask !!';
         this.showToast();
       }
     });
@@ -297,31 +307,5 @@ connected = environment.connected;
       if (this.counter === 9) clearInterval(this.intervalId);
     }, 1000);
     this.counter = 0;
-  }
-  onOpenDialogCreate3(): void {
-    if (!this.connected) {
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      this.dialog.open(CreateOperationComponent, dialogConfig);
-    } else {
-      this.idContenu = 'TostDangerContenu';
-      this.idTitle = 'TostDangerTile';
-      this.Toast[0] = 'Erreur';
-      this.Toast[1] =
-        'Vous n\'êtes pas connecté !! \n vous devez d\'abord vous connecter à metamask !!';
-      this.showToast();
-    }
-    this.authService.loadToken();
-    if (
-      this.authService.getToken() == null ||
-      this.authService.isTokenExpired()
-    ) {
-      this.onClose();
-      this.router.navigate(['/login']);
-      this.onClose();
-    }
-
-
   }
 }
