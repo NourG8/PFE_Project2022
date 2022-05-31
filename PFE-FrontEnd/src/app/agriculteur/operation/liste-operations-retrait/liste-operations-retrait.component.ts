@@ -123,7 +123,7 @@ connected = environment.connected;
     console.log(this.ELEMENT_DATA);
     //console.log(this.id);
     let confirmation = confirm(
-      'Êtes-vous sûr de supprimer le Operation où son id est egale à : ' +
+      'Êtes-vous sûr de supprimer l\'opération où son id est égale à : ' +
         id +
         ' ??'
     );
@@ -131,7 +131,7 @@ connected = environment.connected;
       this.operationService.deleteOperation(id).subscribe(
         (data) => {
           this.Toast[0] = 'Success';
-          this.Toast[1] = 'Operation a été supprimé avec succès';
+          this.Toast[1] = 'Une opération a été supprimée avec succès';
           localStorage.setItem('Toast', JSON.stringify(this.Toast));
           this.onClose();
         },
@@ -139,7 +139,7 @@ connected = environment.connected;
           this.idContenu = 'TostDangerContenu';
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
-          this.Toast[1] = 'Échec de la suppression du Operation !!';
+          this.Toast[1] = 'Échec de la suppression !!';
           this.showToast();
         }
       );
@@ -171,7 +171,7 @@ connected = environment.connected;
           this.idTitle = 'TostDangerTile';
           this.Toast[0] = 'Failed';
           this.Toast[1] =
-            'Vous ne pouvez pas supprimer cette opereation, car la quantite restante est inferieur a la quantite que vous voulez la supprimer !!';
+            'Vous ne pouvez pas supprimer cette opération, car la quantité restante est inferieur aàla quantité que vous voudrez la supprimer !!';
           this.showToast();
         }
       });
@@ -252,7 +252,7 @@ connected = environment.connected;
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Erreur';
         this.Toast[1] =
-          'Les tanks sont vides !! \n Vous ne pouvez pas effectuer cette operation !!';
+          'Les tanks sont vides !! \n Vous ne pouvez pas effectué cette opération !!';
         this.showToast();
       }
     });
@@ -309,7 +309,7 @@ connected = environment.connected;
       this.idTitle = 'TostDangerTile';
       this.Toast[0] = 'Erreur';
       this.Toast[1] =
-        'you re not connected  !! \n you have to connect to metamask first !!';
+        'Vous n\'êtes pas connecté !! \n vous devez d\'abord vous connecter à metamask !!';
       this.showToast();
     }
     this.authService.loadToken();

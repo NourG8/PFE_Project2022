@@ -51,7 +51,7 @@ export class UpdateVacheComponent implements OnInit {
     this.vacheService
         .updateVache(this.vache.idVache,this.vache)
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Vache a été modifié avec succès"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une vache a été modifiée avec succès"]));
           // window.location.reload();
           console.log(this.vache);
           this.onClose();

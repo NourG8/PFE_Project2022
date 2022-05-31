@@ -88,7 +88,7 @@ export class UpdateCollecteurComponent implements OnInit {
     this.collecteurService
         .updateCollecteur(this.collecteur.idCollecteur,this.collecteur)
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Un collecteur a été modifié avec succes "]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un collecteur a été modifié avec succès "]));
           // window.location.reload();
           console.log(this.collecteur);
           this.onClose();

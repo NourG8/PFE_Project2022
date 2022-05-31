@@ -88,11 +88,11 @@ export class ListeCollecteurComponent implements OnInit {
             this.onClose();
   
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer le collecteur où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le collecteur où son id est égale à : "+id+" ??")
       if(confirmation)
       this.collcteurService.deleteCollecteur(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Collecteur a été supprimé avec succès';
+        this.Toast[1] ='Un collecteur a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -101,7 +101,7 @@ export class ListeCollecteurComponent implements OnInit {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
-        this.Toast[1] ='Échec de la suppression du Collecteur !!';
+        this.Toast[1] ='Échec de la suppression du collecteur !!';
         this.showToast();
       }
     );

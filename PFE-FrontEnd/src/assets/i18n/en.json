@@ -76,7 +76,8 @@
     "Date of receipt" : "Date of receipt",
      "modify" : "modify",
      "DELETE" : "Delete", 
-
+     "not connect": "Not connected",
+     "connect": "Coonnected",
 
      "Use-by date" : "date of  consumption",
      "Table for exit vouchers" : "Table for exit vouchers" ,
@@ -123,6 +124,7 @@
 
      "User Name or Password is incorrect" : "User Name or Password is incorrect",
      "Welcome" : "Welcome",
+     "Welcom" : "Welcome",
      "Username" : "Username",
      "Password" :  "Password",
      "Show password" : "Show password",

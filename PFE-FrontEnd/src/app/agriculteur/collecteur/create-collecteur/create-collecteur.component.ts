@@ -106,7 +106,7 @@ export class CreateCollecteurComponent implements OnInit {
           // window.location.reload();
           console.log(this.collecteur);
           console.log(this.myForm.get('cgu')?.value)
-          localStorage.setItem('Toast', JSON.stringify(["Success","Un Collecteur a été ajouté avec succès"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Un collecteur a été ajouté avec succès"]));
           // window.location.reload();
           this.onClose();
         },

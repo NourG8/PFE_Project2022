@@ -52,7 +52,7 @@ export class UpdateProduitComponent implements OnInit {
     this.produitService
         .updateProduit(this.produit.idProduit,this.produit)
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Produit modifié avec succes ! "]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Produit modifié avec succès ! "]));
          // window.location.reload();
           console.log(this.produit);
           this.onClose();

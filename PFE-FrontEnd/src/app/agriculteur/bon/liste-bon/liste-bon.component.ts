@@ -156,7 +156,7 @@ export class ListeBonComponent implements OnInit {
 
       if (b.quantite <= b.produit.qte) {
         let confirmation = confirm(
-          "Êtes-vous sûr de supprimer le bon d'entrée où son id est egale à : " +
+          "Êtes-vous sûr de supprimer le bon d'entrée où son id est égale à : " +
             id +
             ' ??'
         );
@@ -164,7 +164,7 @@ export class ListeBonComponent implements OnInit {
           this.bonService.deleteBon(id).subscribe(
             () => {
               this.Toast[0] = 'Success';
-              this.Toast[1] = 'Bon a été supprimé avec succès';
+              this.Toast[1] = 'Un bon a été supprimé avec succès';
               localStorage.setItem('Toast', JSON.stringify(this.Toast));
 
               // window.location.reload();
@@ -184,7 +184,7 @@ export class ListeBonComponent implements OnInit {
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Failed';
         this.Toast[1] =
-          'Vous avez deja utiliser la quantite du produit affectees a cette operation !!';
+          'Vous avez deja utiliser la quantité du produit affecté a cette opération !!';
         this.showToast();
       }
     });

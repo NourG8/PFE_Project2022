@@ -88,11 +88,11 @@ export class ListeVacheComponent implements OnInit {
             this.onClose();
   
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer le produit où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le produit où son id est égale à : "+id+" ??")
       if(confirmation)
       this.vacheService.deleteVache(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Vache a été supprimée avec succès';
+        this.Toast[1] ='Une vache a été supprimée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -162,7 +162,7 @@ export class ListeVacheComponent implements OnInit {
       if(confirmation)
       this.vacheService.maladeVache(vache).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Vache a été modifiée avec succès';
+        this.Toast[1] ='Une vache a été modifiée avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -183,7 +183,7 @@ export class ListeVacheComponent implements OnInit {
     if(confirmation)
     this.vacheService.bonneVache(vache).subscribe(()=>{
       this.Toast[0] = 'Success';
-      this.Toast[1] ='Vache a été modifiée avec succès';
+      this.Toast[1] ='Une vache a été modifiée avec succès';
       localStorage.setItem('Toast', JSON.stringify(this.Toast));
       // window.location.reload();
       this.onClose();

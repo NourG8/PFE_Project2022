@@ -32,6 +32,7 @@
   .dropdown-menu > a {
     display: block;
     clear: both;
+    cursor: pointer;
     font-weight: normal;
     color: #333333;
     white-space: nowrap;
@@ -49,6 +50,7 @@
  .dropdown-menu  > button {
     display: block;
     clear: both;
+    cursor: pointer;
     font-weight: normal;
     color: #333333;
     white-space: nowrap;
