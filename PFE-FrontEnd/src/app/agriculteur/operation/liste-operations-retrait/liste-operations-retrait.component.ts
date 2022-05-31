@@ -49,7 +49,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
   test1 = 0;
   test2 = 0;
   waiting = environment.wating;
-
+connected = environment.connected;
   displayedColumns: string[] = [
     'idOperation',
     'poidsLait',
@@ -297,5 +297,31 @@ export class ListeOperationsRetraitComponent implements OnInit {
       if (this.counter === 9) clearInterval(this.intervalId);
     }, 1000);
     this.counter = 0;
+  }
+  onOpenDialogCreate3(): void {
+    if (this.connected) {
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      this.dialog.open(CreateOperationComponent, dialogConfig);
+    } else {
+      this.idContenu = 'TostDangerContenu';
+      this.idTitle = 'TostDangerTile';
+      this.Toast[0] = 'Erreur';
+      this.Toast[1] =
+        'you re not connected  !! \n you have to connect to metamask first !!';
+      this.showToast();
+    }
+    this.authService.loadToken();
+    if (
+      this.authService.getToken() == null ||
+      this.authService.isTokenExpired()
+    ) {
+      this.onClose();
+      this.router.navigate(['/login']);
+      this.onClose();
+    }
+
+
   }
 }

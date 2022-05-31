@@ -40,6 +40,7 @@ export class CreateOperationComponent implements OnInit {
   msg4 = 0;
   msgErreur = 0;
   qteActLaitTank = 0;
+  connected : Boolean = false;
   som = 10000;
   tab!: any[];
   tab0!: any[];
@@ -75,6 +76,7 @@ export class CreateOperationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.reloadDataFarmerRetrait01();
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -88,8 +90,25 @@ export class CreateOperationComponent implements OnInit {
     this.collecteurs = this.collecteurService.getCollecteurs();
     this.tanks = this.tankService.getTanksFiltres();
     this.operationService.getNbOp().subscribe((o) => {
-      this.som = this.som + o + 1;
+
+      //this IF work only when u re connected to the metamask
+      if (this.connected == true) {
+        //this is to get the number of operation in the blockchain
+        const p = this.AllOperationsFarmerTab.length;
+        //this is to compare the number of opertaion in the database static and the number of operation in the blockchain andd return the bigger number 
+
+        if (p >= o) {
+          this.som = this.som + p + 1;
+        } else {
+          this.som = this.som + o + 1;
+        }
+      } else {
+        this.som = this.som + o + 1;
+      }
+
+
     });
+ 
   }
   exportOne(op: Operation) {
     // new CsvBuilder("operation.csv")
@@ -131,10 +150,11 @@ export class CreateOperationComponent implements OnInit {
   async requestAccount() {
     if (typeof window.ethereum !== 'undefined') {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-    }
+    } 
   }
 
   save() {
+    
     environment.wating = 'startwaiting';
     this.onReload();
     if (this.myForm.get('poidsLait')?.value == null) {
@@ -186,7 +206,7 @@ export class CreateOperationComponent implements OnInit {
                 this.operation.collecteur = this.collector;
 
                 await this.saveInBc(this.operation);
-                if (environment.wating  == 'rejected') {
+                if (environment.wating == 'rejected') {
                   localStorage.setItem(
                     'Toast',
                     JSON.stringify([
@@ -194,7 +214,7 @@ export class CreateOperationComponent implements OnInit {
                       'l opération a été rejetée',
                     ])
                   );
-                }else{
+                } else {
                   localStorage.setItem(
                     'Toast',
                     JSON.stringify([
@@ -202,9 +222,9 @@ export class CreateOperationComponent implements OnInit {
                       'Une operation a été ajouté avec succès',
                     ])
                   );
-                }    
+                }
               });
-      
+
           },
           (error) => {
             console.log('Failed');
@@ -214,7 +234,27 @@ export class CreateOperationComponent implements OnInit {
   }
 
   confirmation: string = '';
+  AllOperationsFarmerTab!: Operation[];
+  async reloadDataFarmerRetrait01() {
+    if (typeof window.ethereum !== 'undefined') {
+    try {
+      const depKEY = Object.keys(Remplissage.networks)[0];
 
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(
+          Remplissage.networks[depKEY].address,
+          Remplissage.abi,
+          signer
+        );
+        this.AllOperationsFarmerTab = await contract.getOperations();
+        this.connected = true
+     
+    } catch (error) {
+      this.connected = false
+    } }
+
+  }
   async saveInBc(oppr: Operation) {
     //this is for waiting the metamask window confirmation
     this.onReload();
@@ -248,7 +288,7 @@ export class CreateOperationComponent implements OnInit {
     if (this.confirmation == 'rejected') {
       environment.wating = 'rejected';
       this.operationService
-        .deleteOperation(oppr.idOperation).subscribe(d=>{ this.onReload(); });
+        .deleteOperation(oppr.idOperation).subscribe(d => { this.onReload(); });
     }
     this.onReload()
   }
@@ -323,10 +363,10 @@ export class CreateOperationComponent implements OnInit {
       if (
         this.myForm.get('poidsLait')?.value != null &&
         this.myForm.get('collecteur')?.value != null &&
-        this.myForm.get('cgu')?.value==true &&
+        this.myForm.get('cgu')?.value == true &&
         this.myForm.get('poidsLait')?.value > 0
       ) {
-        if (this.myForm.get('poidsLait')?.value <= o) {
+        if (this.myForm.get('poidsLait')?.value <= o && this.connected) {
           this.save();
           this.onClose();
           this.msgErreur = 0;

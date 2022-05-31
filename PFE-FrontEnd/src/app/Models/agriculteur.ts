@@ -5,5 +5,5 @@ export class Agriculteur{
   prenom!: string;
   username!:string;
   password!:string;
-
+  adress!:string;
 }
