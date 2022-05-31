@@ -99,7 +99,7 @@ export class CreateOperationRemplissageComponent implements OnInit {
           // window.location.reload();
           console.log(this.operation);
 
-          localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une opération a été ajoutée avec succès"]));
           // window.location.reload();
           this.onClose();
         },

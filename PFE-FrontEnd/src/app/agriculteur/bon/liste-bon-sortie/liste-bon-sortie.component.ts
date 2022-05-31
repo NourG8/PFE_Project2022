@@ -95,11 +95,11 @@ export class ListeBonSortieComponent implements OnInit {
             this.onClose();
   
           }
-      let confirmation =confirm("Êtes-vous sûr de supprimer le bon de sortie où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le bon de sortie où son id est égale à : "+id+" ??")
       if(confirmation)
       this.bonService.deleteBon(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Bon a été supprimé avec succès';
+        this.Toast[1] ='Un bon a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();
@@ -184,7 +184,7 @@ export class ListeBonSortieComponent implements OnInit {
       this.idContenu = 'TostDangerContenu';
       this.idTitle = 'TostDangerTile';
       this.Toast[0] = 'Erreur';
-      this.Toast[1] ='Le stock est vide !! \n Vous ne pouvez pas effectuer cette operation !!';
+      this.Toast[1] ='Le stock est vide !! \n Vous ne pouvez pas effectuer cette opération !!';
       this.showToast();
   }
   });

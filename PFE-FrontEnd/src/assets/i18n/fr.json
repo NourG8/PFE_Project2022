@@ -58,6 +58,8 @@
      "p3" : "Vous devez accepter les CGU pour continuer",
      "Send" : "Envoyer" ,
      "Close" : "Fermer" ,
+     "not connect": "Non connecté",
+     "connect": "Connecté(e)",
 
      "Create an issue slip" : "Créer un bon de sortie",
      "Consult the voucher number" : "Consulter le bon numéro" ,
@@ -121,6 +123,7 @@
      "Error" : "Erreur",
      "User Name or Password is incorrect" : "le nom d'utilisateur ou le mot de passe est incorrect",
      "Welcome" : "Bienvenu(e)s",
+     "Welcom" : "Bienvenu(e)",
      "Username" : "Nom d'utilisateur",
      "Password" : "Mot de passe",
      "Show password" : "Montrer le mot de passe",

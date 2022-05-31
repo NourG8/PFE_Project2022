@@ -98,11 +98,11 @@ export class ListeFournisseurComponent implements OnInit {
             this.onClose();
           }
           else{
-      let confirmation =confirm("Êtes-vous sûr de supprimer le fournisseur où son id est egale à : "+id+" ??")
+      let confirmation =confirm("Êtes-vous sûr de supprimer le fournisseur où son id est égale à : "+id+" ??")
       if(confirmation)
       this.fournisseurService. deleteFournisseur(id).subscribe(()=>{
         this.Toast[0] = 'Success';
-        this.Toast[1] ='Fournisseur a été supprimé avec succès';
+        this.Toast[1] ='Un fournisseur a été supprimé avec succès';
         localStorage.setItem('Toast', JSON.stringify(this.Toast));
         // window.location.reload();
         this.onClose();

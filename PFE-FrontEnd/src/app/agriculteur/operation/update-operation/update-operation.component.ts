@@ -40,7 +40,7 @@ export class UpdateOperationComponent implements OnInit {
           "dateOperation":this.myForm.get('dateOperation')?.value,
         })
         .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succes"]));
+          localStorage.setItem('Toast', JSON.stringify(["Success","Une opération a été ajouté avec succès"]));
           window.location.reload();
           console.log(this.operation);
         },
