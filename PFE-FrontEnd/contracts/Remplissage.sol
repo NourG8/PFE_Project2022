@@ -89,7 +89,6 @@ contract Remplissage {
         string prenom;
         string username;
         string password;
-        string adress;
     }
 
     struct Operation {
