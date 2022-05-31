@@ -299,7 +299,7 @@ connected = environment.connected;
     this.counter = 0;
   }
   onOpenDialogCreate3(): void {
-    if (this.connected) {
+    if (!this.connected) {
       const dialogConfig = new MatDialogConfig();
       dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;

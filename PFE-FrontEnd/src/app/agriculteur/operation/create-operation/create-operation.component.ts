@@ -40,7 +40,7 @@ export class CreateOperationComponent implements OnInit {
   msg4 = 0;
   msgErreur = 0;
   qteActLaitTank = 0;
-  connected : Boolean = false;
+  connected !: Boolean;
   som = 10000;
   tab!: any[];
   tab0!: any[];
@@ -74,9 +74,9 @@ export class CreateOperationComponent implements OnInit {
     this.translateService.setDefaultLang('en');
     this.translateService.use(localStorage.getItem('lang') || 'en');
   }
-
-  ngOnInit() {
-    this.reloadDataFarmerRetrait01();
+  jj!: number;
+  async ngOnInit() {
+   await this.reloadDataFarmerRetrait01();
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -92,22 +92,18 @@ export class CreateOperationComponent implements OnInit {
     this.operationService.getNbOp().subscribe((o) => {
 
       //this IF work only when u re connected to the metamask
-      if (this.connected == true) {
+      if (this.connected) {
         //this is to get the number of operation in the blockchain
-        const p = this.AllOperationsFarmerTab.length;
+        this.jj = this.AllOperationsFarmerTab.length;
+        console.log( this.jj)
         //this is to compare the number of opertaion in the database static and the number of operation in the blockchain andd return the bigger number 
 
-        if (p >= o) {
-          this.som = this.som + p + 1;
-        } else {
-          this.som = this.som + o + 1;
-        }
-      } else {
-        this.som = this.som + o + 1;
-      }
+          this.som = this.som +  this.jj + 1;
+    
+     
 
 
-    });
+        }  });
  
   }
   exportOne(op: Operation) {
@@ -248,6 +244,7 @@ export class CreateOperationComponent implements OnInit {
           signer
         );
         this.AllOperationsFarmerTab = await contract.getOperations();
+        console.log(this.AllOperationsFarmerTab)
         this.connected = true
      
     } catch (error) {
@@ -366,7 +363,7 @@ export class CreateOperationComponent implements OnInit {
         this.myForm.get('cgu')?.value == true &&
         this.myForm.get('poidsLait')?.value > 0
       ) {
-        if (this.myForm.get('poidsLait')?.value <= o && this.connected) {
+        if (this.myForm.get('poidsLait')?.value <= o) {
           this.save();
           this.onClose();
           this.msgErreur = 0;
