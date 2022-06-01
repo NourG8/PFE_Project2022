@@ -30,6 +30,7 @@ export class ListeCollecteurComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
+  lang="";
 
   ELEMENT_DATA?:Collecteur[];
   Collecteur?:Collecteur;
@@ -44,6 +45,10 @@ export class ListeCollecteurComponent implements OnInit {
 
 
     ngOnInit() {
+      // this.lang= JSON.parse(localStorage.getItem('lang') || '[]') || [];
+     // console.log(JSON.parse(localStorage.getItem('lang') || '[]') || []);
+      console.log(localStorage.getItem('lang')  || 'en');
+      this.lang=localStorage.getItem('lang')  || 'en';
 
       this.authService.loadToken();
       if (this.authService.getToken()==null ||
