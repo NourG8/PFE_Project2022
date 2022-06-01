@@ -109,7 +109,7 @@ contract Remplissage {
     struct Collecteur {
         uint256 idCollecteur;
         string nomCollecteur;
-        string prenomCollecteur;
+     /*   string prenomCollecteur; */
          string matricule ;
         string adresse;
         uint256 tel;

@@ -75,7 +75,7 @@
               <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate }} : <span style="color:red;">*</span></label>
               <select formControlName="fournisseur" name="fournisseur"  class="custom-select mr-sm-2" id="fournisseur" >
                 <option disabled selected value [ngValue]="null">{{'Choose a' | translate }} {{'supplier' | translate }}...</option>
-                <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}} {{fournisseur.prenom}}</option>
+                <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}  {{fournisseur.prenom}}</option>
               </select>
               <div
               *ngIf="fournisseur?.invalid && fournisseur?.touched"

@@ -52,6 +52,31 @@
    -->
             </div>
 
+
+            <div class="form-row">
+              <div class="form-group col-md-12 mb-3">
+                <label for="type">{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
+                <p> </p>
+                <input type="text"
+                 class="form-control"
+                  id="matricule"
+                  minlength="8"
+                  formControlName="matricule"
+                  [(ngModel)]="collecteur.matricule"
+                  name="matricule">
+    
+                  <div *ngIf="matricule?.invalid && matricule?.touched " class="text-danger">
+                    {{'Invalid registration number' | translate}} !
+                  </div>
+                  <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
+                    {{'Valid registration number' | translate}}!
+                  </div>
+                  <div *ngIf="msg3==1"  class="text-danger">
+                    &nbsp;  {{'Registration number already exists' | translate}}!
+                  </div>
+              </div>
+  
+            </div>
              
            
 
