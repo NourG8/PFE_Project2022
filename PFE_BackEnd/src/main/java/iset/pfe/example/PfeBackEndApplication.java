@@ -94,9 +94,6 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "52525252");
 		agriculteurRepository.save(a1);
 		
-//		Vache v1=new Vache("vache numero 1",180.00, "race 1", currentDateTime, "malade", 23.5);
-//		vacheRepository.save(v1);
-		
 		Tank t1=new Tank("tank numero 1", 100.00, 0, "Vide", a1);
 		tankRepository.save(t1);
 		Tank t2=new Tank("tank numero 2", 100.00, 0, "Vide", a1);
@@ -107,30 +104,49 @@ public class PfeBackEndApplication implements CommandLineRunner{
 		tankRepository.save(t4);
 		Tank t5=new Tank("tank numero 5", 100.00, 0, "Vide", a1);
 		tankRepository.save(t5);
-//		Tank t6=new Tank("tank numero 6", 100.00, 0, "Vide", a1);
-//		tankRepository.save(t6);
-//		Tank t7=new Tank("tank numero 7", 100.00, 0, "Vide", a1);
-//		tankRepository.save(t7);
 		
 		
-		Produit p1=new Produit("produit 1", "12se54z4s5");
+		Produit p1=new Produit("VL7 Extra Plus G", "12se54z4s5");
 		produitRepository.save(p1);
 		
-		Produit p2=new Produit("produit 2", "1q54z84z5");
+		Produit p2=new Produit("VL7 Tarie G", "1q54z84z5");
 		produitRepository.save(p2);
 		
-		Fournisseur f1=new Fournisseur("mohamed", "12ad2546at8");
-		f1.setPrenom("ben jemaa");
+		Produit p3=new Produit("NEO-MAX", "1qxs54z5");
+		produitRepository.save(p3);
+		
+		Produit p4=new Produit("Paille de colza", "5cds2dz5");
+		produitRepository.save(p4);
+		
+		Fournisseur f1=new Fournisseur("Ben jemaa", "12ad2546at8");
+		f1.setPrenom("Ridha");
 		fournisseurRepository.save(f1);
 		
-		Collecteur u1=new Collecteur("Collecteur 1","bizerte",52458787);
+		Fournisseur f2=new Fournisseur("Ben mabrouk", "12sc50zat8");
+		f2.setPrenom("Mohamed");
+		fournisseurRepository.save(f2);
+		
+		Fournisseur f3=new Fournisseur("Bejjaoui", "s51z46at8");
+		f3.setPrenom("Oussema");
+		fournisseurRepository.save(f3);
+		
+		Fournisseur f4=new Fournisseur("Hassen", "1scd41zxs8");
+		f4.setPrenom("Kaabouri");
+		fournisseurRepository.save(f4);
+		
+		Collecteur u1=new Collecteur("SMBSA Ettaoufik","Morneg, Ben arous",72458787);
 		u1.setMatricule("akdoz6s2z6");
-		u1.setPrenomCollecteur("fathi");
 		collecteurRepository.save(u1);
-		Collecteur u2=new Collecteur("Collecteur 2","bizerte",78899899);
-		u2.setMatricule("akdoz6s2z6");
-		u2.setPrenomCollecteur("belhefi");
+		Collecteur u2=new Collecteur("SMBSA Ennajeh","Beni Kheddache, Madanin",72899899);
+		u2.setMatricule("asd5e2dq");
 		collecteurRepository.save(u2);
+		Collecteur u3=new Collecteur("SMBSA Ettajdid","Sousse, Tunisie",72455541);
+		u3.setMatricule("akds5d06s");
+		collecteurRepository.save(u3);
+		Collecteur u4=new Collecteur("SSA Nour","Eddaly-Utique, Bizerte",72991552);
+		u4.setMatricule("as20d5zs6");
+		collecteurRepository.save(u4);
+		
 //		Bon b1=new Bon(150.0, 180.0, "Entree", currentDateTime,a1,p1,f1);
 //		bonRepository.save(b1);
 		

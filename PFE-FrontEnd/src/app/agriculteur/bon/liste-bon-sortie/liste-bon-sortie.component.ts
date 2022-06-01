@@ -33,6 +33,7 @@ export class ListeBonSortieComponent implements OnInit {
   counter: number = 0;
   ShowToast: string = 'hide';
   erreur =0;
+  lang="";
 
   ELEMENT_DATA?:Bon[];
   bon?:Bon;
@@ -49,6 +50,8 @@ export class ListeBonSortieComponent implements OnInit {
 
 
     ngOnInit() {
+      console.log(localStorage.getItem('lang')  || 'en');
+      this.lang=localStorage.getItem('lang')  || 'en';
 
       this.authService.loadToken();
       if (this.authService.getToken()==null ||

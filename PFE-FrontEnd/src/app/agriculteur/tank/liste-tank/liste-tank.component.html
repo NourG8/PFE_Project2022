@@ -24,20 +24,20 @@
                                </thead>
                           <tr>
                             <ng-container matColumnDef="idTank" >
-                                <th mat-header-cell *matHeaderCellDef  style="min-width:50px;">#ID</th>
-                                <td mat-cell *matCellDef="let element"><p  style="text-align:center;padding-right:10px;">{{element.idTank}}</p></td>
+                                <th mat-header-cell *matHeaderCellDef  style="min-width:20px;">#ID</th>
+                                <td mat-cell *matCellDef="let element"><p  style="text-align:center;margin-right:6px;">{{element.idTank}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="matricule" >
-                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:100px;">&nbsp;&nbsp;{{'Tank registration number' | translate}}</th>
-                              <td mat-cell *matCellDef="let element"> <p style="text-align:center;padding-left:-100px;">{{element.matricule}}</p></td>
+                              <th mat-sort-header mat-header-cell *matHeaderCellDef  style="min-width:150px;">{{'Tank registration number' | translate}}</th>
+                              <td mat-cell *matCellDef="let element"> <p style="text-align:center;margin-left:-35px;">{{element.matricule}}</p></td>
                             </ng-container>
                             <ng-container matColumnDef="poidVide">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Maximum capacity' | translate}}</th>
-                              <td mat-cell *matCellDef="let element" style="font-weight:bold"> <p style="text-align:center;padding-left:-30px;">{{element.poidVide}} Kg</p></td>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold"> <p style="text-align:center;margin-left:-20px;">{{element.poidVide}} Kg</p></td>
                             </ng-container>
                             <ng-container matColumnDef="poidActuel">
                               <th mat-sort-header mat-header-cell *matHeaderCellDef style="min-width:100px;">{{'Amount of milk inserted' | translate}}</th>
-                              <td mat-cell *matCellDef="let element" style="font-weight:bold"> <p style="text-align:center;padding-left:-50px;">{{element.poidActuel}} Kg</p></td>
+                              <td mat-cell *matCellDef="let element" style="font-weight:bold"> <p style="text-align:center;margin-left:-20px;">{{element.poidActuel}} Kg</p></td>
                             </ng-container>
 
                             <ng-container matColumnDef="etat" >
