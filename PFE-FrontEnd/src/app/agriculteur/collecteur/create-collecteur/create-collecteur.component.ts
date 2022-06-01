@@ -52,7 +52,7 @@ export class CreateCollecteurComponent implements OnInit {
   save() {
 
     if(this.myForm.get('nomCollecteur')?.value==null || this.myForm.get('adresse')?.value==null || 
-    this.myForm.get('tel')?.value==null ){
+    this.myForm.get('tel')?.value==null ||  this.myForm.get('matricule')?.value==null ){
       this.msg="vous devez remplir le formulaire !!";
      }
      else{
@@ -75,14 +75,14 @@ export class CreateCollecteurComponent implements OnInit {
         this.msg1=0;
        }
 
-      //  this.collecteurService.getCollecteurMatricule(this.myForm.get('matricule')?.value).subscribe(m=>{
-      //   console.log(m);
-      //   if(m==1){
-      //     this.msg3=1;
-      //    }
-      //    else{
-      //     this.msg3=0;
-      //    }
+       this.collecteurService.getCollecteurMatricule(this.myForm.get('matricule')?.value).subscribe(m=>{
+        console.log(m);
+        if(m==1){
+          this.msg3=1;
+         }
+         else{
+          this.msg3=0;
+         }
 
        this.collecteurService.getCollecteurTel(this.myForm.get('tel')?.value).subscribe(l=>{
         console.log(l);
@@ -93,9 +93,10 @@ export class CreateCollecteurComponent implements OnInit {
           this.msg2=0;
          }
 
-     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('adresse')?.value!=null && t==0 && l==0
+     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('adresse')?.value!=null && 
+     t==0 && l==0 && this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8
       // && m==0
-       &&  this.myForm.get('cgu')?.value==true
+     &&  this.myForm.get('cgu')?.value==true
      && this.myForm.get('nomCollecteur')?.value.length>=4 && this.myForm.get('adresse')?.value.length>=3
      && this.myForm.get('tel')?.value!=null  && this.myForm.get('tel')?.value.toString().length==8  ){
     console.log(this.collecteur);
@@ -116,6 +117,7 @@ export class CreateCollecteurComponent implements OnInit {
       );
     }
   // });
+});
 });
 });
   }

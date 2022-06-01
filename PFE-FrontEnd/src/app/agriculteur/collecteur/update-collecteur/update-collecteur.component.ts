@@ -74,15 +74,15 @@ export class UpdateCollecteurComponent implements OnInit {
     else
     this.msg2=1;
 
-    // if(this.myForm.get('matricule')?.value.length>=8)
-    // this.msg3=0;
-    // else
-    // this.msg3=1;
+    if(this.myForm.get('matricule')?.value.length>=8)
+    this.msg3=0;
+    else
+    this.msg3=1;
     
 
     if(this.myForm.get('nomCollecteur')?.value!=null && this.myForm.get('tel')?.value!=null
     && this.myForm.get('adresse')?.value!=null &&  this.msg1==0 && this.msg2==0 && this.msg3==0
-    // && this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8
+    && this.myForm.get('matricule')?.value!=null && this.myForm.get('matricule')?.value.length>=8
     && this.myForm.get('nomCollecteur')?.value.length>=4 && this.myForm.get('adresse')?.value.length>=3 
     && this.myForm.get('tel')?.value.toString().length==8 ){
     this.collecteurService
@@ -105,7 +105,7 @@ export class UpdateCollecteurComponent implements OnInit {
     this.myForm = new FormGroup({
       'nomCollecteur' : new FormControl(null,[Validators.required,Validators.minLength(4)]),
       'adresse' : new FormControl(null,[Validators.required,Validators.minLength(3) ]),
-      // 'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
+      'matricule' : new FormControl(null,[Validators.required,Validators.minLength(8) ]),
       'tel' : new FormControl(null,[Validators.required,Validators.pattern("[0-9 ]{8}") ]),
       });
  }
