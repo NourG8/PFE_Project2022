@@ -84,7 +84,7 @@
               </button>
             </div>
           </div>
-         
+
         </div> -->
     <!-- /.row -->
     <!-- Main row -->
@@ -104,7 +104,7 @@
                     </h5>
                   </div>
                   <h3 class="mt-4">{{ somTRemplis }}</h3>
-                  <div class="progress mt-4" style="height: 4px"> 
+                  <div class="progress mt-4" style="height: 4px">
                     <div
                       class="progress-bar bg-primary"
                       role="progressbar"
@@ -185,23 +185,7 @@
 
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-2 col-6">
-              <!-- small box #148F77-->
-              <div class="small-box" style="background-color: #f0f0f0">
-                <div class="inner">
-                  <h3>{{ somOperation }}</h3>
-
-                  <p>{{ "Operations" | translate }}</p>
-                </div>
-                <div class="icon">
-                  <i class="fa fa-arrow-down-up-across-line"  style="color: #FC6B05"></i>
-                </div>
-                <a routerLink="/agriculteur/dashboard" class="small-box-footer"
-                  >{{ "More_information" | translate }}
-                  <i class="fas fa-arrow-circle-right"></i
-                ></a>
-              </div>
-            </div>
+            
 
             <!-- ./col -->
             <div class="col-lg-2 col-6">
@@ -213,7 +197,7 @@
                   <p>{{ "Tanks" | translate }}</p>
                 </div>
                 <div class="icon">
-                  <i class="fa fa-glass-water-droplet" style="color: #9BB7BB"></i>
+                  <i class="fa fa-glass-water-droplet" style="color:  #65B017"></i>
                   <!-- <i class="ion ion-person-stalker"></i> -->
                 </div>
                 <a
@@ -225,8 +209,8 @@
               </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-2 col-6">
-              <!-- small box #1ABC9C -->
+            <!-- <div class="col-lg-2 col-6">
+
               <div class="small-box" style="background-color:  #f0f0f0">
                 <div class="inner">
                   <h3>{{ somVache }}</h3>
@@ -243,7 +227,7 @@
                   <i class="fas fa-arrow-circle-right"></i
                 ></a>
               </div>
-            </div>
+            </div> -->
             <!-- ./col -->
             <div class="col-lg-2 col-6">
               <!-- small box #48C9B0-->
@@ -264,6 +248,25 @@
                 ></a>
               </div>
             </div>
+
+            <div class="col-lg-4 col-6">
+              <!-- small box #148F77-->
+              <div class="small-box" style="background-color: #f0f0f0">
+                <div class="inner">
+                  <h3>{{ somOperation }}</h3>
+
+                  <p>{{ "Operations" | translate }}</p>
+                </div>
+                <div class="icon">
+                  <i class="fa fa-arrow-down-up-across-line"  style="color: #FC6B05"></i>
+                </div>
+                <a routerLink="/agriculteur/dashboard" class="small-box-footer"
+                  >{{ "More_information" | translate }}
+                  <i class="fas fa-arrow-circle-right"></i
+                ></a>
+              </div>
+            </div>
+
             <div class="col-lg-2 col-6">
               <!-- small box #76D7C4;-->
               <div class="small-box" style="background-color:  #f0f0f0">
@@ -343,11 +346,11 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-xl-7">
-                      <div style="  margin:auto;">         
+                      <div style="  margin:auto;">
                         <img src="./../../../assets/4183153.jpg" alt="" style="  height: 430px; width: 520px; margin:auto;margin-left:  120px;">
                       </div>
                     </div>
-               
+
                     <div class="col-xl-5">
                       <div style="width:350px;margin: auto;">
                         <div
@@ -356,7 +359,7 @@
                           height: 385px;
                           width: 350px;
                           margin-right: 40px ;
-                          overflow: hidden;   
+                          overflow: hidden;
                         "
                       ></div>
                       <p style="margin-left: 75px;margin-bottom: 40px; ">
@@ -366,10 +369,10 @@
                         >
                       </p>
                       </div>
-                    
+
                       </div>
                   </div>
-         
+
                   <div class="row">
                     <div class="col-xl-7">
                       <div class="card m-b-30">
@@ -429,13 +432,13 @@
                     <div class="col-xl-7">
                       <div class="card m-b-30">
                         <div class="card-body">
-                   
+
                           <div
                             id="morris-area-example"
                             class="morris-charts morris-chart-height"
                           >
                             <ngx-charts-advanced-pie-chart
-                       
+
                               [results]="data"
                               [view]="[700,250]"
                               [scheme]="colorScheme"
@@ -447,7 +450,7 @@
                       </div>
                       <div class="card m-b-30">
                         <div class="card-body">
-                  
+
                           <div
                             id="morris-area-example"
                             class="morris-charts morris-chart-height"
@@ -473,31 +476,31 @@
 
                     </div>
                     <div class="col-xl-5">
-                   
-    
-                  
+
+
+
 
 
                               <!-- Info Boxes Style 2 -->
-                              <div class="info-box mb-3 " style="background-color: #35B8CA;">
+                              <!-- <div class="info-box mb-3 " style="background-color: #35B8CA;">
                                 <span class="info-box-icon"
                                   ><i class="ion ion-ios-paw" style="color: white"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of cows" | translate
                                   }}</span>
                                   <span class="info-box-number">{{ somVache }}</span>
                                 </div>
-                                <!-- /.info-box-content -->
-                              </div>
+
+                              </div> -->
                               <!-- /.info-box -->
                               <div class="info-box mb-3 " style="background-color: #65B017;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-ios-flask-outline"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of tanks" | translate
@@ -507,12 +510,12 @@
                                 <!-- /.info-box-content -->
                               </div>
                               <!-- /.info-box -->
-        
+
                               <div class="info-box mb-3 " style="background-color: #F8D90F;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-person-stalker"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of suppliers" | translate
@@ -524,12 +527,12 @@
                                 <!-- /.info-box-content -->
                               </div>
                               <!-- /.info-box -->
-        
+
                               <div class="info-box mb-3" style="background-color: #D3DD18;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-ios-list-outline"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of filling operations" | translate
@@ -540,12 +543,12 @@
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-        
+
                               <div class="info-box mb-3 " style="background-color: #FC6B05;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-ios-list-outline"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of withdrawal operations" | translate
@@ -556,13 +559,13 @@
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-        
+
                               <div class="info-box mb-3" style="background-color: #35B8CA;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-ios-download-outline"></i>
                                   <i class="ion ion-ios-upload-outline"></i>
                                 </span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of vouchers" | translate
@@ -571,12 +574,12 @@
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-        
+
                               <div class="info-box mb-3" style="background-color: #FE7A15;">
                                 <span class="info-box-icon">
                                   <i class="ion ion-ios-cart-outline"></i
                                 ></span>
-        
+
                                 <div class="info-box-content">
                                   <span class="info-box-text">{{
                                     "Number of products" | translate
@@ -585,9 +588,9 @@
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>
-      
-           
-               
+
+
+
                     </div>
                   </div>
 
@@ -684,7 +687,7 @@
 
           <!-- /.row -->
           <!-- <div style="display: block;">
-                  <canvas baseChart 
+                  <canvas baseChart
                     [datasets]="data"
                     [labels]="barChartLabels"
                     [options]="barChartOptions"
@@ -694,9 +697,9 @@
                   </canvas>
                 </div>
                 <div style="display: block;">
-                  <canvas baseChart 
-                    [data]="pieChartData" 
-                    [labels]="pieChartLabels" 
+                  <canvas baseChart
+                    [data]="pieChartData"
+                    [labels]="pieChartLabels"
                     [chartType]="pieChartType"
                     [options]="pieChartOptions"
                     [plugins]="pieChartPlugins"
