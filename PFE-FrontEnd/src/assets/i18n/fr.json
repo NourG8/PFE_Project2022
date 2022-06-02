@@ -70,7 +70,7 @@
      "Quantity inserted" : "Quantité inserée",
      "Quantity withdrawn" : "Quantité retirée",
      "Quantity produced" : "Quantité produit",
-     "Name of supplier" : "Nom fournisseur",
+     "Name of supplier" : "Nom du fournisseur",
      "First name of supplier" : "Prénom du fournisseur",
      "Product title" : "Intitulé du produit",
      "Table for entry vouchers" : "Table pour les bons d'entrées",
@@ -156,7 +156,7 @@
      "Here is the delivery code" : "Voici le code de la livraison",
      "valid collector" : "collecteur valide",
      "invalid collector" : "invalide collecteur",
-     "collector" : "collecteur",
+     "collector" : "Collecteur",
 
      "p6" : "NB : La Quantité de lait disponible dans les tanks est",
      "Create a fill operation" : "Créer une operation de remplissage",
