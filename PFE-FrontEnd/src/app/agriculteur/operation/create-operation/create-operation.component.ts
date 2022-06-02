@@ -41,6 +41,7 @@ export class CreateOperationComponent implements OnInit {
   msgErreur = 0;
   qteActLaitTank = 0;
   connected !: Boolean;
+  fullname = '';
   som = 10000;
   tab!: any[];
   tab0!: any[];
@@ -115,14 +116,14 @@ export class CreateOperationComponent implements OnInit {
     const doc = new jsPDF();
     var imageData = environment.img;
     const n = op.code.toString() + '.pdf';
-
+    this.fullname =op.agriculteur.nom.toString()+' '+op.agriculteur.prenom.toString()
     // const head = [['ID',"Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"]]
     // const data = [
     //     [op.idOperation, op.poidsLait, op.code , op.collecteur.nomCollecteur , op.dateOperation , confirmation],
     doc.addImage(imageData, 'JPEG', 0, 0, 210, 297);
     // ]
     doc.text(op.code.toString(), 92, 54);
-    doc.text(op.agriculteur.nom.toString(), 75, 107.2);
+    doc.text(this.fullname, 75, 107.2);
     doc.text(op.collecteur.nomCollecteur.toString(), 107, 139);
     doc.text(op.dateOperation.toString(), 120, 123.5);
     // doc.text(op.code.toString().toString(),92,157)
