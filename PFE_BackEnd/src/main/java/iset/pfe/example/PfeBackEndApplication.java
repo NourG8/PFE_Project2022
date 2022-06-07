@@ -90,6 +90,41 @@ public class PfeBackEndApplication implements CommandLineRunner{
 				ag.getRoles().add(role1);
 				agriculteurRepository.save(ag);
 				
+				
+				
+				
+				
+				
+				
+				
+				Agriculteur ag1 =new Agriculteur();
+				ag1.setAdress("Bizerte");
+				ag1.setCin(11224412);
+				ag1.setEmail("hassen.hassen@gmail.com");
+				ag1.setNom("kaabouri");
+				ag1.setPrenom("hassen");
+				ag1.setTel(22556488);
+				ag1.setUsername("hassen");
+				encoder = new BCryptPasswordEncoder();
+				ag1.setPassword(encoder.encode("hassen"));
+				ag1.getRoles().add(role1);
+				agriculteurRepository.save(ag1);
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 		
 		Agriculteur a1=new Agriculteur("nour", "Guerfali", "nourguerfali08@gmail.com", "Bizerte", 11431134, "nour", "52525252");
 		agriculteurRepository.save(a1);
