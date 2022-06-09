@@ -1,10 +1,6 @@
-export class Fournisseur{
-
-    idFournisseur!: number;
-    nom!: string;
-    matricule!: string;
-    prenom!: string;
-    // agriculteur!:any[];
-    // fournisseur!:any[];
-    
-  }
+export class Fournisseur {
+  idFournisseur!: number;
+  nom!: string;
+  matricule!: string;
+  prenom!: string;
+}

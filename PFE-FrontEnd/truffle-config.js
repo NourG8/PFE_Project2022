@@ -32,8 +32,8 @@ module.exports = {
    * network from the command line, e.g
    *
    * $ truffle test --network <network-name>
-   */ 
-  
+   */
+
 
   networks: {
     development: {
@@ -74,13 +74,13 @@ module.exports = {
   // $ truffle migrate --reset --compile-all
   //
   // db: {
-    // enabled: false,
-    // host: "127.0.0.1",
-    // adapter: {
-    //   name: "sqlite",
-    //   settings: {
-    //     directory: ".db"
-    //   }
-    // }
+  // enabled: false,
+  // host: "127.0.0.1",
+  // adapter: {
+  //   name: "sqlite",
+  //   settings: {
+  //     directory: ".db"
+  //   }
+  // }
   // }
 };

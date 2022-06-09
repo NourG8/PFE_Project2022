@@ -13,10 +13,9 @@ import { AgriculteurRoutingModule } from './agriculteur-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ScaleLinear, ScalePoint, ScaleTime,ScaleBand } from 'd3-scale';
 import { CollecteurComponent } from './collecteur/collecteur.component';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatTableModule } from '@angular/material/table';
@@ -24,11 +23,8 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-
-
 @NgModule({
   declarations: [
-   
     AgriculteurComponent,
     NavbarComponent,
     SidebarComponent,
@@ -47,15 +43,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatTableExporterModule,
     AgriculteurRoutingModule,
     NgxChartsModule,
-    MatSnackBarModule,   
-   
-     TranslateModule.forRoot({
+    MatSnackBarModule,
+
+    TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  }),
-  ]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
 })
-export class AgriculteurModule { }
+export class AgriculteurModule {}

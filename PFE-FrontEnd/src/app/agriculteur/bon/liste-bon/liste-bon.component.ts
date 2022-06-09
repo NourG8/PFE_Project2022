@@ -20,68 +20,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ListeBonComponent implements OnInit {
   @ViewChild('paginator') paginator!: MatPaginator;
-  // AddForSotedData
   @ViewChild(MatSort) matSort!: MatSort;
-
-  // config: ExportAsConfig = {
-  //   type: 'pdf',
-  //   elementIdOrContent: 'mytable',
-  //   options: {
-  //     jsPDF: {
-  //       orientation: 'landscape'
-  //     },
-  //     pdfCallbackFn: this.pdfCallbackFn // to add header and footer
-  //   }
-  // };
-  // pdfCallbackFn (pdf: any) {
-  //   // example to add page number as footer to every page of pdf
-  //   const noOfPages = pdf.internal.getNumberOfPages();
-  //   for (let i = 1; i <= noOfPages; i++) {
-  //     pdf.setPage(i);
-  //     pdf.text('Page ' + i + ' of ' + noOfPages, pdf.internal.pageSize.getWidth() - 100, pdf.internal.pageSize.getHeight() - 30);
-  //   }
-  // }
-
-  // exportAsString(type: SupportedExtensions, opt?: string) {
-  //   this.config.elementIdOrContent = '<div> test string </div>';
-  //   this.exportAs(type, opt);
-  //   setTimeout(() => {
-  //     this.config.elementIdOrContent = 'filtertable';
-  //   }, 1000);
-  // }
-
-  // exportAs(type: SupportedExtensions, opt?: string) {
-  //   this.config.type = type;
-  //   if (opt) {
-  //     this.config.options.jsPDF.orientation = opt;
-  //   }
-  //   this.exportAsService.save(this.config, 'myFile').subscribe(() => {
-  //     // save started
-  //   });
-  //   // this.exportAsService.get(this.config).subscribe(content => {
-  //   //   const link = document.createElement('a');
-  //   //   const fileName = 'export.pdf';
-
-  //   //   link.href = content;
-  //   //   link.download = fileName;
-  //   //   link.click();
-  //   //   console.log(content);
-  //   // });
-  // }
-
-
-
-
-
-
   intervalId?: any;
   idContenu?: string;
   idTitle?: string;
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
-  lang="";
-
+  lang = '';
   ELEMENT_DATA?: Bon[];
   bon?: Bon;
   dataSource!: MatTableDataSource<any>;
@@ -93,24 +39,21 @@ export class ListeBonComponent implements OnInit {
     'date',
     'action',
   ];
-  // displayedColumns: string[] = ['idBon','quantite', 'prix', 'type','date','action'];
   constructor(
     private translateService: TranslateService,
     private bonService: BonService,
     private authService: AuthService,
     private router: Router,
     private location: Location,
-    private dialog: MatDialog,
+    private dialog: MatDialog
   ) {
     this.translateService.setDefaultLang('en');
     this.translateService.use(localStorage.getItem('lang') || 'en');
   }
 
   ngOnInit() {
-
-    console.log(localStorage.getItem('lang')  || 'en');
-    this.lang=localStorage.getItem('lang')  || 'en';
-
+    console.log(localStorage.getItem('lang') || 'en');
+    this.lang = localStorage.getItem('lang') || 'en';
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -171,8 +114,6 @@ export class ListeBonComponent implements OnInit {
               this.Toast[0] = 'Success';
               this.Toast[1] = 'Un bon a été supprimé avec succès';
               localStorage.setItem('Toast', JSON.stringify(this.Toast));
-
-              // window.location.reload();
               this.onClose();
             },
 
@@ -196,7 +137,6 @@ export class ListeBonComponent implements OnInit {
   }
 
   onReload() {
-    // this.router.navigate([this.router.url]);
     this.router
       .navigateByUrl("/'agriculteur/bon/listeBon", { skipLocationChange: true })
       .then((response) => {
@@ -206,7 +146,6 @@ export class ListeBonComponent implements OnInit {
 
   onClose() {
     this.dialog.closeAll();
-    // this.gotoList();
     this.onReload();
   }
 
@@ -225,7 +164,6 @@ export class ListeBonComponent implements OnInit {
     dialogConfig.autoFocus = true;
     localStorage.setItem('IdBon', JSON.stringify(bon.idBon));
     this.dialog.open(DatailsBonComponent, dialogConfig);
-    //this.router.navigate(['employees/admin/detailemployee', id]);
   }
 
   updateBon(bon: Bon) {
@@ -243,7 +181,6 @@ export class ListeBonComponent implements OnInit {
     dialogConfig.autoFocus = true;
     localStorage.setItem('IdBon', JSON.stringify(bon.idBon));
     this.dialog.open(UpdateBonComponent, dialogConfig);
-    //this.router.navigate(['employees/admin/updateemployee', id]);
   }
 
   onOpenDialogCreate(): void {

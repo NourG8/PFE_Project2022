@@ -11,7 +11,7 @@ export class IsAuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
 
   canActivate(
@@ -20,14 +20,14 @@ export class IsAuthGuard implements CanActivate {
 
     let isLoggedIn = this.authService.isLoggedIn();
 
-    if (!localStorage.getItem('jwt')==null) {
+    if (!localStorage.getItem('jwt') == null) {
       this.router.navigate(['/login']);
       console.log("yeesssssssssssssssssssssssssssssss nourrrrr !!!!!!!!!")
       return false;
-    }else{
+    } else {
       return true;
     }
-    
+
   }
-  
+
 }

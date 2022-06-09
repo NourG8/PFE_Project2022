@@ -36,13 +36,11 @@ export class ListeOperationsRetraitComponent implements OnInit {
   Toast!: string[];
   counter: number = 0;
   ShowToast: string = 'hide';
-  connected !: string;
+  connected!: string;
   ELEMENT_DATA?: Operation[];
   operation?: Operation;
   dataSource!: MatTableDataSource<any>;
   v = 0;
-
-  // tank?:Tank = new Tank();
   p = 0;
   q = 0;
   msg = '';
@@ -75,7 +73,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
   operations: Observable<Operation[]> | undefined;
 
   ngOnInit() {
-
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -85,8 +82,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
     }
 
     this.reloadData();
-
-    //console.log(this.tankService.getTanksQteLibre());
 
     this.idContenu = 'TostSuccessContenu';
     this.idTitle = 'TostSuccessTile';
@@ -100,8 +95,7 @@ export class ListeOperationsRetraitComponent implements OnInit {
       this.idContenu = 'TostDangerContenu';
       this.idTitle = 'TostDangerTile';
       this.showToast();
-    }
-    else{
+    } else {
       console.log('Toast Vide');
     }
   }
@@ -122,9 +116,8 @@ export class ListeOperationsRetraitComponent implements OnInit {
       this.ELEMENT_DATA = o;
     });
     console.log(this.ELEMENT_DATA);
-    //console.log(this.id);
     let confirmation = confirm(
-      'Êtes-vous sûr de supprimer l\'opération où son id est égale à : ' +
+      "Êtes-vous sûr de supprimer l'opération où son id est égale à : " +
         id +
         ' ??'
     );
@@ -180,7 +173,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
   }
 
   onReload() {
-    // this.router.navigate([this.router.url]);
     this.router
       .navigateByUrl("/'agriculteur/operation/listeOperation", {
         skipLocationChange: true,
@@ -192,7 +184,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
 
   onClose() {
     this.dialog.closeAll();
-    // this.gotoList();
     this.onReload();
   }
   detailsOperation(operation: Operation) {
@@ -210,7 +201,6 @@ export class ListeOperationsRetraitComponent implements OnInit {
     dialogConfig.autoFocus = true;
     localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
     this.dialog.open(DetailsOperationComponent, dialogConfig);
-    //this.router.navigate(['employees/admin/detailemployee', id]);
   }
 
   updateOperationR(operation: Operation) {
@@ -228,41 +218,32 @@ export class ListeOperationsRetraitComponent implements OnInit {
     dialogConfig.autoFocus = true;
     localStorage.setItem('IdOperation', JSON.stringify(operation.idOperation));
     this.dialog.open(UpdateOperationRetraitComponent, dialogConfig);
-    //this.router.navigate(['employees/admin/updateemployee', id]);
   }
 
   onOpenDialogCreate(): void {
-    this.connected = JSON.parse(localStorage.getItem('state') || '[]') || []
-    console.log(this.connected)
-    // this.authService.loadToken();
-    // if (
-    //   this.authService.getToken() == null ||
-    //   this.authService.isTokenExpired()
-    // ) {
-    //   this.onClose();
-    //   this.router.navigate(['/login']);
-    //   this.onClose();
-    // }
+    this.connected = JSON.parse(localStorage.getItem('state') || '[]') || [];
+    console.log(this.connected);
+
     this.tankService.getTanksQteGenerale().subscribe((b) => {
       console.log(b);
-      if (b > 0 && this.connected == "connected") {
+      if (b > 0 && this.connected == 'connected') {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
         this.dialog.open(CreateOperationComponent, dialogConfig);
-      } else if(b<=0){
+      } else if (b <= 0) {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Erreur';
         this.Toast[1] =
           'Les tanks sont vides !! \n Vous ne pouvez pas effectué cette opération !!';
         this.showToast();
-      }else if(this.connected == "notconnected"){
+      } else if (this.connected == 'notconnected') {
         this.idContenu = 'TostDangerContenu';
         this.idTitle = 'TostDangerTile';
         this.Toast[0] = 'Erreur';
         this.Toast[1] =
-          'Vous n\'êtes pas connecté !! \n vous devez d\'abord vous connecter à metamask !!';
+          "Vous n'êtes pas connecté !! \n vous devez d'abord vous connecter à metamask !!";
         this.showToast();
       }
     });

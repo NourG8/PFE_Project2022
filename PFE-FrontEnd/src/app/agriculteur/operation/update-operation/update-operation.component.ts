@@ -8,71 +8,78 @@ import { OperationService } from 'src/app/Service/operation.service';
 @Component({
   selector: 'app-update-operation',
   templateUrl: './update-operation.component.html',
-  styleUrls: ['./update-operation.component.css']
+  styleUrls: ['./update-operation.component.css'],
 })
 export class UpdateOperationComponent implements OnInit {
+  operation: Operation = new Operation();
+  myForm!: FormGroup;
+  CheckesCompetance: boolean = false;
 
-  operation:Operation=new Operation();
-  myForm!:FormGroup;
-  CheckesCompetance:boolean=false;
-
-  constructor(private translateService :TranslateService,
+  constructor(
+    private translateService: TranslateService,
     private dialogClose: MatDialog,
-    private operationService:OperationService,
-  ) {  this.translateService.setDefaultLang('en');
-  this.translateService.use(localStorage.getItem('lang') || 'en') }
-
-  ngOnInit(): void {
-
-    this.ValidatedForm();
-    this.operationService.getOperation(JSON.parse(localStorage.getItem('IdOperation') || '[]') || []).subscribe(o =>{
-      this.operation = o;
-      console.log(this.operation);
-    });
-
+    private operationService: OperationService
+  ) {
+    this.translateService.setDefaultLang('en');
+    this.translateService.use(localStorage.getItem('lang') || 'en');
   }
 
-  updateOperation(){
-
+  ngOnInit(): void {
+    this.ValidatedForm();
     this.operationService
-        .updateOperation(this.operation.idOperation,{
-          "poidsLait":this.myForm.get('poidsLait')?.value,
-          "dateOperation":this.myForm.get('dateOperation')?.value,
-        })
-        .subscribe(o=>{
-          localStorage.setItem('Toast', JSON.stringify(["Success","Une opération a été ajouté avec succès"]));
+      .getOperation(
+        JSON.parse(localStorage.getItem('IdOperation') || '[]') || []
+      )
+      .subscribe((o) => {
+        this.operation = o;
+        console.log(this.operation);
+      });
+  }
+
+  updateOperation() {
+    this.operationService
+      .updateOperation(this.operation.idOperation, {
+        poidsLait: this.myForm.get('poidsLait')?.value,
+        dateOperation: this.myForm.get('dateOperation')?.value,
+      })
+      .subscribe(
+        (o) => {
+          localStorage.setItem(
+            'Toast',
+            JSON.stringify([
+              'Success',
+              'Une opération a été ajouté avec succès',
+            ])
+          );
           window.location.reload();
           console.log(this.operation);
         },
         (error) => {
-          console.log("Failed")
+          console.log('Failed');
         }
       );
   }
 
-  ValidatedForm(){
+  ValidatedForm() {
     this.myForm = new FormGroup({
-      'poidsLait' : new FormControl(null,[Validators.required,]),
-      'dateOperation' : new FormControl(null,[Validators.required, ]),
+      poidsLait: new FormControl(null, [Validators.required]),
+      dateOperation: new FormControl(null, [Validators.required]),
+    });
+  }
 
-      });
- }
+  get poidsLait() {
+    return this.myForm.get('poidsLait');
+  }
 
- get poidsLait(){
-  return this.myForm.get('poidsLait') ;
-}
+  get dateOperation() {
+    return this.myForm.get('dateOperation');
+  }
 
-get dateOperation(){
-  return this.myForm.get('dateOperation') ;
-}
-
-get typeOp(){
-  return this.myForm.get('typeOp') ;
-}
-
+  get typeOp() {
+    return this.myForm.get('typeOp');
+  }
 
   onClose() {
     this.dialogClose.closeAll();
   }
-
 }

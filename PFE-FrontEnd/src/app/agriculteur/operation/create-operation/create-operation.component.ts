@@ -14,11 +14,9 @@ import { Location } from '@angular/common';
 import { AuthService } from 'src/app/Service/auth.service';
 
 import { ethers } from 'ethers';
-import { asyncScheduler, Observable } from 'rxjs';
-import { Agriculteur } from 'src/app/Models/agriculteur';
+import { Observable } from 'rxjs';
 import { AgriculteurService } from 'src/app/Service/agriculteur.service';
 import { TranslateService } from '@ngx-translate/core';
-// import { CsvBuilder } from 'filefy';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { environment } from 'src/environments/environment';
@@ -40,7 +38,7 @@ export class CreateOperationComponent implements OnInit {
   msg4 = 0;
   msgErreur = 0;
   qteActLaitTank = 0;
-  connected !: Boolean;
+  connected!: Boolean;
   fullname = '';
   som = 10000;
   tab!: any[];
@@ -51,10 +49,6 @@ export class CreateOperationComponent implements OnInit {
     poidsLait: new FormControl(null, [Validators.required, Validators.min(1)]),
     collecteur: new FormControl(null, [Validators.required]),
     cgu: new FormControl(false, Validators.requiredTrue),
-    // dateOperation : new FormControl(null,[Validators.required ]),
-    //  typeOp : new FormControl(null,[Validators.required ]),
-    //tank : new FormControl(null,[Validators.required ]),
-    // lait : new FormControl(null,[Validators.required ]),
   });
   laits!: Observable<Lait[]>;
   tanks!: Observable<Tank[]>;
@@ -77,7 +71,7 @@ export class CreateOperationComponent implements OnInit {
   }
   jj!: number;
   async ngOnInit() {
-   await this.reloadDataFarmerRetrait01();
+    await this.reloadDataFarmerRetrait01();
     this.authService.loadToken();
     if (
       this.authService.getToken() == null ||
@@ -86,52 +80,32 @@ export class CreateOperationComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    //this.ValidatedForm();
     this.laits = this.laitService.getLaits();
     this.collecteurs = this.collecteurService.getCollecteurs();
     this.tanks = this.tankService.getTanksFiltres();
     this.operationService.getNbOp().subscribe((o) => {
-
       //this IF work only when u re connected to the metamask
       if (this.connected) {
         //this is to get the number of operation in the blockchain
         this.jj = this.AllOperationsFarmerTab.length;
-        console.log( this.jj)
-        //this is to compare the number of opertaion in the database static and the number of operation in the blockchain andd return the bigger number 
+        console.log(this.jj);
+        //this is to compare the number of opertaion in the database static and the number of operation in the blockchain andd return the bigger number
 
-          this.som = this.som +  this.jj + 1;
-    
-     
-
-
-        }  });
- 
+        this.som = this.som + this.jj + 1;
+      }
+    });
   }
   exportOne(op: Operation) {
-    // new CsvBuilder("operation.csv")
-    // .setColumns(["#ID","Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"])
-    // .addRow([op.idOperation.toString() , op.poidsLait.toString() , op.code.toString() , op.collecteur.nomCollecteur , op.dateOperation , confirmation])
-    // .exportFile();
-
     const doc = new jsPDF();
     var imageData = environment.img;
     const n = op.code.toString() + '.pdf';
-    this.fullname =op.agriculteur.nom.toString()+' '+op.agriculteur.prenom.toString()
-    // const head = [['ID',"Quantity of milk taken(Kg)","Operation Code","collector name","Operation Date","Action"]]
-    // const data = [
-    //     [op.idOperation, op.poidsLait, op.code , op.collecteur.nomCollecteur , op.dateOperation , confirmation],
+    this.fullname =
+      op.agriculteur.nom.toString() + ' ' + op.agriculteur.prenom.toString();
     doc.addImage(imageData, 'JPEG', 0, 0, 210, 297);
-    // ]
     doc.text(op.code.toString(), 92, 54);
     doc.text(this.fullname, 75, 107.2);
     doc.text(op.collecteur.nomCollecteur.toString(), 107, 139);
     doc.text(op.dateOperation.toString(), 120, 123.5);
-    // doc.text(op.code.toString().toString(),92,157)
-    // autoTable(doc, {
-    //     head: head,
-    //     body: data,
-    //     didDrawCell: (data) => { },
-    // });
 
     doc.save(n);
   }
@@ -147,11 +121,10 @@ export class CreateOperationComponent implements OnInit {
   async requestAccount() {
     if (typeof window.ethereum !== 'undefined') {
       await window.ethereum.request({ method: 'eth_requestAccounts' });
-    } 
+    }
   }
 
   save() {
-    
     environment.wating = 'startwaiting';
     this.onReload();
     if (this.myForm.get('poidsLait')?.value == null) {
@@ -189,7 +162,6 @@ export class CreateOperationComponent implements OnInit {
             this.operation.poidsLait = this.tab[1];
             this.operation.agriculteur = this.tab[5];
 
-
             this.collecteurService
               .getCollecteur(this.myForm.get('collecteur')?.value)
               .subscribe(async (b) => {
@@ -206,10 +178,7 @@ export class CreateOperationComponent implements OnInit {
                 if (environment.wating == 'rejected') {
                   localStorage.setItem(
                     'Toast',
-                    JSON.stringify([
-                      'Failed',
-                      'L\'opération a été rejetée',
-                    ])
+                    JSON.stringify(['Failed', "L'opération a été rejetée"])
                   );
                 } else {
                   localStorage.setItem(
@@ -221,7 +190,6 @@ export class CreateOperationComponent implements OnInit {
                   );
                 }
               });
-
           },
           (error) => {
             console.log('Failed');
@@ -234,8 +202,8 @@ export class CreateOperationComponent implements OnInit {
   AllOperationsFarmerTab!: Operation[];
   async reloadDataFarmerRetrait01() {
     if (typeof window.ethereum !== 'undefined') {
-    try {
-      const depKEY = Object.keys(Remplissage.networks)[0];
+      try {
+        const depKEY = Object.keys(Remplissage.networks)[0];
 
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
@@ -245,16 +213,14 @@ export class CreateOperationComponent implements OnInit {
           signer
         );
         this.AllOperationsFarmerTab = await contract.getOperations();
-        console.log(this.AllOperationsFarmerTab)
-        this.connected = true
-     
-    } catch (error) {
-      this.connected = false
-    } }
-
+        console.log(this.AllOperationsFarmerTab);
+        this.connected = true;
+      } catch (error) {
+        this.connected = false;
+      }
+    }
   }
   async saveInBc(oppr: Operation) {
-    //this is for waiting the metamask window confirmation
     this.onReload();
 
     const depKEY = Object.keys(Remplissage.networks)[0];
@@ -280,63 +246,16 @@ export class CreateOperationComponent implements OnInit {
     }
     if (this.confirmation == 'confirmed') {
       environment.wating = 'confirmed';
-
     }
 
     if (this.confirmation == 'rejected') {
       environment.wating = 'rejected';
-      this.operationService
-        .deleteOperation(oppr.idOperation).subscribe(d => { this.onReload(); });
+      this.operationService.deleteOperation(oppr.idOperation).subscribe((d) => {
+        this.onReload();
+      });
     }
-    this.onReload()
+    this.onReload();
   }
-
-  // save() {
-
-  //   if(this.myForm.get('poidsLait')?.value==null){
-  //     this.msg="vous devez remplir le formulaire !!";
-  //    }
-  //    else{
-  //     this.msg="";
-  //    }
-
-  //    if(this.myForm.get('poidsLait')?.value!=null){
-
-  //   this.operationService
-  //   .createOperation(
-  //     {
-  //       "poidsLait":this.myForm.get('poidsLait')?.value
-  //       },
-
-  //   )
-  //   .subscribe(o=>{
-  //     window.location.reload();
-  //     console.log(this.operation);
-  //     localStorage.setItem('Toast', JSON.stringify(["Success","Une operation a été ajouté avec succès"]));
-  //     window.location.reload();
-  //   },
-  //   (error) => {
-  //     console.log("Failed")
-  //   }
-  // );
-  //    }
-  //  ****************   Tank    ******************
-  //     let bb=this.tankService.getTank(this.myForm.get('tank')?.value).subscribe(o=>{
-  //       this.t=o;
-  //       console.log(o);
-  //       console.log(this.t);
-  //       console.log(o.poidActuel);
-  // if(o.poidActuel<this.myForm.get('poidsLait')?.value){
-  // this.msgErreur=1;
-  // this.qteActLaitTank=o.poidActuel;
-  //     }
-  // else
-  // this.msgErreur=0;
-  //     });
-  // if(this.qteActLaitTank>=this.myForm.get('poidsLait')?.value){
-
-  // }
-  //for testing
 
   async onSubmit() {
     if (this.myForm.get('poidsLait')?.value == null) {
@@ -381,7 +300,6 @@ export class CreateOperationComponent implements OnInit {
   }
 
   onReload(): void {
-    // this.router.navigate([this.router.url]);
     this.router
       .navigateByUrl("/'agriculteur/operation/listeOperationRetrait", {
         skipLocationChange: true,
@@ -393,7 +311,6 @@ export class CreateOperationComponent implements OnInit {
 
   onClose() {
     this.dialogClose.closeAll();
-    // this.gotoList();
     this.onReload();
   }
   get poidsLait() {
@@ -403,8 +320,4 @@ export class CreateOperationComponent implements OnInit {
   get collecteur() {
     return this.myForm.get('collecteur');
   }
-
-  // get lait(){
-  //   return this.myForm.get('lait') ;
-  // }
 }

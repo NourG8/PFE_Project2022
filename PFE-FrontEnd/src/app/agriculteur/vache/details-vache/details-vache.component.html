@@ -1,125 +1,63 @@
-<!-- <div class="ContenuCard"  >
-    <div class="modal-header">
-        <h1 id="modal-title"><b>Details pour la vache numero : {{idV}} </b></h1>
-  <div>
-    <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div><br>
-    
-  </div>
-  <br>
-  <div *ngIf="vache">
-  
-    <div class="form-group text-center">
-    <label>Matricule :</label> 
-    <span id="interviewDate">  {{vache.matricule}} </span>
-  </div>
+<div class="wrapper" *ngIf="vache">
+  <div class="card text-white">
 
-  <div class="form-group text-center">
-    <label>Poids :</label> 
-    <span id="interviewDate">  {{vache.poids}} </span>
-  </div>
-  
-  
-  <div class="form-group text-center">
-    <label>Race :</label> {{vache.race}}
-  </div>
-  <div class="form-group text-center">
-    <label>Date Naissance :</label> {{vache.dateNaissance}}
-  </div>
-  <div class="form-group text-center" >
-    <label>Etat : </label> {{vache.etat}}
-  </div>
+    <div class="bg-pink">
 
-  <div class="form-group text-center" >
-    <label>Quantite production laits : </label> {{vache.qte_prodLait}}
-  </div>
+    </div>
 
-  </div>			
-  <div style="text-align: center;">
-    <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
-  </div>
-  </div>
-   -->
-  
-
-
-
-  <div class="wrapper" *ngIf="vache">
-    <div class="card text-white">
-      
-        <div class="bg-pink">
-<!-- 
-          <div tyle="margin-left:120px">
-            <button type="button" style="margin-left:-420px ;color:white;size:750px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div><br> -->
-
+    <div class="img-container d-flex align-items-center justify-content-center">
+      <h5>{{'Consult the cow number' | translate}}</h5>
+    </div>
+    <div class="user">
+      <div class="h5 text-center m-0"> {{idV}} </div>
+    </div>
+    <div class="px-3">
+      <div class="d-flex align-items-center justify-content-between py-3 pe-none">
+        <div class="details snippets">
         </div>
-        
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the cow number' | translate}}</h5> </div>
-        <div class="user">
-            <div class="h5 text-center m-0"> {{idV}} </div>
+        <div class="details post">
         </div>
-        <div class="px-3">
-            <div class="d-flex align-items-center justify-content-between py-3 pe-none">
-                <div class="details snippets">
-                </div>
-                <div class="details post">
-                </div>
-            </div>
-            <div class="skills">
-                <div class=" head text-uppercase"><h5> {{'Other Information' | translate}}:</h5></div>
-                <div class=" pb-5 pt-3">
-  
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Cow registration number' | translate}} :</span>
-                    <span>{{vache.matricule}}</span>
-                  </div>
-  
-                    <!-- <div class="text-uppercase fs-08">
-                      <span id="titre"> Etat de la vache :</span>
-                      <span id="titre">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.etat}}</span>
-                    </div> -->
+      </div>
+      <div class="skills">
+        <div class=" head text-uppercase">
+          <h5> {{'Other Information' | translate}}:</h5>
+        </div>
+        <div class=" pb-5 pt-3">
 
-                    <div class="text-uppercase fs-08">
-                      <span id="titre"> {{'breed of cow' | translate}}:</span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.race}}</span>
-                    </div>
-
-                    <div class="text-uppercase fs-08">
-                      <span id="titre">  {{'Date of birth' | translate}}:</span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.dateNaissance}}</span>
-                    </div>
-
-                    <div class="text-uppercase fs-08">
-                      <span id="titre"> {{'cow weight' | translate}}: </span>
-                      <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.poids}} Kg </span>
-                    </div>
-
-                    <!-- <div class="text-uppercase fs-08">
-                      <span id="titre"> Quantité de production laits:</span>
-                      <span><span id="titre">{{vache.qte_prodLait}}litres</span></span>
-                    </div> -->
-
-                    
-                    
-                </div>
-            </div>
-            <br>        <br> 
-  
-            <div class="details project">
-              <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  {{'Close details' | translate}}
-                </button>
-              </div>
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Cow registration number' | translate}} :</span>
+            <span>{{vache.matricule}}</span>
           </div>
-  
-  
+          <div class="text-uppercase fs-08">
+            <span id="titre"> {{'breed of cow' | translate}}:</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.race}}</span>
+          </div>
+
+          <div class="text-uppercase fs-08">
+            <span id="titre"> {{'Date of birth' | translate}}:</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.dateNaissance}}</span>
+          </div>
+
+          <div class="text-uppercase fs-08">
+            <span id="titre"> {{'cow weight' | translate}}: </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{vache.poids}}
+              Kg </span>
+          </div>
+
         </div>
+      </div>
+      <br> <br>
+
+      <div class="details project">
+        <div class="head text-uppercase">
+          <button id="btn" (click)="closeDetails()" style="margin-left:115px;"
+            class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+            {{'Close details' | translate}}
+          </button>
+        </div>
+      </div>
+
+
     </div>
   </div>
-    
+</div>

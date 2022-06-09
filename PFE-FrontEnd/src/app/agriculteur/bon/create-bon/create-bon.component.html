@@ -1,4 +1,4 @@
-<div class="ContenuCard" >
+<div class="ContenuCard">
   <div class="modal-header">
     <h2 id="modal-title"><b>{{'Create an entry voucher' | translate }}</b></h2>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
@@ -6,108 +6,79 @@
     </button>
   </div>
   <span style="color:red;margin-top:-105px;font-size:1.1em">(*){{'Required Field' | translate }} </span><br><br>
-        <form [formGroup]="myForm"  novalidate >
-          <div class="form-row">
-            <div class="form-group col-md-6 mb-3">
-              <label>{{'Quantity' | translate }} (kg): <span style="color:red;">*</span></label>
-              <input type="number"
-               formControlName="quantite"
-               class="form-control"
-               id="quantite"
-               name="quantite">
-
-              <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
-                {{'Invalid quantity' | translate }}!
-              </div>
-              <div *ngIf="quantite?.valid && quantite?.touched " class="text-success">
-                {{'Valid quantity' | translate }}!
-              </div>
-              <div *ngIf="msgErreur==1" class="text-danger">
-                {{'p0' | translate }} {{qteAct}} !
-                <br>{{'p1' | translate }} {{qteAct}} .
-              </div>
-
-            </div>
-            
-
-
-            <div class="col-md-6 mb-3">
-              <label for="prix">{{'price' | translate }}  (dt): <span style="color:red;">*</span></label>
-              <input type="number"
-               class="form-control"
-                id="prix"
-                formControlName="prix"
-                name="prix">
-
-                <div *ngIf="prix?.invalid && prix?.touched" class="text-danger">
-                   {{'Invalid price' | translate }}!
-                </div>
-                <div *ngIf="prix?.valid && prix?.touched" class="text-success">
-                   {{'Valid price' | translate }}
-                </div>
-
-            </div>
-
-          </div>
-
-
-          <div class="form-row">
-
-            <div class="col-md-6 mb-3">
-              <label class="mr-sm-5" for="inlineFormCustomSelect">{{'Products' | translate }} : <span style="color:red;">*</span></label>
-              <select formControlName="produit" name="produit"  class="custom-select mr-sm-2" id="produit" >
-                <option disabled selected value [ngValue]="null">{{'Choose a product' | translate }}...</option>
-                <option *ngFor="let produit of produits | async" [value]="produit.idProduit">{{produit.intitule}}</option>
-              </select>
-              <div
-              *ngIf="produit?.invalid && produit?.touched"
-               class="text-danger">
-               {{'invalid Product' | translate }}!
-           </div>
-             <div
-             *ngIf="produit?.valid && produit?.touched"
-             class="text-success">
-             {{'valid Product' | translate }}!
-           </div>
-            </div>
-
-            <div class="col-md-6 mb-3">
-              <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate }} : <span style="color:red;">*</span></label>
-              <select formControlName="fournisseur" name="fournisseur"  class="custom-select mr-sm-2" id="fournisseur" >
-                <option disabled selected value [ngValue]="null">{{'Choose a' | translate }} {{'supplier' | translate }}...</option>
-                <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}  {{fournisseur.prenom}}</option>
-              </select>
-              <div
-              *ngIf="fournisseur?.invalid && fournisseur?.touched"
-               class="text-danger">
-                {{'invalid supplier' | translate }}!
-           </div>
-             <div
-             *ngIf="fournisseur?.valid && fournisseur?.touched"
-             class="text-success">
-             {{'valid supplier' | translate }}!
-           </div>
-            </div>
-
-          </div>
-        
-
-
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate }}</label>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate }}</label>
-              <br>
-              <span style="color:red;margin-bottom:45px;font-size:1.1em"*ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
-              <div class="invalid-feedback">{{'p3' | translate }}</div>
-            </div>
-          </div>
-          <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate }}</button>
-          <!-- close popup -->
-          <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate }}</button>
-
-        </form>
+  <form [formGroup]="myForm" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-6 mb-3">
+        <label>{{'Quantity' | translate }} (kg): <span style="color:red;">*</span></label>
+        <input type="number" formControlName="quantite" class="form-control" id="quantite" name="quantite">
+        <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
+          {{'Invalid quantity' | translate }}!
+        </div>
+        <div *ngIf="quantite?.valid && quantite?.touched " class="text-success">
+          {{'Valid quantity' | translate }}!
+        </div>
+        <div *ngIf="msgErreur==1" class="text-danger">
+          {{'p0' | translate }} {{qteAct}} !
+          <br>{{'p1' | translate }} {{qteAct}} .
+        </div>
       </div>
-
-
+      <div class="col-md-6 mb-3">
+        <label for="prix">{{'price' | translate }} (dt): <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" id="prix" formControlName="prix" name="prix">
+        <div *ngIf="prix?.invalid && prix?.touched" class="text-danger">
+          {{'Invalid price' | translate }}!
+        </div>
+        <div *ngIf="prix?.valid && prix?.touched" class="text-success">
+          {{'Valid price' | translate }}
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label class="mr-sm-5" for="inlineFormCustomSelect">{{'Products' | translate }} : <span
+            style="color:red;">*</span></label>
+        <select formControlName="produit" name="produit" class="custom-select mr-sm-2" id="produit">
+          <option disabled selected value [ngValue]="null">{{'Choose a product' | translate }}...</option>
+          <option *ngFor="let produit of produits | async" [value]="produit.idProduit">{{produit.intitule}}</option>
+        </select>
+        <div *ngIf="produit?.invalid && produit?.touched" class="text-danger">
+          {{'invalid Product' | translate }}!
+        </div>
+        <div *ngIf="produit?.valid && produit?.touched" class="text-success">
+          {{'valid Product' | translate }}!
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate }} : <span
+            style="color:red;">*</span></label>
+        <select formControlName="fournisseur" name="fournisseur" class="custom-select mr-sm-2" id="fournisseur">
+          <option disabled selected value [ngValue]="null">{{'Choose a' | translate }} {{'supplier' | translate }}...
+          </option>
+          <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">
+            {{fournisseur.nom}} {{fournisseur.prenom}}</option>
+        </select>
+        <div *ngIf="fournisseur?.invalid && fournisseur?.touched" class="text-danger">
+          {{'invalid supplier' | translate }}!
+        </div>
+        <div *ngIf="fournisseur?.valid && fournisseur?.touched" class="text-success">
+          {{'valid supplier' | translate }}!
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate }}</label>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate }}</label>
+        <br>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
+          fields' | translate}}</span>
+        <div class="invalid-feedback">{{'p3' | translate }}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()" type="submit">{{'Send' | translate
+      }}</button>
+    <!-- close popup -->
+    <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate }}</button>
+  </form>
+</div>

@@ -1,150 +1,87 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h2 id="modal-title"><b> {{'Add a new center' | translate}} :</b></h2>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
-          <form [formGroup]="myForm"  novalidate >
-            <div class="form-row">
-              <div class="form-group col-md-12 mb-3">
-                <label> {{'Center name (minimum 4 characters)' | translate}} <span style="color:red;">*</span></label>
-                <input type="text"
-                 formControlName="nomCollecteur"
-                 class="form-control"
-                 minlength="3"
-                 id="nomCollecteur"
-                 [(ngModel)]="collecteur.nomCollecteur"
-                 name="nomCollecteur">
-    
-                <div *ngIf="nomCollecteur?.invalid && nomCollecteur?.touched || msg1==1" class="text-danger">
-                  {{'Invalid center name' | translate}}  !
-                </div>
-                <div *ngIf="nomCollecteur?.valid && nomCollecteur?.touched && msg1==0" class="text-success">
-                  {{'Valid center name' | translate}}!
-                </div>
-                <div *ngIf="msg1==1"  class="text-danger">
-                  {{'Center name already exists' | translate}}!
-                </div>
-              </div>
-
-              <!-- <div class="form-group col-md-6 mb-3">
-                <label>Numéro de matricule : <span style="color:red;">*</span></label>
-                <p>(minimum 8 caractéres) </p>
-                <input type="text"
-                 formControlName="matricule"
-                 class="form-control"
-                 id="matricule"
-                 [(ngModel)]="collecteur.matricule"
-                 name="matricule">
-    
-                <div *ngIf="matricule?.invalid && matricule?.touched || msg3==1" class="text-danger">
-                  Numéro de matricule invalide !
-                </div>
-                <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
-                  Numéro de matricule valide!
-                </div>
-                <div *ngIf="msg3==1"  class="text-danger">
-                  &nbsp; Numéro de matricule existe deja !
-                </div>
-              </div>
-   -->
-            </div>
-
-
-            <div class="form-row">
-              <div class="form-group col-md-12 mb-3">
-                <label for="type">{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
-                <p> </p>
-                <input type="text"
-                 class="form-control"
-                  id="matricule"
-                  minlength="8"
-                  formControlName="matricule"
-                  [(ngModel)]="collecteur.matricule"
-                  name="matricule">
-    
-                  <div *ngIf="matricule?.invalid && matricule?.touched " class="text-danger">
-                    {{'Invalid registration number' | translate}} !
-                  </div>
-                  <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
-                    {{'Valid registration number' | translate}}!
-                  </div>
-                  <div *ngIf="msg3==1"  class="text-danger">
-                    &nbsp;  {{'Registration number already exists' | translate}}!
-                  </div>
-              </div>
-  
-            </div>
-             
-           
-
-            <div class="form-row">
-              <div class="form-group col-md-12 mb-3">
-
-
-                <label for="type">Phone number (8 digits) : <span style="color:red;">*</span></label>
-                <input type="number"
-                 class="form-control"
-                  id="tel"
-                  formControlName="tel"
-                  [(ngModel)]="collecteur.tel"
-                  name="tel">
-    
-                  <div *ngIf="tel?.invalid && tel?.touched || msg2==1" class="text-danger">
-                    {{'Invalid phone number' | translate}}!
-                  </div>
-                  <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
-                    {{'Valid phone number' | translate}}!
-                  </div>
-                  <div *ngIf="msg2==1"  class="text-danger">
-                    {{'Phone number already exists' | translate}} !
-                  </div>
-
-
-
-               
-              </div>
-
-              <div class="form-group col-md-12 mb-3">
-                <label>{{'Address (minimum 3 characters)' | translate}} : <span style="color:red;">*</span></label>
-                <input type="text"
-                 formControlName="adresse"
-                 class="form-control"
-                 minlength="3"
-                 id="adresse"
-                 [(ngModel)]="collecteur.adresse"
-                 name="adresse">
-    
-                <div *ngIf="adresse?.invalid && adresse?.touched " class="text-danger">
-                  {{'Invalid address' | translate}} !
-                </div>
-                <div *ngIf="adresse?.valid && adresse?.touched " class="text-success">
-               {{'Valid address' | translate}}!
-                </div>
-              </div>
-  
-
-            </div>
-  
-            <div class="form-group">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
-                <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
-                <br>
-                <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
-                <div class="invalid-feedback">{{'p3' | translate}}</div>
-              </div>
-            </div>
-            <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate}}</button>
-            <!-- close popup -->
-            <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-  
-          </form>
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h2 id="modal-title"><b> {{'Add a new center' | translate}} :</b></h2>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
+  <form [formGroup]="myForm" novalidate>
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-3">
+        <label> {{'Center name (minimum 4 characters)' | translate}} <span style="color:red;">*</span></label>
+        <input type="text" formControlName="nomCollecteur" class="form-control" minlength="3" id="nomCollecteur"
+          [(ngModel)]="collecteur.nomCollecteur" name="nomCollecteur">
+        <div *ngIf="nomCollecteur?.invalid && nomCollecteur?.touched || msg1==1" class="text-danger">
+          {{'Invalid center name' | translate}} !
         </div>
-  
-  
-  
-    
+        <div *ngIf="nomCollecteur?.valid && nomCollecteur?.touched && msg1==0" class="text-success">
+          {{'Valid center name' | translate}}!
+        </div>
+        <div *ngIf="msg1==1" class="text-danger">
+          {{'Center name already exists' | translate}}!
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-3">
+        <label for="type">{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}} : <span
+            style="color:red;">*</span></label>
+        <p> </p>
+        <input type="text" class="form-control" id="matricule" minlength="8" formControlName="matricule"
+          [(ngModel)]="collecteur.matricule" name="matricule">
+        <div *ngIf="matricule?.invalid && matricule?.touched " class="text-danger">
+          {{'Invalid registration number' | translate}} !
+        </div>
+        <div *ngIf="matricule?.valid && matricule?.touched && msg3==0" class="text-success">
+          {{'Valid registration number' | translate}}!
+        </div>
+        <div *ngIf="msg3==1" class="text-danger">
+          &nbsp; {{'Registration number already exists' | translate}}!
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12 mb-3">
+        <label for="type">Phone number (8 digits) : <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" id="tel" formControlName="tel" [(ngModel)]="collecteur.tel"
+          name="tel">
+        <div *ngIf="tel?.invalid && tel?.touched || msg2==1" class="text-danger">
+          {{'Invalid phone number' | translate}}!
+        </div>
+        <div *ngIf="tel?.valid && tel?.touched && msg2==0" class="text-success">
+          {{'Valid phone number' | translate}}!
+        </div>
+        <div *ngIf="msg2==1" class="text-danger">
+          {{'Phone number already exists' | translate}} !
+        </div>
+      </div>
+      <div class="form-group col-md-12 mb-3">
+        <label>{{'Address (minimum 3 characters)' | translate}} : <span style="color:red;">*</span></label>
+        <input type="text" formControlName="adresse" class="form-control" minlength="3" id="adresse"
+          [(ngModel)]="collecteur.adresse" name="adresse">
+        <div *ngIf="adresse?.invalid && adresse?.touched " class="text-danger">
+          {{'Invalid address' | translate}} !
+        </div>
+        <div *ngIf="adresse?.valid && adresse?.touched " class="text-success">
+          {{'Valid address' | translate}}!
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate}}</label>
+        <br>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
+          fields' | translate}}</span>
+        <div class="invalid-feedback">{{'p3' | translate}}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()" type="submit">{{'Send' |
+      translate}}</button>
+    <!-- close popup -->
+    <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+  </form>
+</div>

@@ -1,134 +1,72 @@
-<!-- <div class="ContenuCard"  >
-  <div class="modal-header">
-      <h1 id="modal-title"><b>Details pour le bon numero : {{idB}} </b></h1>
-<div>
-  <button type="button" style="margin-left:230px ;size:450px;" (click)="closeDetails()" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div><br>
-  
-</div>
-<br>
-<div *ngIf="bon">
-
-<div class="form-group text-center">
-  <label>Quantite :</label> 
-  <span id="interviewDate">  {{bon.quantite}} </span>
-</div>
-
-<div class="form-group text-center">
-  <label>Type :</label> {{bon.type}}
-</div>
-<div class="form-group text-center">
-  <label>Date :</label> {{bon.date}}
-</div>
-<div class="form-group text-center" >
-  <label>Prix : </label> {{bon.prix}}
-</div>
-<div class="form-group text-center" >
-  <label>Produit : </label> {{bon.produit.intitule}}
-</div>
-
-<div class="form-group text-center" >
-  <label>Nom de l'agriculteur : </label> {{bon.agriculteur.nom}}
-</div>
-
-<div class="form-group text-center" >
-  <label>Nom du fournisseur : </label> {{bon.fournisseur.nom}}
-</div>
-
-</div>			
-<div style="text-align: center;">
-  <button (click)="closeDetails()" class="btn btn-success">Close Details</button>
-</div>
-</div>
- -->
-
-
-
-
-
-
 <div class="wrapper" *ngIf="bon">
   <div class="card text-white">
-      <div class="bg-pink"></div>
-      <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the voucher number' | translate}}</h5> </div>
-      <div class="user">
-          <div class="h5 text-center m-0"> {{idB}} </div>
-      </div>
-      <div class="px-3">
-          <div class="d-flex align-items-center justify-content-between py-3 pe-none">
-              <div class="details snippets">
-              </div>
-              <div class="details post">
-              </div>
-          </div>
-          <div class="skills">
-              <div class=" head text-uppercase"><h5>{{'Other Information' | translate}} :</h5></div>
-              <div class=" pb-5 pt-3">
-                <div class="text fs-08" *ngIf="bon.type=='Entree'">
-                  <span style="margin-left:20px;">{{'Its an entry voucher' | translate}}</span>
-                </div>
-
-                <div class="text fs-08" *ngIf="bon.type=='Sortie'">
-                  <span style="margin-left:20px;">{{'Its an exit voucher' | translate}}</span>
-                </div>
-
-                <div class="text-uppercase fs-08">
-                  <span id="titre">{{'Voucher date' | translate}} : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
-                </div>
-
-                <div class="text-uppercase fs-08">
-                  <span id="titre">{{'Product title' | translate}} : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
-                </div>
-
-                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
-                  <span id="titre">  {{'price' | translate}} (dt) : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
-                </div>
-
-                <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
-                  <span id="titre">{{'Quantity inserted' | translate}} : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}  Kg</span></span>
-                </div>
-
-                <div class="text-uppercase fs-08" *ngIf="bon.type=='Sortie'">
-                  <span id="titre">{{'Quantity withdrawn' | translate}} : </span>
-                  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}  Kg</span></span>
-                </div>
-                  <!-- <div class="text-uppercase fs-08">
-                    <span id="titre"> Type (Entree/Sortie) :</span>
-                    <span id="titre">{{bon.type}}</span>
-                  </div> -->
-                
-
-                  <div class="text-uppercase fs-08"  *ngIf="bon.type=='Entree'">
-                    <span id="titre">{{'Name of supplier' | translate}} :</span>
-                    <span>{{bon.fournisseur.nom}} {{bon.fournisseur.prenom}}</span>
-                  </div>
-
-               
-
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Quantity produced' | translate}} : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.qte}} Kg</span>
-                  </div>
-               
-                  
-              </div>
-          </div>
-
-          <div class="details project">
-            <div class="head text-uppercase">
-              <button id="btn" (click)="closeDetails()"  style="margin-left:145px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                {{'Close' | translate}}
-              </button>
-            </div>
+    <div class="bg-pink"></div>
+    <div class="img-container d-flex align-items-center justify-content-center">
+      <h5>{{'Consult the voucher number' | translate}}</h5>
+    </div>
+    <div class="user">
+      <div class="h5 text-center m-0"> {{idB}} </div>
+    </div>
+    <div class="px-3">
+      <div class="d-flex align-items-center justify-content-between py-3 pe-none">
+        <div class="details snippets">
         </div>
-
-
+        <div class="details post">
+        </div>
       </div>
+      <div class="skills">
+        <div class=" head text-uppercase">
+          <h5>{{'Other Information' | translate}} :</h5>
+        </div>
+        <div class=" pb-5 pt-3">
+          <div class="text fs-08" *ngIf="bon.type=='Entree'">
+            <span style="margin-left:20px;">{{'Its an entry voucher' | translate}}</span>
+          </div>
+          <div class="text fs-08" *ngIf="bon.type=='Sortie'">
+            <span style="margin-left:20px;">{{'Its an exit voucher' | translate}}</span>
+          </div>
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Voucher date' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.date}}</span>
+          </div>
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Product title' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.intitule}}</span>
+          </div>
+          <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
+            <span id="titre"> {{'price' | translate}} (dt) : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;<span id="titre">{{bon.prix}} dt</span></span>
+          </div>
+          <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
+            <span id="titre">{{'Quantity inserted' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}
+                Kg</span></span>
+          </div>
+          <div class="text-uppercase fs-08" *ngIf="bon.type=='Sortie'">
+            <span id="titre">{{'Quantity withdrawn' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="titre">{{bon.quantite}}
+                Kg</span></span>
+          </div>
+          <div class="text-uppercase fs-08" *ngIf="bon.type=='Entree'">
+            <span id="titre">{{'Name of supplier' | translate}} :</span>
+            <span>{{bon.fournisseur.nom}} {{bon.fournisseur.prenom}}</span>
+          </div>
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Quantity produced' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{bon.produit.qte}}
+              Kg</span>
+          </div>
+        </div>
+      </div>
+      <div class="details project">
+        <div class="head text-uppercase">
+          <button id="btn" (click)="closeDetails()" style="margin-left:145px;"
+            class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+            {{'Close' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

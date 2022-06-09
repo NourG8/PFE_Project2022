@@ -7,20 +7,17 @@ import { CreateFournisseurComponent } from './create-fournisseur/create-fourniss
 import { UpdateFournisseurComponent } from './update-fournisseur/update-fournisseur.component';
 import { DetailsFournissseurComponent } from './details-fournissseur/details-fournissseur.component';
 
-
-
 const routes: Routes = [
   { path: '', component: FournisseurComponent },
   { path: 'listeFournisseur', component: ListeFournisseurComponent },
-  { path: 'addFournisseur', component: CreateFournisseurComponent  },
-  { path: 'detailsFournisseur/:id', component: DetailsFournissseurComponent   },
-  { path: 'updateFournisseur/:id', component: UpdateFournisseurComponent  },
-  { path:'',redirectTo:'/fournisseur',pathMatch:'full'},
-  // {  path:'**', component: FournisseurComponent },
+  { path: 'addFournisseur', component: CreateFournisseurComponent },
+  { path: 'detailsFournisseur/:id', component: DetailsFournissseurComponent },
+  { path: 'updateFournisseur/:id', component: UpdateFournisseurComponent },
+  { path: '', redirectTo: '/fournisseur', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class FournisseurRoutingModule { }
+export class FournisseurRoutingModule {}

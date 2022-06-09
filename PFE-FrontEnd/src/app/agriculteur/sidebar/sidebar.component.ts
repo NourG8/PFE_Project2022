@@ -5,26 +5,20 @@ import { AuthService } from 'src/app/Service/auth.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent implements OnInit {
-
-  constructor (public authService: AuthService,private translateService :TranslateService) {
+  constructor(
+    public authService: AuthService,
+    private translateService: TranslateService
+  ) {
     this.translateService.setDefaultLang('en');
-      this.translateService.use(localStorage.getItem('lang') || 'en')
-    }
-
-
-  ngOnInit(): void {
-
+    this.translateService.use(localStorage.getItem('lang') || 'en');
   }
 
-//   routeIsActive(routePath: string) {
-//     return this.router.url == routePath;
-// }
+  ngOnInit(): void {}
 
-getClass() {
-  return "active"
-}
-
+  getClass() {
+    return 'active';
+  }
 }
