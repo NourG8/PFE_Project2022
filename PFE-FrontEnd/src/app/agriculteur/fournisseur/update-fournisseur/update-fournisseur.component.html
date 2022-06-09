@@ -1,77 +1,55 @@
-<div class="ContenuCard" >
-    <div class="modal-header">
-      <h3 id="modal-title"><b>{{'Change supplier number' | translate}} :{{fournisseur.idFournisseur}}</b></h3>
-      <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
-    <form [formGroup]="myForm" class="needs-validation" novalidate>
-      <div class="form-group">
-        <label>{{'Last name and first name' | translate}} {{'(minimum 3 characters)' | translate}}: <span style="color:red;">*</span></label>
-        <input type="text"
-               class="form-control"
-               formControlName="nom"
-               name="nom"
-               minlength="3"
-               [(ngModel)]="fournisseur.nom"
-               placeholder="Post Name here ..">
-          <div
-               *ngIf="nom?.invalid && nom?.touched"
-                class="text-danger">
-                 {{'Invalid name' | translate}}!
-         </div>
-         <div
-              *ngIf="nom?.valid && nom?.touched"
-              class="text-success">
-               {{'Valid name' | translate}} !
-         </div>
-      </div>
-      <div class="lg mb-3">
-        <label>{{'First name' | translate}} {{'(minimum 3 characters)' | translate}}: <span style="color:red;">*</span></label>
-        <input class="form-control"
-                  name="prenom"
-                  [(ngModel)]="fournisseur.prenom"
-                  formControlName="prenom"
-                  >
-            <div
-                  *ngIf="prenom?.invalid && prenom?.touched"
-                   class="text-danger">
-                   {{'Invalid first name' | translate}}!
-            </div>
-            <div
-                 *ngIf="prenom?.valid && prenom?.touched"
-                 class="text-success">
-                 {{'Valid first name' | translate}}!
-            </div>
-      </div>
-
-      <div class="lg mb-3">
-        <label>{{'matricule' | translate}} {{'(minimum 8 characters)' | translate}} : <span style="color:red;">*</span></label>
-        <input class="form-control"
-                  placeholder="Description Post here ...."
-                  name="matricule"
-                  minlength="8"
-                  formControlName="matricule"
-                  [(ngModel)]="fournisseur.matricule"
-                  >
-            <div
-                  *ngIf="matricule?.invalid && matricule?.touched"
-                   class="text-danger">
-                   {{'Invalid registration number' | translate}}!
-            </div>
-            <div
-                 *ngIf="matricule?.valid && matricule?.touched"
-                 class="text-success">
-                  {{'Valid registration number' | translate}}!
-            </div>
-      </div>
-  
-      <div class="modal-footer">
-        <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-        <button type="submit" (click)="updateFournisseur()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
-      </div>
-    </form>
-  
+<div class="ContenuCard">
+  <div class="modal-header">
+    <h3 id="modal-title"><b>{{'Change supplier number' | translate}} :{{fournisseur.idFournisseur}}</b></h3>
+    <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
-  
+  <span style="color:red;margin-top:-105px;font-size:1.1em">(*) {{'Required Field' | translate}}</span><br><br>
+  <form [formGroup]="myForm" class="needs-validation" novalidate>
+    <div class="form-group">
+      <label>{{'Last name and first name' | translate}} {{'(minimum 3 characters)' | translate}}: <span
+          style="color:red;">*</span></label>
+      <input type="text" class="form-control" formControlName="nom" name="nom" minlength="3"
+        [(ngModel)]="fournisseur.nom" placeholder="Post Name here ..">
+      <div *ngIf="nom?.invalid && nom?.touched" class="text-danger">
+        {{'Invalid name' | translate}}!
+      </div>
+      <div *ngIf="nom?.valid && nom?.touched" class="text-success">
+        {{'Valid name' | translate}} !
+      </div>
+    </div>
+    <div class="lg mb-3">
+      <label>{{'First name' | translate}} {{'(minimum 3 characters)' | translate}}: <span
+          style="color:red;">*</span></label>
+      <input class="form-control" name="prenom" [(ngModel)]="fournisseur.prenom" formControlName="prenom">
+      <div *ngIf="prenom?.invalid && prenom?.touched" class="text-danger">
+        {{'Invalid first name' | translate}}!
+      </div>
+      <div *ngIf="prenom?.valid && prenom?.touched" class="text-success">
+        {{'Valid first name' | translate}}!
+      </div>
+    </div>
+
+    <div class="lg mb-3">
+      <label>{{'matricule' | translate}} {{'(minimum 8 characters)' | translate}} : <span
+          style="color:red;">*</span></label>
+      <input class="form-control" placeholder="Description Post here ...." name="matricule" minlength="8"
+        formControlName="matricule" [(ngModel)]="fournisseur.matricule">
+      <div *ngIf="matricule?.invalid && matricule?.touched" class="text-danger">
+        {{'Invalid registration number' | translate}}!
+      </div>
+      <div *ngIf="matricule?.valid && matricule?.touched" class="text-success">
+        {{'Valid registration number' | translate}}!
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' |
+        translate}}</button>
+      <button type="submit" (click)="updateFournisseur()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' |
+        translate}} </button>
+    </div>
+  </form>
+
+</div>

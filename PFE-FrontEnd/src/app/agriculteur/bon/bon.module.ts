@@ -7,7 +7,7 @@ import { CreateBonComponent } from './create-bon/create-bon.component';
 import { UpdateBonComponent } from './update-bon/update-bon.component';
 import { DatailsBonComponent } from './datails-bon/datails-bon.component';
 
-import { MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,9 +27,10 @@ import { CreateBonSortieComponent } from './create-bon-sortie/create-bon-sortie.
 import { DetailsBonSortieComponent } from './details-bon-sortie/details-bon-sortie.component';
 import { ListeBonSortieComponent } from './liste-bon-sortie/liste-bon-sortie.component';
 import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.component';
-
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+//add translation
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+//add expotation 
 import { MatTableExporterModule } from 'mat-table-exporter';
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -59,29 +60,26 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatMenuModule,
     ReactiveFormsModule,
-     //add For Sorted
-     MatSortModule,
-     // AddForPaginator
-     MatPaginatorModule,
-     MatFormFieldModule,
-     MatInputModule,
-     MatTableModule,
-     MatSnackBarModule,
-     TranslateModule.forRoot({
+    MatSortModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSnackBarModule,
+    TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
       }
-  }),
-   
+    }),
   ]
 })
 export class BonModule {
-  defaultValue= {hour: 13, minute: 30};
+  defaultValue = { hour: 13, minute: 30 };
 
   timeChangeHandler(event: Event) {
     console.log(event);
-}
+  }
 
- }
+}

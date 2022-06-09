@@ -1,26 +1,8 @@
-img{
-  height:85px;
-  width:85px;
+img {
+  height: 85px;
+  width: 85px;
 }
 
-.active{
-  background: 'red';
+.active {
+  background: "red";
 }
-
-/* .gradient-text {
-background-color: #20bf55;
-background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);  
-  
-  background-size: 100%;
-  background-repeat: repeat;
-
-  
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; 
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  font-family: "Archivo Black", sans-serif;
-  font-weight: bold;
-} */
-
-

@@ -1,4 +1,4 @@
-<div class="ContenuCard" >
+<div class="ContenuCard">
   <div class="modal-header">
     <h2 id="modal-title"><b>{{'Change voucher number' | translate}} : {{bon.idBon}}</b></h2>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
@@ -10,80 +10,45 @@
 
     <div class="form-group">
       <div class="col-md-12 mb-3">
-      <label>{{'Quantity' | translate}} (Kg) : <span style="color:red;">*</span></label>
-      <input type="number"
-             class="form-control"
-             formControlName="quantite"
-             name="quantite"
-             [(ngModel)]="bon.quantite"
-             placeholder="Post Name here ..">
-        <div
-             *ngIf="quantite?.invalid && quantite?.touched"
-              class="text-danger">
-              {{'Invalid quantity' | translate}} !
-       </div>
-       <div
-            *ngIf="quantite?.valid && quantite?.touched"
-            class="text-success">
-            {{'Valid quantity' | translate}} !
-       </div>
+        <label>{{'Quantity' | translate}} (Kg) : <span style="color:red;">*</span></label>
+        <input type="number" class="form-control" formControlName="quantite" name="quantite" [(ngModel)]="bon.quantite"
+          placeholder="Post Name here ..">
+        <div *ngIf="quantite?.invalid && quantite?.touched" class="text-danger">
+          {{'Invalid quantity' | translate}} !
+        </div>
+        <div *ngIf="quantite?.valid && quantite?.touched" class="text-success">
+          {{'Valid quantity' | translate}} !
+        </div>
       </div>
-   
-
-    <!-- <div class="col-md-12 mb-3">
-      <label for="pseudo"> type :</label>
-        <select type="text" class="form-select" id="type"   [(ngModel)]="bon.type"  name="type" formControlName="type" >
-        <option value="Entree">Entree</option>
-        <option value="Sortie">Sortie</option>
+      <div class="col-md-12 mb-3">
+        <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate}} : <span
+            style="color:red;">*</span></label>
+        <select formControlName="fournisseur" name="fournisseur" [(ngModel)]="bon.fournisseur.idFournisseur"
+          class="custom-select mr-sm-2" id="fournisseur">
+          <option selected>{{'Choose a' | translate}} {{'supplier' | translate}}...</option>
+          <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">
+            {{fournisseur.nom}}</option>
         </select>
-      <div
-        *ngIf="type?.invalid && type?.touched"
-         class="text-danger">  
-            invalide type!
-     </div>
-       <div
-       *ngIf="type?.valid && type?.touched"
-       class="text-success">
-       Type valide!
-     </div>
-  </div> -->
-
-
-  <div class="col-md-12 mb-3">
-    <label class="mr-sm-5" for="inlineFormCustomSelect">{{'supplier' | translate}} : <span style="color:red;">*</span></label>
-    <select formControlName="fournisseur" name="fournisseur"  [(ngModel)]="bon.fournisseur.idFournisseur" class="custom-select mr-sm-2" id="fournisseur" >
-      <option selected>{{'Choose a' | translate}} {{'supplier' | translate}}...</option>
-      <option *ngFor="let fournisseur of fournisseurs | async" [value]="fournisseur.idFournisseur">{{fournisseur.nom}}</option>
-    </select>
-  </div>
-</div>
-
+      </div>
+    </div>
     <div class="form-group">
       <div class="col-md-12 mb-3">
-      <label for="disabledTextInput"> {{'price' | translate}}:</label>
-      <input type="number"
-             class="form-control"
-             name="prix"
-             formControlName="prix"
-             [(ngModel)]="bon.prix"
-             placeholder="Post Name here ..">
-        <div
-             *ngIf="prix?.invalid && prix?.touched"
-              class="text-danger">
-               {{'Invalid price' | translate}}!
-       </div>
-       <div
-            *ngIf="prix?.valid && prix?.touched"
-            class="text-success">
-            {{'Valid price' | translate}}!
-       </div>
+        <label for="disabledTextInput"> {{'price' | translate}}:</label>
+        <input type="number" class="form-control" name="prix" formControlName="prix" [(ngModel)]="bon.prix"
+          placeholder="Post Name here ..">
+        <div *ngIf="prix?.invalid && prix?.touched" class="text-danger">
+          {{'Invalid price' | translate}}!
+        </div>
+        <div *ngIf="prix?.valid && prix?.touched" class="text-success">
+          {{'Valid price' | translate}}!
+        </div>
+      </div>
     </div>
-  </div>
-
     <div class="modal-footer">
-      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-      <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' | translate}} </button>
+      <button type="button" (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' |
+        translate}}</button>
+      <button type="submit" (click)="updateBon()" [disabled]="myForm.invalid" class="btn btn-primary">{{'Save' |
+        translate}} </button>
     </div>
   </form>
-
 </div>

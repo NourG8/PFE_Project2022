@@ -11,9 +11,6 @@ import { CreateBonSortieComponent } from './create-bon-sortie/create-bon-sortie.
 import { UpdateBonSortieComponent } from './update-bon-sortie/update-bon-sortie.component';
 import { DetailsBonSortieComponent } from './details-bon-sortie/details-bon-sortie.component';
 
-
-
-
 const routes: Routes = [
   { path: '', component: BonComponent},
   { path: 'listeBon', component: ListeBonComponent },
@@ -25,8 +22,6 @@ const routes: Routes = [
   { path: 'updateBon/:id', component: UpdateBonComponent  },
   { path: 'updateBonSortie/:id', component: UpdateBonSortieComponent  },
   { path:'',redirectTo:'/bon',pathMatch:'full'},
-
-
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

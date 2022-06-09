@@ -14,17 +14,17 @@ import { UpdateOperationRetraitComponent } from './update-operation-retrait/upda
 
 
 const routes: Routes = [
-  {  path: '', component: OperationComponent,},
+  { path: '', component: OperationComponent, },
   { path: 'listeOperation', component: ListeOperationComponent },
-  { path: 'addOperation', component: CreateOperationComponent  },
-  { path: 'addOperationR', component: CreateOperationRemplissageComponent  },
-  { path: 'detailsOperation/:id', component: DetailsOperationComponent   },
-  { path: 'updateOperation/:id', component: UpdateOperationComponent  },
+  { path: 'addOperation', component: CreateOperationComponent },
+  { path: 'addOperationR', component: CreateOperationRemplissageComponent },
+  { path: 'detailsOperation/:id', component: DetailsOperationComponent },
+  { path: 'updateOperation/:id', component: UpdateOperationComponent },
   { path: 'updateOperationR/:id', component: UpdateOperationRetraitComponent },
-  { path: 'operationPage', component: PageOperationsComponent  },
-  { path: 'listeOperationRetrait', component: ListeOperationsRetraitComponent  },
-  { path: 'detailsOperationTank/:id', component: DetailsOperationTankComponent  },
-  { path:'',redirectTo:'/operation',pathMatch:'full'},
+  { path: 'operationPage', component: PageOperationsComponent },
+  { path: 'listeOperationRetrait', component: ListeOperationsRetraitComponent },
+  { path: 'detailsOperationTank/:id', component: DetailsOperationTankComponent },
+  { path: '', redirectTo: '/operation', pathMatch: 'full' },
 
 ];
 @NgModule({

@@ -1,57 +1,47 @@
 <div class="wrapper" *ngIf="collecteur">
-    <div class="card text-white">
-        <div class="bg-pink"></div>
-        <div class="img-container d-flex align-items-center justify-content-center"><h5>{{'Consult the center number' | translate}}</h5> </div>
-        <div class="user">
-            <div class="h5 text-center m-0"> {{idC}} </div>
+  <div class="card text-white">
+    <div class="bg-pink"></div>
+    <div class="img-container d-flex align-items-center justify-content-center">
+      <h5>{{'Consult the center number' | translate}}</h5>
+    </div>
+    <div class="user">
+      <div class="h5 text-center m-0"> {{idC}} </div>
+    </div>
+    <div class="px-3">
+      <div class="d-flex align-items-center justify-content-between py-3 pe-none">
+        <div class="details snippets">
         </div>
-        <div class="px-3">
-            <div class="d-flex align-items-center justify-content-between py-3 pe-none">
-                <div class="details snippets">
-                </div>
-                <div class="details post">
-                </div>
-            </div>
-            <div class="skills">
-                <div class=" head text-uppercase"><h5>{{'Other Information' | translate}} :</h5></div>
-                <div class=" pb-5 pt-3">
-  
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Center name' | translate}} : </span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{collecteur.nomCollecteur}}</span>
-                  </div>
-                  
-                  <!-- <div class="text-uppercase fs-08">
-                    <span id="titre">NNuméro de matricule :</span>
-                    <span>{{collecteur.matricule}}</span>
-                  </div> -->
-  
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Center address' | translate}} : </span>
-                    <span>{{collecteur.adresse}}</span>
-                  </div>
-
-                  <div class="text-uppercase fs-08">
-                    <span id="titre">{{'Phone number' | translate}} : </span>
-                    <span>{{collecteur.tel}}</span>
-                  </div>
-
-                 <br><br><br><br>
-                    
-                </div>
-            </div>
-  
-            <div class="details project">
-              <div class="head text-uppercase">
-                <button id="btn" (click)="closeDetails()"  style="margin-left:115px;" class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
-                  {{'Close details' | translate}}
-                </button>
-              </div>
+        <div class="details post">
+        </div>
+      </div>
+      <div class="skills">
+        <div class=" head text-uppercase">
+          <h5>{{'Other Information' | translate}} :</h5>
+        </div>
+        <div class=" pb-5 pt-3">
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Center name' | translate}} : </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{collecteur.nomCollecteur}}</span>
           </div>
-  
-  
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Center address' | translate}} : </span>
+            <span>{{collecteur.adresse}}</span>
+          </div>
+          <div class="text-uppercase fs-08">
+            <span id="titre">{{'Phone number' | translate}} : </span>
+            <span>{{collecteur.tel}}</span>
+          </div>
+          <br><br><br><br>
         </div>
+      </div>
+      <div class="details project">
+        <div class="head text-uppercase">
+          <button id="btn" (click)="closeDetails()" style="margin-left:115px;"
+            class="btn btn ml-135  btn-rounded waves-effect w-md waves-light">
+            {{'Close details' | translate}}
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-    
-    
+</div>

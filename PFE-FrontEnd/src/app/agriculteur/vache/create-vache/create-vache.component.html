@@ -1,4 +1,4 @@
-<div class="ContenuCard" >
+<div class="ContenuCard">
   <div class="modal-header">
     <h2 id="modal-title"><b>{{'Add a cow' | translate}}:</b></h2>
     <button type="button" (click)="onClose()" class="close" data-dismiss="modal" aria-label="Close">
@@ -6,165 +6,87 @@
     </button>
   </div>
   <span style="color:red;margin-top:-105px;font-size:1.1em">(*){{'Required Field' | translate}}</span><br><br>
-        <form [formGroup]="myForm"  novalidate >
+  <form [formGroup]="myForm" novalidate>
 
 
-            <div class="col-md-12 mb-3">
-              <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}}: <span style="color:red;">*</span></label>
-              <input type="text"
-               formControlName="matricule"
-               class="form-control"
-               id="matricule"
-               [(ngModel)]="vache.matricule"
-               name="matricule">
-  
-              <div *ngIf="matricule?.invalid && matricule?.touched || msg2==1" class="text-danger">
-                 {{'Invalid registration number' | translate}}!
-              </div>
-              <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">
-                {{'Valid registration number' | translate}}!
-              </div>
+    <div class="col-md-12 mb-3">
+      <label>{{'Registration number' | translate}} {{'(minimum 8 characters)' | translate}}: <span
+          style="color:red;">*</span></label>
+      <input type="text" formControlName="matricule" class="form-control" id="matricule" [(ngModel)]="vache.matricule"
+        name="matricule">
 
-              <div *ngIf="msg2==1"  class="text-danger">
-                {{'Registration number already exists' | translate}} !
-              </div>
-  
-            </div>
-    
-         
-            <div class="col-md-12 mb-3">
-              <label>{{'Weight' | translate}} (minimum 30kg) : <span style="color:red;">*</span></label>
-              <input type="number"
-               formControlName="poids"
-               class="form-control"
-               id="poids"
-               [(ngModel)]="vache.poids"
-               name="poids">
-  
-              <div *ngIf="poids?.invalid && poids?.touched" class="text-danger">
-                {{'Invalid weight' | translate}} !
-              </div>
-              <div *ngIf="poids?.valid && poids?.touched" class="text-success">
-                {{'Valid weight' | translate}}!
-              </div>
-            </div>
-
-            <!-- <div class="col-md-12 mb-3">
-              <label for="type">Race :</label>
-              <input type="text"
-               class="form-control"
-                id="race"
-                formControlName="race"
-                [(ngModel)]="vache.race"
-                name="race">
-  
-                <div *ngIf="race?.invalid && race?.touched" class="text-danger">
-                  invalide race!
-                </div>
-                <div *ngIf="race?.valid && race?.touched" class="text-success">
-                  Race valide!
-                </div>
-  
-            </div> -->
-
-
-            <div class="col-md-12 mb-3">
-              <label for="pseudo">Race : <span style="color:red;">*</span> </label>
-                <select type="text" class="form-select" id="race"  name="race" formControlName="race"  [(ngModel)]="vache.race">
-                  <option disabled selected value [ngValue]="null">{{'Choose the' | translate}} race ...</option>
-                <option value="Hollandaise">{{'Dutch' | translate}}</option>
-                <option value="Charolaise">Charolaise</option>
-                </select>
-              <div
-                *ngIf="race?.invalid && race?.touched"
-                 class="text-danger">
-                    {{'invalid race' | translate}}!
-             </div>
-               <div
-               *ngIf="race?.valid && race?.touched"
-               class="text-success">
-               {{'valid race' | translate}}!
-             </div>
-          </div>
-
-   
-          <div class="form-row">
-  
-  
-            <div class="col-md-12 mb-3">
-              <label for="date">{{'Date of birth' | translate}}: <span style="color:red;">*</span></label>
-              <input type="date"
-               required class="form-control ng-valid"
-               id="dateNaissance"
-               formControlName="dateNaissance"
-                [(ngModel)]="vache.dateNaissance"
-                name="dateNaissance">
-                <div *ngIf="dateNaissance?.invalid && dateNaissance?.touched" class="text-danger">
-                  {{'Invalid date' | translate}}!</div>
-                <div *ngIf="dateNaissance?.valid && dateNaissance?.touched" class="text-success">
-                  {{'Valid date' | translate}}!
-                </div>
-  
-              </div>
-            <!-- <div class="col-md-6 mb-3">
-              <label for="prix">Etat :</label>
-              <input type="text"
-               class="form-control"
-                 id="etat"
-                formControlName="etat"
-                required
-                [(ngModel)]="vache.etat"
-                name="etat">
-  
-                <div *ngIf="etat?.invalid && etat?.touched" class="text-danger">
-                 Etat invalide ! 
-                </div>
-                <div *ngIf="etat?.valid && etat?.touched" class="text-success">
-                  Etat Valide
-                </div>
-  
-            </div> -->
-
-
-            <!-- <div class="col-md-6 mb-3">
-              <label for="pseudo">Etat : <span style="color:red;">*</span> </label>
-                <select type="text" class="form-select" id="etat"  name="etat" formControlName="etat"  [(ngModel)]="vache.etat">
-                  <option disabled selected value [ngValue]="null">Choisir l'etat ...</option>
-                <option value="Bonne">Bonne</option>
-                <option value="Malade">Malade</option>
-                </select>
-              <div
-                *ngIf="etat?.invalid && etat?.touched"
-                 class="text-danger">
-                    invalide etat!
-             </div>
-               <div
-               *ngIf="etat?.valid && etat?.touched"
-               class="text-success">
-               Etat valide!
-             </div>
-          </div> -->
-
-          </div>
-
-
-          <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="cgu"   formControlName="cgu" required>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
-              <label class="form-check-label" for="cgu" *ngIf="msg4==0" >{{'p2' | translate}}</label>
-              <br>
-              <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required fields' | translate}}</span>
-              <div class="invalid-feedback">{{'p3' | translate}}</div>
-            </div>
-          </div>
-          <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()"  type="submit">{{'Send' | translate}}</button>
-          <!-- close popup -->
-          <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
-
-        </form>
+      <div *ngIf="matricule?.invalid && matricule?.touched || msg2==1" class="text-danger">
+        {{'Invalid registration number' | translate}}!
+      </div>
+      <div *ngIf="matricule?.valid && matricule?.touched && msg2==0" class="text-success">
+        {{'Valid registration number' | translate}}!
       </div>
 
+      <div *ngIf="msg2==1" class="text-danger">
+        {{'Registration number already exists' | translate}} !
+      </div>
+
+    </div>
 
 
-  
+    <div class="col-md-12 mb-3">
+      <label>{{'Weight' | translate}} (minimum 30kg) : <span style="color:red;">*</span></label>
+      <input type="number" formControlName="poids" class="form-control" id="poids" [(ngModel)]="vache.poids"
+        name="poids">
+
+      <div *ngIf="poids?.invalid && poids?.touched" class="text-danger">
+        {{'Invalid weight' | translate}} !
+      </div>
+      <div *ngIf="poids?.valid && poids?.touched" class="text-success">
+        {{'Valid weight' | translate}}!
+      </div>
+    </div>
+
+    <div class="col-md-12 mb-3">
+      <label for="pseudo">Race : <span style="color:red;">*</span> </label>
+      <select type="text" class="form-select" id="race" name="race" formControlName="race" [(ngModel)]="vache.race">
+        <option disabled selected value [ngValue]="null">{{'Choose the' | translate}} race ...</option>
+        <option value="Hollandaise">{{'Dutch' | translate}}</option>
+        <option value="Charolaise">Charolaise</option>
+      </select>
+      <div *ngIf="race?.invalid && race?.touched" class="text-danger">
+        {{'invalid race' | translate}}!
+      </div>
+      <div *ngIf="race?.valid && race?.touched" class="text-success">
+        {{'valid race' | translate}}!
+      </div>
+    </div>
+
+
+    <div class="form-row">
+      <div class="col-md-12 mb-3">
+        <label for="date">{{'Date of birth' | translate}}: <span style="color:red;">*</span></label>
+        <input type="date" required class="form-control ng-valid" id="dateNaissance" formControlName="dateNaissance"
+          [(ngModel)]="vache.dateNaissance" name="dateNaissance">
+        <div *ngIf="dateNaissance?.invalid && dateNaissance?.touched" class="text-danger">
+          {{'Invalid date' | translate}}!</div>
+        <div *ngIf="dateNaissance?.valid && dateNaissance?.touched" class="text-success">
+          {{'Valid date' | translate}}!
+        </div>
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="cgu" formControlName="cgu" required>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==1" style="color:red;">{{'p2' | translate}}</label>
+        <label class="form-check-label" for="cgu" *ngIf="msg4==0">{{'p2' | translate}}</label>
+        <br>
+        <span style="color:red;margin-bottom:45px;font-size:1.1em" *ngIf="msg != ''">{{'Please fill in all required
+          fields' | translate}}</span>
+        <div class="invalid-feedback">{{'p3' | translate}}</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" style="margin:11px" (click)=" onSubmit()" type="submit">{{'Send' |
+      translate}}</button>
+    <!-- close popup -->
+    <button (click)="onClose()" class="btn btn-secondary" data-dismiss="modal">{{'Close' | translate}}</button>
+
+  </form>
+</div>

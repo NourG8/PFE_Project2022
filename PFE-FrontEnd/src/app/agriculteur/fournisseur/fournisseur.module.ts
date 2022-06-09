@@ -6,7 +6,7 @@ import { CreateFournisseurComponent } from './create-fournisseur/create-fourniss
 import { DetailsFournissseurComponent } from './details-fournissseur/details-fournissseur.component';
 import { ListeFournisseurComponent } from './liste-fournisseur/liste-fournisseur.component';
 import { UpdateFournisseurComponent } from './update-fournisseur/update-fournisseur.component';
-import { MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,22 +26,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { MatTableExporterModule } from 'mat-table-exporter';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 
-
 @NgModule({
-
   declarations: [
-
     CreateFournisseurComponent,
     DetailsFournissseurComponent,
     ListeFournisseurComponent,
-    UpdateFournisseurComponent
+    UpdateFournisseurComponent,
   ],
   imports: [
     MatTableExporterModule,
@@ -56,21 +53,21 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatIconModule,
     MatMenuModule,
     ReactiveFormsModule,
-     //add For Sorted
-     MatSortModule,
-     // AddForPaginator
-     MatPaginatorModule,
-     MatFormFieldModule,
-     MatInputModule,
-     MatTableModule,
-     MatSnackBarModule,
-     TranslateModule.forRoot({
+    //add For Sorted
+    MatSortModule,
+    // AddForPaginator
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatSnackBarModule,
+    TranslateModule.forRoot({
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  }),
-  ]
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
 })
-export class FournisseurModule { }
+export class FournisseurModule {}
