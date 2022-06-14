@@ -21,7 +21,6 @@ import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { environment } from 'src/environments/environment';
 
-declare let require: any;
 declare let window: any;
 let Remplissage = require('../../../../../build/contracts/RemplissageAgric.json');
 
